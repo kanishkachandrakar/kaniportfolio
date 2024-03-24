@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, inital-scale=1.0">
+    <title>Personal Portfolio Website</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/037e6d0262.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+<div id="header">
+    <div class="container">
+        <nav>
+            <!-- <img src="images/Logo.png" class="Logo"> -->
+            <ul id="sidemenu">
+                
+                <li><a href="#header">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="#skills2">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#workex">Experiences</a></li>
+                <li><a href="images/Kanishka_Chandrakar_resume.pdf" download class="resumedown"><i class="fa-solid fa-file-arrow-down"></i> Resume</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="knowmemore.html">My Life!</a></li>
+                <i class="fas fa-times" onclick="closemenu()"></i>
+            </ul>
+            <i class="fas fa-bars" onclick="openmenu()"></i>
+        </nav>
+        <div class="header-text">
+            <p><span class="multiple-text"></span></p>
+            <h1>Hi, I'm <span>Kanishka</span> <br>Chandrakar from India</h1>
+        </div>
+    </div>
+</div> 
+<!---------------img section1: about me + education------------------->
+<div id="img1">
+    <div class="container">
+        <div class="img1">
+            <div class="img11">
+                <h1 class="sub-title1">
+                    <span class="text-overlay">Get to know me :D</span>
+                </h1>
+                <a href="about.html"><img src="images/who-i.png"></a>
+            </div>
+            <div class="img11">
+                <h1 class="sub-title1">
+                    <span class="text-overlay">Soon-to-graduate!</span>
+                </h1>
+                <a href="education.html"><img src="images/education.png"></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!---------------img section2: skills chart------------------->
+    <h1 class="sub-title2" id="skills2">
+        How can I help <span>you? </span> <i class="fa-solid fa-desktop"></i>
+    </h1>
+
+    <div class="container1">
+        <div class="skill-box">
+            </i><span class="title"><i class='bx bxl-python'></i>PYTHON</span> 
+            <div class="skill-bar">
+                <span class="skill-per python">
+                    <span class="tooltip">88%</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="skill-box">
+            </i><span class="title"><i class='bx bxl-c-plus-plus'></i>C/C++</span> 
+            <div class="skill-bar">
+                <span class="skill-per cplus">
+                    <span class="tooltip">93%</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="skill-box">
+            </i><span class="title"><i class="fa-brands fa-java"></i>JAVA</span> 
+            <div class="skill-bar">
+                <span class="skill-per java">
+                    <span class="tooltip">84%</span>
+                </span>
+            </div>
+        </div>
+    
+
+        <div class="skill-box">
+            </i><span class="title"><i class='bx bxl-html5'></i>HTML/CSS</span> 
+            <div class="skill-bar">
+                <span class="skill-per html">
+                    <span class="tooltip">83%</span>
+                </span>
+            </div>
+        </div>
+    
+        <div class="skill-box">
+            </i><span class="title"><i class="fa-brands fa-js"></i>JAVASCRIPT</span> 
+            <div class="skill-bar">
+                <span class="skill-per javascript">
+                    <span class="tooltip">80%</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="skill-box">
+            </i><span class="title"><i class="fa-solid fa-database"></i>SQL</span> 
+            <div class="skill-bar">
+                <span class="skill-per sql">
+                    <span class="tooltip">88%</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="skill-box">
+            </i><span class="title">MATLAB</span> 
+            <div class="skill-bar">
+                <span class="skill-per matlab">
+                    <span class="tooltip">66%</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="skill-box">
+            </i><span class="title">SYSTEM VERILOG</span> 
+            <div class="skill-bar">
+                <span class="skill-per verilog">
+                    <span class="tooltip">72%</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="skill-box">
+        </i><span class="title">SHELL SCRIPTING</span> 
+        <div class="skill-bar">
+            <span class="skill-per shell-scripting">
+                <span class="tooltip">88%</span>
+            </span>
+        </div>
+        </div>
+    </div>
+    <a href="#header" class="btn">HOME</a>
+
+
+<!-- -circular progress----
+<div class="conatiner2">
+    <div class="card">
+        <div class="rating">
+            <h2><span class="counter" data-target="90">90</span><sup>%</sup><br>Analytical Thinking</h2>
+            <div class="block"></div>
+            </div>
+        </div>
+
+    <div class="card">
+        <div class="rating">
+                <h2><span class="counter" data-target="85">85</span><sup>%</sup><br>Analytical Thinking</h2>
+                <div class="block"></div>
+                </div>
+        </div>
+
+</div> -->
+
+
+<!---------------services------------------->
+<div id="projects">
+    <div class="container">
+        <h1 class="sub-title3">My Projects</h1>
+        <div class="services-list" id="blur">
+            <div class="services-list2">
+                <a href="#popup" onclick="toggle('popup','blur')">
+                <i class="fa-solid fa-hard-drive"></i>
+                <h2>5 Stage 32-Bit MIPS Pipelined CPU</h2>
+                <p>C/C++, System Verilog, Xilinx Vivado</p>
+                <p class="learn-more-link">Learn More</p></a>
+            </div>
+            <div class="services-list2">
+                <a href="#popup2" onclick="toggle('popup2','blur')">
+                <i class="fa-solid fa-shuffle"></i>
+                <h2>MDADM Utility File Management System </h2>
+                <p>C, Shell Scripting, Git, UTM</p>
+                <p class="learn-more-link">Learn More</p></a>
+            </div>
+            <div class="services-list2">
+                <a href="#popup3" onclick="toggle('popup3','blur')">
+                <i class="fa-regular fa-calendar"></i>
+                <h2>Course Scheduler System</h2>
+                <p>Java/Python, Apache Derby, NetBeans</p>
+                <p class="learn-more-link">Learn More</p></a>
+            </div>
+            <div class="services-list2">
+                <a href="#popup4" onclick="toggle('popup4','blur')">
+                <i class="fa-solid fa-palette"></i>
+                <h2>2D Drawing Application</h2>
+                <p>Java GUI, Apache Derby, NetBeans</p>
+                <p class="learn-more-link">Learn More</p></a>
+            </div>
+            <div class="services-list2">
+                <a href="#popup5" onclick="toggle('popup5','blur')">
+                <i class="fa-solid fa-pizza-slice"></i>
+                <h2>Pizza Slice Estimator</h2>
+                <p>Java GUI, Apache Derby, NetBeans</p>
+                <p class="learn-more-link">Learn More</p></a>
+            </div>
+            <div class="services-list2">
+                <a href="#popup6" onclick="toggle('popup6','blur')">
+                <i class="fa-solid fa-calculator"></i>
+                <h2>Shopping Calculator</h2>
+                <p>Java, Python</p>
+                <p class="learn-more-link">Learn More</p></a>
+            </div>
+        </div>
+        <div id="popup">
+            <h2>Pipelined CPU Design and Implementation [2023]</h2>
+            <p>The project centered around the development and execution of a pipelined CPU architecture utilizing Xilinx 
+                design tools tailored for Field-Programmable Gate Arrays (FPGAs). Specifically, 
+                it entailed the meticulous design and implementation of the initial four stages within 
+                a five-stage pipelined CPU model:
+                <span style="font-weight: bold;">Instruction Fetch, Instruction Decode, Instruction Execute, Memory Access</span>.</p>
+            <div class="imgcpu"><img src="images/CPU.png"></div>
+           
+
+                <p>Each stage was meticulously crafted to ensure seamless operation and optimal 
+                performance within the pipeline. This involved rigorous testing procedures to verify 
+                the correct functionality and efficiency of each stage, guaranteeing that instructions traversed 
+                through the pipeline accurately and efficiently. Additionally, precise control signals were 
+                integrated into each stage to govern their operations effectively and ensure precise instruction execution.</p>
+                
+                <p>Moreover, the project emphasized the iterative nature of the design and testing process, wherein 
+                continuous refinement and optimization were pursued to achieve correctness, efficiency, and performance 
+                enhancements. Ultimately, this endeavor aimed to lay the foundation for a robust and efficient pipelined CPU design tailored for FPGA implementation, 
+                with a focus on maximizing speed, reliability, and resource utilization.</p>
+            <a href="#projects"  class="btn-pro" onclick="toggle('popup','blur')">Close</a>
+        </div>
+        <div id="popup2">
+            <h2>JBOD File Storage System [2022]</h2>
+            <div class="imgdraw"><img src="images/jbod.png"></div>
+            <p>
+                At its essence, JBOD represents a straightforward yet powerful storage setup. Within a single enclosure, JBOD houses multiple independent disks, each functioning autonomously. Unlike traditional RAID setups that employ complex data striping and redundancy mechanisms, JBOD operates in a non-redundant manner. Each disk is treated as a separate logical volume, offering straightforward access to individual storage units without intricate data handling processes.
+              </p>
+            
+              <p>
+                Central to the efficiency of JBOD is the mdadm module, which serves as the engine driving storage operations. One of its primary functions is caching, a crucial element in enhancing performance. Through techniques like the least recently used method, caching optimizes data accessibility, thereby boosting overall system performance.
+                The mdadm module facilitates seamless communication with the JBOD server. This server acts as a central hub, providing a unified interface for managing the array of hard drives within the JBOD enclosure. This centralized management streamlines storage administration, enabling users to harness the full potential of their storage infrastructure.
+              </p>
+
+                <p>
+                    In essence, the JBOD system emerges as a beacon of efficiency in the realm of storage architecture. With its consolidated disk enclosure and decentralized approach to data management, JBOD offers a flexible solution for handling large volumes of data with ease. The mdadm module serves as a critical enabler in this ecosystem, ensuring seamless communication with the JBOD server and optimizing storage performance through innovative caching mechanisms. As data volumes continue to soar, JBOD stands ready to meet the evolving storage needs of modern enterprises, driving innovation and efficiency in storage infrastructure management.
+                </p>
+                            
+            <a href="#projects"  class="btn-pro" onclick="toggle('popup2','blur')">Close</a>
+        </div>
+        <div id="popup3">
+            <h2>Course Scheduler Application [2022]</h2>
+            <div class="imgdraw"><img src="images/schedule.png"></div>
+
+            <p>The Course Scheduler application is a fundamental tool designed to revolutionize the course scheduling process within college environments. Administrators are equipped with a suite of powerful functionalities, enabling them to effortlessly manage semesters, courses, and student enrollments. With the ability to add new semesters and courses to the system while accurately cataloging student information, administrators ensure that scheduling data remains up-to-date and comprehensive. This seamless integration of administrative tasks streamlines operations and enhances the overall efficiency of course scheduling processes, ultimately contributing to a well-organized and dynamic academic ecosystem.</p>
+            <p>With its adherence to GUI guidelines and emphasis on usability, the Course Scheduler application prioritizes user experience across all levels of the scheduling process. The intuitive interface allows for seamless navigation and interaction, reducing the learning curve for both administrators and students. By incorporating dropdown lists and prompt displays of relevant information, the application ensures that users can efficiently perform tasks without unnecessary complications. This focus on user-centric design enhances satisfaction and engagement, ultimately contributing to a smoother and more streamlined course scheduling experience. In summary, the Course Scheduler application stands as a testament to innovation and efficiency in managing academic operations within college environments.</p>            
+  
+            <a href="#projects"  class="btn-pro" onclick="toggle('popup3','blur')">Close</a>
+        </div>
+        <div id="popup4">
+            <h2>2D Drawing Application [2022]</h2>
+            <div class="imgdraw"><img src="images/draw.png"></div>
+            <p>The 2D Drawing Application is a Java-based project designed to create a versatile drawing tool with various functionalities. The application incorporates elements such as shape selection (line, oval, rectangle) via a combo box, color selection using JColorChooser dialogs, undo and clear options, and additional features like gradient painting, dashed or solid lines, and stroke width adjustment.</p>
+            <p>The project adheres to a structured layout, featuring components like checkboxes for fill options and gradient painting, JSpinners for stroke width and dash length adjustment, and a JPanel for drawing shapes. A status bar JLabel displays the current mouse location on the drawing panel, enhancing user interaction and feedback.</p>
+            <p>Notably, the project incorporates advanced features such as gradient painting and dashed lines, enhancing the drawing capabilities and user experience. Through thoughtful design and utilization of Java's graphical capabilities, the 2D Drawing Application offers a comprehensive and intuitive platform for creating and manipulating shapes.</p>
+            <a href="#projects"  class="btn-pro" onclick="toggle('popup4','blur')">Close</a>
+        </div>
+        <div id="popup5">
+            <h2>Pizza Servings Calculator [2022]</h2>
+            <p>The Pizza Servings Calculator project is a Java-based graphical user interface (GUI) application designed to calculate the number of servings of pizza based on its diameter. Implemented using the Swing library, the GUI features a grid layout with distinct components. The frame title is set to 'Pizza Servings Calculator'. A prominently displayed red-colored <span style="color: red;"><span style="font-weight: bold;">JLabel</span></span> serves as the title of the application.</p>
+            <div class="imgpizza"><img src="images/pizza.png"></div>
+
+            <p>The main input mechanism is a <span style="font-weight: bold;">JTextField</span> prompts users to enter the size of the pizza in inches. Adjacent to this input field is a <span style="font-weight: bold;">JButton</span> labeled 'Calculate Servings', which, upon clicking uses an event handler and triggers calculations using a formula: servings which requires the diameter of the pizza entered by the user. The resulting number of servings is displayed with precision to two decimal places in a <span style="font-weight: bold;">JLabel</span>.</p>
+            
+            <p>The project demonstrates proficient utilization of Java programming language, particularly in GUI development using Swing components. It showcases competence in implementing event handling and action listeners to execute calculations based on user input. Furthermore, the application highlights adeptness in layout management within GUI environments, ensuring clarity and ease of use for the end user. The project's emphasis on parsing and processing user input for mathematical calculations underscores a strong understanding of core programming concepts and their practical application in real-world scenarios.</p>
+            
+            <a href="#projects"  class="btn-pro" onclick="toggle('popup5','blur')">Close</a>
+
+        </div>
+        <div id="popup6">
+            <h2>Shopping Calculator [2019]</h2>
+
+            <p>The Shopping Calculator application streamlines retail operations with its comprehensive features and user-friendly design. Administrators benefit from real-time stock management capabilities, allowing them to monitor inventory levels accurately. This ensures efficient inventory control and timely replenishment of items to meet customer demand.</p>
+            <p>Customers experience seamless transactions with the application's intuitive billing functionality. By inputting item quantities, the application calculates total bills swiftly and accurately, including taxes and discounts. This enhances the overall shopping experience and fosters customer satisfaction, leading to increased loyalty and repeat business.</p>
+            <p>Furthermore, the application facilitates efficient order management, enabling administrators to place new orders for items running low in stock. Notifications ensure timely replenishment, minimizing stockouts and maximizing sales opportunities. With its user-centric design and robust functionality, the Shopping Calculator application is indispensable for modern retail businesses striving for operational excellence and customer satisfaction.</p>
+
+            <a href="#projects"  class="btn-pro" onclick="toggle('popup6','blur')">Close</a>
+        </div>
+    </div>
+</div>
+<!---------------workex------------------->
+<div id="workex">
+    <div class="container">
+        <h1 class="sub-title4">Work Experience</h1>
+        <div class="work-list" id="blur2">
+            <div class="work">
+                <img src="images/work1.png">
+                <div class="layer">
+                    <p> Undergraduate Research Assistant</p>
+                    <a href="#popup7" onclick="toggle('popup7','blur2')"><i class="fa-solid fa-link"></i></a>
+                </div>
+            </div>
+            <div class="work">
+                <img src="images/work2.png">
+                <div class="layer">
+                    <p> Mathematics Learning Assistant</p>
+                    <a href="#popup8" onclick="toggle('popup8','blur2')"><i class="fa-solid fa-link"></i></a>
+                </div>
+            </div>
+            <div class="work">
+                <img src="images/work3.png">
+                <div class="layer">
+                    <p> Academic Facilitator: Women in Engineering</p>
+                    <a href="#popup9" onclick="toggle('popup9','blur2')"><i class="fa-solid fa-link"></i></a>
+                </div>
+            </div>
+            <div class="work">
+                <img src="images/work4.png">
+                <div class="layer">
+                    <p> Computer Science Learning Assistant</p>
+                    <a href="#popup10" onclick="toggle('popup10','blur2')"><i class="fa-solid fa-link"></i></a>
+                </div>
+            </div>
+        </div>
+        <div id="popup7">
+            <h2>Undergraduate Research Assistant</h2>
+            <h5>[Feb. 2024 - Present]</h5>
+                <li>Assisting faculty members in conducting research projects by collecting and organizing data, contributing to the analysis process, and preparing research materials.</li>
+                <li>Conducting literature reviews to support ongoing research initiatives, synthesizing relevant information to inform project development and enhance scholarly understanding.</li>
+                <li>Collaborating with research team members to troubleshoot challenges, brainstorm ideas, and contribute to the overall progress of research endeavors.</li>   
+            <a href="#workex"  class="btn-pro" onclick="toggle('popup7','blur2')">Close</a>
+        </div>
+        <div id="popup8">
+            <h2>Mathematics Learning Assistant</h2>
+            <h5>[Aug. 2023 - Dec. 2023]</h5>
+                <li>Collaborated with instructors to deliver engaging in-class support and near-peer instructions, resulting in a 30% rise in participation and improved attendance.</li>
+                <li>Provided detailed feedback, valuable academic support, and encouragement to the students, thus helping them achieve their academic goals.</li>
+                <li>Delivered personalized academic support during office hours and guiding students, leading to improved assignment grades and overall course performance.</li>
+            <a href="#workex"  class="btn-pro" onclick="toggle('popup8','blur2')">Close</a>
+        </div>
+        <div id="popup9">
+            <h2>Academic Facilitator: Women in Engineering Program</h2>
+            <h5>[Jan. 2023 - May 2023]</h5>
+                <li>Developed and implemented individualized learning plans for student success, causing an increase in course completion rate.</li>
+                <li>Held group review sessions and monitored student participation in engaging and learning-focused activities, thus enhancing overall participation rates</li>
+                <li>Provided students with extra course materials for practice and learning purposes.</li>
+                <a href="#workex"  class="btn-pro" onclick="toggle('popup9','blur2')">Close</a>
+
+        </div>
+
+        <div id="popup10">
+            <h2>Computer Science Learning Assistant</h2>
+            <h5>[May 2022 - Dec. 2023]</h5>
+            <li>Coached Programming and Computing in Python to over 100 undergraduate students.  </li>
+            <li>Evaluated 200+ programming codes, providing correct solutions, and conducting exam preparation sessions and grading exams.  </li>
+            <li>Provided personalized assistance during office hours to ensure that students have access to one-on-one guidance.</li>
+                <a href="#workex"  class="btn-pro" onclick="toggle('popup10','blur2')">Close</a>
+        </div>
+        
+    </div>
+    <a href="images/Kanishka_Chandrakar_resume.pdf" download class="btn">ALL-IN-ONE-FILE</a>    
+
+</div>
+<!---------------contact form------------------->
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-title">Let's Talk!</h1>
+                <p><i class="fa-regular fa-paper-plane"></i>kanishka.chandrakar02@gmail.com</p>
+                <p><i class="fa-solid fa-phone"></i>+1 5822039622</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/kanishkaa__c/"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/kanishka-chandrakar-6066bb262/"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+                <a href="images/Kanishka_Chandrakar_resume.pdf" download class="btn btn2">Download CV</a>
+            </div>
+            <div class="contact-right">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="text" name="Email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn btn2">Submit</button>
+                </form>
+                <span id="msg"></span>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>Copyright © Kanishka <i class="fa-solid fa-heart"></i></p>
+    </div>
+</div>
+
+
+<script>
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+    function opentab(tabname){
+        for(tablink of tablinks){
+            tablink.classList.remove("active-link");
+        }
+        for(tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab")
+    }
+</script>
+
+<script>
+    var sidemeu = document.getElementById("sidemenu");
+
+    function openmenu(){
+        sidemeu.style.right = "0";
+    }
+    function closemenu(){
+        sidemeu.style.right = "-200px";
+    }
+</script>
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbynOoO5RaiAOfaHz51p9YJfkW_6Fpptj1pfO9SQZrmt7WSXxjKt7FS9iCeT2M2Gt94y/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML = "Message Recieved!"
+            setTimeout(function(){
+                msg.innerHTML = ""
+            },5000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+</script>
+
+
+
+<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            const typed = new Typed('.multiple-text',{
+                strings: ['Software Engineer','Graduating in Dec 2024! ','Fun-time Web Designer'],
+                typeSpeed: 70,
+                backSpeed: 70,
+                backDelay:1000,
+                loop: true,
+            });
+        });
+    </script>
+
+<script src="https://unpkg.com/scrollreveal"></script>
+    <script>
+        ScrollReveal({ 
+            distance: '80px',
+            duration: 2000,
+            delay:200,
+
+        });
+        ScrollReveal().reveal('.header-text', { origin: 'top' });
+        ScrollReveal().reveal('.home-img, .services-container, .contact-left, .contact-right', { origin: 'buttom' });
+        ScrollReveal().reveal('.about-col-1, .work ', { origin: 'left' });
+        ScrollReveal().reveal('.about-col-2, .services-list', { origin: 'right' });
+    </script>
+
+<script>
+    const rating = document.getElementsByClassName('rating')[0];
+    const block = document.getElementsByClassName('block');
+
+    for(var i=1; i<100; i++){
+        rating.innerHTML+= "<div class='block'></div>";
+        block[i].style.transform="rotate("+3.6*i+"deg)";
+        block[i].style.animationDelay=`${i/40}s`;
+    }
+
+    const counter=document.querySelector('.counter');
+    counter.innerText=0;
+
+    const target = +counter.getAttribute('data-target');
+
+    const NumberCounter=()=>{
+        const value=+counter.innerText;
+        if(value<target){
+            counter.innerText=Math.ceil(value+1);
+            setTimeout(()=>{
+                NumberCounter()
+            },25)
+        }
+    }
+    NumberCounter()
+</script>
+
+<script type="text/javascript">
+    function toggle(popupID,blurID){
+        var blur=document.getElementById(blurID);
+        blur.classList.toggle('active');
+        var popup=document.getElementById(popupID);
+        popup.classList.toggle('active');
+    }
+</script>
+
+
+</body>
+</html>
