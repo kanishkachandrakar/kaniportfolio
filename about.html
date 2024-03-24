@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, inital-scale=1.0">
+    <title>Personal Portfolio Website</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/037e6d0262.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.css">
+</head>
+<body>
+    <!---------------about------------------->
+<div id="about">
+    <div class="container-about">
+        <div class="row">
+            <div class="about-col-1">
+                <img src="images/user.jpg">
+            </div>
+            <div class="about-col-2">
+                <h1 class="sub-title">About Me</h1>
+                <p>Hello! I am Kanishka Chandrakar, an undergraduate senior at Pennsylvania State University majoring in Computer Science, with a minor in Mathematics. 
+                <p>With a passion for technology, I am dedicated to developing innovative software solutions, analyzing data to gain insights, exploring new programming languages, and working on collaborative coding projects.</p>
+                <p>I am committed to expanding my horizons in the field of technical advancements while maintaining detail-oriented goals and visions.</p>                
+                <div class="tab-titles">
+                    <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                    <p class="tab-links" onclick="opentab('experience')">Experience</p>
+                    <p class="tab-links" onclick="opentab('education1')">Education</p>
+                </div>
+                <div class="tab-contents active-tab" id="skills">
+                    <ul>                        
+                        <li><span>Machine Learning & AI</span><br>TensorFlow, PyTorch</br></li>
+                        <li><span>Database Management</span><br>Optimizing database queries</li>
+                        <li><span>Computer Networking</span><br>Fundamentals of networking protocols (TCP/IP, HTTP, DNS)</li>
+                        <li><span>Web Development</span><br>Designing websites like this one!</li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="experience">
+                    <ul>
+                        <li><span class="skill-about">Undergraduate Research Assistant</span><br>Feb. 2024 - Present</li>
+                        <li><span class="skill-about">MATH Learning Assistant</span><br>Aug. 2023 - Dec. 2023</li>
+                        <li><span class="skill-about">Academic Facilitator: Women in Engineering Program</span><br>Jan. 2023 - May 2023</li>
+                        <li><span class="skill-about">Computer Science Learning Assistant</span><br>May 2022 - Dec. 2023</li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="education1">
+                    <ul>
+                        <li><span class="skill-about">Pennsylvania State University</span><br>2021-2024</li>
+                        <li><span class="skill-about">Smt.Sulochanadevi Singhania School</span><br>2019-2021</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <a href="index.html#header"><button class="close-button" onclick="closeAbout()"><i class="fa-sharp fa-regular fa-circle-xmark"></i></button></a>
+    </div>
+</div>
+
+<script>
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+    function opentab(tabname){
+        for(tablink of tablinks){
+            tablink.classList.remove("active-link");
+        }
+        for(tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab")
+    }
+</script>
+
+<script>
+    var sidemeu = document.getElementById("sidemenu");
+
+    function openmenu(){
+        sidemeu.style.right = "0";
+    }
+    function closemenu(){
+        sidemeu.style.right = "-200px";
+    }
+</script>
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbynOoO5RaiAOfaHz51p9YJfkW_6Fpptj1pfO9SQZrmt7WSXxjKt7FS9iCeT2M2Gt94y/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML = "Message Recieved!"
+            setTimeout(function(){
+                msg.innerHTML = ""
+            },5000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+</script>
+
+
+
+<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            const typed = new Typed('.multiple-text',{
+                strings: ['Software Engineer','Web Designer','Frontend Developer'],
+                typeSpeed: 70,
+                backSpeed: 70,
+                backDelay:1000,
+                loop: true,
+            });
+        });
+    </script>
+
+<script src="https://unpkg.com/scrollreveal"></script>
+    <script>
+        ScrollReveal({ 
+            distance: '80px',
+            duration: 2000,
+            delay:200,
+
+        });
+        ScrollReveal().reveal('.header-text', { origin: 'top' });
+        ScrollReveal().reveal('.home-img, .services-container, .contact-left, .contact-right', { origin: 'buttom' });
+        ScrollReveal().reveal('.about-col-1, .work ', { origin: 'left' });
+        ScrollReveal().reveal('.about-col-2, .services-list', { origin: 'right' });
+    </script>
+
+
+</body>
+</html>>

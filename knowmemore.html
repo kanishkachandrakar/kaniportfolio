@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, inital-scale=1.0">
+    <title>Personal Portfolio Website</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/037e6d0262.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.css">
+</head>
+<body>
+    <!---------------for fun------------------->
+    <div id="life">
+        <div class="container">
+            <h1 class="sub-title-life">A Sneak Peek Into My Life! <i class="fa-solid fa-headset"></i></h1>
+            <div class="life-list" id="blur3">
+                <div class="life">
+                    <img src="images/mithu.png">
+                    <div class="layer">
+                        <p>The PET.</p>
+                        <a href="#popup11" onclick="toggle('popup11','blur3')"><i class="fa-solid fa-dove"></i></a>
+                    </div>
+                </div>
+                <div class="life">
+                    <img src="images/food.jpeg">
+                    <div class="layer">
+                        <p>The Food.</p>
+                        <a href="#popup12" onclick="toggle('popup12','blur3')"><i class="fa-solid fa-bowl-food"></i></a>
+                    </div>
+                </div>
+                <div class="life">
+                    <img src="images/cdart1.jpeg">
+                    <div class="layer">
+                        <p>The Art.</p>
+                        <a href="#popup13" onclick="toggle('popup13','blur3')"><i class="fa-solid fa-paintbrush"></i></a>
+                    </div>
+                </div>
+                <div class="life">
+                    <img src="images/studyaborad.jpeg">
+                    <div class="layer">
+                        <p>The StudyAbroad.</p>
+                        <p><i class="fa-solid fa-location-dot"></i> Bornholm, Denmark</p>
+                        <a href="#popup14" onclick="toggle('popup14','blur3')"><i class="fa-solid fa-book-open-reader"></i></a>
+                    </div>
+                </div>
+                <a href="index.html#header"><button class="close-button" onclick="closeAbout()"><i class="fa-sharp fa-regular fa-circle-xmark"></i></button></a>
+
+            </div>
+            <div id="popup11">
+                <h2>Meet MITHU</h2>
+                <h5>(the lazy parrot who loves to eat, sleep, and watch TV)</h5>
+                <div class="image-container">
+                    <img src="images/mithu1.jpeg">
+                    <img src="images/mithu3.jpeg">
+                    <img src="images/mithu2.jpeg">
+                </div>
+
+                <a href="knowmemore.html"  class="btn-pro" onclick="toggle('popup7','blur2')">Close</a>
+            </div>
+            <div id="popup12">
+                <h2>Sometimes Cook, Sometimes Burn</h2>
+                <h5>(!!mostly burning stuff!!)</h5>
+                <div class="image-container">
+                    <img src="images/chillioil.jpeg">
+                    <img src="images/chole.jpeg">
+                    <img src="images/cup.jpeg">
+                </div>
+
+                <a href="knowmemore.html"  class="btn-pro" onclick="toggle('popup8','blur2')">Close</a>
+            </div>
+            <div id="popup13">
+                <h2>I can be artistic too?</h2>
+                <h5>(especially during my exams ;D)</h5>
+                <div class="image-container">
+                    <img src="images/butter.jpeg">
+                    <img src="images/bulb.jpeg">
+                    <img src="images/bcd.jpeg">
+                </div>
+                <a href="knowmemore.html"  class="btn-pro" onclick="toggle('popup9','blur2')">Close</a>
+    
+            </div>
+    
+            <div id="popup14">
+                <h2>Living the best.</h2>
+                <h5>(not for long <i class="fa-regular fa-face-sad-tear"></i>)</h5>
+                <div class="image-container">
+                    <img src="images/den2.jpeg">
+                    <img src="images/den1.jpeg">
+                    <img src="images/den3.jpeg">
+                </div>
+                <a href="knowmemore.html"  class="btn-pro" onclick="toggle('popup10','blur2')">Close</a>
+            </div>
+
+        </div>  
+    
+    </div>
+    <script>
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
+        function opentab(tabname){
+            for(tablink of tablinks){
+                tablink.classList.remove("active-link");
+            }
+            for(tabcontent of tabcontents){
+                tabcontent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab")
+        }
+    </script>
+    
+    <script>
+        var sidemeu = document.getElementById("sidemenu");
+    
+        function openmenu(){
+            sidemeu.style.right = "0";
+        }
+        function closemenu(){
+            sidemeu.style.right = "-200px";
+        }
+    </script>
+    
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbynOoO5RaiAOfaHz51p9YJfkW_6Fpptj1pfO9SQZrmt7WSXxjKt7FS9iCeT2M2Gt94y/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = document.getElementById("msg")
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                msg.innerHTML = "Message Recieved!"
+                setTimeout(function(){
+                    msg.innerHTML = ""
+                },5000)
+                form.reset()
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+    
+    
+    
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function(){
+                const typed = new Typed('.multiple-text',{
+                    strings: ['Software Engineer','Graduating in Dec 2024! ','Fun-time Web Designer'],
+                    typeSpeed: 70,
+                    backSpeed: 70,
+                    backDelay:1000,
+                    loop: true,
+                });
+            });
+        </script>
+    
+    <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+            ScrollReveal({ 
+                distance: '80px',
+                duration: 2000,
+                delay:200,
+    
+            });
+            ScrollReveal().reveal('.header-text', { origin: 'top' });
+            ScrollReveal().reveal('.home-img, .services-container, .contact-left, .contact-right', { origin: 'buttom' });
+            ScrollReveal().reveal('.about-col-1, .work ', { origin: 'left' });
+            ScrollReveal().reveal('.about-col-2, .services-list', { origin: 'right' });
+        </script>
+    
+    <script>
+        const rating = document.getElementsByClassName('rating')[0];
+        const block = document.getElementsByClassName('block');
+    
+        for(var i=1; i<100; i++){
+            rating.innerHTML+= "<div class='block'></div>";
+            block[i].style.transform="rotate("+3.6*i+"deg)";
+            block[i].style.animationDelay=`${i/40}s`;
+        }
+    
+        const counter=document.querySelector('.counter');
+        counter.innerText=0;
+    
+        const target = +counter.getAttribute('data-target');
+    
+        const NumberCounter=()=>{
+            const value=+counter.innerText;
+            if(value<target){
+                counter.innerText=Math.ceil(value+1);
+                setTimeout(()=>{
+                    NumberCounter()
+                },25)
+            }
+        }
+        NumberCounter()
+    </script>
+    
+    <script type="text/javascript">
+        function toggle(popupID,blurID){
+            var blur=document.getElementById(blurID);
+            blur.classList.toggle('active');
+            var popup=document.getElementById(popupID);
+            popup.classList.toggle('active');
+        }
+    </script>
+    
+    
+    </body>
+    </html>>
