@@ -479,7 +479,7 @@ p{
     pointer-events: none;
     user-select: none;
 }
-#popup,#popup2,#popup3,#popup4,#popup5{
+#popup,#popup3,#popup5,#popup21,#popup22,#popup23,#popup24,#popup25,#popup6{
     position: fixed;
     top: 70%;
     left: 50%;
@@ -494,7 +494,24 @@ p{
     transition: 0.5s;
     border-radius: 15px;
 }
-#popup6{
+
+#popup2,#popup4{
+    position: fixed;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 1200px; /* Increase width */
+    height: 750px;
+    padding: 50px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.30);
+    background: #f89b9b;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+    border-radius: 15px;
+
+}
+#popup26{
     position: fixed;
     top: 70%;
     left: 50%;
@@ -509,11 +526,12 @@ p{
     transition: 0.5s;
     border-radius: 15px;
 }
-#popup.active,#popup2.active,#popup3.active,#popup4.active,#popup5.active,#popup6.active{
+#popup.active,#popup2.active,#popup3.active,#popup4.active,#popup5.active,#popup6.active,#popup21.active,#popup22.active,#popup23.active,#popup24.active,#popup25.active,#popup26.active{
     top: 50%;
     visibility: visible;
     opacity: 1;
     transition: 0.5s;
+
 }
 
 .services-list div{
@@ -572,6 +590,31 @@ p{
     margin: 0 auto; /* This centers the image horizontally */
     display: block;
 }
+
+#popup21 h2{
+    font-size: 20px;
+    color: #000000;
+    text-align: center;
+    padding-bottom: 10px;
+}
+#popup21 p{
+    margin-top: 10px;
+    font-size: 15px;
+    color: #080808;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+#popup21 img{
+    width: 35%;
+    border-radius: 10px;
+    border: 5px solid #ff004f;
+    display: block;
+    transition: transform 0.5s;
+    margin: 0 auto; /* This centers the image horizontally */
+    display: block;
+}
+
 #popup2 h2{
     font-size: 25px;
     color: #000000;
@@ -595,6 +638,33 @@ p{
     margin: 0 auto; /* This centers the image horizontally */
     display: block;
 }
+
+#popup22 h2{
+    font-size: 25px;
+    color: #000000;
+    text-align: center;
+    padding-bottom: 9px;
+}
+#popup22 p{
+    margin-top: 10px;
+    font-size: 15px;
+    color: #080808;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+#popup22 img{
+    width: 60%;
+    border-radius: 10px;
+    border: 5px solid #ff004f;
+    display: block;
+    transition: transform 0.5s;
+    margin: 0 auto; /* This centers the image horizontally */
+    display: block;
+}
+
+
+
 #popup3 h2{
     font-size: 25px;
     color: #000000;
@@ -610,6 +680,29 @@ p{
     padding-top: 5px;
 }
 #popup3 img{
+    width: 50%;
+    border-radius: 10px;
+    border: 5px solid #ff004f;
+    display: block;
+    transition: transform 0.5s;
+    margin: 0 auto; /* This centers the image horizontally */
+    display: block;
+}
+#popup23 h2{
+    font-size: 25px;
+    color: #000000;
+    text-align: center;
+    padding-bottom: 9px;
+}
+#popup23 p{
+    margin-top: 10px;
+    font-size: 15px;
+    color: #080808;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+#popup23 img{
     width: 35%;
     border-radius: 10px;
     border: 5px solid #ff004f;
@@ -633,6 +726,29 @@ p{
     padding-top: 5px;
 }
 #popup4 img{
+    width: 50%;
+    border-radius: 10px;
+    border: 5px solid #ff004f;
+    display: block;
+    transition: transform 0.5s;
+    margin: 0 auto; /* This centers the image horizontally */
+    display: block;
+}
+#popup24 h2{
+    font-size: 25px;
+    color: #000000;
+    text-align: center;
+    padding-bottom: 9px;
+}
+#popup24 p{
+    margin-top: 10px;
+    font-size: 15px;
+    color: #080808;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+#popup24 img{
     width: 35%;
     border-radius: 10px;
     border: 5px solid #ff004f;
@@ -656,6 +772,29 @@ p{
     padding-top: 10px;
 }
 #popup5 img{
+    width: 55%;
+    border-radius: 10px;
+    border: 5px solid #ff004f;
+    display: block;
+    transition: transform 0.5s;
+    margin: 0 auto; /* This centers the image horizontally */
+    display: block;
+}
+#popup25 h2{
+    font-size: 25px;
+    color: #000000;
+    text-align: center;
+    padding-bottom: 3px;
+}
+#popup25 p{
+    margin-top: 10px;
+    font-size: 15px;
+    color: #080808;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+#popup25 img{
     width: 26%;
     border-radius: 10px;
     border: 5px solid #ff004f;
@@ -679,6 +818,29 @@ p{
     padding-top: 10px;
 }
 #popup6 img{
+    width: 50%;
+    border-radius: 10px;
+    border: 5px solid #ff004f;
+    display: block;
+    transition: transform 0.5s;
+    margin: 0 auto; /* This centers the image horizontally */
+    display: block;
+}
+#popup26 h2{
+    font-size: 25px;
+    color: #000000;
+    text-align: center;
+    padding-bottom: 3px;
+}
+#popup26 p{
+    margin-top: 10px;
+    font-size: 15px;
+    color: #080808;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+#popup26 img{
     width: 26%;
     border-radius: 10px;
     border: 5px solid #ff004f;
@@ -1727,7 +1889,7 @@ nav .fas{
         pointer-events: none;
         user-select: none;
     }
-    #popup,#popup3,#popup4,#popup5{
+    #popup,#popup3,#popup4,#popup5,#popup21{
         position: fixed;
         top: 70%;
         left: 50%;
@@ -1802,7 +1964,7 @@ nav .fas{
         transition: 0.5s;
         border-radius: 15px;
     }
-    #popup.active,#popup2.active,#popup3.active,#popup4.active,#popup5.active,#popup6.active{
+    #popup.active,#popup2.active,#popup3.active,#popup4.active,#popup5.active,#popup6.active,#popup21.active{
         top: 50%;
         visibility: visible;
         opacity: 1;
@@ -1865,6 +2027,31 @@ nav .fas{
         margin: 0 auto; /* This centers the image horizontally */
         display: block;
     }
+
+    #popup21 h2{
+        font-size: 20px;
+        color: #000000;
+        text-align: center;
+        padding-bottom: 10px;
+    }
+    #popup21 p{
+        margin-top: 10px;
+        font-size: 15px;
+        color: #080808;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+    #popup21 img{
+        width: 35%;
+        border-radius: 10px;
+        border: 5px solid #ff004f;
+        display: block;
+        transition: transform 0.5s;
+        margin: 0 auto; /* This centers the image horizontally */
+        display: block;
+    }
+
     #popup2 h2{
         font-size: 25px;
         color: #000000;
@@ -1888,6 +2075,7 @@ nav .fas{
         margin: 0 auto; /* This centers the image horizontally */
         display: block;
     }
+
     #popup3 h2{
         font-size: 25px;
         color: #000000;
