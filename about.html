@@ -9,49 +9,64 @@
     <script src="https://kit.fontawesome.com/037e6d0262.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.css">
 </head>
-<body>
+<body class="about-page">
+<nav class="navbar">
+  <ul id="sidemenu">
+    <li><a href="index.html#header">Home</a></li>
+    <li><a href="about.html"  class="active">About</a></li>
+    <li><a href="education.html">Education</a></li>
+    <li><a href="skills.html">Skills</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="work.html">Experiences</a></li>
+    <li>
+      <a href="images/Kanishka_final_resume.pdf" download class="nav-resume"> Resume
+      </a>
+    </li>
+    <li><a href="connect.html">Contact</a></li>
+    <!-- <li><a href="knowmemore.html">My Life!</a></li> -->
+    <i class="fas fa-times" id="closeBtn" onclick="closemenu()"></i>
+  </ul>
+  <i class="fas fa-bars" id="openBtn" onclick="openmenu()"></i>
+</nav>
+
+
     <!---------------about------------------->
 <div id="about">
     <div class="container-about">
         <div class="row">
             <div class="about-col-1">
-                <img src="images/user.jpg">
+                <img src="images/user.jpg" alt="">
             </div>
             <div class="about-col-2">
                 <h1 class="sub-title">About Me</h1>
-                <p>Hello! I am Kanishka Chandrakar, an undergraduate senior at Pennsylvania State University majoring in Computer Science, with a minor in Mathematics. 
-                <p>With a passion for technology, I am dedicated to developing innovative software solutions, analyzing data to gain insights, exploring new programming languages, and working on collaborative coding projects.</p>
-                <p>I am committed to expanding my horizons in the field of technical advancements while maintaining detail-oriented goals and visions.</p>                
-                <div class="tab-titles">
-                    <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
-                    <p class="tab-links" onclick="opentab('experience')">Experience</p>
-                    <p class="tab-links" onclick="opentab('education1')">Education</p>
+                <p class="about-text">
+                Hi! I’m <span class="name-highlight"> <strong>Kanishka Chandrakar</strong></span> 👋 — a computer science enthusiast who loves
+                turning ideas into clean, usable software.
+                </p>
+
+                <p class="about-text">
+               I completed my <strong>BS in Computer Science</strong> at 
+                <span class="penn">Penn State</span> 🎓 and I’m currently pursuing my 
+                <strong>MS in Computer Science</strong> at <span class="nyu">NYU Courant</span> with a focus on 
+                <span class="aiml"><strong>AI & Machine Learning</strong></span>.
+                These days, I spend most of my time coding, experimenting with models, and breaking things
+                just enough to learn how to fix them 😄.
+                </p>
+
+                <p class="about-text">
+                Outside of coursework and projects, I enjoy debugging with Bollywood & Punjabi songs 🎧,
+                exploring new technologies, and collaborating on ideas that make a real impact.
+                </p>
+               <div class="about-actions">
+                <div class="about-buttons">
+                    <a href="projects.html" class="btn">View Projects</a>
+                    <a href="images/Kanishka_final_resume.pdf" class="btn">Download Resume</a>
                 </div>
-                <div class="tab-contents active-tab" id="skills">
-                    <ul>                        
-                        <li><span>Machine Learning & AI</span><br>TensorFlow, PyTorch</br></li>
-                        <li><span>Database Management</span><br>Optimizing database queries</li>
-                        <li><span>Computer Networking</span><br>Fundamentals of networking protocols (TCP/IP, HTTP, DNS)</li>
-                        <li><span>Web Development</span><br>Designing websites like this one!</li>
-                    </ul>
-                </div>
-                <div class="tab-contents" id="experience">
-                    <ul>
-                        <li><span class="skill-about">Undergraduate Research Assistant</span><br>Feb. 2024 - Present</li>
-                        <li><span class="skill-about">MATH Learning Assistant</span><br>Aug. 2023 - Dec. 2023</li>
-                        <li><span class="skill-about">Academic Facilitator: Women in Engineering Program</span><br>Jan. 2023 - May 2023</li>
-                        <li><span class="skill-about">Computer Science Learning Assistant</span><br>May 2022 - Dec. 2023</li>
-                    </ul>
-                </div>
-                <div class="tab-contents" id="education1">
-                    <ul>
-                        <li><span class="skill-about">Pennsylvania State University</span><br>2021-2024</li>
-                        <li><span class="skill-about">Smt.Sulochanadevi Singhania School</span><br>2019-2021</li>
-                    </ul>
-                </div>
+
+                </div>   
             </div>
         </div>
-        <a href="index.html#header"><button class="close-button" onclick="closeAbout()"><i class="fa-sharp fa-regular fa-circle-xmark"></i></button></a>
+        
     </div>
 </div>
 
@@ -129,6 +144,22 @@
         ScrollReveal().reveal('.about-col-2, .services-list', { origin: 'right' });
     </script>
 
+<script>
+  fetch("navbar.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("navbar").innerHTML = html;
+    })
+    .catch(err => console.error("Navbar load error:", err));
+</script>
+
+<script>
+  (function () {
+    const p = new URLSearchParams(location.search);
+    if (p.get("embed") === "1") document.body.classList.add("embed");
+  })();
+</script>
+
 
 </body>
-</html>>
+</html>

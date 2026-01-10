@@ -10,6 +10,7 @@ html{
 body{
     background: #080808;
     color: #fff;
+    overflow-x: hidden;
 }
 #header{
     width:100%;
@@ -28,6 +29,101 @@ nav{
     justify-content: space-between;
     flex-wrap: wrap;
 }
+
+
+/* ===== NAVBAR POLISH ===== */
+nav{
+  position: sticky;
+  top: 0;
+  z-index: 999;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 14px 8%;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+nav ul{
+  display: flex;
+  align-items: center;
+  gap: 22px;                 /* spacing between tabs */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav ul li a{
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+
+  opacity: 0.88;
+  position: relative;
+  padding: 8px 2px;
+
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+/* hover underline animation */
+nav ul li a::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0%;
+  background: #ff004f;
+  border-radius: 999px;
+  transition: width .25s ease;
+}
+
+nav ul li a:hover{
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+nav ul li a:hover::after{
+  width: 100%;
+}
+
+/* ACTIVE TAB (optional: if you add class="active" on the current link) */
+nav ul li a.active{
+  opacity: 1;
+}
+
+nav ul li a.active::after{
+  width: 100%;
+}
+
+/* Resume as a pill button */
+nav .nav-resume{
+  padding: 10px 14px;
+  border: 1px solid rgba(255,0,79,0.55);
+  border-radius: 999px;
+  background: rgba(255,0,79,0.12);
+  opacity: 1;
+}
+
+.navbar{
+  height: 70px;          /* adjust if yours is taller */
+}
+
+nav .nav-resume::after{
+  display: none; /* no underline for the pill */
+}
+
+nav .nav-resume:hover{
+  background: rgba(255,0,79,0.20);
+  transform: translateY(-1px);
+}
+
 .Logo{
     width: 200px;
 }
@@ -56,6 +152,10 @@ nav ul li a::after{
 nav ul li a:hover::after{
     width: 100%;
 }
+.navbar a.active{
+  color: #ff004f;
+}
+
 .header-text{
     margin-top: 20%;
     font-size: 30px;
@@ -74,19 +174,174 @@ nav ul li a:hover::after{
     font-size: 30px;
 }
 /*---------------img section1------------------->*/
+/* Hero education lines */
+/* Hero education block */
+.hero-edu{
+  margin-top: 28px;        /* ⬅ MORE gap from “Chandrakar from India” */
+  color: #e0e0e0;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* each education line */
+.edu-line{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ❌ REMOVE any rule like this if it exists */
+/* .edu-line + .edu-line{ margin-top: ... } */
+
+/* text weight */
+.hero-edu span{
+  font-weight: 500;
+}
+
+
 #img1{
     padding: 50px 0;
 }
-.img1{
+/* .img1{
     display:grid;
     grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
     grid-gap:40px;
     margin-top: 50px;
+} */
+.img1.quick-grid{
+  /* EXACT 3 columns like your project cards layout */
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+
+  /* cluster it in the center like the grey cards */
+  max-width: 1100px;
+  margin: 50px auto 0;
 }
+.img11.quick-tile{
+  aspect-ratio: 1 / 1;         /* makes them perfect squares */
+  border-radius: 18px;
+  border: 6px solid #ff004f;   /* neon border */
+  overflow: hidden;
+  background: #2f2f2f;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: transform 0.25s ease;
+}
+.img11.quick-tile:hover{
+  transform: translateY(-4px);
+}
+.img11.quick-tile img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  /* IMPORTANT: border should NOT be on the image */
+  border: 0;
+  border-radius: 0;
+}
+/* icon tiles */
+.img11.quick-icon i{
+  font-size: 72px;
+  color: #fff;
+}
+.img1{
+    display: grid;
+
+    /* exactly 3 columns, sized by card width */
+    grid-template-columns: repeat(3, 260px);
+
+    justify-content: center;   /* center the whole group */
+    gap: 20px;
+
+    margin-top: 20px;
+}
+
+
+.img11{
+    margin: 0;
+    padding: 0;
+}
+
+
+
+/* Tablet */
+@media only screen and (max-width: 1024px){
+    .img1{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile */
+@media only screen and (max-width: 600px){
+    .img1{
+        grid-template-columns: 1fr;
+    }
+}
+/* Smooth scroll when clicking #anchors */
+html{
+    scroll-behavior: smooth;
+}
+.tile{
+    width: 260px;
+    height: 260px;            /* explicit size = no stretching */
+
+    border-radius: 14px;
+    border: 4px solid #ff004f;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+    background: #2b2b2b;
+
+    transition: transform 0.3s ease;
+    text-decoration: none;
+}
+
+
+
+
+.tile img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tile-icon i{
+    font-size: 60px;
+    color: #fff;
+}
+
+
+.sub-title1{
+    display: none;
+}
+
+
+/* hover zoom like your old one */
+.img11:hover .tile{
+    transform: scale(1.06);
+}
+
+/* Fix your overlay text so it centers nicely */
+.text-overlay{
+    display: block;
+    text-align: center;
+    font-size: 34px;
+    padding-left: 0;   /* important: removes the weird offset */
+}
+
 .img11{
     border-radius: 10px;
     position: relative;
     overflow: hidden;
+    margin: 0; 
+    padding: 0;
 }
 .img11 img{
     width: 100%;
@@ -136,13 +391,17 @@ nav ul li a:hover::after{
     height: 100%;
 }
 .text-overlay{
-    text-align: center;
-    font-size: 40px;
-    padding-left: 100px;
+    display: block;
+    padding: 0;
 }
+
 .sub-title1{
-    margin-bottom: 20px;
+    text-align: center;
+    font-size: 24px;   /* reduced */
+    margin-bottom: 8px;
 }
+
+
 /*---------------img section2------------------->*/
 /*------skills bar------>*/
 .sub-title2{
@@ -274,6 +533,61 @@ nav ul li a:hover::after{
     position: relative;
 
 /*---------------about------------------->*/
+body{
+  background: #000;
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* soft glow */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -2;
+
+  background:
+    radial-gradient(circle at 25% 20%, rgba(140,82,255,0.18), transparent 45%),
+    radial-gradient(circle at 75% 70%, rgba(255,0,110,0.14), transparent 50%);
+}
+
+/* stars */
+body::after{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.95), transparent 60%),
+    radial-gradient(1px 1px at 30% 70%, rgba(255,255,255,0.85), transparent 60%),
+    radial-gradient(1px 1px at 60% 40%, rgba(255,255,255,0.90), transparent 60%),
+    radial-gradient(1px 1px at 80% 80%, rgba(255,255,255,0.80), transparent 60%),
+    radial-gradient(1px 1px at 50% 10%, rgba(255,255,255,0.90), transparent 60%),
+
+    radial-gradient(1.5px 1.5px at 15% 55%, rgba(255,255,255,0.65), transparent 60%),
+    radial-gradient(1.5px 1.5px at 45% 25%, rgba(255,255,255,0.60), transparent 60%),
+    radial-gradient(1.5px 1.5px at 70% 60%, rgba(255,255,255,0.55), transparent 60%),
+
+    radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.35), transparent 60%),
+    radial-gradient(2px 2px at 75% 35%, rgba(255,255,255,0.30), transparent 60%);
+
+  background-size: 220px 220px, 260px 260px, 240px 240px, 280px 280px, 250px 250px,
+                   420px 420px, 500px 500px, 460px 460px,
+                   900px 900px, 1000px 1000px;
+}
+
+#about,
+.container,
+.main,
+.about-section {
+  background: transparent !important;
+}
+
+
 #about{
     padding: 80px 0;
     color: #ababab;
@@ -288,22 +602,53 @@ nav ul li a:hover::after{
 }
 .about-col-1{
     flex-basis: 35%;
+    
 }
+
 .about-col-1 img{
-    width: 125%;
-    border-radius: 50%; /* Make the image circular */
+    width: 120%;
+    border-radius: 50%;
     object-fit: cover;
-    padding-top: 40px;
+
+    /* change this */
+    /* padding-top: 40px; */
+    margin-top: 40px;
+
+    outline: 8px solid #605757;
+    outline-offset: 0px;   /* keep it tight */
+    display: block;        /* avoids tiny inline spacing issues */
 }
+
+body.about-page{
+  min-height: 100vh;
+}
+
+/* About section layout */
+body.about-page #about{
+  min-height: calc(100vh - 70px); /* subtract navbar height */
+  display: flex;
+  align-items: center;            /* vertical center */
+   padding-top: 30px;
+}
+
+/* keep your internal layout intact */
+.container-about{
+  width: 100%;
+}
+
+
 .about-col-2{
     flex-basis: 60%;
     padding-top: 60px;
     padding-left: 90px;
 }
+
 .sub-title{
     font-size: 60px;
     font-weight: 600;
     color: #fff;
+    text-align: center;
+    margin-bottom: 22px; 
 }
 .tab-titles{
     display: flex;
@@ -362,7 +707,7 @@ nav ul li a:hover::after{
 /*---------------education------------------->*/
 #education{
     padding: 80px 0;
-    color: #ababab;
+    color: #f7f7f7;
 }
 .container-edu{
     padding: 10px 10%;
@@ -380,8 +725,6 @@ nav ul li a:hover::after{
     width: 150%;
     border-radius: 15px; /* Make the image circular */
     object-fit: cover;
-    padding-top: 90px;
-    padding-right: 150px;
     align-items: center;
 }
 .edu-col-2{
@@ -414,6 +757,8 @@ p{
     position: relative;
     font-size: 25px;
 }
+
+
 .tab-links::after{
     content: '';
     width: 0;
@@ -432,8 +777,8 @@ p{
     margin: 10px 0;
 }
 .tab-contents ul li span{
-    color: #b54769;
-    font-size: 18px;
+     color: #ff4e86;
+    font-size: 12px;
 }
 .tab-contents{
     display: none;
@@ -450,17 +795,180 @@ p{
     border: none;
     font-size: 40px;
     cursor: pointer;
-    color: #ababab;
+    color: #c46565;
 }
 
 .close-button:hover {
     color: #ff004f; /* Change color on hover */
 }
 
-/*---------------projects------------------->*/
-#projects{
-    padding: 30px 0;
+/* ✅ ONLY shrink dates in Study tab */
+body.education-page #study ul li span{
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.3px;
 }
+
+/* (optional) shrink years in Achievements too */
+body.education-page #achievements ul li span{
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+/* TAB TITLES COLOR */
+body.education-page .tab-links{
+  color: rgba(255,255,255,0.7);   /* inactive tabs */
+  transition: color 0.25s ease;
+}
+
+/* Active tab */
+body.education-page .tab-links.active-link{
+  color: #ff004f;                 /* accent pink */
+}
+
+/* Hover state */
+body.education-page .tab-links:hover{
+  color: #ffffff;
+}
+body.education-page #coursework ul{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 30px;
+  row-gap: 6px;
+}
+/*-------skills-------->*/
+/* ===== SKILLS PAGE (Option A: Cards + Chips) ===== */
+.skills-page{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 10px 16px 70px;
+}
+
+.skills-title{
+  text-align: center;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.skills-subtitle{
+  text-align: center;
+  color: rgba(255,255,255,0.72);
+  margin: 0 auto 26px;
+  max-width: 720px;
+  line-height: 1.6;
+}
+
+/* Highlight row */
+.skills-highlight{
+  border: 1px solid rgba(255, 0, 90, 0.25);
+  background: rgba(0,0,0,0.35);
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin: 0 auto 22px;
+  max-width: 101
+  0px;
+  backdrop-filter: blur(10px);
+}
+
+.highlight-label{
+  color: rgba(255,255,255,0.85);
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+.chip-row{
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Grid */
+.skills-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.skills-card{
+  border-radius: 16px;
+  padding: 18px 18px 16px;
+  background: rgba(30, 30, 35, 0.55);
+  border: 1px solid rgba(255,255,255,0.10);
+  backdrop-filter: blur(12px);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  min-height: 210px;
+}
+
+.skills-card:hover{
+  transform: translateY(-4px);
+  border-color: rgba(255, 0, 90, 0.55);
+  box-shadow: 0 10px 30px rgba(255, 0, 90, 0.12);
+}
+
+.skills-card-head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.skills-card h2{
+  color: #fff;
+  font-size: 1.25rem;
+  margin: 0;
+  letter-spacing: 0.4px;
+}
+
+/* Chips */
+.skills-chips{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip{
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  line-height: 1;
+  color: rgba(255,255,255,0.90);
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(0,0,0,0.25);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+  user-select: none;
+}
+
+.chip:hover{
+  transform: translateY(-2px);
+  border-color: rgba(255, 0, 90, 0.55);
+}
+
+/* Strong chips for “Currently using” */
+.chip-strong{
+  border-color: rgba(255, 0, 90, 0.35);
+  background: rgba(255, 0, 90, 0.10);
+}
+
+/* Responsive */
+@media (max-width: 900px){
+  .skills-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+/*---------------projects------------------->*/
+#projects {
+  padding-top: 20px;   /* reduce top gap */
+  padding-bottom: 60px;
+}
+
 .sub-title3{
     text-align: center;
     font-size: 60px;
@@ -469,17 +977,17 @@ p{
 
 }
 .services-list{
-    display:grid;
-    grid-template-columns: repeat(3,minmax(200px, 1fr));
-    grid-gap:40px;
-    margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* ← 4 columns */
+  gap: 22px;                             /* slightly tighter */
 }
+
 .services-list#blur.active{
     filter:blur(20px);
     pointer-events: none;
     user-select: none;
 }
-#popup,#popup3,#popup5,#popup21,#popup22,#popup23,#popup24,#popup25,#popup6{
+#popup,#popup2,#popup3,#popup4,#popup5{
     position: fixed;
     top: 70%;
     left: 50%;
@@ -494,24 +1002,7 @@ p{
     transition: 0.5s;
     border-radius: 15px;
 }
-
-#popup2,#popup4{
-    position: fixed;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    width: 1200px; /* Increase width */
-    height: 750px;
-    padding: 50px;
-    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.30);
-    background: #f89b9b;
-    visibility: hidden;
-    opacity: 0;
-    transition: 0.5s;
-    border-radius: 15px;
-
-}
-#popup26{
+#popup6{
     position: fixed;
     top: 70%;
     left: 50%;
@@ -526,47 +1017,49 @@ p{
     transition: 0.5s;
     border-radius: 15px;
 }
-#popup.active,#popup2.active,#popup3.active,#popup4.active,#popup5.active,#popup6.active,#popup21.active,#popup22.active,#popup23.active,#popup24.active,#popup25.active,#popup26.active{
+#popup.active,#popup2.active,#popup3.active,#popup4.active,#popup5.active,#popup6.active{
     top: 50%;
     visibility: visible;
     opacity: 1;
     transition: 0.5s;
-
 }
 
 .services-list div{
-    background: #262626;
-    padding: 40px;
-    font-size: 13px;
-    font-weight: 200;
-    border-radius: 10px;
-    transition: background 0.5s, transform 0.5s;
+  background: #262626;
+  padding: 26px;              /* smaller card */
+  font-size: 13px;
+  font-weight: 200;
+  border-radius: 10px;
+  transition: background 0.5s, transform 0.5s;
 }
 .services-list div i{
-    font-size: 50px;
-    margin-bottom: 30px;
+  font-size: 42px;
+  margin-bottom: 18px;
 }
+
 .services-list div h2{
-    font-size: 30px;
-    font-weight: 500;
-    margin-bottom: 15px;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 10px;
 }
 .services-list div a{
-    text-decoration: none;
-    color: #fff;
-    font-size: 12px;
-    margin-top: 20px;
-    display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .services-list div:hover{
     background: #ff004f;
     transform: translateY(-10px);
 }
+
 .learn-more-link {
     padding-top: 20px;
     text-decoration: none; /* Remove default underline */
     font-size: 15px;
 }
+
 #popup h2{
     font-size: 20px;
     color: #000000;
@@ -590,31 +1083,6 @@ p{
     margin: 0 auto; /* This centers the image horizontally */
     display: block;
 }
-
-#popup21 h2{
-    font-size: 20px;
-    color: #000000;
-    text-align: center;
-    padding-bottom: 10px;
-}
-#popup21 p{
-    margin-top: 10px;
-    font-size: 15px;
-    color: #080808;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    padding-bottom: 10px;
-    padding-top: 10px;
-}
-#popup21 img{
-    width: 35%;
-    border-radius: 10px;
-    border: 5px solid #ff004f;
-    display: block;
-    transition: transform 0.5s;
-    margin: 0 auto; /* This centers the image horizontally */
-    display: block;
-}
-
 #popup2 h2{
     font-size: 25px;
     color: #000000;
@@ -638,33 +1106,6 @@ p{
     margin: 0 auto; /* This centers the image horizontally */
     display: block;
 }
-
-#popup22 h2{
-    font-size: 25px;
-    color: #000000;
-    text-align: center;
-    padding-bottom: 9px;
-}
-#popup22 p{
-    margin-top: 10px;
-    font-size: 15px;
-    color: #080808;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    padding-bottom: 5px;
-    padding-top: 5px;
-}
-#popup22 img{
-    width: 60%;
-    border-radius: 10px;
-    border: 5px solid #ff004f;
-    display: block;
-    transition: transform 0.5s;
-    margin: 0 auto; /* This centers the image horizontally */
-    display: block;
-}
-
-
-
 #popup3 h2{
     font-size: 25px;
     color: #000000;
@@ -680,29 +1121,6 @@ p{
     padding-top: 5px;
 }
 #popup3 img{
-    width: 50%;
-    border-radius: 10px;
-    border: 5px solid #ff004f;
-    display: block;
-    transition: transform 0.5s;
-    margin: 0 auto; /* This centers the image horizontally */
-    display: block;
-}
-#popup23 h2{
-    font-size: 25px;
-    color: #000000;
-    text-align: center;
-    padding-bottom: 9px;
-}
-#popup23 p{
-    margin-top: 10px;
-    font-size: 15px;
-    color: #080808;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    padding-bottom: 5px;
-    padding-top: 5px;
-}
-#popup23 img{
     width: 35%;
     border-radius: 10px;
     border: 5px solid #ff004f;
@@ -726,29 +1144,6 @@ p{
     padding-top: 5px;
 }
 #popup4 img{
-    width: 50%;
-    border-radius: 10px;
-    border: 5px solid #ff004f;
-    display: block;
-    transition: transform 0.5s;
-    margin: 0 auto; /* This centers the image horizontally */
-    display: block;
-}
-#popup24 h2{
-    font-size: 25px;
-    color: #000000;
-    text-align: center;
-    padding-bottom: 9px;
-}
-#popup24 p{
-    margin-top: 10px;
-    font-size: 15px;
-    color: #080808;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    padding-bottom: 5px;
-    padding-top: 5px;
-}
-#popup24 img{
     width: 35%;
     border-radius: 10px;
     border: 5px solid #ff004f;
@@ -772,29 +1167,6 @@ p{
     padding-top: 10px;
 }
 #popup5 img{
-    width: 55%;
-    border-radius: 10px;
-    border: 5px solid #ff004f;
-    display: block;
-    transition: transform 0.5s;
-    margin: 0 auto; /* This centers the image horizontally */
-    display: block;
-}
-#popup25 h2{
-    font-size: 25px;
-    color: #000000;
-    text-align: center;
-    padding-bottom: 3px;
-}
-#popup25 p{
-    margin-top: 10px;
-    font-size: 15px;
-    color: #080808;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    padding-bottom: 10px;
-    padding-top: 10px;
-}
-#popup25 img{
     width: 26%;
     border-radius: 10px;
     border: 5px solid #ff004f;
@@ -818,29 +1190,6 @@ p{
     padding-top: 10px;
 }
 #popup6 img{
-    width: 50%;
-    border-radius: 10px;
-    border: 5px solid #ff004f;
-    display: block;
-    transition: transform 0.5s;
-    margin: 0 auto; /* This centers the image horizontally */
-    display: block;
-}
-#popup26 h2{
-    font-size: 25px;
-    color: #000000;
-    text-align: center;
-    padding-bottom: 3px;
-}
-#popup26 p{
-    margin-top: 10px;
-    font-size: 15px;
-    color: #080808;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    padding-bottom: 10px;
-    padding-top: 10px;
-}
-#popup26 img{
     width: 26%;
     border-radius: 10px;
     border: 5px solid #ff004f;
@@ -1704,6 +2053,7 @@ nav .fas{
         width: auto; /* Allow the image to resize proportionally */
         height: auto; /* Allow the image to resize proportionally */
         border-radius: 50%; /* Make the image circular */
+        max-width: 85%;
     }
     .about-col-2{
         flex-basis: 60%;
@@ -1869,7 +2219,8 @@ nav .fas{
     #projects{
         width:180%;
         height: 180vh;
-        padding: 30px 0;
+        padding-top: 20px;   /* reduce top gap */
+        padding-bottom: 60px;
     }
     .sub-title3{
         text-align: center;
@@ -1889,7 +2240,7 @@ nav .fas{
         pointer-events: none;
         user-select: none;
     }
-    #popup,#popup3,#popup4,#popup5,#popup21{
+    #popup,#popup3,#popup4,#popup5{
         position: fixed;
         top: 70%;
         left: 50%;
@@ -1964,7 +2315,7 @@ nav .fas{
         transition: 0.5s;
         border-radius: 15px;
     }
-    #popup.active,#popup2.active,#popup3.active,#popup4.active,#popup5.active,#popup6.active,#popup21.active{
+    #popup.active,#popup2.active,#popup3.active,#popup4.active,#popup5.active,#popup6.active{
         top: 50%;
         visibility: visible;
         opacity: 1;
@@ -2027,31 +2378,6 @@ nav .fas{
         margin: 0 auto; /* This centers the image horizontally */
         display: block;
     }
-
-    #popup21 h2{
-        font-size: 20px;
-        color: #000000;
-        text-align: center;
-        padding-bottom: 10px;
-    }
-    #popup21 p{
-        margin-top: 10px;
-        font-size: 15px;
-        color: #080808;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        padding-bottom: 10px;
-        padding-top: 10px;
-    }
-    #popup21 img{
-        width: 35%;
-        border-radius: 10px;
-        border: 5px solid #ff004f;
-        display: block;
-        transition: transform 0.5s;
-        margin: 0 auto; /* This centers the image horizontally */
-        display: block;
-    }
-
     #popup2 h2{
         font-size: 25px;
         color: #000000;
@@ -2075,7 +2401,6 @@ nav .fas{
         margin: 0 auto; /* This centers the image horizontally */
         display: block;
     }
-
     #popup3 h2{
         font-size: 25px;
         color: #000000;
@@ -2717,237 +3042,2803 @@ nav .fas{
     display: block;
 }
 
-/* #header{
-    background-image: url(images/phone-background.JPG);
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    padding-right: 0;
+/* ===== NAVBAR OVERRIDE (paste at END of file) ===== */
+nav{
+  position: sticky;
+  top: 0;
+  z-index: 999;
+
+  height: 76px;                 /* ⬅ more vertical breathing room */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 8%;                /* ⬅ more horizontal spacing */
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(10px);
+
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
-.header-text{
-    margin-top: 100%;
-    font-size: 16px;
-    padding-top: 100px;
-    margin: auto;
-}
-.header-text h1{
-    padding-top: 100px;
-    font-size: 30px;
-}
-nav .fas{
-    display: block;
-    font-size: 25px;
-    padding-top: 0;
-    
-}
+/* remove old spacing behavior */
 nav ul{
-    background: #ff004f;
-    position: fixed;
-    top: 0;
-    right:0;
-    width:20%;
-    height: 100vh;
-    padding-top: 50px; 
-    z-index: 2;
-    transition: right 0.5s;
-    overflow-x: hidden
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 36px;                    /* ⬅ spread menu items */
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-nav ul li {
-    margin: 15px 0;
+/* kill old li margins if any */
+nav ul li{
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-nav ul .fas {
-    position: relative; 
-    top: auto; 
-    left: auto;
-    margin-right: 15px; 
-}
-.sub-title, .sub-title1, .sub-title2, .sub-title3,.sub-title4{
-    font-size: 40px;
-}
-nav ul {
-    right: 0;
-    padding-top: 80px;
+/* link styling */
+nav ul li a{
+  font-size: 16.5px;
+  letter-spacing: 0.2px;        /* subtle premium feel */
 }
 
+/* underline animation */
+nav ul li a::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0%;
+  background: #ff004f;
+  border-radius: 999px;
+  transition: width .25s ease;
+}
 
-.container {
+nav ul li a:hover{
+  opacity: 1;
+  transform: translateY(-1px);
+}
+nav ul li a:hover::after{
+  width: 100%;
+}
+
+/* Resume pill */
+nav ul li a.nav-resume{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 11px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,0,79,0.55);
+  background: rgba(255,0,79,0.14);
+
+  opacity: 1;
+}
+nav ul li a.nav-resume::after{ display: none; }
+
+/* Smaller screens: reduce gap so it doesn't overflow */
+@media (max-width: 900px){
+  nav ul{ gap: 18px; }
+  nav ul li a{ font-size: 15px; }
+}
+
+.header-text{
+  margin-top: 170px;   /* ⬅ reduced from earlier value */
+}
+.name-highlight {
+  color: #eef52f;
+  font-weight: 700;
+}
+/* University highlights */
+.penn {
+  color: #4ca3fb; /* Penn State blue */
+  font-weight: 600;
+}
+
+.nyu {
+  color: #ae4bf6; /* NYU purple */
+  font-weight: 600;
+}
+.aiml {
+  color: #f68f4b; /* NYU purple */
+  font-weight: 600;
+}
+.about-buttons {
     display: flex;
-    justify-content: center; 
+    gap: 6px;                 /* space between buttons */
+    margin-top: 30px;          /* space above buttons */
+    justify-content: flex-start; /* aligns with text */
+    flex-wrap: wrap;           /* safe for smaller screens */
+}
+
+/* ===== EDUCATION PAGE FINAL FIX (PASTE AT END) ===== */
+
+body.education-page #education{
+  /* makes the whole block sit nicely under the sticky navbar */
+  min-height: calc(100vh - 76px);
+  display: flex;
+  align-items: center;           /* vertical centering */
+  padding: 20px 0 !important;
+}
+
+body.education-page .container-edu{
+  width: 100%;
+  transform: translateY(10px);   /* move slightly DOWN (increase if needed) */
+}
+
+/* keep columns aligned and bigger */
+body.education-page .container-edu .row{
+  align-items: center;
+}
+
+body.education-page .edu-col-1{
+  flex-basis: 45% !important;
+  padding-top: 0 !important;
+}
+
+body.education-page .edu-col-2{
+  flex-basis: 55% !important;
+  padding-top: 0 !important;
+  padding-left: 80px !important;
+  transform: translateX(50px); 
+}
+
+/* ✅ MAKE IMAGE BIGGER + REMOVE weird pushes */
+body.education-page .edu-col-1 img{
+  width: 125% !important;       /* bigger image */
+  max-width: none !important;
+  height: auto !important;
+
+  padding-top: 0 !important;    /* remove push down */
+  
+  margin-top: 0 !important;
+padding-left: 10px !important;
+
+  display: block;
+  transform: translateX(-50px); 
+
 }
 
 
-.about-col-1, .about-col-2{
-    flex-basis: 100%;
+/* make right side text a bit bigger */
+body.education-page .tab-links{ font-size: 28px !important; }
+body.education-page .tab-contents.active-tab{ font-size: 22px !important; }
+body.education-page .tab-contents ul li span{ font-size: 20px !important; }
+
+/* Change ALL course names color */
+body.education-page #coursework ul li span{
+  color: #ffffff;              /* 🔹 clean white */
+  font-size: 20px;
+  font-weight: 500;
 }
-.about-col-1{
-    margin-bottom: 30px;
+
+
+/* =========================
+   PROJECT POPUP FIX (modal)
+   Paste-safe override
+========================= */
+
+/* overlay behind popup */
+.modal-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.58);
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .25s ease, visibility .25s ease;
+}
+.modal-overlay.active{
+  opacity: 1;
+  visibility: visible;
+}
+
+/* generic popup behavior (works for popup, popup2..popup26) */
+.popup-modal{
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+
+  z-index: 2001;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+
+  /* default card style for popups that don't have their own #popupXX rules */
+  background: #f89b9b;
+  padding: 50px;
+  border-radius: 15px;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.30);
+
+  max-width: min(1200px, 92vw);
+  max-height: 85vh;
+  overflow: auto;
+
+  transition: opacity .25s ease, visibility .25s ease;
+}
+.popup-modal.active{
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto;
+}
+
+/* lock background scroll when modal open */
+body.modal-open{
+  overflow: hidden;
+}
+
+/* card layout should still hover; but only Learn More is clickable */
+.services-list2{
+  cursor: default;
+}
+.services-list2 .learn-more-link{
+  display: inline-block;
+  margin-top: 18px;
+  font-size: 15px !important;
+  color: #fff !important;
+  text-decoration: none;
+  cursor: pointer;
+}
+.services-list2 .learn-more-link:hover{
+  text-decoration: underline;
+}
+#popup2 img {
+  width: 85%;
+  max-width: 500px;
+  height: auto;
+  display: block;
+  margin: 10px auto;
+}
+/* Bigger image ONLY for Kings and Pigs popup */
+#popup3 img {
+  width: 85%;
+  max-width: 450px;
+  height: auto;
+  display: block;
+  margin: 30px auto;
+}
+/* Bigger image ONLY for Kings and Pigs popup */
+#popup4 img {
+  width: 85%;
+  max-width: 450px;
+  height: auto;
+  display: block;
+  margin: 30px auto;
+}
+/* Bigger image ONLY for Kings and Pigs popup */
+#popup5 img {
+  width: 85%;
+  max-width: 500px;
+  height: auto;
+  display: block;
+  margin: 30px auto;
+}
+#popup6 img {
+  width: 85%;
+  max-width: 500px;
+  height: auto;
+  display: block;
+  margin: 1px auto;
+}
+#popup21 img {
+  width: 85%;
+  max-width: 350px;
+  height: auto;
+  display: block;
+  margin: 1px auto;
+}
+#popup22 img {
+  width: 85%;
+  max-width: 450px;
+  height: auto;
+  display: block;
+  margin: 1px auto;
+}
+#popup23 img {
+  width: 85%;
+  max-width: 330px;
+  height: auto;
+  display: block;
+  margin: 1px auto;
+}
+#popup24 img {
+  width: 85%;
+  max-width: 330px;
+  height: auto;
+  display: block;
+  margin: 1px auto;
+}
+#popup25 img {
+  width: 85%;
+  max-width: 250px;
+  height: auto;
+  display: block;
+  margin: 1px auto;
+}
+
+/* --- ALL PROJECT POPUPS SAME SIZE --- */
+#popup,#popup2,#popup3,#popup4,#popup5,#popup6{
+    position: fixed;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    width: min(1200px, 92vw);   /* responsive */
+    height: min(700px, 85vh);   /* same as Guess What, responsive */
+
+    padding: 50px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.30);
+    background: #f89b9b;
+
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+    border-radius: 15px;
+
+    overflow-y: auto;           /* ✅ if content is long, scroll inside */
+}
+/* ================================
+   FORCE ALL POPUPS SAME BOX SIZE
+   (covers #popup, #popup2, #popup21, etc.)
+================================== */
+div[id^="popup"]{
+  position: fixed !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+
+  width: min(1200px, 92vw) !important;
+  height: min(700px, 85vh) !important;
+
+  padding: 50px !important;
+  background: #f89b9b !important;
+  border-radius: 15px !important;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.30) !important;
+
+  overflow-y: auto !important;   /* scroll inside if needed */
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.4s;
+}
+
+/* show popup when active */
+div[id^="popup"].active{
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+/* ================================
+   FORCE SAME FONT & COLOR
+   FOR ALL PROJECT POPUPS
+================================== */
+
+/* Apply font to EVERYTHING inside popups */
+div[id^="popup"],
+div[id^="popup"] * {
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+  color: #000 !important;
+}
+
+/* Popup titles */
+div[id^="popup"] h1,
+div[id^="popup"] h2 {
+  font-size: 26px !important;
+  font-weight: 600 !important;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+/* Popup body text */
+/* Apply EXACT same paragraph style as #popup to ALL popups */
+div[id^="popup"] p{
+    margin-top: 10px;
+    font-size: 15px;
+    color: #080808;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+
+/* Strong / highlighted text */
+div[id^="popup"] b,
+div[id^="popup"] strong {
+  font-weight: 600 !important;
+  color: #000 !important;
+}
+
+/* Close button text */
+div[id^="popup"] button {
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+}
+/* Card layout: icon at start, text to the right */
+.project-card{
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+/* Icon styling */
+.project-card .project-icon{
+  font-size: 26px;
+  margin-top: 4px;        /* aligns better with text */
+  color: #ff004f;         /* same accent */
+  flex: 0 0 auto;
+}
+
+/* Title takes remaining space */
+.project-card h2{
+  margin: 0;
+  flex: 1;
+}
+
+#projects h1 {
+  margin-top: 0;
+}
+
+/* Remove gap between navbar and "My Projects" title */
+#projects{
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Your title is probably using .sub-title (common in your pages) */
+#projects .sub-title{
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 
 }
-.about-col-2{
+
+/* If title is an h1/h2 */
+#projects h1,
+#projects h2{
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+/* Bigger rectangular project cards (balanced size) */
+/* Larger, wide rectangular project cards */
+.services-list .project-card,
+.services-list2 .project-card{
+  height: 165px !important;        /* taller, but not square */
+  padding: 26px 84px !important;   /* MORE horizontal padding */
+  border-radius: 16px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  gap: 22px !important;
+}
+
+
+.services-list .project-card h2,
+.services-list2 .project-card h2{
+
+  font-size: 20px !important;
+  line-height: 1.25 !important;
+  margin: 0 !important;
+
+}
+
+.services-list .project-icon,
+.services-list2 .project-icon{
+  font-size: 38px !important;
+  flex-shrink: 0;
+}
+/* Center the projects grid on the page */
+.services-list,
+.services-list2{
+  max-width: 1200px;     /* adjust if you want wider */
+  margin: 0 auto;        /* centers the grid */
+  justify-content: center;
+}
+/* Increase usable text area inside project cards */
+.project-card{
+  gap: 14px !important;            /* tighter gap = more text space */
+}
+
+/* Constrain icon width so text gets more room */
+.project-icon{
+  width: 36px;                     /* fixed narrow icon column */
+  font-size: 32px !important;
+  flex: 0 0 36px;
+  text-align: center;
+}
+
+/* Let text take ALL remaining space */
+.project-card h2{
+  flex: 1;
+  min-width: 0;                    /* critical for flex text */
+}
+
+/* Make icon+text use the full width of the card (less “centered” look) */
+.project-card{
+  justify-content: flex-start !important;  /* push content to the left */
+  width: 100%;
+}
+
+/* Ensure the title actually stretches */
+.project-card h2{
+  width: 100% !important;
+  flex: 1 1 100% !important;
+  text-align: left !important;
+}
+
+/* Optional: give a bit more “spread” between icon and text */
+.project-card{
+  gap: 20px !important;
+}
+
+
+/* 2) Make each grid cell stretch so the card uses the full column width */
+.services-list,
+.services-list2{
+  justify-items: stretch !important;  /* key */
+  align-items: stretch !important;
+   margin-top: 10px;
+}
+.services-list .project-card h2,
+.services-list2 .project-card h2{
+  display: block !important;
+  overflow: visible !important;
+}
+
+
+
+/* =========================
+   WORK EXPERIENCE – HORIZONTAL TIMELINE
+   Paste at END of style.css
+========================= */
+
+.expH { padding: 40px 0 80px; }
+
+.expH-sub{
+  text-align: center;
+  margin: -26px auto 26px;
+  max-width: 820px;
+  color: rgba(255,255,255,0.70);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* timeline wrapper */
+.expH-wrap{
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  gap: 12px;
+  max-width: 1100px;
+  margin: 0 auto 26px;
+}
+
+/* left/right buttons */
+.expH-nav{
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(20,20,25,0.55);
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+  transition: transform .15s ease, border-color .15s ease;
+}
+.expH-nav:hover{
+  transform: translateY(-2px);
+  border-color: rgba(255,0,79,0.45);
+}
+
+/* horizontal track */
+.expH-track{
+  position: relative;
+  display: flex;
+  gap: 16px;
+  padding: 12px 12px 18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(10,10,14,0.30);
+  backdrop-filter: blur(10px);
+}
+
+/* subtle line behind nodes */
+.expH-track::before{
+  content:"";
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  top: 50%;
+  height: 2px;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.10);
+}
+
+/* hide scrollbar (still scrollable) */
+.expH-track::-webkit-scrollbar{ height: 8px; }
+.expH-track::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,0.12);
+  border-radius: 999px;
+}
+
+/* each timeline node (milestone card) */
+.expH-node{
+  position: relative;
+  min-width: 280px;
+  max-width: 320px;
+  scroll-snap-align: center;
+  text-align: left;
+  padding: 14px 14px 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(30, 30, 35, 0.55);
+  color: #fff;
+  cursor: pointer;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+  z-index: 1; /* above the line */
+}
+
+/* dot indicator */
+.expH-node::before{
+  content:"";
+  position: absolute;
+  left: 14px;
+  top: -8px;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.22);
+  box-shadow: 0 0 0 5px rgba(255,255,255,0.07);
+}
+
+.expH-node:hover{
+  transform: translateY(-4px);
+  border-color: rgba(255,0,79,0.45);
+  box-shadow: 0 14px 32px rgba(255,0,79,0.12);
+}
+
+.expH-node.active{
+  border-color: rgba(255,0,79,0.65);
+  box-shadow: 0 18px 42px rgba(255,0,79,0.16);
+}
+.expH-node.active::before{
+  background: #ff004f;
+  box-shadow: 0 0 0 6px rgba(255,0,79,0.14);
+}
+
+.expH-role{
+  display:block;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.2px;
+  line-height: 1.25;
+}
+.expH-meta{
+  display:block;
+  margin-top: 6px;
+  color: rgba(255,255,255,0.70);
+  font-size: 0.95rem;
+}
+
+/* details panel */
+.expH-panel{
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.expH-card{
+  display: none;
+  border-radius: 18px;
+  padding: 18px 18px 14px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(20,20,25,0.55);
+  backdrop-filter: blur(12px);
+}
+
+.expH-card.active{ display: block; }
+
+.expH-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+
+.expH-card h2{
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.expH-org{
+  margin-top: 6px;
+  color: rgba(255,255,255,0.70);
+  font-size: 1rem;
+}
+
+.expH-chips{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.expH-chip{
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(0,0,0,0.25);
+  color: rgba(255,255,255,0.88);
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.expH-list{
+  margin: 14px 0 0 18px;
+  color: rgba(255,255,255,0.84);
+  line-height: 1.75;
+  font-size: 1rem;
+}
+.expH-list li{ margin: 6px 0; }
+
+/* Elongate ONLY the horizontal timeline bar */
+/* Centered, elongated timeline bar ONLY */
+
+
+
+/* =========================
+   FINAL: full-width centered timeline box
+========================= */
+
+.expH-wrap{
+  width: 100%;
+  max-width: none;
+  margin: 0 auto 26px;
+  padding: 0 24px;
+  box-sizing: border-box;
+
+  display: grid;
+  grid-template-columns: 56px 1fr 56px;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Center a stretched timeline bar */
+.expH-track{
+  width: 200%;
+  max-width: none;
+
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* arrows stay aligned and not floating */
+/* Keep arrows always visible */
+.expH-nav{
+  position: relative;
+  z-index: 10;
+}
+
+/* safety: prevent accidental sideways overflow from earlier rules */
+body{
+  overflow-x: hidden;
+}
+
+/* Wrapper: arrows | bar | arrows */
+.expH-wrap{
+  display: grid;
+  grid-template-columns: 60px minmax(0, 1fr) 60px; /* IMPORTANT */
+  align-items: center;
+  gap: 16px;
+
+  width: 100%;
+  max-width: none;
+  margin: 0 auto 26px;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+/* Put arrows at the beginning/end of the BAR */
+.expH-prev{ justify-self: end; }   /* sits right next to bar start */
+.expH-next{ justify-self: start; } /* sits right next to bar end  */
+
+.expH-nav{
+  position: relative;
+  z-index: 10;
+}
+
+/* =========================
+   FINAL: LONG (FULL-WIDTH) TIMELINE + ARROWS ON SIDES
+========================= */
+
+.expH-wrap{
+  width: 100vw;                          /* full screen width */
+  margin-left: calc(50% - 50vw);         /* perfectly centered breakout */
+  margin-right: calc(50% - 50vw);
+  padding: 0 14px;                       /* small edge breathing space */
+  box-sizing: border-box;
+
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1fr) 70px;  /* arrows | bar | arrows */
+  align-items: center;
+  gap: 12px;
+}
+
+/* The glass timeline bar fills the entire middle space */
+.expH-track{
+  width: 100%;
+  max-width: none;
+  margin: 0;
+
+  /* keep content away from arrows (so cards don't sit under them) */
+  padding: 12px 18px 18px;
+
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+/* arrows at the OUTER sides */
+.expH-nav{
+  width: 56px;
+  height: 56px;
+  position: relative;
+  z-index: 5;
+}
+
+/* Make them sit right at the edges of the timeline bar */
+.expH-prev{ justify-self: start; }
+.expH-next{ justify-self: end; }
+
+/* optional: prevent any accidental sideways scroll */
+html, body{ overflow-x: hidden; }
+
+/* Less gap between navbar and Work Experience title */
+.expH{
+  padding-top: 0 !important;   /* was bigger */
+}
+.expH .sub-title4{
+  margin-top: 0!important;
+}
+
+/* Space between subtitle and timeline bar */
+.expH-wrap{
+  margin-top: 66px !important;
+}
+/* Space between timeline and the description panel */
+.expH-panel{
+  margin-top: 45px !important;
+}
+
+
+
+/* =========================
+   FIX: NAVBAR → WORK EXPERIENCE GAP
+========================= */
+
+/* Reduce top space of the whole section */
+#workex.expH{
+  padding-top: 10px !important;
+}
+
+/* Pull title closer to navbar */
+#workex .sub-title4{
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 20px !important;
+}
+
+/* Small gap between title and subtitle text */
+.expH-sub{
+  margin-top: 8px !important;
+  margin-bottom: 26px !important;
+}
+
+/* Space between subtitle and timeline */
+.expH-wrap{
+  margin-top: 22px !important;
+}
+
+/* Space between timeline and job description */
+.expH-panel{
+  margin-top: 30px !important;
+}
+.expH-track{
+  min-height: 140px;
+  padding-top: 32px;
+  padding-bottom: 36px;
+}
+
+
+/* =====================================
+   CONTACT PAGE (Option 1: Split + Neon Divider)
+   No cards — pure layout/typography.
+   Scoped to body.contact-page so other pages don't change.
+===================================== */
+
+body.contact-page #contact.contact-section{
+  padding: 44px 0 0;
+}
+
+body.contact-page .contact-wrap{
+  width: min(1120px, calc(100% - 56px));
+  margin: 0 auto;
+}
+
+body.contact-page .contact-grid{
+  display: grid;
+  grid-template-columns: 1fr 10px 1.15fr;
+  align-items: center;
+  gap: 44px;
+  padding: 6px 0 26px;
+}
+
+/* LEFT */
+body.contact-page .contact-left .sub-title{
+  font-size: clamp(48px, 5.2vw, 72px);
+  line-height: 1.02;
+  margin: 0 0 12px;
+  letter-spacing: -0.6px;
+}
+
+body.contact-page .contact-accent{ color: #ff004f; }
+
+body.contact-page .contact-subtitle{
+  margin: 0 0 28px;
+  max-width: 44ch;
+  color: rgba(255,255,255,0.78);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+body.contact-page .contact-lines{
+  display: grid;
+  gap: 14px;
+  margin: 0 0 18px;
+}
+
+body.contact-page .contact-line{
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: rgba(255,255,255,0.92);
+  font-size: 18px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+  width: fit-content;
+}
+
+body.contact-page .contact-line i{
+  color: #ff004f;
+  font-size: 18px;
+  transform: translateY(1px);
+}
+
+body.contact-page .contact-line:hover{
+  border-bottom-color: rgba(255,0,79,0.65);
+  text-shadow: 0 0 16px rgba(255,0,79,0.22);
+}
+
+body.contact-page .social-icons{
+  margin-top: 10px;
+  display: flex;
+  gap: 14px;
+}
+
+body.contact-page .social-icons a{
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  color: rgba(255,255,255,0.84);
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(0,0,0,0.10);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, color 0.18s ease, background 0.18s ease;
+}
+
+body.contact-page .social-icons a:hover{
+  color: #ff004f;
+  border-color: rgba(255,0,79,0.70);
+  background: rgba(255,0,79,0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 6px rgba(255,0,79,0.08);
+}
+
+body.contact-page .btn-secondary{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 22px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,0,79,0.65);
+  background: transparent;
+  color: rgba(255,255,255,0.92);
+  margin-top: 22px;
+  text-decoration: none;
+}
+
+body.contact-page .btn-secondary:hover{ background: rgba(255,0,79,0.12); }
+
+/* DIVIDER (with subtle sheen) */
+body.contact-page .contact-divider{
+  width: 3px;
+  height: 100%;
+  min-height: 320px;
+  justify-self: center;
+  border-radius: 999px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,0,79,0.0),
+    rgba(255,0,79,0.70),
+    rgba(120,90,255,0.38),
+    rgba(255,0,79,0.0)
+  );
+  filter: drop-shadow(0 0 18px rgba(255,0,79,0.22));
+  opacity: 0.85;
+  position: relative;
+  overflow: hidden;
+}
+
+body.contact-page .contact-divider::after{
+  content: "";
+  position: absolute;
+  inset: -40% 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.0),
+    rgba(255,255,255,0.22),
+    rgba(255,255,255,0.0)
+  );
+  animation: contactSheen 5.5s linear infinite;
+  opacity: 0.55;
+}
+
+@keyframes contactSheen{
+  0%{ transform: translateY(-30%); }
+  100%{ transform: translateY(30%); }
+}
+
+/* RIGHT */
+body.contact-page .contact-form{
+  width: 100%;
+  max-width: 760px;
+}
+
+body.contact-page .field-row{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+body.contact-page .field{ position: relative; margin: 0 0 16px; }
+
+body.contact-page .contact-form input,
+body.contact-page .contact-form textarea{
+  width: 100% !important;
+  margin: 0 !important;
+  background: rgba(0,0,0,0.12) !important;
+  border: 1px solid rgba(255,255,255,0.16) !important;
+  border-radius: 14px !important;
+  padding: 18px 16px 14px !important;
+  color: rgba(255,255,255,0.92) !important;
+  font-size: 16px !important;
+  outline: none;
+  transition: box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+body.contact-page .contact-form input:hover,
+body.contact-page .contact-form textarea:hover{
+  border-color: rgba(255,255,255,0.24) !important;
+  background: rgba(0,0,0,0.16) !important;
+}
+
+body.contact-page .contact-form textarea{
+  min-height: 220px;
+  resize: vertical;
+}
+
+/* Floating labels */
+body.contact-page .contact-form label{
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.58);
+  pointer-events: none;
+  transition: 0.18s ease;
+  padding: 0 6px;
+}
+
+body.contact-page .contact-form input:focus,
+body.contact-page .contact-form textarea:focus{
+  border-color: rgba(255,0,79,0.70) !important;
+  box-shadow: 0 0 0 6px rgba(255,0,79,0.10);
+}
+
+body.contact-page .contact-form input:focus + label,
+body.contact-page .contact-form textarea:focus + label,
+body.contact-page .contact-form input:not(:placeholder-shown) + label,
+body.contact-page .contact-form textarea:not(:placeholder-shown) + label{
+  transform: translateY(-18px);
+  font-size: 12px;
+  color: rgba(255,255,255,0.78);
+  background: rgba(0,0,0,0.35);
+  border-radius: 999px;
+}
+
+/* actions */
+body.contact-page .form-actions{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+body.contact-page .form-actions .btn.btn2{
+  padding: 12px 26px;
+  border-radius: 12px;
+  margin: 0 !important;
+}
+
+body.contact-page .form-msg{
+  color: rgba(255,255,255,0.65);
+  font-size: 14px;
+}
+
+/* Footer: slim + blend */
+body.contact-page .copyright{
+  background: rgba(0,0,0,0.22);
+  backdrop-filter: blur(8px);
+  padding: 12px 0;
+  margin-top: 6px;
+}
+
+/* Kill old contact stretching rules for this page */
+body.contact-page #contact{ width: 100% !important; }
+body.contact-page .contact-right form{ width: 100% !important; }
+
+@media (max-width: 980px){
+  body.contact-page .contact-grid{ grid-template-columns: 1fr; gap: 26px; }
+  body.contact-page .contact-divider{ display: none; }
+  body.contact-page .field-row{ grid-template-columns: 1fr; }
+  body.contact-page #contact.contact-section{ padding-top: 34px; }
+}
+
+/* =====================================
+   CONTACT PAGE — LAYOUT FIX (Option 1)
+   Centers the split content, keeps footer at bottom
+===================================== */
+
+body.contact-page #contact.contact-section{
+  min-height: calc(100vh - 90px);   /* adjust if your navbar height differs */
+  display: flex;
+  flex-direction: column;
+  padding: 28px 0 0;
+}
+
+/* This centers ONLY the main grid area (not the footer) */
+body.contact-page .contact-wrap{
+  flex: 1;                          /* takes remaining height */
+  display: flex;
+  align-items: center;              /* vertical center */
+}
+
+/* Keep the grid wide + balanced */
+body.contact-page .contact-grid{
+  width: 100%;
+  grid-template-columns: 1fr 8px 1.15fr;
+  gap: 52px;
+  padding: 18px 0 24px;
+  align-items: center;
+}
+
+/* Make form occupy space nicely (prevents “tiny form” look) */
+body.contact-page .contact-right{ justify-self: stretch; }
+body.contact-page .contact-form{ max-width: none; }
+
+/* Divider should NOT be full height */
+body.contact-page .contact-divider{
+  height: 70%;
+  min-height: 340px;
+  width: 3px;
+  align-self: center;
+}
+
+/* Footer stays at bottom (no big bar) */
+body.contact-page .copyright{
+  margin-top: auto;                 /* pushes footer to bottom */
+  background: transparent;
+  padding: 14px 0 18px;
+  opacity: 0.65;
+  font-size: 13px;
+}
+/* Premium background overlay (grid + soft glows) */
+body.contact-page #contact.contact-section{
+  position: relative;
+  overflow: hidden;
+}
+
+body.contact-page #contact.contact-section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(600px 360px at 18% 35%, rgba(255,0,79,0.20), transparent 60%),
+    radial-gradient(520px 320px at 78% 55%, rgba(120,90,255,0.16), transparent 62%),
+    linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: auto, auto, 70px 70px, 70px 70px;
+  opacity: 0.55;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+/* Title glow + underline sweep */
+body.contact-page .contact-left .sub-title{
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 18px 50px rgba(0,0,0,0.45);
+}
+
+body.contact-page .contact-left .sub-title::after{
+  content:"";
+  position:absolute;
+  left: 0;
+  bottom: -10px;
+  width: 110px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(255,0,79,0.0), rgba(255,0,79,0.95), rgba(120,90,255,0.65));
+  opacity: 0.85;
+}
+
+body.contact-page .contact-left .sub-title::before{
+  content:"";
+  position:absolute;
+  left: -50px;
+  top: -40px;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(255,0,79,0.26), transparent 65%);
+  filter: blur(2px);
+  opacity: 0.65;
+  pointer-events: none;
+}
+/* Form: active field glow bar */
+body.contact-page .field{
+  position: relative;
+}
+
+body.contact-page .field::before{
+  content:"";
+  position:absolute;
+  left:-10px;
+  top: 12px;
+  width: 3px;
+  height: calc(100% - 24px);
+  border-radius: 999px;
+  background: linear-gradient(to bottom, rgba(255,0,79,0.0), rgba(255,0,79,0.85), rgba(255,0,79,0.0));
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: 0.18s ease;
+  pointer-events: none;
+}
+
+body.contact-page .field:focus-within::before{
+  opacity: 0.9;
+  transform: translateX(0);
+}
+body.contact-page .social-label{
+  margin: 18px 0 10px;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+}
+body.contact-page .contact-divider{
+  animation: dividerPulse 4.5s ease-in-out infinite;
+}
+@keyframes dividerPulse{
+  0%,100%{ opacity: 0.72; filter: drop-shadow(0 0 18px rgba(255,0,79,0.18)); }
+  50%{ opacity: 0.95; filter: drop-shadow(0 0 26px rgba(255,0,79,0.32)); }
+}
+/* Contact rows (email/phone) — cleaner + premium */
+body.contact-page .contact-lines{
+  display: grid;
+  gap: 12px;
+  margin: 12px 0 18px;
+}
+
+/* the row */
+body.contact-page .contact-line{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  text-decoration: none;
+  color: rgba(255,255,255,0.90);
+
+  font-size: 17px;
+  font-weight: 500;
+
+  padding: 10px 0 10px 18px;          /* left padding for the accent line */
+  width: fit-content;
+
+  border: none;                        /* remove the “weird underline” */
+}
+
+/* thin accent bar on the left */
+body.contact-page .contact-line::before{
+  content:"";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  border-radius: 999px;
+  background: linear-gradient(to bottom,
+    rgba(255,0,79,0.0),
+    rgba(255,0,79,0.85),
+    rgba(255,0,79,0.0)
+  );
+  opacity: 0.55;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* subtle baseline underline that only spans content */
+body.contact-page .contact-line::after{
+  content:"";
+  position: absolute;
+  left: 18px;
+  right: 0;
+  bottom: 2px;
+  height: 1px;
+  background: rgba(255,255,255,0.10);
+  transition: background 0.2s ease;
+}
+
+/* icon alignment */
+body.contact-page .contact-line i{
+  color: #ff004f;
+  font-size: 18px;
+  line-height: 1;
+  transform: translateY(0);            /* remove that weird offset */
+}
+
+/* hover */
+body.contact-page .contact-line:hover{
+  color: rgba(255,255,255,0.98);
+  text-shadow: 0 0 18px rgba(255,0,79,0.18);
+}
+
+body.contact-page .contact-line:hover::before{
+  opacity: 1;
+  transform: scaleY(1.08);
+}
+
+body.contact-page .contact-line:hover::after{
+  background: rgba(255,0,79,0.45);
+}
+body.contact-page .contact-line span{
+  word-break: break-word;
+}
+body.contact-page .form-actions{
+  justify-content: flex-start; /* keep left aligned like now */
+}
+
+body.contact-page .form-actions .btn-secondary{
+  margin-top: 0;              /* remove the old top margin */
+  height: 44px;               /* match submit button height */
+  padding: 12px 22px;
+  border-radius: 12px;
+}
+body.contact-page .social-icons{
+  margin-bottom: 4px;
+}
+body.contact-page .form-msg{
+  display: block;
+  margin-top: 10px;
+  color: rgba(255,255,255,0.85);
+  font-size: 14px;
+}
+/* Message toast (success/error) */
+body.contact-page .form-msg{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-top: 14px;
+  padding: 10px 14px;
+
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(0,0,0,0.22);
+  backdrop-filter: blur(10px);
+
+  color: rgba(255,255,255,0.90);
+  font-size: 14px;
+  line-height: 1;
+
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+
+  transition: opacity 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+}
+
+/* show only when there is text */
+body.contact-page .form-msg:not(:empty){
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* success look */
+body.contact-page .form-msg{
+  border-color: rgba(0, 255, 160, 0.28);
+  box-shadow: 0 0 0 6px rgba(0, 255, 160, 0.06);
+}
+
+/* =========================
+   SHIFT WORK EXPERIENCE UP
+========================= */
+
+/* Pull the whole section up */
+#workex.expH{
+  padding-top: 0px !important;   /* was larger */
+}
+
+/* Move the title closer to navbar */
+#workex .sub-title4,
+#workex h1{
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Slightly reduce space below title */
+.expH-sub{
+  margin-top: 10px !important;
+  margin-bottom: 18px !important;
+}
+
+/* Bring timeline closer to subtitle */
+.expH-wrap{
+  margin-top: 12px !important;
+}
+
+/* Bring description card closer to timeline */
+.expH-panel{
+  margin-top: 22px !important;
+}
+
+/* =========================================================
+   PHONE: Hub cards + full-screen page viewer (no navbar)
+   ========================================================= */
+.noScroll { overflow: hidden !important; }
+
+.phoneHub { display: none; }
+.phoneViewer { display: none; }
+
+@media (max-width: 900px) {
+
+  /* Hide navbar on phone */
+  .navbar, nav, .nav, #sidemenu { display: none !important; }
+
+  /* Show hub */
+  .phoneHub{
+    display: block;
+    min-height: 100vh;
+    padding: 28px 18px 40px;
+  }
+
+  .phoneHub-inner{
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .phoneHub-title{
+    font-size: 44px;
+    line-height: 1.1;
+    margin: 14px 0 6px;
+    color: #fff;
+  }
+
+  .phoneHub-sub{
+    color: rgba(255,255,255,0.75);
+    margin: 0 0 18px;
     font-size: 14px;
+  }
+
+  .phoneHub-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .phoneHub-card{
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(10,10,16,0.55);
+    backdrop-filter: blur(16px);
+    border-radius: 16px;
+    padding: 16px 14px;
+    text-align: left;
+    color: #fff;
+    cursor: pointer;
+    min-height: 120px;
+    transition: transform .18s ease, border-color .18s ease;
+  }
+
+  .phoneHub-card:active{
+    transform: scale(0.98);
+    border-color: rgba(255,255,255,0.22);
+  }
+
+  .phoneHub-cardTitle{
+    display:block;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .phoneHub-cardSub{
+    display:block;
+    font-size: 13px;
+    color: rgba(255,255,255,0.72);
+  }
+
+  /* Full-screen viewer */
+  .phoneViewer{
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.65);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .22s ease;
+  }
+
+  .phoneViewer.open{
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .phoneViewer-topbar{
+    height: 56px;
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    padding: 0 14px;
+    background: rgba(10,10,16,0.92);
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+    backdrop-filter: blur(18px);
+  }
+
+  .phoneViewer-close{
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.14);
+    background: rgba(255,255,255,0.06);
+    color:#fff;
+    font-size: 18px;
+    cursor:pointer;
+  }
+
+  .phoneViewer-title{
+    color: rgba(255,255,255,0.85);
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .phoneViewer-frame{
+    width: 100%;
+    height: calc(100vh - 56px);
+    border: 0;
+    background: #000;
+  }
+
+  /* Optional: make hub 1-column on very small phones */
+  @media (max-width: 420px){
+    .phoneHub-grid{ grid-template-columns: 1fr; }
+  }
 }
-.tab-links{
+/* If opened inside phone viewer iframe */
+body.embed .navbar,
+body.embed nav { display: none !important; }
+body.embed { padding-top: 0 !important; }
+
+/* =========================================================
+   EMBED MODE (opened inside phoneViewer iframe via ?embed=1)
+   Forces mobile-friendly single-column layouts + prevents cut-offs
+   ========================================================= */
+
+html, body { overflow-x: hidden; }
+
+body.embed {
+  overflow-x: hidden !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-top: 0 !important;
+}
+
+/* hide navbar inside iframe pages */
+body.embed nav,
+body.embed .navbar,
+body.embed #sidemenu,
+body.embed #openBtn,
+body.embed #closeBtn{
+  display: none !important;
+}
+
+/* global container safety */
+body.embed .container,
+body.embed .container-about{
+  width: 100% !important;
+  max-width: 720px !important;
+  margin: 0 auto !important;
+  padding-left: 18px !important;
+  padding-right: 18px !important;
+}
+
+/* prevent any section from pushing wider than screen */
+body.embed *{
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* =======================
+   HOME (if ever embedded)
+   ======================= */
+body.embed #header{
+  min-height: 100vh;
+  height: auto;
+}
+body.embed .header-text{
+  margin-top: 16vh !important;
+}
+body.embed .header-text h1{
+  font-size: clamp(38px, 9vw, 54px) !important;
+  line-height: 1.08 !important;
+}
+body.embed .header-text p{
+  font-size: 14px !important;
+}
+
+/* =======================
+   ABOUT
+   ======================= */
+body.embed #about{ padding: 52px 0 !important; }
+
+body.embed .row{
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 18px !important;
+  align-items: center !important;
+}
+
+body.embed .about-col-1,
+body.embed .about-col-2{
+  flex-basis: 100% !important;
+  width: 100% !important;
+}
+
+body.embed .about-col-1 img{
+  width: 100% !important;
+  max-width: 420px !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  display: block !important;
+}
+
+body.embed .about-col-2{
+  padding-left: 0 !important;
+}
+
+/* =======================
+   EDUCATION
+   ======================= */
+body.embed #education{ padding: 52px 0 !important; }
+
+body.embed .tab-titles{
+  display: flex !important;
+  gap: 14px !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+}
+
+body.embed .tab-links{
+  font-size: 18px !important;
+}
+
+/* any cards / blocks become full width */
+body.embed .edu-card,
+body.embed .education-card,
+body.embed .course-card{
+  width: 100% !important;
+  max-width: 720px !important;
+}
+
+/* =======================
+   SKILLS (if grid exists)
+   ======================= */
+body.embed .skills-grid{
+  grid-template-columns: 1fr !important;
+}
+
+/* =======================
+   PROJECTS
+   ======================= */
+body.embed #services,
+body.embed #portfolio,
+body.embed #projects{ padding: 52px 0 !important; }
+
+body.embed .services-list,
+body.embed .services-list2,
+body.embed .work-list{
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 16px !important;
+  width: 100% !important;
+  max-width: 720px !important;
+  margin: 0 auto !important;
+}
+
+body.embed .services-list > div,
+body.embed .services-list2 > div{
+  width: 100% !important;
+  min-height: 0 !important;
+}
+
+/* popups inside projects should fit */
+body.embed .popup,
+body.embed .popup2,
+body.embed .popup3,
+body.embed .popup4,
+body.embed .popup5,
+body.embed .popup6,
+body.embed .popup7,
+body.embed .popup8,
+body.embed .popup9,
+body.embed .popup10,
+body.embed .popup11,
+body.embed .popup12,
+body.embed .popup13,
+body.embed .popup14,
+body.embed .popup15,
+body.embed .popup16,
+body.embed .popup17,
+body.embed .popup18,
+body.embed .popup19,
+body.embed .popup20,
+body.embed .popup21,
+body.embed .popup22,
+body.embed .popup23,
+body.embed .popup24,
+body.embed .popup25,
+body.embed .popup26{
+  width: min(92vw, 560px) !important;
+  max-height: 86vh !important;
+  overflow: auto !important;
+  padding: 18px !important;
+}
+
+/* =======================
+   WORK / EXPERIENCE
+   ======================= */
+body.embed #workex,
+body.embed #work{ padding: 52px 0 !important; }
+
+body.embed .expH-wrap{
+  width: calc(100% - 24px) !important;
+  max-width: 740px !important;
+  margin: 0 auto !important;
+}
+
+body.embed .expH-title{
+  font-size: clamp(40px, 10vw, 56px) !important;
+  line-height: 1.05 !important;
+}
+
+body.embed .expH-nav{ display:none !important; } /* hide arrows on phone */
+
+body.embed .expH-track{
+  width: 100% !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+/* make nodes not too wide */
+body.embed .expH-node{
+  min-width: 130px !important;
+}
+
+/* details card full width */
+body.embed .expH-details{
+  width: 100% !important;
+  max-width: 740px !important;
+}
+
+/* =======================
+   CONTACT
+   ======================= */
+body.embed #contact{
+  padding: 52px 0 !important;
+}
+
+body.embed .contact-wrap{
+  width: calc(100% - 24px) !important;
+  max-width: 740px !important;
+  margin: 0 auto !important;
+}
+
+body.embed .contact-grid{
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 22px !important;
+}
+
+body.embed .contact-divider{ display:none !important; }
+
+body.embed .contact-form input,
+body.embed .contact-form textarea,
+body.embed .contact-form button{
+  width: 100% !important;
+}
+.phoneViewer-topbar{
+  height: calc(56px + env(safe-area-inset-top));
+  padding-top: env(safe-area-inset-top);
+}
+
+.phoneViewer-frame{
+  height: calc(100vh - 56px - env(safe-area-inset-top));
+}
+/* =========================================================
+   PHONE EMBED – ABOUT PAGE CENTERING + BUTTON SPACING
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  /* Center-align About text */
+  body.embed #about,
+  body.embed #about p,
+  body.embed #about h1,
+  body.embed #about h2,
+  body.embed #about h3 {
+    text-align: center !important;
+  }
+
+  /* Improve readability for long text */
+  body.embed #about p {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 36ch !important;   /* prevents super-wide lines */
+    line-height: 1.65 !important;
+  }
+
+  /* Center buttons container */
+  body.embed #about .btn,
+  body.embed #about .btn2,
+  body.embed #about .about-buttons,
+  body.embed #about .button-group {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  /* Bring buttons closer together */
+  body.embed #about .btn,
+  body.embed #about .btn2,
+  body.embed #about a.button,
+  body.embed #about button {
+    margin-top: 12px !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* If buttons were far apart due to padding */
+  body.embed #about {
+    padding-bottom: 36px !important;
+  }
+}
+@media (max-width: 900px){
+  body.embed #about .btn,
+  body.embed #about .btn2{
+    width: min(280px, 90%) !important;
+  }
+}
+/* =========================================================
+   PHONE EMBED – EDUCATION: smaller image + horizontal tabs
+   ========================================================= */
+@media (max-width: 900px){
+
+  /* 1) Reduce the collage/image card size */
+  body.embed #education img,
+  body.embed .edu-img,
+  body.embed .edu-collage,
+  body.embed .education-collage,
+  body.embed .education-banner,
+  body.embed .edu-photo{
+    width: min(86vw, 520px) !important;
+    max-width: 520px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 20px auto 12px !important;
+    border-radius: 18px !important;
+  }
+
+  /* If your collage is inside a wrapper div/card, constrain it too */
+  body.embed #education .edu-img-wrap,
+  body.embed #education .education-img-wrap,
+  body.embed #education .collage-wrap{
+    width: min(86vw, 520px) !important;
+    margin: 20px auto 12px !important;
+  }
+
+  /* 2) Force Study/Coursework/Achievements tabs to be horizontal */
+  body.embed #education .tab-titles{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 18px !important;
+    flex-wrap: nowrap !important;
+    text-align: center !important;
+    margin-top: 8px !important;
+    margin-bottom: 14px !important;
+  }
+
+  /* 3) Reduce font size so they fit in one line */
+  body.embed #education .tab-links{
+    font-size: 16px !important;
+    line-height: 1.1 !important;
+    padding: 8px 6px !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  /* Make active underline smaller so it doesn't push layout */
+  body.embed #education .tab-links::after{
+    height: 3px !important;
+    bottom: -8px !important;
+  }
+}
+
+/* Extra-small phones: tighter spacing + smaller font */
+@media (max-width: 420px){
+  body.embed #education .tab-titles{ gap: 12px !important; }
+  body.embed #education .tab-links{ font-size: 14px !important; }
+}
+@media (max-width: 900px){
+  body.embed #education .collage,
+  body.embed #education .edu-collage-box,
+  body.embed #education .education-collage-box{
+    width: min(86vw, 520px) !important;
+    height: auto !important;
+    margin: 20px auto 12px !important;
+  }
+}
+/* =========================================================
+   PHONE EMBED – EDUCATION FINAL ALIGNMENT & SCALE
+   ========================================================= */
+@media (max-width: 900px){
+
+  /* ---------- Center the collage ---------- */
+  body.embed #education .edu-img,
+  body.embed #education .edu-collage,
+  body.embed #education .education-collage,
+  body.embed #education img{
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: min(82vw, 480px) !important;
+    height: auto !important;
+    border-radius: 18px !important;
+  }
+
+  body.embed #education .edu-img-wrap,
+  body.embed #education .collage-wrap{
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  /* ---------- Tabs: center perfectly ---------- */
+  body.embed #education .tab-titles{
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 20px !important;
+    margin: 14px auto 18px !important;
+    text-align: center !important;
+  }
+
+  body.embed #education .tab-links{
+    font-size: 15px !important;
+    line-height: 1.1 !important;
+    text-align: center !important;
+    padding: 6px 4px !important;
+    white-space: nowrap !important;
+  }
+
+  body.embed #education .tab-links::after{
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* ---------- Center & reduce content under tabs ---------- */
+  body.embed #education .tab-contents,
+  body.embed #education .education-content{
+    text-align: center !important;
+  }
+
+  body.embed #education .education-content h3,
+  body.embed #education .education-content h4{
+    font-size: 20px !important;
+    line-height: 1.25 !important;
+  }
+
+  body.embed #education .education-content p{
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+    max-width: 36ch !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  body.embed #education .education-content span,
+  body.embed #education .education-content small{
+    font-size: 13px !important;
+  }
+}
+
+/* Extra-tight phones */
+@media (max-width: 420px){
+  body.embed #education img{
+    width: min(90vw, 440px) !important;
+  }
+
+  body.embed #education .tab-links{
+    font-size: 14px !important;
+  }
+
+  body.embed #education .education-content h3{
+    font-size: 18px !important;
+  }
+}
+body.embed #education .education-content .year{
+  color: #ff2d6f !important;
+  letter-spacing: .5px;
+}
+/* =========================================================
+   FIX EDUCATION (PHONE + EMBED) – no overflow, true centering
+   ========================================================= */
+@media (max-width: 900px){
+
+  /* 1) Force the whole education section to start from top (remove vertical centering) */
+  body.embed.education-page,
+  body.embed.education-page body,
+  body.embed.education-page #education,
+  body.embed #education{
+    min-height: auto !important;
+    height: auto !important;
+    padding-top: 18px !important;
+    padding-bottom: 40px !important;
+  }
+
+  /* If any wrapper is centering content vertically, kill it */
+  body.embed #education .container,
+  body.embed #education .container-education,
+  body.embed #education .container-about{
+    display: block !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  /* 2) Center the collage + keep it smaller */
+  body.embed #education img{
+    display: block !important;
+    width: min(88vw, 460px) !important;
+    max-height: 30vh !important;
+    object-fit: cover !important;
+    margin: 10px auto 14px !important;
+    border-radius: 18px !important;
+  }
+
+  /* 3) IMPORTANT: stop tab row from cutting off on the right */
+  body.embed #education .tab-titles{
+    width: 100% !important;
+    max-width: 520px !important;
+    margin: 6px auto 14px !important;
+    padding: 0 14px !important;
+
+    /* grid that NEVER overflows */
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+
+    /* override any hidden overflow from earlier CSS */
+    overflow: visible !important;
+  }
+
+  /* Each tab must be allowed to shrink inside grid */
+  body.embed #education .tab-links{
+    min-width: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 10px 6px !important;
+
+    font-size: 13px !important;
+    line-height: 1.05 !important;
+    text-align: center !important;
+
+    /* THIS prevents “Achievements” from pushing layout */
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  /* Center underline properly */
+  body.embed #education .tab-links::after{
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    bottom: -8px !important;
+    height: 3px !important;
+  }
+
+  /* 4) Center + reduce content under tabs */
+  body.embed #education .tab-contents{
+    text-align: center !important;
+    padding: 0 16px !important;
+  }
+
+  body.embed #education .tab-contents h3,
+  body.embed #education .tab-contents h2{
+    font-size: 22px !important;
+    line-height: 1.25 !important;
+    margin: 10px auto !important;
+    max-width: 28ch !important;
+  }
+
+  body.embed #education .tab-contents span,
+  body.embed #education .tab-contents p{
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+    max-width: 36ch !important;
+    margin: 8px auto !important;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 420px){
+  body.embed #education .tab-links{
+    font-size: 12px !important;
+    padding: 10px 4px !important;
+  }
+}
+/* =========================================================
+   EDUCATION (PHONE + EMBED) — Centered, bigger tabs, smaller content
+   ========================================================= */
+@media (max-width: 900px){
+
+  /* --- Keep the whole Education section nicely centered --- */
+  body.embed #education{
+    padding-top: 16px !important;
+    padding-bottom: 44px !important;
+  }
+
+  /* Wrap everything in a centered column feel */
+  body.embed #education .container,
+  body.embed #education .container-education,
+  body.embed #education .container-about{
+    max-width: 560px !important;
+    margin: 0 auto !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* --- Collage: centered + consistent width + appealing spacing --- */
+  body.embed #education img{
+    display: block !important;
+    margin: 10px auto 18px !important;
+    width: min(92vw, 520px) !important;
+    max-width: 520px !important;
+    max-height: 32vh !important;
+    object-fit: cover !important;
+    border-radius: 20px !important;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.35) !important;
+  }
+
+  /* --- Tabs: center aligned, bigger text, no truncation --- */
+  body.embed #education .tab-titles{
+    width: min(92vw, 520px) !important;
+    margin: 0 auto 16px !important;
+    padding: 0 !important;
+
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 22px !important;
+
+    text-align: center !important;
+  }
+
+  body.embed #education .tab-links{
+    font-size: 18px !important;     /* BIGGER tabs */
+    font-weight: 600 !important;
+    padding: 10px 6px !important;
+    margin: 0 !important;
+
+    white-space: nowrap !important; /* keep on one line */
+    overflow: visible !important;   /* no ellipsis */
+    text-overflow: clip !important;
+    opacity: 0.85 !important;
+  }
+
+  /* Underline stays centered */
+  body.embed #education .tab-links::after{
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    height: 3px !important;
+    bottom: -10px !important;
+  }
+
+  /* --- Content under tabs: smaller + centered + compact --- */
+  body.embed #education .tab-contents{
+    width: min(92vw, 520px) !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    text-align: center !important;
+  }
+
+  /* If your dates are in spans */
+  body.embed #education .tab-contents span{
+    font-size: 13px !important;
+    letter-spacing: 0.4px !important;
+  }
+
+  /* Degree headings */
+  body.embed #education .tab-contents h3,
+  body.embed #education .tab-contents h2{
+    font-size: 20px !important;     /* smaller than before */
+    line-height: 1.25 !important;
+    margin: 8px auto 16px !important;
+    max-width: 26ch !important;
+    font-weight: 600 !important;
+  }
+
+  /* Any paragraphs / lines */
+  body.embed #education .tab-contents p{
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+    max-width: 36ch !important;
+    margin: 10px auto !important;
+  }
+
+  /* If your content is in <ul><li> */
+  body.embed #education .tab-contents ul{
+    padding-left: 0 !important;
+    list-style: none !important;
+    margin: 0 auto !important;
+  }
+  body.embed #education .tab-contents li{
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+    margin: 10px auto !important;
+    max-width: 36ch !important;
+  }
+}
+
+/* Small phones */
+@media (max-width: 420px){
+  body.embed #education .tab-titles{ gap: 14px !important; }
+  body.embed #education .tab-links{ font-size: 17px !important; }
+  body.embed #education img{ max-height: 28vh !important; }
+}
+/* =========================================================
+   EDUCATION — PHONE FIX (CENTER EVERYTHING)
+   ✅ affects ONLY mobile + ONLY Education page
+   ========================================================= */
+@media (max-width: 900px){
+
+  /* Kill the old "width:180%" / huge height behavior just for education */
+  body.education-page #education{
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    padding: 22px 0 40px !important;
+  }
+
+  /* Center the whole content column */
+  body.education-page .container-edu{
+    width: 100% !important;
+    max-width: 560px !important;
+    margin: 0 auto !important;
+    padding: 0 16px !important;
+  }
+
+  /* Stack columns + center */
+  body.education-page .container-edu .row{
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    text-align: center !important;
+    gap: 16px !important;
+  }
+
+  body.education-page .edu-col-1,
+  body.education-page .edu-col-2{
+    flex-basis: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+/* 
+  Image/card centered */
+  body.education-page .edu-col-1 img{
+    width: 100% !important;
+    max-width: 520px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 8px auto 10px !important;
+    border-radius: 20px !important;
+    object-fit: cover !important;
+  }
+
+  /* Title + paragraphs scale nicely on phone */
+  body.education-page .sub-title-edu{
+    font-size: clamp(30px, 7vw, 44px) !important;
+    padding-bottom: 10px !important;
+    text-align: center !important;
+  }
+
+  body.education-page .edu-col-2 p{
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+    max-width: 40ch !important;
+    margin: 8px auto !important;
+  }
+
+  /* Tabs row perfectly centered */
+  body.education-page .tab-titles{
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 22px !important;
+    margin: 14px auto 14px !important;
+    width: 100% !important;
+  }
+
+  /* Bigger tab titles (as you wanted), no weird shifting */
+  body.education-page .tab-links{
+    margin: 0 !important;            /* removes the old margin-right:50px */
+    padding: 8px 6px !important;
+    font-size: 18px !important;      /* bigger */
+    font-weight: 650 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+  }
+
+  /* Center the active underline */
+  body.education-page .tab-links::after{
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+
+  /* Content smaller + centered */
+  body.education-page .tab-contents{
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  body.education-page .tab-contents.active-tab{
+    font-size: 14px !important;      /* smaller content */
+  }
+
+  body.education-page .tab-contents ul{
+    list-style: none !important;
+    padding-left: 0 !important;
+    margin: 0 auto !important;
+  }
+
+  body.education-page .tab-contents ul li{
+    margin: 12px auto !important;
+    line-height: 1.5 !important;
+    max-width: 40ch !important;
+  }
+
+  /* Coursework: 2 columns but centered & not overflowing */
+  body.education-page #coursework ul{
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px 18px !important;
+    width: min(520px, 92vw) !important;
+    margin: 0 auto !important;
+    justify-items: center !important;
+  }
+
+  body.education-page #coursework ul li{
+    margin: 0 !important;
+  }
+
+  /* Close button stays in top-right on phone */
+  body.education-page .close-button{
+    position: fixed !important;
+    top: 14px !important;
+    right: 14px !important;
+    z-index: 9999 !important;
+    font-size: 38px !important;
+  }
+}
+/* ===========================
+   EDUCATION PHONE FIX (SAFE)
+   ONLY affects phone
+   =========================== */
+@media (max-width: 900px){
+
+  /* 1) Image: lower + centered */
+  body.education-page .edu-col-1{
+    display: flex !important;
+    justify-content: center !important;
+  }
+   body.education-page .edu-col-1 img{
+    display: block !important;
+    margin: 26px auto 14px !important;
+    width: 25px !important;       /* ✅ THIS is what makes it shrink */
+    max-width: 25px !important;
+    height: auto !important;
+    transform: translateX(0px);
+    margin-bottom: 320px;
+  }
+  /* 2) Tabs: keep in one row, place right below image, shift LEFT a bit */
+  body.education-page .tab-titles{
+    margin-top: 600px !important;         /* directly under image */
+    margin-left: -14px !important;      /* shift left so Achievements fits */
+    padding-left: 14px !important;      /* keeps it visually aligned */
+    width: calc(100% + 14px) !important;
+    display: flex !important;
+    justify-content: center !important; /* still centered “feel” */
+    gap: 18px !important;
+      transform: translateX(-70px);
+
+  }
+
+  /* 3) Tabs slightly smaller so all 3 fit without cutting */
+  body.education-page .tab-links{
+    font-size: 16px !important;
+    white-space: nowrap !important;
+    margin: 0 !important;
+  }
+  body.education-page .tab-contents{
+      transform: translateX(-50px);
+}
+}
+/* ============================
+   MOBILE ONLY: Projects Grid
+============================ */
+@media (max-width: 768px) {
+
+  /* 3-column grid */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 12px;
+  }
+
+  /* Smaller cards */
+  .project-card {
+    border-radius: 14px;
+    padding: 12px 8px;
+    min-height: 120px;
+  }
+
+  /* Icon size inside card */
+  .project-card i,
+  .project-card img,
+  .project-card svg {
+    font-size: 22px;
+    width: 22px;
+    height: 22px;
+    margin-bottom: 6px;
+  }
+
+  /* Project title */
+  .project-card h3 {
+    font-size: 12px;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  /* Project subtitle / description */
+  .project-card p {
+    font-size: 10px;
+    line-height: 1.2;
+    text-align: center;
+  }
+}
+/* ============================
+   MOBILE ONLY: Project Popup
+============================ */
+@media (max-width: 768px) {
+
+  .project-popup,
+  .popup-content {
+    padding: 16px;
+  }
+
+  .project-popup h2,
+  .popup-content h2 {
     font-size: 16px;
-    margin-right: 20px;
-}
-.contact-left, .contact-right{
-    flex-basis: 100%;
-}
-.copyright{
+    margin-bottom: 8px;
+  }
+
+  .project-popup h3,
+  .popup-content h3 {
     font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .project-popup p,
+  .popup-content p,
+  .project-popup li {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .project-popup button {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
 }
-
-
-#img1 {
-    padding: 20px 0;
+@media (max-width: 768px) {
+  .project-card {
+    aspect-ratio: 1 / 1;
+  }
 }
-
-.img1 {
-    display: block;
-    margin-top: 20px;
+@media (max-width: 768px) {
+  .btn-pro {
+    display: none;
+  }
 }
+/* ============================
+   MOBILE ONLY: Popup Close ❌
+============================ */
+@media (max-width: 768px) {
 
-.img11 {
-    border-radius: 10px;
+  /* Popup container positioning */
+  .popup-content {
     position: relative;
-    overflow: hidden;
-    text-align: center; 
-    margin: 0 10px; 
-    flex-basis: 100%;
-    right: 0;
-}
+  }
 
-.img11 img {
-    width: 100%;
-    border-radius: 10px;
-    border: 5px solid #ff004f;
-    display: block;
-    transition: transform 0.5s;
-}
-
-.layer1 {
-    width: 100%;
-    height: auto;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), #ff004f);
-    border-radius: 10px;
+  /* Top-right close button */
+  .popup-close-mobile {
     position: absolute;
-    left: 0;
-    bottom: 0;
-    overflow: hidden;
+    top: 14px;
+    right: 14px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0, 0, 0, 0.25);
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    padding: 0 20px;
-    text-align: center;
-    font-size: 14px;
-    transition: height 0.5s;
+    z-index: 10;
+  }
+
+  /* Tap feedback */
+  .popup-close-mobile:active {
+    transform: scale(0.9);
+  }
+
+  /* Hide bottom Close button on phone */
+  .popup-content .close-btn,
+  .popup-content button:last-child {
+    display: none;
+  }
 }
+@media (max-width: 768px) {
 
-.layer1 h3 {
-    font-weight: 500;
-    margin-bottom: 10px;
-}
-
-.layer1 a {
-    margin-top: 10px;
-    color: #ff004f;
-    text-decoration: none;
-    font-size: 14px;
-    line-height: 40px;
-    background: #fff;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    text-align: center;
-}
-
-.img11:hover img {
-    transform: scale(1.1);
-}
-
-.img11:hover .layer1 {
-    height: auto;
-}
-
-.text-overlay {
-    text-align: center;
-    font-size: 28px;
-    padding-left: 0;
-    margin-top: 20px;
-}
-
-.sub-title1 {
-    margin-bottom: 10px;
-}
-
-
-.container {
-    padding: 10px 5%;
-}
-
-nav {
+  /* Popup should NOT scroll as a whole */
+  .popup-modal.active {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
+    flex-direction: column;
+    max-height: 85vh;     /* adjust if you want taller */
+    overflow: hidden;     /* IMPORTANT */
+    position: fixed;      /* should already be, but safe */
+  }
 
-.Logo {
-    width: 150px;
-}
+  /* Only the body scrolls */
+  .popup-modal .popup-body {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 18px 16px 16px;
+  }
 
-nav ul li {
-    display: block;
-    list-style: none;
-    margin: 10px 0;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    position: relative;
-    padding: 3px;
-}
-
-nav ul li a::after {
-    content: '';
-    width: 0;
-    height: 3px;
-    background: #ff004f;
+  /* Close button stays fixed inside popup */
+  .popup-close-mobile {
     position: absolute;
-    left: 0;
-    bottom: -6px;
-    transition: 0.5s;
+    top: 12px;
+    right: 12px;
+    z-index: 9999;
+  }
+
+  /* Give body room so text doesn't go under the X */
+  .popup-modal .popup-body {
+    padding-top: 52px;
+  }
+
+  /* Hide bottom Close on phone */
+  .popup-modal .btn-pro {
+    display: none;
+  }
+}
+/* ensure popup and X are above overlay */
+.popup-modal { z-index: 1002; }
+.modal-overlay { z-index: 1001; }
+
+.popup-close-mobile {
+  z-index: 1003;
+  pointer-events: auto;
+}
+/* =========================
+   PROJECTS: PHONE ONLY
+   ========================= */
+@media (max-width: 420px){
+
+  /* 3 columns project grid */
+  .services-list{
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+    margin-top: 24px !important;
+  }
+
+  /* smaller cards */
+  .services-list div{
+    padding: 14px !important;
+    border-radius: 14px !important;
+  }
+  .services-list div i{
+    font-size: 26px !important;
+    margin-bottom: 10px !important;
+  }
+  .services-list div h2{
+    font-size: 12px !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* popup text smaller */
+  .popup-modal{
+    padding: 18px !important;
+  }
+  .popup-modal h2{
+    font-size: 16px !important;
+  }
+  .popup-modal p{
+    font-size: 12px !important;
+    line-height: 1.45 !important;
+  }
+
+  /* ✅ make popup a positioning parent */
+  .popup-modal{
+    position: fixed !important;
+  }
+
+  /* ✅ top-right close (pinned) */
+  .popup-close-mobile{
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    border: none;
+
+    background: rgba(0,0,0,0.45);
+    color: #fff;
+    font-size: 20px;
+    z-index: 9999;
+    cursor: pointer;
+  }
+
+  /* remove bottom Close button on phone */
+  .popup-modal .btn-pro{
+    display: none !important;
+  }
 }
 
-nav ul li a:hover::after {
-    width: 100%;
+/* default: hide mobile close on non-phone */
+.popup-close-mobile{
+  display: none;
+}
+/* ============================
+   PHONE ONLY: 3-column projects + pinned popup close
+   ============================ */
+@media (max-width: 768px){
+
+  /* ---- PROJECT GRID: make 3 columns ---- */
+  .services-list{
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+
+  /* Cards are your .services-list divs (and also have project-card class) */
+  .services-list > div{
+    padding: 14px 10px !important;
+    border-radius: 14px !important;
+    min-height: 120px !important;
+  }
+
+  .services-list > div i{
+    font-size: 22px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .services-list > div h2{
+    font-size: 12px !important;
+    line-height: 1.2 !important;
+  }
+
+  /* ---- POPUP: stop popup itself from scrolling ---- */
+  div[id^="popup"].popup-modal{
+    overflow: hidden !important;      /* popup does NOT scroll */
+    max-height: 85vh !important;
+    width: min(92vw, 560px) !important;
+    padding: 0 !important;            /* padding goes to .popup-body */
+    position: fixed !important;
+  }
+
+  /* only body scrolls */
+  div[id^="popup"] .popup-body{
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    max-height: 85vh;
+    padding: 18px 16px 16px;
+  }
+
+  /* ---- Pinned X ---- */
+  .popup-close-mobile{
+    position: absolute !important;
+    top: 12px !important;
+    right: 12px !important;
+    z-index: 9999 !important;
+
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0,0,0,0.25);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  /* give room so text doesn't hide under X */
+  div[id^="popup"] .popup-body{
+    padding-top: 52px !important;
+  }
+
+  /* hide bottom Close button on phone */
+  div[id^="popup"] .btn-pro{
+    display: none !important;
+  }
 }
 
-.header-text {
-    margin-top: 10%;
-    font-size: 24px;
-    text-align: center;
-}
-
-.header-text h1 {
-    margin-top: 20px;
-    font-size: 40px;
-}
-
-.header-text h1 span {
-    color: #ff004f;
-}
-
-.resumedown {
-    color: #ff004f;
-}
-
-.multiple-text {
-    font-size: 24px;
-    text-align: center;
-} */

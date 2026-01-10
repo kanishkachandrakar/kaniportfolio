@@ -205,6 +205,13 @@
         }
     </script>
     
+<script>
+  (function () {
+    const p = new URLSearchParams(location.search);
+    if (p.get("embed") === "1") document.body.classList.add("embed");
+  })();
+</script>
+
     
     </body>
     </html>>

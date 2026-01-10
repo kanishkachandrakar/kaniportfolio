@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Portfolio</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/037e6d0262.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="contact-page">
+    <nav class="navbar">
+  <ul id="sidemenu">
+    <li><a href="index.html#header">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="education.html">Education</a></li>
+    <li><a href="skills.html">Skills</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="work.html">Experiences</a></li>
+    <li>
+      <a href="images/Kanishka_final_resume.pdf" download class="nav-resume">Resume
+      </a>
+    </li>
+    <li><a href="connect.html" class="active">Contact</a></li>
+    <!-- <li><a href="knowmemore.html">My Life!</a></li> -->
+    <i class="fas fa-times" id="closeBtn" onclick="closemenu()"></i>
+  </ul>
+  <i class="fas fa-bars" id="openBtn" onclick="openmenu()"></i>
+    </nav>
+
+    <!-- CONTACT (Option 1: Split + Neon Divider, no cards) -->
+    <section id="contact" class="contact-section">
+      <div class="contact-wrap">
+        <div class="contact-grid">
+
+          <!-- LEFT: headline + info -->
+          <div class="contact-left">
+            <h1 class="sub-title">Let’s Talk<span class="contact-accent">.</span></h1>
+            <p class="contact-subtitle">Open to internships or research opportunities</p>
+
+            <div class="contact-lines">
+              <a class="contact-line" href="mailto:kanishka.chandrakar02@gmail.com">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span>kanishka.chandrakar02@gmail.com</span>
+              </a>
+
+              <a class="contact-line" href="tel:+15822039622">
+                <i class="fa-solid fa-phone"></i>
+                <span>+1 5822039622</span>
+              </a>
+
+            </div>
+<p class="social-label">Find me here</p>
+            <div class="social-icons" aria-label="Social links">
+              
+              <a href="https://www.instagram.com/kanishkaa__c/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+              <a href="https://www.linkedin.com/in/kanishka-chandrakar-6066bb262/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/kanishkachandrakar" target="_blank">
+    <i class="fab fa-github"></i>
+  </a>
+            </div>
+
+            <!-- <a href="images/Kanishka_final_resume.pdf" download class="btn-secondary">Download CV</a> -->
+          </div>
+
+          <!-- DIVIDER -->
+          <div class="contact-divider" aria-hidden="true"></div>
+
+          <!-- RIGHT: form -->
+           
+          <div class="contact-right">
+            <form id="contact-form" class="contact-form" name="submit-to-google-sheet">
+
+
+              <div class="field-row">
+                <div class="field">
+                  <input type="text" name="Name" placeholder=" " required>
+                  <label>Your Name</label>
+                </div>
+                <div class="field">
+                  <input type="email" name="Email" placeholder=" " required>
+                  <label>Your Email</label>
+                </div>
+              </div>
+
+              <div class="field">
+                <textarea name="Message" rows="8" placeholder=" "></textarea>
+                <label>Your Message</label>
+              </div>
+
+           <div class="form-actions">
+  <button type="submit" class="btn btn2">Submit</button>
+  <a href="images/Kanishka_final_resume.pdf" download class="btn-secondary">Download CV</a>
+</div>
+
+<span id="msg" class="form-msg" aria-live="polite"></span>
+
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>Copyright © Kanishka <i class="fa-solid fa-heart"></i></p>
+      </div>
+    </section>
+
+  <script src="main.js"></script>
+  <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxptlQB673K5Zj1cZU8GX2b_nqHctjAFgTgfP1xeSrhKJz8q4wmpk1sY_s8Eh-CJand/exec';
+  const form = document.getElementById('contact-form'); // use ID
+  const msg = document.getElementById("msg");
+
+  console.log("SCRIPT LOADED ✅", { formFound: !!form });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    msg.textContent = "Sending...";
+
+    fetch(scriptURL, {
+      method: 'POST',
+      mode: 'no-cors',          // IMPORTANT for Google Apps Script
+      body: new FormData(form)
+    })
+    .then(() => {
+      msg.innerHTML = '<i class="fa-solid fa-circle-check"></i> Message received!';
+
+      form.reset();
+      setTimeout(() => msg.textContent = "", 5000);
+    })
+    .catch(err => {
+      console.error("Submit failed:", err);
+      msg.textContent = "Failed to send. Please try again.";
+    });
+  });
+</script>
+
+<script>
+  (function () {
+    const p = new URLSearchParams(location.search);
+    if (p.get("embed") === "1") document.body.classList.add("embed");
+  })();
+</script>
+
+
+</body>
+</html>

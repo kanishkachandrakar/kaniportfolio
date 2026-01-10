@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skills | Portfolio</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/YOUR_KIT_ID.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="navbar">
+  <ul id="sidemenu">
+    <li><a href="index.html#header">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="education.html">Education</a></li>
+    <li><a href="skills.html" class="active">Skills</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="work.html">Experiences</a></li>
+    <li>
+      <a href="images/Kanishka_final_resume.pdf" download class="nav-resume">Resume
+      </a>
+    </li>
+    <li><a href="connect.html">Contact</a></li>
+    <!-- <li><a href="knowmemore.html">My Life!</a></li> -->
+    <i class="fas fa-times" id="closeBtn" onclick="closemenu()"></i>
+  </ul>
+  <i class="fas fa-bars" id="openBtn" onclick="openmenu()"></i>
+</nav>
+
+  <!-- Top spacing / container like your site -->
+  <div class="container" style="padding-top: 40px;">
+<div class="skills-page">
+  <h1 class="skills-title">How can I help you?</h1>
+  <p class="skills-subtitle">
+    A snapshot of the tools and technologies I work with.
+  </p>
+
+  <!-- Highlight row (optional but nice) -->
+  <div class="skills-highlight">
+    <span class="highlight-label">Technical strengths:</span>
+    <div class="chip-row">
+      <span class="chip chip-strong">System Design</span>
+      <span class="chip chip-strong">Problem Solving</span>
+      <span class="chip chip-strong">Performance Optimization</span>
+      <span class="chip chip-strong">Model Training & Evaluation</span>
+      <span class="chip chip-strong">API Design</span>
+    </div>
+  </div>
+
+  <div class="skills-grid">
+    <!-- Languages -->
+    <div class="skills-card">
+      <div class="skills-card-head">
+        <h2>Languages</h2>
+      </div>
+      <div class="skills-chips">
+        <span class="chip">Python</span>
+        <span class="chip">Java</span>
+        <span class="chip">C/C++</span>
+        <span class="chip">JavaScript</span>
+        <span class="chip">TypeScript</span>
+        <span class="chip">SQL</span>
+        <span class="chip">R</span>
+        <span class="chip">C#</span>
+        <span class="chip">Swift</span>
+        <span class="chip">HTML/CSS</span>
+        <span class="chip">MATLAB</span>
+      </div>
+    </div>
+
+    <!-- AI/ML -->
+    <div class="skills-card">
+      <div class="skills-card-head">
+        <h2>AI / ML</h2>
+      </div>
+      <div class="skills-chips">
+        <span class="chip">PyTorch</span>
+        <span class="chip">TensorFlow</span>
+        <span class="chip">Scikit-learn</span>
+        <span class="chip">NumPy</span>
+        <span class="chip">Pandas</span>
+        <span class="chip">Matplotlib</span>
+        <span class="chip">NLP</span>
+        <span class="chip">Deep Learning</span>
+        <span class="chip">LLMs</span>
+        <span class="chip">OpenAI APIs</span>
+      </div>
+    </div>
+
+    <!-- DevTools -->
+    <div class="skills-card">
+      <div class="skills-card-head">
+        <h2>DevTools</h2>
+      </div>
+      <div class="skills-chips">
+        <span class="chip">React</span>
+        <span class="chip">.NET</span>
+        <span class="chip">Angular</span>
+        <span class="chip">Node.js</span>
+        <span class="chip">Docker</span>
+        <span class="chip">Git</span>
+        <span class="chip">Firebase</span>
+        <span class="chip">MongoDB</span>
+        <span class="chip">PostgreSQL</span>
+        <span class="chip">REST APIs</span>
+        <span class="chip">Linux</span>
+        <span class="chip">Xcode Cloud</span>
+      </div>
+    </div>
+
+    <!-- DevOps -->
+    <div class="skills-card">
+      <div class="skills-card-head">
+        <h2>DevOps</h2>
+      </div>
+      <div class="skills-chips">
+        <span class="chip">AWS</span>
+        <span class="chip">Azure</span>
+        <span class="chip">Google Cloud</span>
+        <span class="chip">CI/CD</span>
+        <span class="chip">Agile</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  </div>
+
+  <script src="main.js"></script>
+
+<script>
+  (function () {
+    const p = new URLSearchParams(location.search);
+    if (p.get("embed") === "1") document.body.classList.add("embed");
+  })();
+</script>
+
+</body>
+</html>
