@@ -109,8 +109,8 @@ body {
 
 .frame {
   position: relative;
-  width: min(1000px, 100%);
-  height: min(694px, max(480px, 74dvh));
+  width: min(1100px, 100%);
+  height: min(648px, max(452px, 80dvh));
   max-height: 100%;
 }
 
@@ -134,14 +134,14 @@ body {
 /* ---------- Social rail ------------------------------------ */
 .rail {
   position: absolute;
-  left: -27px;
+  right: calc(100% + 34px);
   top: 50%;
   transform: translateY(-50%);
   z-index: 6;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 12px 9px;
+  gap: 8px;
+  padding: 14px 9px;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.10);
@@ -791,6 +791,13 @@ body {
 .menu-btn { display: none; }
 
 /* ---------- Responsive ------------------------------------- */
+@media (max-width: 1260px) {
+  .rail {
+    right: auto;
+    left: -26px;
+  }
+}
+
 @media (max-width: 1080px) {
   :root { --sidebar: 262px; }
   .sidebar { padding-left: 34px; }
@@ -823,6 +830,8 @@ body {
 
   .rail {
     position: static;
+    right: auto;
+    left: auto;
     transform: none;
     flex-direction: row;
     justify-content: center;
