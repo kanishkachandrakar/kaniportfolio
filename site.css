@@ -25,7 +25,7 @@
   --radius:     26px;
   --radius-sm:  14px;
   --pad:        clamp(14px, 2.4vw, 40px);
-  --sidebar:    300px;
+  --sidebar:    268px;
 
   --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
           Helvetica, Arial, sans-serif;
@@ -104,13 +104,13 @@ body {
   min-height: 100dvh;
   display: grid;
   place-items: center;
-  padding: clamp(16px, 4.5vh, 64px) clamp(16px, 4vw, 64px);
+  padding: clamp(16px, 6vh, 90px) clamp(16px, 5vw, 90px);
 }
 
 .frame {
   position: relative;
-  width: min(1120px, 100%);
-  height: min(772px, max(520px, 80dvh));
+  width: min(1000px, 100%);
+  height: min(694px, max(480px, 74dvh));
   max-height: 100%;
 }
 
@@ -173,7 +173,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 22px;
-  padding: 30px 22px 24px 40px;
+  padding: 26px 18px 22px 34px;
   border-right: 1px solid var(--line-soft);
   min-height: 0;
 }
@@ -187,8 +187,8 @@ body {
 }
 
 .identity img {
-  width: 54px;
-  height: 54px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   object-fit: cover;
   object-position: center top;
@@ -197,7 +197,7 @@ body {
 }
 
 .identity-name {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: -0.015em;
   line-height: 1.25;
@@ -206,7 +206,8 @@ body {
 
 .identity-role {
   margin-top: 2px;
-  font-size: 12px;
+  font-size: 11.5px;
+  white-space: nowrap;
   color: var(--ink-soft);
   line-height: 1.35;
 }
@@ -312,7 +313,7 @@ body {
   min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: 42px clamp(24px, 3vw, 46px) 50px;
+  padding: 38px clamp(22px, 2.6vw, 40px) 46px;
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.22) transparent;
 }
@@ -377,7 +378,7 @@ body {
 
 .split {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(220px, 340px);
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 286px);
   gap: clamp(24px, 4vw, 54px);
   align-items: start;
 }
@@ -582,7 +583,7 @@ body {
 /* ---------- Cards grid ------------------------------------- */
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(206px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
   gap: 14px;
 }
 
