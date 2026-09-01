@@ -1,165 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, inital-scale=1.0">
-    <title>Personal Portfolio Website</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/037e6d0262.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Kanishka Chandrakar</title>
+  <meta name="description" content="About Kanishka Chandrakar — MS Computer Science (AI/ML) student at NYU Courant.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-<body class="about-page">
-<nav class="navbar">
-  <ul id="sidemenu">
-    <li><a href="index.html#header">Home</a></li>
-    <li><a href="about.html"  class="active">About</a></li>
-    <li><a href="education.html">Education</a></li>
-    <li><a href="skills.html">Skills</a></li>
-    <li><a href="projects.html">Projects</a></li>
-    <li><a href="work.html">Experiences</a></li>
-    <li>
-      <a href="images/Kanishka_final_resume.pdf" download class="nav-resume"> Resume
-      </a>
-    </li>
-    <li><a href="connect.html">Contact</a></li>
-    <!-- <li><a href="knowmemore.html">My Life!</a></li> -->
-    <i class="fas fa-times" id="closeBtn" onclick="closemenu()"></i>
-  </ul>
-  <i class="fas fa-bars" id="openBtn" onclick="openmenu()"></i>
-</nav>
+<body>
 
+<div class="backdrop" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
 
-    <!---------------about------------------->
-<div id="about">
-    <div class="container-about">
-        <div class="row">
-            <div class="about-col-1">
-                <img src="images/user.jpg" alt="">
-            </div>
-            <div class="about-col-2">
-                <h1 class="sub-title">About Me</h1>
-                <p class="about-text">
-                Hi! I’m <span class="name-highlight"> <strong>Kanishka Chandrakar</strong></span> 👋 — a computer science enthusiast who loves
-                turning ideas into clean, usable software.
-                </p>
+<div class="stage">
+  <div class="frame">
 
-                <p class="about-text">
-               I completed my <strong>BS in Computer Science</strong> at 
-                <span class="penn">Penn State</span> 🎓 and I’m currently pursuing my 
-                <strong>MS in Computer Science</strong> at <span class="nyu">NYU Courant</span> with a focus on 
-                <span class="aiml"><strong>AI & Machine Learning</strong></span>.
-                These days, I spend most of my time coding, experimenting with models, and breaking things
-                just enough to learn how to fix them 😄.
-                </p>
-
-                <p class="about-text">
-                Outside of coursework and projects, I enjoy debugging with Bollywood & Punjabi songs 🎧,
-                exploring new technologies, and collaborating on ideas that make a real impact.
-                </p>
-               <div class="about-actions">
-                <div class="about-buttons">
-                    <a href="projects.html" class="btn">View Projects</a>
-                    <a href="images/Kanishka_final_resume.pdf" class="btn">Download Resume</a>
-                </div>
-
-                </div>   
-            </div>
-        </div>
-        
+    <div class="rail" aria-label="Social links">
+    <a href="https://github.com/kanishkachandrakar" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/kanishka-chandrakar-6066bb262/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in"></i></a>
+    <a href="https://www.instagram.com/kanishkaa__c/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+    <a href="mailto:kanishka.chandrakar02@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
     </div>
+
+    <div class="shell">
+
+    <aside class="sidebar">
+      <a class="identity" href="index.html">
+        <img src="images/user.jpg" alt="Kanishka Chandrakar">
+        <div>
+          <div class="identity-name">Kanishka Chandrakar</div>
+          <div class="identity-role">MS CS (AI/ML) &middot; NYU Courant</div>
+        </div>
+      </a>
+
+      <button class="menu-btn" aria-label="Menu" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <ul class="nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="is-active" aria-current="page">About me</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="work.html">Experience</a></li>
+      <li><a href="connect.html">Contact me</a></li>
+        <li class="nav-foot">
+          <a class="btn btn-accent btn-full" href="images/Kanishka_final_resume.pdf" download>
+            <i class="fa-solid fa-arrow-down"></i> Resume
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <h1 class="page-title">About Kanishka</h1>
+      <p class="page-sub">Computer science graduate student who likes turning ideas into clean, usable software.</p>
+
+      <div class="split">
+        <div class="prose">
+          <p>Hi! I&rsquo;m <strong>Kanishka Chandrakar</strong> &mdash; a computer science enthusiast who loves turning ideas into clean, usable software.</p>
+
+          <p>I completed my <strong>BS in Computer Science</strong> at <span class="accent">Penn State</span>, and I&rsquo;m currently pursuing my <strong>MS in Computer Science</strong> at <span class="accent">NYU Courant</span> with a focus on <strong>AI &amp; Machine Learning</strong>. These days I spend most of my time coding, experimenting with models, and breaking things just enough to learn how to fix them.</p>
+
+          <p>Outside of coursework and projects, I enjoy debugging with Bollywood &amp; Punjabi songs, exploring new technologies, and collaborating on ideas that make a real impact.</p>
+
+          <div class="home-actions" style="margin-top:26px">
+            <a class="btn btn-accent" href="projects.html">View projects</a>
+            <a class="btn" href="images/Kanishka_final_resume.pdf" download>Download resume</a>
+          </div>
+        </div>
+
+        <img class="portrait" src="images/user.jpg" alt="Kanishka Chandrakar">
+      </div>
+
+      <hr class="divider">
+
+      <div class="grid-2">
+        <div>
+          <h2 class="section-title">Technical strengths</h2>
+          <div class="prose">
+            <p>I work across the stack &mdash; from Python, Java and C to React, Node and Swift &mdash; with a focus on AI/ML: PyTorch, TensorFlow, scikit-learn and NLP pipelines. I&rsquo;m comfortable taking a problem from data exploration through model training and evaluation to a deployed, usable interface.</p>
+          </div>
+        </div>
+        <div>
+          <h2 class="section-title">Beyond the code</h2>
+          <div class="prose">
+            <p>Three years of teaching and course-assistant work taught me to explain hard ideas simply and to debug someone else&rsquo;s reasoning, not just their code. I care about work that is well-tested, readable, and actually helps the person on the other end of it.</p>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    </div>
+  </div>
 </div>
 
-<script>
-    var tablinks = document.getElementsByClassName("tab-links");
-    var tabcontents = document.getElementsByClassName("tab-contents");
-    function opentab(tabname){
-        for(tablink of tablinks){
-            tablink.classList.remove("active-link");
-        }
-        for(tabcontent of tabcontents){
-            tabcontent.classList.remove("active-tab");
-        }
-        event.currentTarget.classList.add("active-link");
-        document.getElementById(tabname).classList.add("active-tab")
-    }
-</script>
 
-<script>
-    var sidemeu = document.getElementById("sidemenu");
-
-    function openmenu(){
-        sidemeu.style.right = "0";
-    }
-    function closemenu(){
-        sidemeu.style.right = "-200px";
-    }
-</script>
-
-<script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbynOoO5RaiAOfaHz51p9YJfkW_6Fpptj1pfO9SQZrmt7WSXxjKt7FS9iCeT2M2Gt94y/exec'
-    const form = document.forms['submit-to-google-sheet']
-    const msg = document.getElementById("msg")
-  
-    form.addEventListener('submit', e => {
-      e.preventDefault()
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(response => {
-            msg.innerHTML = "Message Recieved!"
-            setTimeout(function(){
-                msg.innerHTML = ""
-            },5000)
-            form.reset()
-        })
-        .catch(error => console.error('Error!', error.message))
-    })
-</script>
-
-
-
-<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function(){
-            const typed = new Typed('.multiple-text',{
-                strings: ['Software Engineer','Web Designer','Frontend Developer'],
-                typeSpeed: 70,
-                backSpeed: 70,
-                backDelay:1000,
-                loop: true,
-            });
-        });
-    </script>
-
-<script src="https://unpkg.com/scrollreveal"></script>
-    <script>
-        ScrollReveal({ 
-            distance: '80px',
-            duration: 2000,
-            delay:200,
-
-        });
-        ScrollReveal().reveal('.header-text', { origin: 'top' });
-        ScrollReveal().reveal('.home-img, .services-container, .contact-left, .contact-right', { origin: 'buttom' });
-        ScrollReveal().reveal('.about-col-1, .work ', { origin: 'left' });
-        ScrollReveal().reveal('.about-col-2, .services-list', { origin: 'right' });
-    </script>
-
-<script>
-  fetch("navbar.html")
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById("navbar").innerHTML = html;
-    })
-    .catch(err => console.error("Navbar load error:", err));
-</script>
-
-<script>
-  (function () {
-    const p = new URLSearchParams(location.search);
-    if (p.get("embed") === "1") document.body.classList.add("embed");
-  })();
-</script>
-
+<script src="site.js"></script>
 
 </body>
 </html>

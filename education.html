@@ -1,165 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, inital-scale=1.0">
-    <title>Personal Portfolio Website</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/037e6d0262.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Education | Kanishka Chandrakar</title>
+  <meta name="description" content="Education, coursework and achievements — Kanishka Chandrakar.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-<body class="education-page">
+<body>
 
-<nav class="navbar">
-  <ul id="sidemenu">
-    <li><a href="index.html#header">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="education.html"  class="active">Education</a></li>
-    <li><a href="skills.html">Skills</a></li>
-    <li><a href="projects.html">Projects</a></li>
-    <li><a href="work.html">Experiences</a></li>
-    <li>
-      <a href="images/Kanishka_final_resume.pdf" download class="nav-resume">Resume
-      </a>
-    </li>
-    <li><a href="connect.html">Contact</a></li>
-    <!-- <li><a href="knowmemore.html">My Life!</a></li> -->
-    <i class="fas fa-times" id="closeBtn" onclick="closemenu()"></i>
-  </ul>
-  <i class="fas fa-bars" id="openBtn" onclick="openmenu()"></i>
-</nav>
+<div class="backdrop" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
 
-<div id="education">
-    <div class="container-edu">
-        <div class="row">
-            <div class="edu-col-1">
-                <img src="images/psu.png">
-            </div>
-            <div class="edu-col-2">
-               <div class="tab-titles">
-                    <p class="tab-links active-link" onclick="opentab('study')">Study</p>
-                    <p class="tab-links" onclick="opentab('coursework')">Coursework</p>
-                    <p class="tab-links" onclick="opentab('achievements')">Achievements</p>
-                </div>
-                <div class="tab-contents active-tab" id="study">
-                    <ul>
-                        <li><span>2021-2025</span><br>BS in Computer Science at Penn State</li>
-                        <li><span>2025-Present</span><br>MS in Computer Science(AI/ML) at NYU Courant</li>
-                    </ul>
-                </div>
-                <div class="tab-contents" id="coursework">
-                        <ul>
-                            <li><span>Artificial Intelligence</span></li>
-                            <li><span>Machine Learning</span></li>
-                            <li><span>System Programming</span></li>
-                            <li><span>Digital Design</span></li>
-                            <li><span>Operating Systems</span></li>
-                            <li><span>OOP with Web</span></li>
-                            <li><span>Game Theory</span></li>
-                            <li><span>Fundamental Algorithms</span></li>
-                            <li><span>Data Structures and Algorithms</span></li>
-                            <li><span>Computer Organization and Design</span></li>
+<div class="stage">
+  <div class="frame">
 
-                    
-                        </ul>
-                </div>
-                <div class="tab-contents" id="achievements">
-                    <ul>
-                        <li><span>2022-2025</span><br>Dean's List</li>
-                        <li><span>2022</span><br>Leadership in Ethics and Equity Badge: Credly</li>
-                        <li><span>2021</span><br>Merit Prize for securing above 95% in ISC</li>
-                        <li><span>2019</span><br>A-Certificate under the authority of Ministry of Defense: Government of India</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <div class="rail" aria-label="Social links">
+    <a href="https://github.com/kanishkachandrakar" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/kanishka-chandrakar-6066bb262/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in"></i></a>
+    <a href="https://www.instagram.com/kanishkaa__c/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+    <a href="mailto:kanishka.chandrakar02@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
     </div>
+
+    <div class="shell">
+
+    <aside class="sidebar">
+      <a class="identity" href="index.html">
+        <img src="images/user.jpg" alt="Kanishka Chandrakar">
+        <div>
+          <div class="identity-name">Kanishka Chandrakar</div>
+          <div class="identity-role">MS CS (AI/ML) &middot; NYU Courant</div>
+        </div>
+      </a>
+
+      <button class="menu-btn" aria-label="Menu" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <ul class="nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About me</a></li>
+      <li><a href="education.html" class="is-active" aria-current="page">Education</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="work.html">Experience</a></li>
+      <li><a href="connect.html">Contact me</a></li>
+        <li class="nav-foot">
+          <a class="btn btn-accent btn-full" href="images/Kanishka_final_resume.pdf" download>
+            <i class="fa-solid fa-arrow-down"></i> Resume
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <h1 class="page-title">Education</h1>
+      <p class="page-sub">Degrees, coursework and the things I picked up along the way.</p>
+
+      <div class="tabs" role="tablist">
+        <button class="tab is-active" data-tab="study">Study</button>
+        <button class="tab" data-tab="coursework">Coursework</button>
+        <button class="tab" data-tab="achievements">Achievements</button>
+      </div>
+
+      <div class="tabpanel is-active" id="study">
+        <div class="entry">
+          <h3>MS in Computer Science (AI / ML)</h3>
+          <div class="meta">New York University, Courant Institute &middot; 2025 &ndash; 2027</div>
+          <div class="prose"><p>Graduate study focused on artificial intelligence and machine learning, alongside work as a graduate course assistant.</p></div>
+        </div>
+        <div class="entry">
+          <h3>BS in Computer Science</h3>
+          <div class="meta">Pennsylvania State University &middot; 2021 &ndash; 2025</div>
+          <div class="prose"><p>Undergraduate degree covering systems, algorithms and machine learning, with research and teaching work across four years.</p></div>
+        </div>
+      </div>
+
+      <div class="tabpanel" id="coursework">
+        <h2 class="section-title">Selected coursework</h2>
+        <div class="chips">
+            <span class="chip">Artificial Intelligence</span>
+            <span class="chip">Machine Learning</span>
+            <span class="chip">System Programming</span>
+            <span class="chip">Digital Design</span>
+            <span class="chip">Operating Systems</span>
+            <span class="chip">OOP with Web</span>
+            <span class="chip">Game Theory</span>
+            <span class="chip">Fundamental Algorithms</span>
+            <span class="chip">Data Structures and Algorithms</span>
+            <span class="chip">Computer Organization and Design</span>
+        </div>
+      </div>
+
+      <div class="tabpanel" id="achievements">
+          <div class="entry"><h3>Dean&rsquo;s List</h3><div class="meta">2022 &ndash; 2025</div></div>
+          <div class="entry"><h3>Leadership in Ethics and Equity Badge</h3><div class="meta">2022 &middot; Credly</div></div>
+          <div class="entry"><h3>Merit Prize for securing above 95% in ISC</h3><div class="meta">2021</div></div>
+          <div class="entry"><h3>A-Certificate under the authority of the Ministry of Defence</h3><div class="meta">2019 &middot; Government of India</div></div>
+      </div>
+
+    </main>
+
+    </div>
+  </div>
 </div>
 
-<script>
-    var tablinks = document.getElementsByClassName("tab-links");
-    var tabcontents = document.getElementsByClassName("tab-contents");
-    function opentab(tabname){
-        for(tablink of tablinks){
-            tablink.classList.remove("active-link");
-        }
-        for(tabcontent of tabcontents){
-            tabcontent.classList.remove("active-tab");
-        }
-        event.currentTarget.classList.add("active-link");
-        document.getElementById(tabname).classList.add("active-tab")
-    }
-</script>
 
-<script>
-    var sidemeu = document.getElementById("sidemenu");
-
-    function openmenu(){
-        sidemeu.style.right = "0";
-    }
-    function closemenu(){
-        sidemeu.style.right = "-200px";
-    }
-</script>
-
-<script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbynOoO5RaiAOfaHz51p9YJfkW_6Fpptj1pfO9SQZrmt7WSXxjKt7FS9iCeT2M2Gt94y/exec'
-    const form = document.forms['submit-to-google-sheet']
-    const msg = document.getElementById("msg")
-  
-    form.addEventListener('submit', e => {
-      e.preventDefault()
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(response => {
-            msg.innerHTML = "Message Recieved!"
-            setTimeout(function(){
-                msg.innerHTML = ""
-            },5000)
-            form.reset()
-        })
-        .catch(error => console.error('Error!', error.message))
-    })
-</script>
-
-
-
-<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function(){
-            const typed = new Typed('.multiple-text',{
-                strings: ['Software Engineer','Web Designer','Frontend Developer'],
-                typeSpeed: 70,
-                backSpeed: 70,
-                backDelay:1000,
-                loop: true,
-            }); 
-        });
-    </script>
-
-<script src="https://unpkg.com/scrollreveal"></script>
-    <script>
-        ScrollReveal({ 
-            distance: '80px',
-            duration: 2000,
-            delay:200,
-
-        });
-        ScrollReveal().reveal('.header-text', { origin: 'top' });
-        ScrollReveal().reveal('.home-img, .services-container, .contact-left, .contact-right', { origin: 'buttom' });
-        ScrollReveal().reveal('.about-col-1, .work ', { origin: 'left' });
-        ScrollReveal().reveal('.about-col-2, .services-list', { origin: 'right' });
-    </script>
-
-<script>
-  (function () {
-    const p = new URLSearchParams(location.search);
-    if (p.get("embed") === "1") document.body.classList.add("embed");
-  })();
-</script>
-
-
-
+<script src="site.js"></script>
 
 </body>
-</html>>
+</html>

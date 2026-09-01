@@ -1,280 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, inital-scale=1.0">
-    <title>Personal Portfolio Website</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/037e6d0262.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kanishka Chandrakar — Portfolio</title>
+  <meta name="description" content="Kanishka Chandrakar — MS Computer Science (AI/ML) at NYU Courant. Software engineer, projects and experience.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
-<div id="header">
-    <div class="container">
-        <nav>
-            <ul id="sidemenu">
-                
-                <li><a href="#header" class="active">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="education.html">Education</a></li>
-                <li><a href="skills.html">Skills</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="work.html">Experiences</a></li>
-                <li><a href="images/Kanishka_final_resume.pdf" download class="nav-resume"> Resume</a></li>
-                <li><a href="connect.html">Contact</a></li>
-                <!-- <li><a href="knowmemore.html">My Life!</a></li> -->
-                <i class="fas fa-times" id="closeBtn" onclick="closemenu()"></i>
-            </ul>
-            <i class="fas fa-bars" id="openBtn" onclick="openmenu()"></i>
-        </nav>
-        <div class="header-text">
-            <p><span class="multiple-text"></span></p>
-            <h1>Hi, I'm <span>Kanishka</span> <br>Chandrakar</h1>
-           <div class="hero-edu">
 
+<div class="backdrop" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
 
-  <div class="edu-line">
-    👩‍💻 <span>MS Computer Science (AI/ML) at NYU Courant (May 2027)</span>
-  </div>
-   <div class="edu-line">
-    🎧 <span>Love debugging with Bollywood Punjabi songs!!</span>
-  </div>
-  <div class="edu-line">
-    🌱 <span>Actively learning and open to internship or research collaborations</span>
-  </div>
-</div>
+<div class="stage">
+  <div class="frame">
 
+    <div class="rail" aria-label="Social links">
+    <a href="https://github.com/kanishkachandrakar" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/kanishka-chandrakar-6066bb262/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in"></i></a>
+    <a href="https://www.instagram.com/kanishkaa__c/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+    <a href="mailto:kanishka.chandrakar02@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+
+    <div class="shell">
+
+    <aside class="sidebar">
+      <a class="identity" href="index.html">
+        <img src="images/user.jpg" alt="Kanishka Chandrakar">
+        <div>
+          <div class="identity-name">Kanishka Chandrakar</div>
+          <div class="identity-role">MS CS (AI/ML) &middot; NYU Courant</div>
         </div>
-    </div>
-</div> 
-<!---------------img section1: quick navigation (6 tiles)------------------->
+      </a>
 
-<script>
-    var tablinks = document.getElementsByClassName("tab-links");
-    var tabcontents = document.getElementsByClassName("tab-contents");
-    function opentab(tabname){
-        for(tablink of tablinks){
-            tablink.classList.remove("active-link");
-        }
-        for(tabcontent of tabcontents){
-            tabcontent.classList.remove("active-tab");
-        }
-        event.currentTarget.classList.add("active-link");
-        document.getElementById(tabname).classList.add("active-tab")
-    }
-</script>
-
-<script>
-    var sidemeu = document.getElementById("sidemenu");
-
-    function openmenu(){
-        sidemeu.style.right = "0";
-    }
-    function closemenu(){
-        sidemeu.style.right = "-200px";
-    }
-</script>
-
-<script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbynOoO5RaiAOfaHz51p9YJfkW_6Fpptj1pfO9SQZrmt7WSXxjKt7FS9iCeT2M2Gt94y/exec'
-    const form = document.forms['submit-to-google-sheet']
-    const msg = document.getElementById("msg")
-  
-    form.addEventListener('submit', e => {
-      e.preventDefault()
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(response => {
-            msg.innerHTML = "Message Recieved!"
-            setTimeout(function(){
-                msg.innerHTML = ""
-            },5000)
-            form.reset()
-        })
-        .catch(error => console.error('Error!', error.message))
-    })
-</script>
-
-
-
-<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function(){
-            const typed = new Typed('.multiple-text',{
-                strings: ['Software Engineer 🤖','Fun-time Web Designer 👩🏻‍💻','Vibe Coder 🎉'],
-                typeSpeed: 70,
-                backSpeed: 70,
-                backDelay:1000,
-                loop: true,
-            });
-        });
-    </script>
-
-<script src="https://unpkg.com/scrollreveal"></script>
-    <script>
-        ScrollReveal({ 
-            distance: '80px',
-            duration: 2000,
-            delay:200,
-
-        });
-        ScrollReveal().reveal('.header-text', { origin: 'top' });
-        ScrollReveal().reveal('.home-img, .services-container, .contact-left, .contact-right', { origin: 'buttom' });
-        ScrollReveal().reveal('.about-col-1, .work ', { origin: 'left' });
-        ScrollReveal().reveal('.about-col-2, .services-list', { origin: 'right' });
-    </script>
-
-<script>
-    const rating = document.getElementsByClassName('rating')[0];
-    const block = document.getElementsByClassName('block');
-
-    for(var i=1; i<100; i++){
-        rating.innerHTML+= "<div class='block'></div>";
-        block[i].style.transform="rotate("+3.6*i+"deg)";
-        block[i].style.animationDelay=`${i/40}s`;
-    }
-
-    const counter=document.querySelector('.counter');
-    counter.innerText=0;
-
-    const target = +counter.getAttribute('data-target');
-
-    const NumberCounter=()=>{
-        const value=+counter.innerText;
-        if(value<target){
-            counter.innerText=Math.ceil(value+1);
-            setTimeout(()=>{
-                NumberCounter()
-            },25)
-        }
-    }
-    NumberCounter()
-</script>
-
-<script type="text/javascript">
-    function toggle(popupID,blurID){
-        var blur=document.getElementById(blurID);
-        blur.classList.toggle('active');
-        var popup=document.getElementById(popupID);
-        popup.classList.toggle('active');
-    }
-</script>
-
-<!-- =======================
-     PHONE HUB (Home cards)
-     ======================= -->
-<section class="phoneHub" id="phoneHub" aria-label="Mobile navigation hub">
-  <div class="phoneHub-inner">
-    <h1 class="phoneHub-title">Explore</h1>
-    <p class="phoneHub-sub">Tap a section to open</p>
-
-    <div class="phoneHub-grid">
-      <button class="phoneHub-card" data-page="about.html?embed=1" aria-label="Open About">
-        <span class="phoneHub-cardTitle">About</span>
-        <span class="phoneHub-cardSub">Who I am</span>
+      <button class="menu-btn" aria-label="Menu" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
       </button>
 
-      <button class="phoneHub-card" data-page="education.html?embed=1" aria-label="Open Education">
-        <span class="phoneHub-cardTitle">Education</span>
-        <span class="phoneHub-cardSub">Academics</span>
-      </button>
+      <ul class="nav">
+      <li><a href="index.html" class="is-active" aria-current="page">Home</a></li>
+      <li><a href="about.html">About me</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="work.html">Experience</a></li>
+      <li><a href="connect.html">Contact me</a></li>
+        <li class="nav-foot">
+          <a class="btn btn-accent btn-full" href="images/Kanishka_final_resume.pdf" download>
+            <i class="fa-solid fa-arrow-down"></i> Resume
+          </a>
+        </li>
+      </ul>
+    </aside>
 
-      <button class="phoneHub-card" data-page="skills.html?embed=1" aria-label="Open Skills">
-        <span class="phoneHub-cardTitle">Skills</span>
-        <span class="phoneHub-cardSub">Tech stack</span>
-      </button>
+    <main class="content">
+      <section class="home">
+        <div>
+          <p class="eyebrow"><span class="typed-role">Software Engineer</span></p>
+          <h1>Hi, I&rsquo;m <span>Kanishka</span><br>Chandrakar</h1>
 
-      <button class="phoneHub-card" data-page="projects.html?embed=1" aria-label="Open Projects">
-        <span class="phoneHub-cardTitle">Projects</span>
-        <span class="phoneHub-cardSub">Work & builds</span>
-      </button>
+          <div class="facts">
+            <div class="fact"><span class="fact-ico">&#128105;&#8205;&#128187;</span><span>MS Computer Science (AI/ML) at NYU Courant &middot; May 2027</span></div>
+            <div class="fact"><span class="fact-ico">&#127911;</span><span>Love debugging with Bollywood &amp; Punjabi songs</span></div>
+            <div class="fact"><span class="fact-ico">&#127793;</span><span>Actively learning and open to internship or research collaborations</span></div>
+          </div>
 
-      <button class="phoneHub-card" data-page="work.html?embed=1" aria-label="Open Experience">
-        <span class="phoneHub-cardTitle">Experience</span>
-        <span class="phoneHub-cardSub">Timeline</span>
-      </button>
+          <div class="home-actions">
+            <a class="btn btn-accent" href="projects.html">View projects</a>
+            <a class="btn" href="connect.html">Get in touch</a>
+          </div>
 
-      <button class="phoneHub-card" data-page="connect.html?embed=1" aria-label="Open Contact">
-        <span class="phoneHub-cardTitle">Contact</span>
-        <span class="phoneHub-cardSub">Let’s talk</span>
-      </button>
+          <div class="stats">
+            <div class="stat"><b>NYU</b><span>MS Computer Science</span></div>
+            <div class="stat"><b>Penn State</b><span>BS Computer Science</span></div>
+            <div class="stat"><b>6</b><span>Roles &amp; internships</span></div>
+            <div class="stat"><b>12</b><span>Projects shipped</span></div>
+          </div>
+        </div>
+
+        <img class="portrait home-portrait" src="images/user.jpg" alt="Kanishka Chandrakar">
+      </section>
+
+    </main>
+
     </div>
   </div>
-</section>
-
-<!-- =======================
-     PHONE OVERLAY VIEWER
-     ======================= -->
-<div class="phoneViewer" id="phoneViewer" aria-hidden="true">
-  <div class="phoneViewer-topbar">
-    <button class="phoneViewer-close" id="phoneViewerClose" aria-label="Close">✕</button>
-    <div class="phoneViewer-title" id="phoneViewerTitle"> </div>
-  </div>
-
-  <iframe class="phoneViewer-frame" id="phoneViewerFrame" title="Section view"></iframe>
 </div>
 
+
+<script src="site.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.16/typed.umd.js"></script>
 <script>
-  (function () {
-    const viewer = document.getElementById('phoneViewer');
-    const frame  = document.getElementById('phoneViewerFrame');
-    const close  = document.getElementById('phoneViewerClose');
-    const title  = document.getElementById('phoneViewerTitle');
-
-    function openPage(url, label) {
-      frame.src = url;
-      title.textContent = label || '';
-      viewer.classList.add('open');
-      viewer.setAttribute('aria-hidden', 'false');
-
-      // optional: prevent background scroll
-      document.documentElement.classList.add('noScroll');
-      document.body.classList.add('noScroll');
-
-      // push history so phone back button closes viewer
-      history.pushState({ phoneViewer: true }, '', '#view');
-    }
-
-    function closePage(popState = false) {
-      viewer.classList.remove('open');
-      viewer.setAttribute('aria-hidden', 'true');
-      frame.src = '';
-      title.textContent = '';
-
-      document.documentElement.classList.remove('noScroll');
-      document.body.classList.remove('noScroll');
-
-      if (!popState && location.hash === '#view') history.back();
-    }
-
-    // Card click handler
-    document.addEventListener('click', (e) => {
-      const card = e.target.closest('.phoneHub-card');
-      if (!card) return;
-
-      const url = card.getAttribute('data-page');
-      const label = card.querySelector('.phoneHub-cardTitle')?.textContent || '';
-      openPage(url, label);
+  document.addEventListener("DOMContentLoaded", function () {
+    if (typeof Typed === "undefined") return;
+    new Typed(".typed-role", {
+      strings: ["Software Engineer", "Fun-time Web Designer", "Vibe Coder"],
+      typeSpeed: 70,
+      backSpeed: 45,
+      backDelay: 1400,
+      loop: true
     });
-
-    // Close button
-    close.addEventListener('click', () => closePage(false));
-
-    // Back button closes viewer
-    window.addEventListener('popstate', (e) => {
-      if (viewer.classList.contains('open')) closePage(true);
-    });
-  })();
+  });
 </script>
-
-<script>
-  (function () {
-    const p = new URLSearchParams(location.search);
-    if (p.get("embed") === "1") document.body.classList.add("embed");
-  })();
-</script>
-
-
 </body>
 </html>

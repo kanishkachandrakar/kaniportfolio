@@ -1,388 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Skills | Portfolio</title>
-
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- Font Awesome -->
-<script src="https://kit.fontawesome.com/037e6d0262.js" crossorigin="anonymous"></script>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects | Kanishka Chandrakar</title>
+  <meta name="description" content="Projects by Kanishka Chandrakar — iOS apps, machine learning, systems and web builds.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-
 <body>
 
-    <nav class="navbar">
-  <ul id="sidemenu">
-    <li><a href="index.html#header">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="education.html">Education</a></li>
-    <li><a href="skills.html">Skills</a></li>
-    <li><a href="projects.html" class="active">Projects</a></li>
-    <li><a href="work.html">Experiences</a></li>
-    <li>
-      <a href="images/Kanishka_final_resume.pdf" download class="nav-resume">Resume
+<div class="backdrop" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="stage">
+  <div class="frame">
+
+    <div class="rail" aria-label="Social links">
+    <a href="https://github.com/kanishkachandrakar" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/kanishka-chandrakar-6066bb262/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in"></i></a>
+    <a href="https://www.instagram.com/kanishkaa__c/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+    <a href="mailto:kanishka.chandrakar02@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+
+    <div class="shell">
+
+    <aside class="sidebar">
+      <a class="identity" href="index.html">
+        <img src="images/user.jpg" alt="Kanishka Chandrakar">
+        <div>
+          <div class="identity-name">Kanishka Chandrakar</div>
+          <div class="identity-role">MS CS (AI/ML) &middot; NYU Courant</div>
+        </div>
       </a>
-    </li>
-    <li><a href="connect.html">Contact</a></li>
-    <!-- <li><a href="knowmemore.html">My Life!</a></li> -->
-    <i class="fas fa-times" id="closeBtn" onclick="closemenu()"></i>
-  </ul>
-  <i class="fas fa-bars" id="openBtn" onclick="openmenu()"></i>
-</nav>
-  <!-- Top spacing / container like your site -->
-  <div class="container" style="padding-top: 40px;">
 
- <div id="projects">
-    <div class="container">
-        <h1 class="sub-title3">My Projects</h1>
-        <div class="services-list" id="blur">
-           <div class="services-list2 project-card" onclick="toggle('popup','blur')" role="button" tabindex="0">
-                <i class="fa-solid fa-puzzle-piece"></i>
-                <h2>GUESS WHAT? - Multiplayer Doodle Game</h2>
-                <!-- <p>SwiftUI, PencilKit, GamKit, Xcode</p> -->
-                <!-- <a href="#" class="learn-more-link" data-popup="popup">Learn More</a> -->
-            </div>
-             <div class="services-list2 project-card" onclick="toggle('popup2','blur')" role="button" tabindex="0">
-                <i class="fa-solid fa-clipboard-check"></i>
-                <h2>DoNow - To Do List App </h2>
-                <!-- <p>SwiftUI, Firebase, Xcode</p> -->
-                <!-- <a href="#" class="learn-more-link" data-popup="popup2">Learn More</a> -->
-            </div>
-             <div class="services-list2 project-card" onclick="toggle('popup3','blur')" role="button" tabindex="0">
-                <i class="fa-brands fa-twitch"></i>
-                <h2>Kings and Pigs - Action Platform Game</h2>
-                <!-- <p>JavaScript, HTML, CSS</p> -->
-                <!-- <a href="#" class="learn-more-link" data-popup="popup3">Learn More</a> -->
-            </div>
-             <div class="services-list2 project-card" onclick="toggle('popup4','blur')" role="button" tabindex="0">
-                <i class="fa-solid fa-money-bill-trend-up"></i>
-                <h2>Stock Prediction Website</h2>
-                <!-- <p>JavaScript, Flask, JupyterNotebook</p> -->
-                <!-- <a href="#" class="learn-more-link" data-popup="popup4">Learn More</a> -->
-            </div>
-             <div class="services-list2 project-card" onclick="toggle('popup5','blur')" role="button" tabindex="0">
-                <i class="fa-solid fa-robot"></i>
-                <h2>AI Chatbot</h2>
-                <!-- <p>Django, Python</p> -->
-                <!-- <a href="#" class="learn-more-link" data-popup="popup5">Learn More</a> -->
-            </div>
-             <div class="services-list2 project-card" onclick="toggle('popup6','blur')" role="button" tabindex="0">
-                <i class="fa-solid fa-envelope-circle-check"></i>
-                <h2>Spam Email Identifier</h2>
-                <!-- <p>JupyterNotebook, Pytho, Streamlit</p> -->
-                <!-- <a href="#" class="learn-more-link" data-popup="popup6">Learn More</a> -->
-            </div>
+      <button class="menu-btn" aria-label="Menu" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
 
-             <div class="services-list2 project-card" onclick="toggle('popup21','blur')" role="button" tabindex="0">
-                <i class="fa-solid fa-hard-drive"></i>
-                <h2>5 Stage 32-Bit MIPS Pipelined CPU</h2>
-                <!-- <p>C/C++, System Verilog, Xilinx Vivado</p> -->
-                <!-- <a href="#" class="learn-more-link" data-popup="popup21">Learn More</a> -->
-            </div>
-             <div class="services-list2 project-card" onclick="toggle('popup22','blur')" role="button" tabindex="0">
-                <i class="fa-solid fa-shuffle"></i>
-                <h2>MDADM Utility File Management System </h2>
-                <!-- <p>C, Shell Scripting, Git, UTM</p> -->
-                <!-- <a href="#" class="learn-more-link" data-popup="popup22">Learn More</a> -->
-            </div>
-             <div class="services-list2 project-card" onclick="toggle('popup23','blur')" role="button" tabindex="0">
-                <i class="fa-regular fa-calendar"></i>
-                <h2>Course Scheduler System</h2>
-                <!-- <p>Java/Python, Apache Derby, NetBeans</p> -->
-                <!-- <a href="#" class="learn-more-link" data-popup="popup23">Learn More</a> -->
-            </div>
-             <div class="services-list2 project-card" onclick="toggle('popup24','blur')" role="button" tabindex="0">
-                <i class="fa-solid fa-palette"></i>
-                <h2>2D Drawing Application</h2>
-                <!-- <p>Java GUI, Apache Derby, NetBeans</p> -->
-                <!-- <a href="#" class="learn-more-link" data-popup="popup24">Learn More</a> -->
-            </div>
-             <div class="services-list2 project-card" onclick="toggle('popup25','blur')" role="button" tabindex="0">
-                <i class="fa-solid fa-pizza-slice"></i>
-                <h2>Pizza Slice Estimator</h2>
-                <!-- <p>Java GUI, Apache Derby, NetBeans</p> -->
-                <!-- <a href="#" class="learn-more-link" data-popup="popup25">Learn More</a> -->
-            </div>
-            <div class="services-list2 project-card" onclick="toggle('popup26','blur')" role="button" tabindex="0">
-                <i class="fa-solid fa-calculator"></i>
-                <h2>Shopping Calculator</h2>
-                <!-- <p>Java, Python</p> -->
-                <!-- <a href="#" class="learn-more-link" data-popup="popup26">Learn More</a> -->
-            </div>
+      <ul class="nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About me</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="projects.html" class="is-active" aria-current="page">Projects</a></li>
+      <li><a href="work.html">Experience</a></li>
+      <li><a href="connect.html">Contact me</a></li>
+        <li class="nav-foot">
+          <a class="btn btn-accent btn-full" href="images/Kanishka_final_resume.pdf" download>
+            <i class="fa-solid fa-arrow-down"></i> Resume
+          </a>
+        </li>
+      </ul>
+    </aside>
 
-        </div>
-        <div id="popup" class="popup-modal">
-          <button class="popup-close-mobile" aria-label="Close popup" onclick="toggle('popup','blur')">✕</button>
+    <main class="content">
+      <h1 class="page-title">Projects</h1>
+      <p class="page-sub">Twelve builds across iOS, machine learning, systems and the web. Select any card for the full write-up.</p>
 
- <div class="popup-body">
-            <h2>GUESS WHAT? - Multiplayer Doodle Game</h2>
-            <p>     </p>
-            <div class="imgcpu"><img src="images/guess-what.png"></div>
-           
-
-                <p>Currently developing a multiplayer drawing game, <strong>"Game Doodle,"</strong> using Swift and Xcode, incorporating modern iOS technologies. The game will feature <strong>real-time multiplayer</strong> powered by GameKit, allowing players to connect through Apple's Game Center and compete in doodle matches. The user interface will be built with <strong>SwiftUI</strong>, ensuring a sleek, intuitive design across both the menu and gameplay screens.</p>
-                
-                <p>SwiftUI and Combine frameworks will provide a responsive and reactive interface, ensuring smooth user experiences with real-time updates during gameplay. The network handling will ensure stability, managing player disconnections and keeping the game going. Unique custom assets and colors will be designed to offer a visually appealing and personalized experience.</p>
-
-            <a href="#projects"  class="btn-pro" onclick="toggle('popup','blur')">Close</a>
-        </div>
+      <div class="cards">
+        <button class="card" data-modal="p1">
+          <i class="fa-solid fa-puzzle-piece"></i>
+          <h3>GUESS WHAT? &mdash; Multiplayer Doodle Game</h3>
+          <span class="card-tags">Swift &middot; SwiftUI &middot; GameKit</span>
+        </button>
+        <button class="card" data-modal="p2">
+          <i class="fa-solid fa-clipboard-check"></i>
+          <h3>DoNow &mdash; To-Do List App</h3>
+          <span class="card-tags">SwiftUI &middot; CoreData &middot; Firebase</span>
+        </button>
+        <button class="card" data-modal="p3">
+          <i class="fa-solid fa-gamepad"></i>
+          <h3>Kings and Pigs &mdash; Action Platformer</h3>
+          <span class="card-tags">JavaScript &middot; HTML5 Canvas &middot; CSS</span>
+        </button>
+        <button class="card" data-modal="p4">
+          <i class="fa-solid fa-money-bill-trend-up"></i>
+          <h3>Stock Prediction Website</h3>
+          <span class="card-tags">Python &middot; Flask &middot; Jupyter</span>
+        </button>
+        <button class="card" data-modal="p5">
+          <i class="fa-solid fa-robot"></i>
+          <h3>AI Chatbot</h3>
+          <span class="card-tags">Django &middot; Python &middot; NLP</span>
+        </button>
+        <button class="card" data-modal="p6">
+          <i class="fa-solid fa-envelope-circle-check"></i>
+          <h3>Spam Email Identifier</h3>
+          <span class="card-tags">Scikit-learn &middot; Pandas &middot; Streamlit</span>
+        </button>
+        <button class="card" data-modal="p7">
+          <i class="fa-solid fa-microchip"></i>
+          <h3>5-Stage 32-Bit MIPS Pipelined CPU</h3>
+          <span class="card-tags">SystemVerilog &middot; Xilinx Vivado &middot; FPGA</span>
+        </button>
+        <button class="card" data-modal="p8">
+          <i class="fa-solid fa-hard-drive"></i>
+          <h3>MDADM Utility File Management System</h3>
+          <span class="card-tags">C &middot; Shell &middot; Git</span>
+        </button>
+        <button class="card" data-modal="p9">
+          <i class="fa-regular fa-calendar"></i>
+          <h3>Course Scheduler System</h3>
+          <span class="card-tags">Java &middot; Apache Derby &middot; NetBeans</span>
+        </button>
+        <button class="card" data-modal="p10">
+          <i class="fa-solid fa-palette"></i>
+          <h3>2D Drawing Application</h3>
+          <span class="card-tags">Java &middot; Swing</span>
+        </button>
+        <button class="card" data-modal="p11">
+          <i class="fa-solid fa-pizza-slice"></i>
+          <h3>Pizza Slice Estimator</h3>
+          <span class="card-tags">Java &middot; Swing GUI</span>
+        </button>
+        <button class="card" data-modal="p12">
+          <i class="fa-solid fa-calculator"></i>
+          <h3>Shopping Calculator</h3>
+          <span class="card-tags">Java &middot; Python</span>
+        </button>
       </div>
-        <div id="popup2" class="popup-modal">
-          
-            <h2>DoNow - To Do List App</h2>
-            <p>   </p>
-            <div class="imgdraw"><img src="images/to-do-list.png"></div>
-            <p>
-                A feature-rich To-Do List app is currently in development, leveraging SwiftUI and CoreData to provide a dynamic and user-friendly task management experience. The app allows users to seamlessly add, edit, and organize tasks by priority and deadlines, with persistent data storage ensuring tasks are retained even after closing. Modern iOS design principles are applied to deliver a sleek, responsive interface across devices.
-              </p>
-            
-              
-                <p>
-                    The app also integrates Firebase for secure user authentication, enabling personalized user databases and task synchronization across multiple devices, enhancing overall task management efficiency.                </p>
-                            
-            <a href="#projects"  class="btn-pro" onclick="toggle('popup2','blur')">Close</a>
-        </div>
-        <div id="popup3" class="popup-modal">
-            <h2>Kings and Pigs - Action Platformer Game</h2>
-            <div class="imgdraw"><img src="images/kings-and-pigs.png"></div>
 
-            <p><strong>Kings and Pigs</strong> is an engaging web-based game developed using fundamental web technologies including HTML, CSS, and JavaScript. The game leverages the HTML5 Canvas API to render interactive graphics and smooth animations, providing a dynamic and immersive gameplay experience. Responsive design ensures that it performs well across various devices and screen sizes, making it accessible to a broad audience.</p>
-            <p>The game features interactive elements and strategic decision-making, where players navigate through different game states and progression levels. The JavaScript code handles game logic and interactions, allowing players to influence outcomes and track their achievements. Sound effects and background music are integrated to enhance the overall gaming experience, adding an auditory layer to the visuals.</p>            
-            <p>Deployed on GitHub Pages, Kings and Pigs is easily accessible from any web browser without the need for local installation. The user-friendly interface, combined with its strategic gameplay and visual/audio feedback, offers a compelling and enjoyable experience for players.</p>
-
-            <a href="#projects"  class="btn-pro" onclick="toggle('popup3','blur')">Close</a>
-        </div>
-        <div id="popup4" class="popup-modal">
-            <h2>Stock Prediction Website</h2>
-            <div class="imgdraw"><img src="images/stock-prediction.png"></div>
-            <p> <strong>Stock Prediction</strong> is a project focused on predicting stock prices using advanced machine learning techniques. Developed with Python, it employs various algorithms to analyze historical stock data and forecast future price trends.</p>
-            <p>The project features data preprocessing, model training, and evaluation components, allowing users to prepare stock data, train different models, and assess their performance. For practical usage, users can customize the models and inputs according to their specific stock data and prediction needs. The project also offers insights into the effectiveness of different prediction methods, helping users make informed decisions based on their analysis results.</p>
-            <a href="#projects"  class="btn-pro" onclick="toggle('popup4','blur')">Close</a>
-        </div>
-        <div id="popup5" class="popup-modal">
-            <h2>AI Chatbot</h2>
-            <div class="imgpizza"><img src="images/ai-chatbot.png"></div>
-
-            <p><strong>AI ChatBot</strong> is a project designed to implement a conversational chatbot using the Django framework. </p>
-            
-            <p>The project incorporates essential chatbot functionalities, including message handling, user interaction, and response generation. It uses popular Python libraries for NLP, such as NLTK or spaCy, to enable the chatbot to understand and respond to user queries. The application is structured with Django models and views, providing a robust framework for managing chatbot data and user sessions.</p>
-
-            <p>For users, this project offers a comprehensive example of building a chatbot within a Django environment. It includes code for setting up the chatbot’s dialogue flow, integrating with NLP tools, and deploying the application. Developers can leverage this project to learn about chatbot development, customize the chatbot's capabilities, or integrate it into their own Django applications.</p>
-            
-            <a href="#projects"  class="btn-pro" onclick="toggle('popup5','blur')">Close</a>
-
-        </div>
-        <div id="popup6" class="popup-modal">
-            <h2>Spam Email Identifier</h2>
-
-            <p>  </p>
-
-            <div class="imgpizza"><img src="images/email-spam.png"></div>
-
-            <p><strong>Spam Email Identifier</strong> is a project aimed at identifying and filtering spam messages using machine learning techniques. </p>
-            
-            <p>The project features a well-structured pipeline for data preprocessing, model training, and evaluation. It utilizes popular Python libraries such as Scikit-Learn and Pandas for data handling and machine learning tasks. The code includes implementations of classification models, such as Naive Bayes and Support Vector Machines, to analyze SMS text and predict its category.</p>
-
-            <p>Users can apply this project to develop their own spam detection systems or enhance existing ones. It offers a practical example of text classification, including steps for feature extraction, model tuning, and performance assessment.</p>
-            
-            <a href="#projects"  class="btn-pro" onclick="toggle('popup6','blur')">Close</a>
-        </div>
-
-        <div id="popup21" class="popup-modal">
-            <h2>Pipelined CPU Design and Implementation</h2>
-            <p>The project centered around the development and execution of a pipelined CPU architecture utilizing Xilinx 
-                design tools tailored for Field-Programmable Gate Arrays (FPGAs). Specifically, 
-                it entailed the meticulous design and implementation of the initial four stages within 
-                a five-stage pipelined CPU model:
-                <span style="font-weight: bold;">Instruction Fetch, Instruction Decode, Instruction Execute, Memory Access</span>.</p>
-            <div class="imgcpu"><img src="images/CPU.png"></div>
-           
-
-                <p>Each stage was meticulously crafted to ensure seamless operation and optimal 
-                performance within the pipeline. This involved rigorous testing procedures to verify 
-                the correct functionality and efficiency of each stage, guaranteeing that instructions traversed 
-                through the pipeline accurately and efficiently. Additionally, precise control signals were 
-                integrated into each stage to govern their operations effectively and ensure precise instruction execution.</p>
-                
-                <p>Moreover, the project emphasized the iterative nature of the design and testing process, wherein 
-                continuous refinement and optimization were pursued to achieve correctness, efficiency, and performance 
-                enhancements. Ultimately, this endeavor aimed to lay the foundation for a robust and efficient pipelined CPU design tailored for FPGA implementation, 
-                with a focus on maximizing speed, reliability, and resource utilization.</p>
-            <a href="#projects"  class="btn-pro" onclick="toggle('popup21','blur')">Close</a>
-        </div>
-
-        <div id="popup22" class="popup-modal">
-            <h2>JBOD File Storage System</h2>
-            <div class="imgdraw"><img src="images/jbod.png"></div>
-            <p>
-                At its essence, JBOD represents a straightforward yet powerful storage setup. Within a single enclosure, JBOD houses multiple independent disks, each functioning autonomously. Unlike traditional RAID setups that employ complex data striping and redundancy mechanisms, JBOD operates in a non-redundant manner. Each disk is treated as a separate logical volume, offering straightforward access to individual storage units without intricate data handling processes.
-              </p>
-            
-              <p>
-                Central to the efficiency of JBOD is the mdadm module, which serves as the engine driving storage operations. One of its primary functions is caching, a crucial element in enhancing performance. Through techniques like the least recently used method, caching optimizes data accessibility, thereby boosting overall system performance.
-                The mdadm module facilitates seamless communication with the JBOD server. This server acts as a central hub, providing a unified interface for managing the array of hard drives within the JBOD enclosure. This centralized management streamlines storage administration, enabling users to harness the full potential of their storage infrastructure.
-              </p>
-
-                <p>
-                    In essence, the JBOD system emerges as a beacon of efficiency in the realm of storage architecture. With its consolidated disk enclosure and decentralized approach to data management, JBOD offers a flexible solution for handling large volumes of data with ease. The mdadm module serves as a critical enabler in this ecosystem, ensuring seamless communication with the JBOD server and optimizing storage performance through innovative caching mechanisms. As data volumes continue to soar, JBOD stands ready to meet the evolving storage needs of modern enterprises, driving innovation and efficiency in storage infrastructure management.
-                </p>
-                            
-            <a href="#projects"  class="btn-pro" onclick="toggle('popup22','blur')">Close</a>
-        </div>
-        <div id="popup23" class="popup-modal">
-            <h2>Course Scheduler Application</h2>
-            <div class="imgdraw"><img src="images/schedule.png"></div>
-
-            <p>The Course Scheduler application is a fundamental tool designed to revolutionize the course scheduling process within college environments. Administrators are equipped with a suite of powerful functionalities, enabling them to effortlessly manage semesters, courses, and student enrollments. With the ability to add new semesters and courses to the system while accurately cataloging student information, administrators ensure that scheduling data remains up-to-date and comprehensive. This seamless integration of administrative tasks streamlines operations and enhances the overall efficiency of course scheduling processes, ultimately contributing to a well-organized and dynamic academic ecosystem.</p>
-            <p>With its adherence to GUI guidelines and emphasis on usability, the Course Scheduler application prioritizes user experience across all levels of the scheduling process. The intuitive interface allows for seamless navigation and interaction, reducing the learning curve for both administrators and students. By incorporating dropdown lists and prompt displays of relevant information, the application ensures that users can efficiently perform tasks without unnecessary complications. This focus on user-centric design enhances satisfaction and engagement, ultimately contributing to a smoother and more streamlined course scheduling experience. In summary, the Course Scheduler application stands as a testament to innovation and efficiency in managing academic operations within college environments.</p>            
-  
-            <a href="#projects"  class="btn-pro" onclick="toggle('popup23','blur')">Close</a>
-        </div>
-        <div id="popup24" class="popup-modal">
-            <h2>2D Drawing Application</h2>
-            <div class="imgdraw"><img src="images/draw.png"></div>
-            <p>The 2D Drawing Application is a Java-based project designed to create a versatile drawing tool with various functionalities. The application incorporates elements such as shape selection (line, oval, rectangle) via a combo box, color selection using JColorChooser dialogs, undo and clear options, and additional features like gradient painting, dashed or solid lines, and stroke width adjustment.</p>
-            <p>The project adheres to a structured layout, featuring components like checkboxes for fill options and gradient painting, JSpinners for stroke width and dash length adjustment, and a JPanel for drawing shapes. A status bar JLabel displays the current mouse location on the drawing panel, enhancing user interaction and feedback.</p>
-            <p>Notably, the project incorporates advanced features such as gradient painting and dashed lines, enhancing the drawing capabilities and user experience. Through thoughtful design and utilization of Java's graphical capabilities, the 2D Drawing Application offers a comprehensive and intuitive platform for creating and manipulating shapes.</p>
-            <a href="#projects"  class="btn-pro" onclick="toggle('popup24','blur')">Close</a>
-        </div>
-        <div id="popup25" class="popup-modal">
-            <h2>Pizza Servings Calculator</h2>
-            <p>The Pizza Servings Calculator project is a Java-based graphical user interface (GUI) application designed to calculate the number of servings of pizza based on its diameter. Implemented using the Swing library, the GUI features a grid layout with distinct components. The frame title is set to 'Pizza Servings Calculator'. A prominently displayed red-colored <span style="color: red;"><span style="font-weight: bold;">JLabel</span></span> serves as the title of the application.</p>
-            <div class="imgpizza"><img src="images/pizza.png"></div>
-
-            <p>The main input mechanism is a <span style="font-weight: bold;">JTextField</span> prompts users to enter the size of the pizza in inches. Adjacent to this input field is a <span style="font-weight: bold;">JButton</span> labeled 'Calculate Servings', which, upon clicking uses an event handler and triggers calculations using a formula: servings which requires the diameter of the pizza entered by the user. The resulting number of servings is displayed with precision to two decimal places in a <span style="font-weight: bold;">JLabel</span>.</p>
-            
-            <p>The project demonstrates proficient utilization of Java programming language, particularly in GUI development using Swing components. It showcases competence in implementing event handling and action listeners to execute calculations based on user input. Furthermore, the application highlights adeptness in layout management within GUI environments, ensuring clarity and ease of use for the end user. The project's emphasis on parsing and processing user input for mathematical calculations underscores a strong understanding of core programming concepts and their practical application in real-world scenarios.</p>
-            
-            <a href="#projects"  class="btn-pro" onclick="toggle('popup25','blur')">Close</a>
-
-        </div>
-        <div id="popup26" class="popup-modal">
-            <h2>Shopping Calculator </h2>
-
-            <p>The Shopping Calculator application streamlines retail operations with its comprehensive features and user-friendly design. Administrators benefit from real-time stock management capabilities, allowing them to monitor inventory levels accurately. This ensures efficient inventory control and timely replenishment of items to meet customer demand.</p>
-            <p>Customers experience seamless transactions with the application's intuitive billing functionality. By inputting item quantities, the application calculates total bills swiftly and accurately, including taxes and discounts. This enhances the overall shopping experience and fosters customer satisfaction, leading to increased loyalty and repeat business.</p>
-            <p>Furthermore, the application facilitates efficient order management, enabling administrators to place new orders for items running low in stock. Notifications ensure timely replenishment, minimizing stockouts and maximizing sales opportunities. With its user-centric design and robust functionality, the Shopping Calculator application is indispensable for modern retail businesses striving for operational excellence and customer satisfaction.</p>
-
-            <a href="#projects"  class="btn-pro" onclick="toggle('popup26','blur')">Close</a>
-        </div>
+    </main>
 
     </div>
+  </div>
 </div>
 
+<div class="modal" id="p1" role="dialog" aria-modal="true" aria-label="GUESS WHAT? &mdash; Multiplayer Doodle Game">
+  <div class="modal-box">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <h2>GUESS WHAT? &mdash; Multiplayer Doodle Game</h2>
+    <p class="page-sub" style="margin-bottom:0">Swift &middot; SwiftUI &middot; GameKit</p>
+    <img src="images/guess-what.png" alt="GUESS WHAT? &mdash; Multiplayer Doodle Game">
+  <div class="prose">
+    <p>A multiplayer drawing game built with Swift and Xcode using modern iOS technologies. The game features <strong>real-time multiplayer</strong> powered by GameKit, letting players connect through Apple&rsquo;s Game Center and compete in doodle matches. The interface is built with <strong>SwiftUI</strong> for a sleek, intuitive design across both menu and gameplay screens.</p>
+    <p>SwiftUI and Combine provide a responsive, reactive interface with real-time updates during play. Network handling keeps matches stable through player disconnections, and custom assets and colours give the game a personalised look.</p>
+    </div>
   </div>
+</div>
+<div class="modal" id="p2" role="dialog" aria-modal="true" aria-label="DoNow &mdash; To-Do List App">
+  <div class="modal-box">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <h2>DoNow &mdash; To-Do List App</h2>
+    <p class="page-sub" style="margin-bottom:0">SwiftUI &middot; CoreData &middot; Firebase</p>
+    <img src="images/to-do-list.png" alt="DoNow &mdash; To-Do List App">
+  <div class="prose">
+    <p>A feature-rich to-do list app built with SwiftUI and CoreData for a dynamic, user-friendly task management experience. Users can add, edit and organise tasks by priority and deadline, with persistent storage so nothing is lost when the app closes. Modern iOS design principles keep the interface responsive across devices.</p>
+    <p>The app integrates Firebase for secure authentication, enabling personalised user databases and task synchronisation across multiple devices.</p>
+    </div>
+  </div>
+</div>
+<div class="modal" id="p3" role="dialog" aria-modal="true" aria-label="Kings and Pigs &mdash; Action Platformer">
+  <div class="modal-box">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <h2>Kings and Pigs &mdash; Action Platformer</h2>
+    <p class="page-sub" style="margin-bottom:0">JavaScript &middot; HTML5 Canvas &middot; CSS</p>
+    <img src="images/kings-and-pigs.png" alt="Kings and Pigs &mdash; Action Platformer">
+  <div class="prose">
+    <p><strong>Kings and Pigs</strong> is a web-based game built with HTML, CSS and JavaScript. It uses the HTML5 Canvas API to render interactive graphics and smooth animations, and responsive design keeps it playable across screen sizes.</p>
+    <p>The game features interactive elements and strategic decision-making, with JavaScript handling game logic, state progression and achievement tracking. Sound effects and background music add an auditory layer to the visuals.</p>
+    <p>Deployed on GitHub Pages, it runs in any browser with no local installation.</p>
+    </div>
+  </div>
+</div>
+<div class="modal" id="p4" role="dialog" aria-modal="true" aria-label="Stock Prediction Website">
+  <div class="modal-box">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <h2>Stock Prediction Website</h2>
+    <p class="page-sub" style="margin-bottom:0">Python &middot; Flask &middot; Jupyter</p>
+    <img src="images/stock-prediction.png" alt="Stock Prediction Website">
+  <div class="prose">
+    <p><strong>Stock Prediction</strong> forecasts stock prices using machine learning. Built with Python, it applies a range of algorithms to historical stock data to predict future price trends.</p>
+    <p>The project covers data preprocessing, model training and evaluation, so users can prepare their own stock data, train different models and compare their performance. It also offers insight into the relative effectiveness of different prediction methods.</p>
+    </div>
+  </div>
+</div>
+<div class="modal" id="p5" role="dialog" aria-modal="true" aria-label="AI Chatbot">
+  <div class="modal-box">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <h2>AI Chatbot</h2>
+    <p class="page-sub" style="margin-bottom:0">Django &middot; Python &middot; NLP</p>
+    <img src="images/ai-chatbot.png" alt="AI Chatbot">
+  <div class="prose">
+    <p><strong>AI ChatBot</strong> is a conversational chatbot built on the Django framework.</p>
+    <p>It implements the core chatbot functions &mdash; message handling, user interaction and response generation &mdash; using Python NLP libraries such as NLTK and spaCy to understand and answer user queries. Django models and views manage chatbot data and user sessions.</p>
+    <p>The project covers setting up dialogue flow, integrating NLP tooling, and deploying the application, making it a practical base for customising or embedding a chatbot in another Django app.</p>
+    </div>
+  </div>
+</div>
+<div class="modal" id="p6" role="dialog" aria-modal="true" aria-label="Spam Email Identifier">
+  <div class="modal-box">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <h2>Spam Email Identifier</h2>
+    <p class="page-sub" style="margin-bottom:0">Scikit-learn &middot; Pandas &middot; Streamlit</p>
+    <img src="images/email-spam.png" alt="Spam Email Identifier">
+  <div class="prose">
+    <p><strong>Spam Email Identifier</strong> detects and filters spam messages using machine learning.</p>
+    <p>It runs a structured pipeline for data preprocessing, model training and evaluation, built on Scikit-learn and Pandas. Classification models including Naive Bayes and Support Vector Machines analyse message text and predict its category.</p>
+    <p>The project is a practical example of text classification, covering feature extraction, model tuning and performance assessment.</p>
+    </div>
+  </div>
+</div>
+<div class="modal" id="p7" role="dialog" aria-modal="true" aria-label="5-Stage 32-Bit MIPS Pipelined CPU">
+  <div class="modal-box">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <h2>5-Stage 32-Bit MIPS Pipelined CPU</h2>
+    <p class="page-sub" style="margin-bottom:0">SystemVerilog &middot; Xilinx Vivado &middot; FPGA</p>
+    <img src="images/CPU.png" alt="5-Stage 32-Bit MIPS Pipelined CPU">
+  <div class="prose">
+    <p>Design and implementation of a pipelined CPU architecture using Xilinx design tools for FPGAs &mdash; specifically the first four stages of a five-stage pipeline: <strong>Instruction Fetch, Instruction Decode, Instruction Execute and Memory Access</strong>.</p>
+    <p>Each stage was built to operate seamlessly within the pipeline, with rigorous testing to verify correct functionality and efficiency, and precise control signals governing each stage&rsquo;s operation.</p>
+    <p>The design and testing process was iterative, with continuous refinement for correctness, efficiency and performance &mdash; aiming at a robust pipelined CPU design that maximises speed, reliability and resource utilisation.</p>
+    </div>
+  </div>
+</div>
+<div class="modal" id="p8" role="dialog" aria-modal="true" aria-label="MDADM Utility File Management System">
+  <div class="modal-box">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <h2>MDADM Utility File Management System</h2>
+    <p class="page-sub" style="margin-bottom:0">C &middot; Shell &middot; Git</p>
+    <img src="images/jbod.png" alt="MDADM Utility File Management System">
+  <div class="prose">
+    <p>JBOD is a straightforward but powerful storage setup: a single enclosure housing multiple independent disks, each functioning autonomously. Unlike RAID setups with data striping and redundancy, JBOD is non-redundant &mdash; each disk is a separate logical volume with direct access.</p>
+    <p>Central to its efficiency is the mdadm module, which drives storage operations. Caching &mdash; using a least-recently-used policy &mdash; optimises data accessibility and boosts overall system performance.</p>
+    <p>The mdadm module also handles communication with the JBOD server, which acts as a central hub providing a unified interface for managing the array of drives within the enclosure.</p>
+    </div>
+  </div>
+</div>
+<div class="modal" id="p9" role="dialog" aria-modal="true" aria-label="Course Scheduler System">
+  <div class="modal-box">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <h2>Course Scheduler System</h2>
+    <p class="page-sub" style="margin-bottom:0">Java &middot; Apache Derby &middot; NetBeans</p>
+    <img src="images/schedule.png" alt="Course Scheduler System">
+  <div class="prose">
+    <p>The Course Scheduler streamlines course scheduling in a college environment. Administrators can manage semesters, courses and student enrolments &mdash; adding new semesters and courses while cataloguing student information, keeping scheduling data current and comprehensive.</p>
+    <p>The interface follows GUI guidelines with usability in mind: dropdown lists and prompt displays of relevant information let both administrators and students work through scheduling tasks without unnecessary friction.</p>
+    </div>
+  </div>
+</div>
+<div class="modal" id="p10" role="dialog" aria-modal="true" aria-label="2D Drawing Application">
+  <div class="modal-box">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <h2>2D Drawing Application</h2>
+    <p class="page-sub" style="margin-bottom:0">Java &middot; Swing</p>
+    <img src="images/draw.png" alt="2D Drawing Application">
+  <div class="prose">
+    <p>A Java-based drawing tool built with Swing. It supports shape selection (line, oval, rectangle) via a combo box, colour selection through JColorChooser dialogs, undo and clear options, plus gradient painting, dashed or solid lines and adjustable stroke width.</p>
+    <p>The layout uses checkboxes for fill and gradient options, JSpinners for stroke width and dash length, and a JPanel for the drawing surface. A status bar displays the current mouse location, improving interaction and feedback.</p>
+    <p>Advanced features such as gradient painting and dashed lines extend the drawing capabilities, making for a comprehensive and intuitive platform for creating and manipulating shapes.</p>
+    </div>
+  </div>
+</div>
+<div class="modal" id="p11" role="dialog" aria-modal="true" aria-label="Pizza Slice Estimator">
+  <div class="modal-box">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <h2>Pizza Slice Estimator</h2>
+    <p class="page-sub" style="margin-bottom:0">Java &middot; Swing GUI</p>
+    <img src="images/pizza.png" alt="Pizza Slice Estimator">
+  <div class="prose">
+    <p>A Java GUI application that calculates the number of servings in a pizza from its diameter, implemented with the Swing library in a grid layout.</p>
+    <p>A JTextField takes the pizza size in inches; an adjacent &lsquo;Calculate Servings&rsquo; button triggers an event handler that computes the result and displays it to two decimal places in a JLabel.</p>
+    <p>The project demonstrates Swing GUI development, event handling and action listeners, and layout management &mdash; parsing and processing user input for mathematical calculation.</p>
+    </div>
+  </div>
+</div>
+<div class="modal" id="p12" role="dialog" aria-modal="true" aria-label="Shopping Calculator">
+  <div class="modal-box">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <h2>Shopping Calculator</h2>
+    <p class="page-sub" style="margin-bottom:0">Java &middot; Python</p>
+    <div class="prose">
+    <p>A retail application combining stock management with billing. Administrators get real-time stock visibility, keeping inventory levels accurate and replenishment timely.</p>
+    <p>Customers get intuitive billing: entering item quantities produces a total bill quickly and accurately, including taxes and discounts.</p>
+    <p>The application also supports order management, letting administrators place new orders for low-stock items, with notifications that keep replenishment on time and minimise stockouts.</p>
+    </div>
+  </div>
+</div>
 
+<script src="site.js"></script>
 
-  <!-- Modal overlay for popups -->
-  <div class="modal-overlay" id="modalOverlay"></div>
-
-  <script>
-    // Popup handling (works even if main.js doesn't define toggle)
-    (function () {
-      const blurTargetId = 'blur';
-      const overlay = document.getElementById('modalOverlay');
-      const blurEl = document.getElementById(blurTargetId);
-
-      function closeAllPopups() {
-        document.querySelectorAll('.popup-modal.active').forEach(p => p.classList.remove('active'));
-        if (blurEl) blurEl.classList.remove('active');
-        if (overlay) overlay.classList.remove('active');
-        document.body.classList.remove('modal-open');
-      }
-
-      function openPopup(id) {
-        const popup = document.getElementById(id);
-        if (!popup) return;
-        closeAllPopups();
-        popup.classList.add('active');
-        if (blurEl) blurEl.classList.add('active');
-        if (overlay) overlay.classList.add('active');
-        document.body.classList.add('modal-open');
-      }
-
-      // Backwards compatible with your existing onclick="toggle('popup','blur')"
-      window.toggle = function (popupId, blurId) {
-        const popup = document.getElementById(popupId);
-        const b = document.getElementById(blurId || blurTargetId);
-        const isActive = popup && popup.classList.contains('active');
-        if (isActive) {
-          closeAllPopups();
-        } else {
-          openPopup(popupId);
-          if (b) b.classList.add('active');
-        }
-      };
-
-      // Only "Learn More" opens the popup
-      document.querySelectorAll('.learn-more-link[data-popup]').forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          openPopup(link.dataset.popup);
-        });
-      });
-
-      // Close when clicking the overlay or pressing ESC
-      if (overlay) overlay.addEventListener('click', closeAllPopups);
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeAllPopups();
-      });
-
-      // Prevent accidental open if someone clicks the card body
-      document.querySelectorAll('.services-list2').forEach(card => {
-        card.addEventListener('click', (e) => {
-          // If they clicked Learn More, handler above already ran.
-          // Otherwise do nothing.
-        });
-      });
-
-      // If page loads with a #popup.. hash, don't auto-open / scroll-jump
-      if (location.hash && location.hash.startsWith('#popup')) {
-        history.replaceState(null, '', location.pathname + location.search);
-      }
-    })();
-  </script>
-
-  <script src="main.js"></script>
-<script>
-  (function () {
-    const p = new URLSearchParams(location.search);
-    if (p.get("embed") === "1") document.body.classList.add("embed");
-  })();
-
-  // Close when tapping the mobile X button
-document.querySelectorAll('.popup-close-mobile').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    const modal = btn.closest('.popup-modal');
-    if (!modal) return;
-
-    // close the currently open modal (uses your existing toggle)
-    window.toggle(modal.id, 'blur');
-  });
-});
-
-
-
-</script>
-
-
-<script>
-  document.addEventListener('click', (e) => {
-    const btn = e.target.closest('.popup-close-mobile');
-    if (!btn) return;
-
-    const popup = btn.closest('.popup-modal');
-    if (!popup) return;
-
-    toggle(popup.id, 'blur');
-  });
-</script>
 </body>
 </html>

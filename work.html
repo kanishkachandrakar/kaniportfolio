@@ -1,264 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Skills | Portfolio</title>
-
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/YOUR_KIT_ID.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experience | Kanishka Chandrakar</title>
+  <meta name="description" content="Work experience — research, software engineering and teaching roles.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-
 <body>
 
-    <nav class="navbar">
-  <ul id="sidemenu">
-    <li><a href="index.html#header">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="education.html">Education</a></li>
-    <li><a href="skills.html">Skills</a></li>
-    <li><a href="projects.html">Projects</a></li>
-    <li><a href="work.html" class="active">Experiences</a></li>
-    <li>
-      <a href="images/Kanishka_final_resume.pdf" download class="nav-resume">Resume
+<div class="backdrop" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="stage">
+  <div class="frame">
+
+    <div class="rail" aria-label="Social links">
+    <a href="https://github.com/kanishkachandrakar" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/kanishka-chandrakar-6066bb262/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in"></i></a>
+    <a href="https://www.instagram.com/kanishkaa__c/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+    <a href="mailto:kanishka.chandrakar02@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+
+    <div class="shell">
+
+    <aside class="sidebar">
+      <a class="identity" href="index.html">
+        <img src="images/user.jpg" alt="Kanishka Chandrakar">
+        <div>
+          <div class="identity-name">Kanishka Chandrakar</div>
+          <div class="identity-role">MS CS (AI/ML) &middot; NYU Courant</div>
+        </div>
       </a>
-    </li>
-    <li><a href="connect.html">Contact</a></li>
-    <!-- <li><a href="knowmemore.html">My Life!</a></li> -->
-    <i class="fas fa-times" id="closeBtn" onclick="closemenu()"></i>
-  </ul>
-  <i class="fas fa-bars" id="openBtn" onclick="openmenu()"></i>
-</nav>
-  <!-- Top spacing / container like your site -->
-  <div class="container">
 
+      <button class="menu-btn" aria-label="Menu" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
 
-    <div id="workex">
-    <div class="container">
+      <ul class="nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About me</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="work.html" class="is-active" aria-current="page">Experience</a></li>
+      <li><a href="connect.html">Contact me</a></li>
+        <li class="nav-foot">
+          <a class="btn btn-accent btn-full" href="images/Kanishka_final_resume.pdf" download>
+            <i class="fa-solid fa-arrow-down"></i> Resume
+          </a>
+        </li>
+      </ul>
+    </aside>
 
-        <div id="workex" class="expH">
-  <div class="container">
-    <h1 class="sub-title4">Work Experience</h1>
-    <p class="expH-sub">Tap a milestone to view details. Swipe horizontally on mobile.</p>
+    <main class="content">
+      <h1 class="page-title">Experience</h1>
+      <p class="page-sub">Research, engineering and teaching roles, most recent first.</p>
 
-    <!-- Horizontal Timeline -->
-    <div class="expH-wrap">
-      <button class="expH-nav expH-prev" aria-label="Scroll left">‹</button>
-
-      <div class="expH-track" id="expHTrack">
-        
-        <button class="expH-node active" data-target="exp6">
-          <span class="expH-role">Graduate Course Assistant</span>
-          <span class="expH-meta">Sept 2025 – Present</span>
-        </button>
-
-         <button class="expH-node" data-target="exp5">
-          <span class="expH-role">Data Analytics (AI) Extern</span>
-          <span class="expH-meta">May 2025 – Aug 2025</span>
-        </button>
-        <button class="expH-node" data-target="exp1">
-          <span class="expH-role">Undergraduate Research Assistant</span>
-          <span class="expH-meta">Feb 2024 – Feb 2025</span>
-        </button>
-
-         <button class="expH-node" data-target="exp4">
-          <span class="expH-role">CS and MATH Learning Assistant</span>
-          <span class="expH-meta">May 2022 – Dec 2025</span>
-        </button>
-
-        <button class="expH-node" data-target="exp2">
-          <span class="expH-role">Software Engineering Intern</span>
-          <span class="expH-meta">June 2024 – Aug 2024</span>
-        </button>
-
-        <button class="expH-node" data-target="exp3">
-          <span class="expH-role">Academic Facilitator (WIE)</span>
-          <span class="expH-meta">Jan 2023 – May 2023</span>
-        </button>
-
-        <!-- <button class="expH-node" data-target="exp4">
-          <span class="expH-role">CS and MATH Learning Assistant</span>
-          <span class="expH-meta">May 2022 – Dec 2025</span>
-        </button> -->
-      </div>
-
-      <button class="expH-nav expH-next" aria-label="Scroll right">›</button>
-    </div>
-
-    <!-- Details Panel -->
-    <div class="expH-panel">
-      <div class="expH-card" id="exp1">
-        <div class="expH-head">
-          <div>
-            <h2>Undergraduate Research Assistant</h2>
-            <div class="expH-org">Pennsylvania State University • Feb 2024 – Feb 2025</div>
+      <div>
+        <div class="entry">
+          <h3>Graduate Computer Science Course Assistant</h3>
+          <div class="meta">New York University &middot; Sept 2025 &ndash; Present</div>
+          <div class="chips">
+            <span class="chip">Python</span>
+            <span class="chip">Code Review</span>
+            <span class="chip">Debugging</span>
           </div>
-          <div class="expH-chips">
-            <span class="expH-chip">Research</span>
-            <span class="expH-chip">Analysis</span>
-            <span class="expH-chip">Collaboration</span>
-          </div>
+          <ul>
+            <li>Review and evaluate 30+ programming assignments weekly, delivering clear, actionable feedback to improve code quality, correctness and best practices.</li>
+            <li>Support students through office hours and one-on-one debugging, resolving logic errors and reinforcing core programming concepts.</li>
+          </ul>
         </div>
-        <ul class="expH-list">
-          <li>Translated Python algorithms into MATLAB, ensuring accurate replication of research results, by implementing NG-RC models with Dr. Yan Li for AI-driven forecasting of dynamical systems.</li>
-          <li>Enhanced mathematical functions and optimized time-delay features, boosting forecasting accuracy by 15% and lowering runtime, through refining model structures and streamlining code.</li>
-          <!-- <li>Collaborated with the research team to troubleshoot blockers and move deliverables forward.</li> -->
-        </ul>
+        <div class="entry">
+          <h3>Data Analytics (AI) Extern</h3>
+          <div class="meta">Beats By Dre &middot; May 2025 &ndash; Aug 2025</div>
+          <div class="chips">
+            <span class="chip">Predictive Modeling</span>
+            <span class="chip">NLP</span>
+            <span class="chip">Sentiment Analysis</span>
+          </div>
+          <ul>
+            <li>Analysed large-scale consumer data using Python, GPT and Claude, applying NLP techniques such as sentiment analysis and topic modelling to identify emerging behavioural trends.</li>
+            <li>Built AI-powered dashboards and predictive models to optimise marketing strategies, improving campaign ROI by 18% and streamlining reporting workflows.</li>
+          </ul>
+        </div>
+        <div class="entry">
+          <h3>Undergraduate Research Assistant</h3>
+          <div class="meta">Pennsylvania State University &middot; Feb 2024 &ndash; Feb 2025</div>
+          <div class="chips">
+            <span class="chip">Research</span>
+            <span class="chip">Analysis</span>
+            <span class="chip">Collaboration</span>
+          </div>
+          <ul>
+            <li>Translated Python algorithms into MATLAB, ensuring accurate replication of research results, by implementing NG-RC models with Dr. Yan Li for AI-driven forecasting of dynamical systems.</li>
+            <li>Enhanced mathematical functions and optimised time-delay features, boosting forecasting accuracy by 15% and lowering runtime through refined model structures and streamlined code.</li>
+          </ul>
+        </div>
+        <div class="entry">
+          <h3>Software Engineering Intern</h3>
+          <div class="meta">Reliance Jio Ltd. &middot; June 2024 &ndash; Aug 2024</div>
+          <div class="chips">
+            <span class="chip">Swift / iOS</span>
+            <span class="chip">Optimization</span>
+            <span class="chip">App Development</span>
+          </div>
+          <ul>
+            <li>Designed and developed core features for the LOS Administration Portal using Xcode (Swift/iOS), implementing secure data handling practices to support reliable daily business operations.</li>
+            <li>Integrated and configured third-party SDKs within a navigation application, improving performance, compatibility and scalability for future feature expansion.</li>
+          </ul>
+        </div>
+        <div class="entry">
+          <h3>CS &amp; Math Learning Assistant &mdash; CMPSC 221, 132, 131; MATH 44, 220</h3>
+          <div class="meta">Pennsylvania State University &middot; May 2022 &ndash; May 2025</div>
+          <div class="chips">
+            <span class="chip">Python</span>
+            <span class="chip">Grading</span>
+            <span class="chip">Debugging</span>
+          </div>
+          <ul>
+            <li>Supported undergraduate students through weekly office hours and structured recitation sessions, focusing on problem-solving, debugging and core concept reinforcement in computer science and mathematics.</li>
+            <li>Guided students in algorithmic thinking, programming fundamentals and discrete maths concepts, improving assignment accuracy and conceptual understanding.</li>
+          </ul>
+        </div>
+        <div class="entry">
+          <h3>Academic Facilitator &mdash; Women in Engineering Program</h3>
+          <div class="meta">Pennsylvania State University &middot; Jan 2023 &ndash; May 2023</div>
+          <div class="chips">
+            <span class="chip">Leadership</span>
+            <span class="chip">Workshops</span>
+            <span class="chip">Student Success</span>
+          </div>
+          <ul>
+            <li>Designed and implemented study strategies and individualised learning plans with incentive-based milestones, improving course completion rates and student motivation.</li>
+            <li>Facilitated collaborative group review sessions, increasing participation and strengthening conceptual understanding across engineering coursework.</li>
+          </ul>
+        </div>
       </div>
 
-      <div class="expH-card" id="exp2">
-        <div class="expH-head">
-          <div>
-            <h2>Software Engineering Intern</h2>
-            <div class="expH-org">Reliance Jio Ltd. • June 2024 – Aug 2024</div>
-          </div>
-          <div class="expH-chips">
-            <span class="expH-chip">Debugging</span>
-            <span class="expH-chip">Optimization</span>
-            <span class="expH-chip">App Development</span>
-          </div>
-        </div>
-        <ul class="expH-list">
-          <li>Designed and developed core features for the LOS Administration Portal using Xcode (Swift/iOS), implementing secure data handling practices to support reliable daily business operations.</li>
-          <li>Integrated and configured third-party SDKs within a navigation application, improving performance, compatibility, and scalability for future feature expansion.</li>
-          <!-- <li>Guided students during office hours, improving assignment performance.</li> -->
-        </ul>
-      </div>
+    </main>
 
-      <div class="expH-card" id="exp3">
-        <div class="expH-head">
-          <div>
-            <h2>Academic Facilitator — Women in Engineering Program</h2>
-            <div class="expH-org">Pennsylvania State University • Jan 2023 – May 2023</div>
-          </div>
-          <div class="expH-chips">
-            <span class="expH-chip">Leadership</span>
-            <span class="expH-chip">Workshops</span>
-            <span class="expH-chip">Student Success</span>
-          </div>
-        </div>
-        <ul class="expH-list">
-          <li>Designed and implemented study strategies, individualized learning plans with incentive-based milestones, improving course completion rates and student motivation.</li>
-          <li>Facilitated collaborative group review sessions, increasing student participation and strengthening conceptual understanding across engineering coursework.</li>
-          <!-- <li>Provided additional course practice material and structured support resources.</li> -->
-        </ul>
-      </div>
-
-      <div class="expH-card" id="exp4">
-        <div class="expH-head">
-          <div>
-            <h2>Computer Science Learning Assistant — CMPSC 221, 132 & 131, MATH 44 & 220</h2>
-            <div class="expH-org">Pennsylvania State University • May 2022 – May 2025</div>
-          </div>
-          <div class="expH-chips">
-            <span class="expH-chip">Python</span>
-            <span class="expH-chip">Grading</span>
-            <span class="expH-chip">Debugging</span>
-          </div>
-        </div>
-        <ul class="expH-list">
-          <li>Supported undergraduate students through weekly office hours and structured recitation sessions, focusing on problem-solving, debugging, and core concept reinforcement in computer science and mathematics courses.</li>
-          <li>Guided students in algorithmic thinking, programming fundamentals, and discrete/math concepts, improving assignment accuracy and conceptual understanding.</li>
-          <!-- <li>Provided 1:1 help in office hours to improve solution quality and confidence.</li> -->
-        </ul>
-      </div>
-
-      <div class="expH-card" id="exp5">
-        <div class="expH-head">
-          <div>
-            <h2>Data Analytics (AI) Extern</h2>
-            <div class="expH-org">Beats By Dre • May 2025 – Aug 2025</div>
-          </div>
-          <div class="expH-chips">
-            <span class="expH-chip">Predictive Modeling</span>
-            <span class="expH-chip">NLP</span>
-            <span class="expH-chip">Sentiment Analysis</span>
-          </div>
-        </div>
-        <ul class="expH-list">
-          <li>Analyzed large-scale consumer data points using Python, GPT, and Claude, applying NLP techniques like sentiment analysis and topic modeling to identify emerging behavioral trends.</li>
-          <li>Built AI-powered dashboards and predictive models to optimize marketing strategies, improving campaign ROI by 18% and streamlining reporting workflows.</li>
-          <!-- <li>Provided 1:1 help in office hours to improve solution quality and confidence.</li> -->
-        </ul>
-      </div>
-
-      <div class="expH-card active" id="exp6">
-        <div class="expH-head">
-          <div>
-            <h2>Graduate Computer Science Course Assistant</h2>
-            <div class="expH-org">New York University • Sept 2025 – Present</div>
-          </div>
-          <div class="expH-chips">
-            <span class="expH-chip">Python</span>
-            <span class="expH-chip">Code Review</span>
-            <span class="expH-chip">Debugging</span>
-          </div>
-        </div>
-        <ul class="expH-list">
-          <li>Review and evaluate 30+ programming assignments weekly, delivering clear, actionable feedback to improve code quality, correctness, and best practices.</li>
-          <li>Support students through office hours and one-on-one debugging, resolving logic errors and reinforcing core programming concepts.</li>
-          <!-- <li>Provided 1:1 help in office hours to improve solution quality and confidence.</li> -->
-        </ul>
-      </div>
     </div>
   </div>
 </div>
 
-<!-- Horizontal timeline JS (keep this before </body>) -->
-<script>
-  const track = document.getElementById("expHTrack");
-  const nodes = document.querySelectorAll(".expH-node");
-  const cards = document.querySelectorAll(".expH-card");
-  const prevBtn = document.querySelector(".expH-prev");
-  const nextBtn = document.querySelector(".expH-next");
 
-  function setActive(targetId) {
-    nodes.forEach(n => n.classList.remove("active"));
-    cards.forEach(c => c.classList.remove("active"));
-
-    const activeNode = document.querySelector(`.expH-node[data-target="${targetId}"]`);
-    const activeCard = document.getElementById(targetId);
-
-    if (activeNode) activeNode.classList.add("active");
-    if (activeCard) activeCard.classList.add("active");
-
-    // center selected node smoothly
-    if (activeNode) {
-      activeNode.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-    }
-  }
-
-  nodes.forEach(node => {
-    node.addEventListener("click", () => setActive(node.dataset.target));
-  });
-
-  // scroll buttons
-  function scrollTrack(dir) {
-    track.scrollBy({ left: dir * 340, behavior: "smooth" });
-  }
-  prevBtn.addEventListener("click", () => scrollTrack(-1));
-  nextBtn.addEventListener("click", () => scrollTrack(1));
-</script>
-
-        
-    </div>
-    <!-- <a href="images/Kanishka_final_resume.pdf" download class="btn">ALL-IN-ONE-FILE</a>     -->
-
-</div>
-
-  </div>
-
-  <script src="main.js"></script>
-
-
-<script>
-  (function () {
-    const p = new URLSearchParams(location.search);
-    if (p.get("embed") === "1") document.body.classList.add("embed");
-  })();
-</script>
+<script src="site.js"></script>
 
 </body>
 </html>
