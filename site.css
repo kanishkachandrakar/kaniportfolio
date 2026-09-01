@@ -25,7 +25,7 @@
   --radius:     26px;
   --radius-sm:  14px;
   --pad:        clamp(14px, 2.4vw, 40px);
-  --sidebar:    252px;
+  --sidebar:    266px;
 
   --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
           Helvetica, Arial, sans-serif;
@@ -109,7 +109,7 @@ body {
 
 .frame {
   position: relative;
-  width: min(980px, 100%);
+  width: min(1060px, 100%);
   height: min(648px, max(452px, 80dvh));
   max-height: 100%;
 }
@@ -793,11 +793,11 @@ body {
 /* ---------- Responsive ------------------------------------- */
 /* Wide screens: offset the card to the right so the rail has open space
    on its left instead of sitting hard against the viewport edge. */
-@media (min-width: 1201px) {
+@media (min-width: 1301px) {
   .frame { margin-left: 120px; }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
   .rail {
     right: auto;
     left: -26px;
