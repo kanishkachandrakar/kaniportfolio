@@ -791,6 +791,12 @@ body {
 .menu-btn { display: none; }
 
 /* ---------- Responsive ------------------------------------- */
+/* Wide screens: offset the card to the right so the rail has open space
+   on its left instead of sitting hard against the viewport edge. */
+@media (min-width: 1201px) {
+  .frame { margin-left: 120px; }
+}
+
 @media (max-width: 1200px) {
   .rail {
     right: auto;
