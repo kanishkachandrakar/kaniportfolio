@@ -192,17 +192,18 @@ def art_about(hue):
 
 
 def art_education(hue):
-    disc = ('<clipPath id="edu"><circle cx="330" cy="190" r="62"/></clipPath>'
-            '<circle cx="330" cy="190" r="62" fill="none" stroke="%s" '
-            'stroke-width="14"/>%s'
-            % (CUT, img(photo("psu.jpg"), 268, 128, 124, 124, "edu")))
-    return (books(18, 186, 0.86, -6) + disc
-            + cap(56, 40, 0.98, -8, hue)
-            + sticker(18, 52, "Dean&#8217;s List", hue, INK, -10)
-            + sticker(188, 238, "Penn State", "#FFFFFF", INK, 6, 12)
-            + sticker(276, 44, "AI / ML", "#FFFFFF", INK, 9, 12)
-            + sticker(20, 140, "O(n log n)", "#FFFFFF", INK, 7, 12)
-            + sticker(286, 116, "CS &#8226; NYU", hue, INK, -8, 12))
+    disc = ('<clipPath id="edu"><circle cx="238" cy="152" r="104"/></clipPath>'
+            '<g filter="url(#d)"><circle cx="238" cy="152" r="104" fill="#1C1A18"/>'
+            '<image href="%s" x="134" y="48" width="208" height="208" '
+            'preserveAspectRatio="xMidYMid slice" clip-path="url(#edu)"/></g>'
+            % photo_webp("grad.webp"))
+    return (disc + books(6, 208, 0.72, -6)
+            + cap(150, 8, 0.62, -10, hue)
+            + sticker(8, 66, "Dean&#8217;s List", hue, INK, -10)
+            + sticker(160, 250, "Penn State", "#FFFFFF", INK, 6, 12)
+            + sticker(322, 62, "AI / ML", "#FFFFFF", INK, 9, 12)
+            + sticker(2, 160, "O(n log n)", "#FFFFFF", INK, 7, 12)
+            + sticker(318, 128, "CS &#8226; NYU", hue, INK, -8, 12))
 
 
 def art_craft(hue):
