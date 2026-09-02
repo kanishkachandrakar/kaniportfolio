@@ -7,6 +7,7 @@ Run: python3 tools-make-peek-art.py
 """
 import base64
 import os
+import re
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "images")
 
@@ -23,13 +24,8 @@ def photo(name):
 
 CUT_FILTER = (
     '<filter id="cut" x="-30%" y="-30%" width="160%" height="160%">'
-    '<feMorphology in="SourceAlpha" operator="dilate" radius="4" result="d"/>'
-    '<feFlood flood-color="#FFFFFF" result="w"/>'
-    '<feComposite in="w" in2="d" operator="in" result="edge"/>'
-    '<feMerge result="m"><feMergeNode in="edge"/>'
-    '<feMergeNode in="SourceGraphic"/></feMerge>'
-    '<feDropShadow in="m" dx="0" dy="9" stdDeviation="11" '
-    'flood-color="#000000" flood-opacity="0.5"/></filter>')
+    '<feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000000" '
+    'flood-opacity="0.55"/></filter>')
 
 
 def photo_webp(name):
@@ -74,7 +70,8 @@ def plain(shape):
 
 
 def sticker(x, y, text, fill, fg, rot, fs=13):
-    w = len(text) * fs * 0.60 + 26
+    glyphs = len(re.sub(r"&[a-zA-Z0-9#]+;", "x", text))
+    w = glyphs * fs * 0.60 + 26
     h = fs + 17
     cx, cy = x + w / 2.0, y + h / 2.0
     return ('<g transform="rotate(%s %s %s)" filter="url(#d)">'
@@ -185,12 +182,13 @@ def imessage(x, y, s=1.0):
 
 # ------------------------------------------------------------------ scenes
 def art_about(hue):
-    return (figure(92, 8, 0.92, -3)
-            + sticker(2, 40, "MS @ NYU &#8217;27", hue, INK, -9)
-            + sticker(4, 168, "git push", "#FFFFFF", INK, 8, 12)
-            + sticker(244, 96, "&lt;/&gt;", "#2F6BE0", "#FFFFFF", 11, 13)
-            + sticker(228, 214, "Ships clean code", "#FFFFFF", INK, 7, 12)
-            + smiley(316, 32, 18))
+    return (figure(126, 40, 0.72, -3)
+            + sticker(2, 28, "MS @ NYU &#8217;27", hue, INK, -9)
+            + sticker(0, 150, "git push", "#FFFFFF", INK, 8, 12)
+            + sticker(40, 240, "&lt;/&gt;", "#2F6BE0", "#FFFFFF", -7, 13)
+            + sticker(330, 112, "Python", "#FFFFFF", INK, -8, 12)
+            + sticker(284, 214, "Ships clean code", "#FFFFFF", INK, 7, 12)
+            + smiley(354, 54, 18))
 
 
 def art_education(hue):
