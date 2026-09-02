@@ -205,7 +205,6 @@ def art_about(hue):
             + sticker(14, 34, "MS @ NYU &#8217;27", hue, INK, -9)
             + sticker(26, 132, "git push", "#FFFFFF", INK, 8, 12)
             + sticker(66, 214, "&lt;/&gt;", "#2F6BE0", "#FFFFFF", -7, 13)
-            + sticker(296, 120, "Python", "#FFFFFF", INK, -8, 12)
             + sticker(256, 206, "Ships clean code", "#FFFFFF", INK, 7, 12)
             + smiley(322, 52, 18))
 
@@ -228,7 +227,7 @@ def art_craft(hue):
             + sticker(2, 62, "PyTorch", hue, INK, -10)
             + sticker(150, 250, "30+ reviews / wk", "#FFFFFF", INK, 6, 12)
             + sticker(316, 104, "Python", "#FFFFFF", INK, -8, 12)
-            + smiley(340, 42, 18))
+            + sticker(6, 200, "Docker", "#FFFFFF", INK, 8, 12))
 
 
 def art_projects(hue):
@@ -238,7 +237,7 @@ def art_projects(hue):
             + sticker(2, 40, "12 builds", hue, INK, -10)
             + sticker(150, 254, "SwiftUI", "#FFFFFF", INK, 6, 12)
             + sticker(330, 160, "Xcode", "#FFFFFF", INK, -8, 12)
-            + smiley(46, 200, 17))
+            + sticker(30, 196, "Firebase", "#FFFFFF", INK, 8, 12))
 
 
 def art_contact(hue):
@@ -246,8 +245,7 @@ def art_contact(hue):
             + sticker(22, 40, "Let&#8217;s talk", hue, INK, -9)
             + sticker(214, 220, "Open to interns", "#FFFFFF", INK, 7, 12)
             + sticker(26, 172, "@ inbox", "#FFFFFF", INK, 8, 12)
-            + sticker(288, 136, "say hi", hue, INK, -8, 12)
-            + smiley(316, 48, 18))
+            + sticker(288, 136, "based in NYC", hue, INK, -8, 12))
 
 
 ART = {"about": art_about, "education": art_education, "craft": art_craft,
