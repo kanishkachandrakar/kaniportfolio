@@ -164,6 +164,8 @@ body {
   display: block;
   width: 100%;
   height: 100%;
+  border-radius: 13px;
+  object-fit: cover;
 }
 
 .rail a:hover {
@@ -846,13 +848,14 @@ body {
 }
 
 .peek-art {
-  height: 150px;
+  height: 168px;
   width: 250px;
-  object-fit: contain;
-  object-fit: contain;
-  /* Transparent artwork, so it needs no mask - just a glow in its own
-     colour, which is the same colour as the icon it grows out of. */
-  filter: drop-shadow(0 18px 34px color-mix(in srgb, var(--hue) 30%, transparent));
+  /* Real photographs, so they get a frame rather than a feathered edge. */
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid color-mix(in srgb, var(--hue) 34%, rgba(255, 255, 255, 0.22));
+  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.55),
+              0 0 0 6px color-mix(in srgb, var(--hue) 12%, transparent);
   /* Grows out of the icon: the origin is the edge nearest it. */
   transform-origin: 100% 50%;
   animation: peekArt 0.44s cubic-bezier(0.34, 1.46, 0.52, 1) both;
