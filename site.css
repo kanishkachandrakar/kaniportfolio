@@ -123,8 +123,8 @@ body {
   border-radius: var(--radius);
   border: 1px solid var(--line);
   background: linear-gradient(148deg, rgba(255,255,255,0.11), rgba(255,255,255,0.035));
-  backdrop-filter: blur(30px) saturate(1.25);
-  -webkit-backdrop-filter: blur(30px) saturate(1.25);
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
   box-shadow:
     0 44px 110px rgba(0, 0, 0, 0.55),
     inset 0 1px 0 rgba(255, 255, 255, 0.16);
@@ -140,8 +140,8 @@ body {
   z-index: 6;
   display: flex;
   flex-direction: column;
-  gap: 9px;
-  padding: 15px 10px;
+  gap: 17px;
+  padding: 18px 11px;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.10);
@@ -849,15 +849,16 @@ body {
 
 .peek-art {
   /* One generated mockup - frameless, so it tucks under its icon. */
-  width: 330px;
-  height: 211px;
-  object-fit: contain;
+  width: 336px;
+  height: 234px;
   transform-origin: 100% 50%;
+  will-change: transform, opacity;
   animation: peekArt 0.26s cubic-bezier(0.34, 1.36, 0.55, 1) both;
 }
 
 .peek-body {
   text-align: center;
+  will-change: transform, opacity;
   transform-origin: 100% 50%;
   animation: peekBody 0.24s cubic-bezier(0.34, 1.32, 0.55, 1) 0.02s both;
 }
@@ -916,8 +917,8 @@ body {
 @media (min-width: 1301px) and (hover: hover) {
   .shell,
   .rail {
-    transition: opacity 0.18s ease, filter 0.18s ease, background 0.18s ease,
-                border-color 0.18s ease;
+    transition: opacity 0.2s ease, background 0.2s ease,
+                border-color 0.2s ease;
   }
 
   .rail-item {

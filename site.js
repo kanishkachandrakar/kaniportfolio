@@ -79,6 +79,15 @@
     cacheBoxes();
     window.addEventListener("load", cacheBoxes);
 
+    /* The scenes sit inside display:none until hovered, so the browser has
+       no reason to decode them until then - which stalls the first open.
+       Decode them up front instead. */
+    window.addEventListener("load", function () {
+      peek.querySelectorAll(".peek-art").forEach(function (im) {
+        if (im.decode) im.decode().catch(function () {});
+      });
+    });
+
     function anchorBox(anchor) {
       return restingBox.get(anchor) || anchor.getBoundingClientRect();
     }
