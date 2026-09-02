@@ -199,11 +199,9 @@ def art_education(hue):
             % photo_webp("grad.webp"))
     return (disc + books(6, 208, 0.72, -6)
             + cap(150, 8, 0.62, -10, hue)
-            + sticker(8, 66, "Dean&#8217;s List", hue, INK, -10)
-            + sticker(160, 250, "Penn State", "#FFFFFF", INK, 6, 12)
-            + sticker(322, 62, "AI / ML", "#FFFFFF", INK, 9, 12)
-            + sticker(2, 160, "O(n log n)", "#FFFFFF", INK, 7, 12)
-            + sticker(318, 128, "CS &#8226; NYU", hue, INK, -8, 12))
+            + sticker(6, 74, "Dean&#8217;s List", hue, INK, -10)
+            + sticker(158, 252, "Penn State", "#FFFFFF", INK, 6, 12)
+            + sticker(318, 122, "AI / ML", "#FFFFFF", INK, -8, 12))
 
 
 def art_craft(hue):
