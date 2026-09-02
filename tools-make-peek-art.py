@@ -139,13 +139,23 @@ def scroll(x, y, s=1.0, rot=0, hue="#8FB8EA"):
 
 
 def laptop(x, y, s=1.0, rot=0, hue="#93D3AC"):
-    body = (rect(14, 12, 172, 116, 12, "#F7F3EC", 6)
-            + '<clipPath id="lap"><rect x="26" y="24" width="148" height="92" '
-              'rx="7"/></clipPath>'
-            + '<rect x="26" y="24" width="148" height="92" rx="7" fill="#1C1A18"/>'
-            + img(photo("lap.jpg"), 26, 24, 148, 92, "lap")
-            + path("M0 128h200l16 26H-16z", "#DCE3E8", 6))
-    return ('<g transform="translate(%s %s) scale(%s) rotate(%s 100 84)" '
+    body = (
+        rect(10, 8, 216, 146, 14, "#F4F0E9", 6)                     # lid
+        + '<rect x="22" y="20" width="192" height="122" rx="8" fill="#15161A"/>'
+        + '<clipPath id="lap"><rect x="22" y="20" width="192" height="122" '
+          'rx="8"/></clipPath>'
+        + img(photo("lap.jpg"), 22, 20, 192, 122, "lap")
+        + '<rect x="22" y="20" width="192" height="122" rx="8" fill="none" '
+          'stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="2"/>'
+        # a soft sheen across the glass
+        + '<path d="M22 20h74l-46 122H30a8 8 0 0 1-8-8z" fill="#FFFFFF" '
+          'fill-opacity="0.06"/>'
+        + path("M-8 154h252l20 30H-28z", "#E4E9EE", 6)               # base
+        + '<rect x="96" y="162" width="44" height="7" rx="3.5" '
+          'fill="#B9C2CB"/>'                                        # notch
+        + '<path d="M-20 184h268" stroke="#C2CAD2" stroke-width="5" '
+          'stroke-linecap="round"/>')
+    return ('<g transform="translate(%s %s) scale(%s) rotate(%s 110 96)" '
             'filter="url(#d)">%s</g>' % (x, y, s, rot, body))
 
 
@@ -205,13 +215,11 @@ def art_education(hue):
 
 
 def art_craft(hue):
-    return (laptop(66, 54, 1.0, -5, hue)
-            + sticker(24, 46, "PyTorch", hue, INK, -10)
-            + sticker(232, 208, "30+ reviews / wk", "#FFFFFF", INK, 7, 12)
-            + sticker(286, 46, "Python", "#FFFFFF", INK, 9, 12)
-            + sticker(28, 148, "{ }", "#2F6BE0", "#FFFFFF", 8, 14)
-            + sticker(288, 150, "npm run dev", "#FFFFFF", INK, -8, 11)
-            + smiley(146, 246, 17))
+    return (laptop(94, 48, 1.02, -4, hue)
+            + sticker(2, 62, "PyTorch", hue, INK, -10)
+            + sticker(150, 250, "30+ reviews / wk", "#FFFFFF", INK, 6, 12)
+            + sticker(316, 104, "Python", "#FFFFFF", INK, -8, 12)
+            + smiley(340, 42, 18))
 
 
 def art_projects(hue):
