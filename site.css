@@ -826,33 +826,36 @@ body {
   position: fixed;
   inset: 0;
   z-index: 40;
-  display: grid;
-  place-items: center;
-  padding: 24px;
   pointer-events: none;
 }
 
+/* Anchored beside the hovered rail icon, not centred on the page.
+   JS sets left/top from the icon's position. */
 .peek-card {
+  position: fixed;
+  left: 0;
+  top: 0;
   display: none;
-  width: min(430px, 84vw);
+  width: 372px;
   text-align: center;
 }
 
 .peek-card.is-active {
   display: block;
   pointer-events: auto;
-  animation: peekIn 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: peekIn 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: left center;
 }
 
 @keyframes peekIn {
-  from { opacity: 0; transform: translateY(16px) scale(0.96); }
+  from { opacity: 0; transform: translateX(-14px) scale(0.97); }
   to   { opacity: 1; transform: none; }
 }
 
 .peek-art {
   display: block;
   width: 100%;
-  height: 244px;
+  height: 208px;
   /* contain, not cover: these are whole illustrations and app mockups,
      and cropping them loses the subject. */
   object-fit: contain;
@@ -879,8 +882,8 @@ body {
 }
 
 .peek-title {
-  margin: 0 0 8px;
-  font-size: 28px;
+  margin: 0 0 7px;
+  font-size: 25px;
   font-weight: 700;
   letter-spacing: -0.028em;
 }

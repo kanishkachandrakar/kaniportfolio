@@ -54,20 +54,47 @@
   if (peek && railItems.length) {
     var closeTimer = null;
     var openId = null;
+    var openAnchor = null;
 
     function peekEnabled() {
       return window.matchMedia("(min-width: 1301px) and (hover: hover)").matches;
     }
 
-    function openPeek(id) {
+    /* Park the card beside its icon, kept inside the viewport. */
+    function placeCard(card, anchor) {
+      var GAP = 22, EDGE = 16;
+      var a = anchor.getBoundingClientRect();
+      var w = card.offsetWidth;
+      var h = card.offsetHeight;
+
+      var left = a.right + GAP;
+      if (left + w > window.innerWidth - EDGE) {
+        left = Math.max(EDGE, a.left - GAP - w);
+      }
+
+      var top = a.top + a.height / 2 - h / 2;
+      top = Math.min(Math.max(top, EDGE), window.innerHeight - h - EDGE);
+
+      card.style.left = Math.round(left) + "px";
+      card.style.top = Math.round(top) + "px";
+    }
+
+    function openPeek(id, anchor) {
       if (!peekEnabled() || id === openId) return;
       clearTimeout(closeTimer);
+
+      var active = null;
       peek.querySelectorAll(".peek-card").forEach(function (c) {
-        c.classList.toggle("is-active", c.getAttribute("data-peek") === id);
+        var on = c.getAttribute("data-peek") === id;
+        c.classList.toggle("is-active", on);
+        if (on) active = c;
       });
+
+      if (active) placeCard(active, anchor);
       document.body.classList.add("is-peeking");
       peek.setAttribute("aria-hidden", "false");
       openId = id;
+      openAnchor = anchor;
     }
 
     function closePeek() {
@@ -78,6 +105,7 @@
       document.body.classList.remove("is-peeking");
       peek.setAttribute("aria-hidden", "true");
       openId = null;
+      openAnchor = null;
     }
 
     function scheduleClose() {
@@ -87,9 +115,9 @@
 
     railItems.forEach(function (item) {
       var id = item.getAttribute("data-peek");
-      item.addEventListener("mouseenter", function () { openPeek(id); });
+      item.addEventListener("mouseenter", function () { openPeek(id, item); });
       item.addEventListener("mouseleave", scheduleClose);
-      item.addEventListener("focus", function () { openPeek(id); });
+      item.addEventListener("focus", function () { openPeek(id, item); });
       item.addEventListener("blur", scheduleClose);
     });
 
@@ -103,7 +131,10 @@
     // Dropping below the breakpoint mid-session should not leave the
     // page stuck behind a blur.
     window.addEventListener("resize", function () {
-      if (openId && !peekEnabled()) closePeek();
+      if (!openId) return;
+      if (!peekEnabled()) return closePeek();
+      var active = peek.querySelector(".peek-card.is-active");
+      if (active && openAnchor) placeCard(active, openAnchor);
     });
   }
 
