@@ -182,13 +182,13 @@ def imessage(x, y, s=1.0):
 
 # ------------------------------------------------------------------ scenes
 def art_about(hue):
-    return (figure(126, 40, 0.72, -3)
-            + sticker(2, 28, "MS @ NYU &#8217;27", hue, INK, -9)
-            + sticker(0, 150, "git push", "#FFFFFF", INK, 8, 12)
-            + sticker(40, 240, "&lt;/&gt;", "#2F6BE0", "#FFFFFF", -7, 13)
-            + sticker(330, 112, "Python", "#FFFFFF", INK, -8, 12)
-            + sticker(284, 214, "Ships clean code", "#FFFFFF", INK, 7, 12)
-            + smiley(354, 54, 18))
+    return (figure(110, 26, 0.84, -3)
+            + sticker(14, 34, "MS @ NYU &#8217;27", hue, INK, -9)
+            + sticker(26, 132, "git push", "#FFFFFF", INK, 8, 12)
+            + sticker(66, 214, "&lt;/&gt;", "#2F6BE0", "#FFFFFF", -7, 13)
+            + sticker(296, 120, "Python", "#FFFFFF", INK, -8, 12)
+            + sticker(256, 206, "Ships clean code", "#FFFFFF", INK, 7, 12)
+            + smiley(322, 52, 18))
 
 
 def art_education(hue):
@@ -198,20 +198,20 @@ def art_education(hue):
             % (CUT, img(photo("psu.jpg"), 268, 128, 124, 124, "edu")))
     return (books(18, 186, 0.86, -6) + disc
             + cap(56, 40, 0.98, -8, hue)
-            + sticker(2, 44, "Dean&#8217;s List", hue, INK, -10)
-            + sticker(196, 250, "Penn State", "#FFFFFF", INK, 6, 12)
-            + sticker(292, 26, "AI / ML", "#FFFFFF", INK, 9, 12)
-            + sticker(6, 132, "O(n log n)", "#FFFFFF", INK, 7, 12)
-            + sticker(300, 108, "CS &#8226; NYU", hue, INK, -8, 12))
+            + sticker(18, 52, "Dean&#8217;s List", hue, INK, -10)
+            + sticker(188, 238, "Penn State", "#FFFFFF", INK, 6, 12)
+            + sticker(276, 44, "AI / ML", "#FFFFFF", INK, 9, 12)
+            + sticker(20, 140, "O(n log n)", "#FFFFFF", INK, 7, 12)
+            + sticker(286, 116, "CS &#8226; NYU", hue, INK, -8, 12))
 
 
 def art_craft(hue):
     return (laptop(66, 54, 1.0, -5, hue)
-            + sticker(4, 32, "PyTorch", hue, INK, -10)
-            + sticker(236, 220, "30+ reviews / wk", "#FFFFFF", INK, 7, 12)
-            + sticker(300, 30, "Python", "#FFFFFF", INK, 9, 12)
-            + sticker(2, 146, "{ }", "#2F6BE0", "#FFFFFF", 8, 14)
-            + sticker(306, 148, "npm run dev", "#FFFFFF", INK, -8, 11)
+            + sticker(24, 46, "PyTorch", hue, INK, -10)
+            + sticker(232, 208, "30+ reviews / wk", "#FFFFFF", INK, 7, 12)
+            + sticker(286, 46, "Python", "#FFFFFF", INK, 9, 12)
+            + sticker(28, 148, "{ }", "#2F6BE0", "#FFFFFF", 8, 14)
+            + sticker(288, 150, "npm run dev", "#FFFFFF", INK, -8, 11)
             + smiley(146, 246, 17))
 
 
@@ -219,20 +219,20 @@ def art_projects(hue):
     return (phone(10, 62, 0.86, -12, shot("p1.jpg", "s1"))
             + phone(276, 58, 0.86, 12, shot("p3.jpg", "s3"))
             + phone(140, 34, 0.96, 0, shot("p2.jpg", "s2"))
-            + sticker(0, 22, "12 builds", hue, INK, -10)
-            + sticker(226, 244, "SwiftUI", "#FFFFFF", INK, 7, 12)
-            + sticker(310, 22, "Xcode", "#FFFFFF", INK, 9, 12)
-            + sticker(0, 176, "git commit", "#FFFFFF", INK, 8, 11)
-            + smiley(346, 132, 17))
+            + sticker(16, 36, "12 builds", hue, INK, -10)
+            + sticker(222, 236, "SwiftUI", "#FFFFFF", INK, 7, 12)
+            + sticker(296, 38, "Xcode", "#FFFFFF", INK, 9, 12)
+            + sticker(18, 170, "git commit", "#FFFFFF", INK, 8, 11)
+            + smiley(330, 130, 17))
 
 
 def art_contact(hue):
     return (imessage(74, 46, 0.94)
-            + sticker(4, 26, "Let&#8217;s talk", hue, INK, -9)
-            + sticker(214, 232, "Open to interns", "#FFFFFF", INK, 7, 12)
-            + sticker(2, 176, "@ inbox", "#FFFFFF", INK, 8, 12)
-            + sticker(302, 132, "say hi", hue, INK, -8, 12)
-            + smiley(330, 34, 18))
+            + sticker(22, 40, "Let&#8217;s talk", hue, INK, -9)
+            + sticker(214, 220, "Open to interns", "#FFFFFF", INK, 7, 12)
+            + sticker(26, 172, "@ inbox", "#FFFFFF", INK, 8, 12)
+            + sticker(288, 136, "say hi", hue, INK, -8, 12)
+            + smiley(316, 48, 18))
 
 
 ART = {"about": art_about, "education": art_education, "craft": art_craft,
