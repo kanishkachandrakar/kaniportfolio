@@ -843,22 +843,19 @@ body {
   position: fixed;
   left: 0;
   top: 0;
-  width: 250px;
   pointer-events: auto;
 }
 
+.peek-body { width: 250px; }
+
 .peek-art {
-  height: 168px;
-  width: 250px;
-  /* Real photographs, so they get a frame rather than a feathered edge. */
-  object-fit: cover;
-  border-radius: 16px;
-  border: 1px solid color-mix(in srgb, var(--hue) 34%, rgba(255, 255, 255, 0.22));
-  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.55),
-              0 0 0 6px color-mix(in srgb, var(--hue) 12%, transparent);
-  /* Grows out of the icon: the origin is the edge nearest it. */
+  /* Frameless and transparent so it can tuck under the icon and read as one
+     object rather than a card parked next to it. */
+  height: 208px;
+  width: 288px;
+  object-fit: contain;
   transform-origin: 100% 50%;
-  animation: peekArt 0.44s cubic-bezier(0.34, 1.46, 0.52, 1) both;
+  animation: peekArt 0.46s cubic-bezier(0.34, 1.46, 0.52, 1) both;
 }
 
 .peek-body {
@@ -959,6 +956,8 @@ body {
   }
 
   body.is-peeking .rail-item.is-peeked {
+    position: relative;
+    z-index: 50;                 /* above .peek, so the art tucks behind it */
     box-shadow: 0 14px 34px color-mix(in srgb, var(--hue) 46%, transparent);
     transform: scale(1.4);
   }

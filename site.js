@@ -84,24 +84,27 @@
     }
 
     function placeItem(item, anchor) {
-      var SHIFT = 150, EDGE = 16, GAP = 22, STACK = 10;
+      var SHIFT = 150, EDGE = 16, OVERLAP = 26, STACK = 4;
       var art = item.querySelector(".peek-art");
       var body = item.querySelector(".peek-body");
       var a = anchorBox(anchor);
 
       var iconLeft = a.left + SHIFT;
-      var iconRight = a.right + SHIFT;
 
-      var avail = iconLeft - GAP - EDGE;
-      var w = Math.max(184, Math.min(250, avail));
-      art.style.width = body.style.width = w + "px";
+      // The art's right edge runs under the icon, so the two touch.
+      var artLeft = iconLeft + OVERLAP - art.offsetWidth;
+      if (artLeft < EDGE) artLeft = EDGE;
+      art.style.left = Math.round(artLeft) + "px";
 
-      var left = iconLeft - GAP - w;
-      if (left < EDGE) left = iconRight + GAP;   // no room: use the other side
-      art.style.left = body.style.left = Math.round(left) + "px";
+      // Copy sits below the art, centred on it.
+      var bodyLeft = artLeft + (art.offsetWidth - body.offsetWidth) / 2;
+      body.style.left = Math.round(Math.max(bodyLeft, EDGE)) + "px";
 
       var total = art.offsetHeight + STACK + body.offsetHeight;
-      var top = a.top + a.height / 2 - total / 2;
+      var top = a.top + a.height / 2 - art.offsetHeight / 2;
+      if (top + total > window.innerHeight - EDGE) {
+        top = window.innerHeight - EDGE - total;
+      }
       top = Math.min(Math.max(top, EDGE), window.innerHeight - total - EDGE);
 
       art.style.top = Math.round(top) + "px";
