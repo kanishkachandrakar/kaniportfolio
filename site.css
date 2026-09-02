@@ -787,6 +787,152 @@ body {
 
 .modal-close:hover { background: rgba(255, 255, 255, 0.18); }
 
+/* ============================================================
+   Rail preview ("peek")
+   Hovering a rail icon blurs the page back and raises a card
+   for that section. Pointer-driven, so it is scoped to wide
+   screens with a real hover.
+   ============================================================ */
+
+.rail-item.is-current {
+  background: rgba(232, 184, 124, 0.20);
+  color: #FBE8CD;
+}
+
+.nav-social {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 12px;
+}
+
+.nav .nav-social a {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 50%;
+  color: var(--ink-faint);
+  font-size: 14px;
+}
+
+.nav .nav-social a:hover {
+  background: rgba(255, 255, 255, 0.10);
+  color: var(--ink);
+}
+
+.peek {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  pointer-events: none;
+}
+
+.peek-card {
+  display: none;
+  width: min(430px, 84vw);
+  text-align: center;
+}
+
+.peek-card.is-active {
+  display: block;
+  pointer-events: auto;
+  animation: peekIn 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes peekIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.96); }
+  to   { opacity: 1; transform: none; }
+}
+
+.peek-art {
+  display: block;
+  width: 100%;
+  height: 244px;
+  /* contain, not cover: these are whole illustrations and app mockups,
+     and cropping them loses the subject. */
+  object-fit: contain;
+  padding: 16px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: linear-gradient(152deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.025));
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.62);
+}
+
+.peek-icon {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  margin: -31px auto 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: linear-gradient(150deg, #4A3B2C, #251D18);
+  border-color: rgba(232, 184, 124, 0.34);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.55);
+  color: var(--accent);
+  font-size: 23px;
+}
+
+.peek-title {
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.028em;
+}
+
+.peek-desc {
+  margin: 0 auto 20px;
+  max-width: 34ch;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.peek-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--ink);
+  font-size: 14.5px;
+  font-weight: 500;
+  text-decoration: none;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.peek-cta:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(-1px);
+}
+
+/* The page recedes behind the card. Only here, where the rail floats
+   free of the card and a pointer exists - the filter would otherwise
+   trap the fixed mobile drawer inside .stage. */
+@media (min-width: 1301px) and (hover: hover) {
+  .stage {
+    transition: filter 0.32s ease, opacity 0.32s ease;
+  }
+
+  body.is-peeking .stage {
+    filter: blur(15px) saturate(0.85);
+    opacity: 0.5;
+  }
+}
+
+/* No hover previews on touch or narrow screens: the rail is plain nav. */
+@media (max-width: 1300px), (hover: none) {
+  .peek { display: none; }
+}
+
 /* ---------- Mobile bar (hidden on desktop) ----------------- */
 .menu-btn { display: none; }
 

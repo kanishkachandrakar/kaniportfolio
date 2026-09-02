@@ -44,6 +44,69 @@
     });
   });
 
+  /* ---------- Rail preview ----------
+     Hover a rail icon and the page blurs back while that section's card
+     rises. A short close delay lets the pointer travel from the icon to
+     the card without the card vanishing on the way. */
+  var peek = document.getElementById("peek");
+  var railItems = document.querySelectorAll(".rail-item");
+
+  if (peek && railItems.length) {
+    var closeTimer = null;
+    var openId = null;
+
+    function peekEnabled() {
+      return window.matchMedia("(min-width: 1301px) and (hover: hover)").matches;
+    }
+
+    function openPeek(id) {
+      if (!peekEnabled() || id === openId) return;
+      clearTimeout(closeTimer);
+      peek.querySelectorAll(".peek-card").forEach(function (c) {
+        c.classList.toggle("is-active", c.getAttribute("data-peek") === id);
+      });
+      document.body.classList.add("is-peeking");
+      peek.setAttribute("aria-hidden", "false");
+      openId = id;
+    }
+
+    function closePeek() {
+      clearTimeout(closeTimer);
+      peek.querySelectorAll(".peek-card").forEach(function (c) {
+        c.classList.remove("is-active");
+      });
+      document.body.classList.remove("is-peeking");
+      peek.setAttribute("aria-hidden", "true");
+      openId = null;
+    }
+
+    function scheduleClose() {
+      clearTimeout(closeTimer);
+      closeTimer = setTimeout(closePeek, 180);
+    }
+
+    railItems.forEach(function (item) {
+      var id = item.getAttribute("data-peek");
+      item.addEventListener("mouseenter", function () { openPeek(id); });
+      item.addEventListener("mouseleave", scheduleClose);
+      item.addEventListener("focus", function () { openPeek(id); });
+      item.addEventListener("blur", scheduleClose);
+    });
+
+    peek.addEventListener("mouseenter", function () { clearTimeout(closeTimer); }, true);
+    peek.addEventListener("mouseleave", scheduleClose, true);
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closePeek();
+    });
+
+    // Dropping below the breakpoint mid-session should not leave the
+    // page stuck behind a blur.
+    window.addEventListener("resize", function () {
+      if (openId && !peekEnabled()) closePeek();
+    });
+  }
+
   /* ---------- Modals ---------- */
   var lastFocused = null;
 

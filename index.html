@@ -19,12 +19,14 @@
 <div class="stage">
   <div class="frame">
 
-    <div class="rail" aria-label="Social links">
-    <a href="https://github.com/kanishkachandrakar" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
-    <a href="https://www.linkedin.com/in/kanishka-chandrakar-6066bb262/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in"></i></a>
-    <a href="https://www.instagram.com/kanishkaa__c/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
-    <a href="mailto:kanishka.chandrakar02@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
-    </div>
+    <nav class="rail" aria-label="Sections">
+      <a class="rail-item" href="about.html" data-peek="about" aria-label="About me"><i class="fa-solid fa-user"></i></a>
+      <a class="rail-item" href="education.html" data-peek="education" aria-label="Education"><i class="fa-solid fa-graduation-cap"></i></a>
+      <a class="rail-item" href="skills.html" data-peek="skills" aria-label="Skills"><i class="fa-solid fa-layer-group"></i></a>
+      <a class="rail-item" href="projects.html" data-peek="projects" aria-label="Projects"><i class="fa-solid fa-shapes"></i></a>
+      <a class="rail-item" href="work.html" data-peek="work" aria-label="Experience"><i class="fa-solid fa-briefcase"></i></a>
+      <a class="rail-item" href="connect.html" data-peek="contact" aria-label="Contact me"><i class="fa-solid fa-paper-plane"></i></a>
+    </nav>
 
     <div class="shell">
 
@@ -53,6 +55,12 @@
           <a class="btn btn-accent btn-full" href="images/Kanishka_final_resume.pdf" download>
             <i class="fa-solid fa-arrow-down"></i> Resume
           </a>
+          <div class="nav-social">
+            <a href="https://github.com/kanishkachandrakar" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/kanishka-chandrakar-6066bb262/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/kanishkaa__c/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+            <a href="mailto:kanishka.chandrakar02@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+          </div>
         </li>
       </ul>
     </aside>
@@ -92,6 +100,50 @@
 </div>
 
 
+<div class="peek" id="peek" aria-hidden="true">
+  <article class="peek-card" data-peek="about">
+    <img class="peek-art" src="images/who-i.png" alt="">
+    <div class="peek-icon"><i class="fa-solid fa-user"></i></div>
+    <h2 class="peek-title">About me</h2>
+    <p class="peek-desc">Computer science grad student at NYU Courant, turning ideas into clean, usable software.</p>
+    <a class="peek-cta" href="about.html">Read about me</a>
+  </article>
+  <article class="peek-card" data-peek="education">
+    <img class="peek-art" src="images/education.png" alt="">
+    <div class="peek-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+    <h2 class="peek-title">Education</h2>
+    <p class="peek-desc">BS at Penn State, MS in AI/ML at NYU Courant &mdash; degrees, coursework and achievements.</p>
+    <a class="peek-cta" href="education.html">View education</a>
+  </article>
+  <article class="peek-card" data-peek="skills">
+    <img class="peek-art" src="images/work1.png" alt="">
+    <div class="peek-icon"><i class="fa-solid fa-layer-group"></i></div>
+    <h2 class="peek-title">Skills</h2>
+    <p class="peek-desc">Languages, AI/ML frameworks, dev tools and the cloud stack I build on.</p>
+    <a class="peek-cta" href="skills.html">View skills</a>
+  </article>
+  <article class="peek-card" data-peek="projects">
+    <img class="peek-art" src="images/guess-what.png" alt="">
+    <div class="peek-icon"><i class="fa-solid fa-shapes"></i></div>
+    <h2 class="peek-title">Projects</h2>
+    <p class="peek-desc">Twelve builds across iOS, machine learning, systems and the web.</p>
+    <a class="peek-cta" href="projects.html">View projects</a>
+  </article>
+  <article class="peek-card" data-peek="work">
+    <img class="peek-art" src="images/work4.png" alt="">
+    <div class="peek-icon"><i class="fa-solid fa-briefcase"></i></div>
+    <h2 class="peek-title">Experience</h2>
+    <p class="peek-desc">Research, engineering and teaching roles at NYU, Penn State, Beats by Dre and Reliance Jio.</p>
+    <a class="peek-cta" href="work.html">View experience</a>
+  </article>
+  <article class="peek-card" data-peek="contact">
+    <img class="peek-art" src="images/user.jpg" alt="">
+    <div class="peek-icon"><i class="fa-solid fa-paper-plane"></i></div>
+    <h2 class="peek-title">Contact me</h2>
+    <p class="peek-desc">Open to internships, research collaborations, or a good conversation about AI.</p>
+    <a class="peek-cta" href="connect.html">Get in touch</a>
+  </article>
+</div>
 <script src="site.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.16/typed.umd.js"></script>
 <script>
