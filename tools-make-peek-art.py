@@ -5,9 +5,27 @@ Every asset is generated - flat cut-out illustrations with a white sticker
 outline, plus badges carrying real phrases.
 Run: python3 tools-make-peek-art.py
 """
+import base64
 import os
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "images")
+
+SMALL = ("/private/tmp/claude-501/-Users-kanishkachandrakar-Desktop-"
+         "kaniportfolio-kaniportfolio-master/"
+         "1265d3b4-3f1f-4a0b-a512-4ded02a83abe/scratchpad/small")
+
+
+def photo(name):
+    """A real photo, inlined so the SVG stays self-contained."""
+    with open(os.path.join(SMALL, name), "rb") as fh:
+        return "data:image/jpeg;base64," + base64.b64encode(fh.read()).decode()
+
+
+def img(href, x, y, w, h, clip):
+    return ('<image href="%s" x="%s" y="%s" width="%s" height="%s" '
+            'preserveAspectRatio="xMidYMid slice" clip-path="url(#%s)"/>'
+            % (href, x, y, w, h, clip))
+
 
 FONT = "Helvetica Neue,Helvetica,Arial,sans-serif"
 INK = "#2A2521"
@@ -68,45 +86,21 @@ def smiley(cx, cy, r):
 
 
 # ------------------------------------------------------------ illustrations
+# The cut-out silhouette: head, neck and shoulders, no rectangle in sight.
+BUST = ("M20 232c0-56 30-84 66-92-18-8-30-27-30-49 0-30 22-52 50-52"
+        "s50 22 50 52c0 22-12 41-30 49 36 8 66 36 66 92z")
+
+
 def figure(x, y, s=1.0, rot=0):
-    """A cut-out of a person. Drawn twice: once fattened in white for the
-    sticker edge, then in colour on top - otherwise the outlines of the
-    overlapping parts read as a hood."""
-    parts = [
-        ("path", "M18 214C18 150 50 124 86 124s68 26 68 90z", NAVY),   # shoulders
-        ("rect", (74, 92, 24, 38, 11), SKIN),                          # neck
-        ("rect", (40, 62, 20, 96, 10), HAIR),                          # left lock
-        ("rect", (112, 62, 20, 96, 10), HAIR),                         # right lock
-        ("circle", (86, 84, 41), SKIN),                                # head
-        ("path", "M45 80c1-32 18-50 41-50s40 18 41 50c-9-19-23-29-41-29"
-                 "s-32 10-41 29z", HAIR),                              # fringe
-    ]
-
-    def draw(fill_override=None, sw=0):
-        out = ""
-        for kind, a, fill in parts:
-            f = fill_override or fill
-            extra = ('stroke="%s" stroke-width="%s" stroke-linejoin="round"'
-                     % (CUT, sw)) if sw else ""
-            if kind == "path":
-                out += '<path d="%s" fill="%s" %s/>' % (a, f, extra)
-            elif kind == "rect":
-                out += ('<rect x="%s" y="%s" width="%s" height="%s" rx="%s" '
-                        'fill="%s" %s/>' % (a[0], a[1], a[2], a[3], a[4], f, extra))
-            else:
-                out += ('<circle cx="%s" cy="%s" r="%s" fill="%s" %s/>'
-                        % (a[0], a[1], a[2], f, extra))
-        return out
-
-    face = ('<circle cx="72" cy="86" r="3.8" fill="%s"/>'
-            '<circle cx="100" cy="86" r="3.8" fill="%s"/>'
-            '<path d="M76 102q10 8 20 0" stroke="%s" stroke-width="3.4" '
-            'fill="none" stroke-linecap="round"/>'
-            '<path d="M70 132 86 168 102 132" stroke="#F7F3EC" stroke-width="9" '
-            'fill="none" stroke-linejoin="round"/>' % (INK, INK, INK))
-
-    body = draw(CUT, 15) + draw() + face
-    return ('<g transform="translate(%s %s) scale(%s) rotate(%s 86 120)" '
+    """The real headshot, clipped to that silhouette and given a white
+    sticker edge - the same treatment the reference uses on its cut-out."""
+    body = ('<clipPath id="bust"><path d="%s"/></clipPath>' % BUST
+            + '<path d="%s" fill="none" stroke="%s" stroke-width="15" '
+              'stroke-linejoin="round"/>' % (BUST, CUT)
+            + img(photo("user.jpg"), 6, 22, 220, 216, "bust")
+            + '<path d="%s" fill="none" stroke="%s" stroke-width="4" '
+              'stroke-opacity="0.5" stroke-linejoin="round"/>' % (BUST, CUT))
+    return ('<g transform="translate(%s %s) scale(%s) rotate(%s 110 130)" '
             'filter="url(#d)">%s</g>' % (x, y, s, rot, body))
 
 
@@ -140,15 +134,11 @@ def scroll(x, y, s=1.0, rot=0, hue="#8FB8EA"):
 
 
 def laptop(x, y, s=1.0, rot=0, hue="#93D3AC"):
-    code = ""
-    for i, (dx, w, c) in enumerate([(0, 54, hue), (0, 88, "#DDE6E1"),
-                                    (12, 66, "#DDE6E1"), (12, 44, hue),
-                                    (0, 74, "#DDE6E1")]):
-        code += ('<rect x="%s" y="%s" width="%s" height="8" rx="4" fill="%s" '
-                 'fill-opacity="0.92"/>' % (34 + dx, 40 + i * 17, w, c))
     body = (rect(14, 12, 172, 116, 12, "#F7F3EC", 6)
+            + '<clipPath id="lap"><rect x="26" y="24" width="148" height="92" '
+              'rx="7"/></clipPath>'
             + '<rect x="26" y="24" width="148" height="92" rx="7" fill="#1C1A18"/>'
-            + code
+            + img(photo("lap.jpg"), 26, 24, 148, 92, "lap")
             + path("M0 128h200l16 26H-16z", "#DCE3E8", 6))
     return ('<g transform="translate(%s %s) scale(%s) rotate(%s 100 84)" '
             'filter="url(#d)">%s</g>' % (x, y, s, rot, body))
@@ -160,36 +150,13 @@ def phone(x, y, s, rot, screen):
             'filter="url(#d)">%s</g>' % (x, y, s, rot, body))
 
 
-def scr_game():
-    blocks = ""
-    for i, (bx, by, bw) in enumerate([(16, 46, 32), (54, 46, 26), (16, 74, 20),
-                                      (44, 74, 36), (16, 102, 44), (66, 102, 14),
-                                      (16, 130, 26), (48, 130, 32)]):
-        blocks += ('<rect x="%s" y="%s" width="%s" height="18" rx="4" '
-                   'fill="#C2A2EA" fill-opacity="%s"/>'
-                   % (bx, by, bw, 0.95 if i % 3 == 0 else 0.5))
-    return ('<rect x="10" y="34" width="84" height="140" rx="10" fill="#241C33"/>'
-            + blocks)
-
-
-def scr_list(hue):
-    rows = ""
-    for i in range(4):
-        rows += ('<rect x="18" y="%s" width="%s" height="10" rx="5" fill="#8A8078"/>'
-                 '<circle cx="%s" cy="%s" r="6" fill="%s"/>'
-                 % (60 + i * 26, 44 - i * 4, 80, 65 + i * 26,
-                    hue if i < 2 else "#CFC7BF"))
-    return ('<rect x="10" y="34" width="84" height="140" rx="10" fill="#F1ECE6"/>'
-            '<rect x="10" y="34" width="84" height="20" rx="10" fill="%s"/>' % hue
-            + rows)
-
-
-def scr_chat(hue):
-    return ('<rect x="10" y="34" width="84" height="140" rx="10" fill="#151A22"/>'
-            '<rect x="18" y="48" width="52" height="22" rx="11" fill="#3B4658"/>'
-            '<rect x="34" y="78" width="52" height="22" rx="11" fill="%s"/>' % hue
-            + '<rect x="18" y="108" width="62" height="22" rx="11" fill="#3B4658"/>'
-              '<rect x="18" y="140" width="76" height="20" rx="10" fill="#232B36"/>')
+def shot(name, cid):
+    """A real screenshot filling a phone's screen."""
+    return ('<clipPath id="%s"><rect x="10" y="34" width="84" height="140" '
+            'rx="10"/></clipPath>' % cid
+            + '<rect x="10" y="34" width="84" height="140" rx="10" '
+              'fill="#1C1A18"/>'
+            + img(photo(name), 10, 34, 84, 140, cid))
 
 
 def bubble(x, y, w, h, fill, right=False, sw=6):
@@ -210,17 +177,21 @@ def imessage(x, y, s=1.0):
 
 # ------------------------------------------------------------------ scenes
 def art_about(hue):
-    return (figure(96, 30, 1.0, -4)
+    return (figure(96, 22, 0.98, -4)
             + sticker(6, 30, "MS @ NYU &#8217;27", hue, INK, -9)
             + sticker(228, 208, "Ships clean code", "#FFFFFF", INK, 7, 12)
             + smiley(300, 40, 19))
 
 
 def art_education(hue):
-    return (books(24, 176, 0.9, -6) + scroll(276, 150, 1.0, 12, hue)
-            + cap(70, 44, 1.0, -8, hue)
+    disc = ('<clipPath id="edu"><circle cx="330" cy="190" r="62"/></clipPath>'
+            '<circle cx="330" cy="190" r="62" fill="none" stroke="%s" '
+            'stroke-width="14"/>%s'
+            % (CUT, img(photo("psu.jpg"), 268, 128, 124, 124, "edu")))
+    return (books(18, 186, 0.86, -6) + disc
+            + cap(56, 40, 0.98, -8, hue)
             + sticker(2, 44, "Dean&#8217;s List", hue, INK, -10)
-            + sticker(230, 240, "Penn State", "#FFFFFF", INK, 6, 12)
+            + sticker(196, 250, "Penn State", "#FFFFFF", INK, 6, 12)
             + sticker(292, 26, "AI / ML", "#FFFFFF", INK, 9, 12))
 
 
@@ -232,9 +203,9 @@ def art_craft(hue):
 
 
 def art_projects(hue):
-    return (phone(10, 62, 0.86, -12, scr_game())
-            + phone(276, 58, 0.86, 12, scr_chat(hue))
-            + phone(140, 34, 0.96, 0, scr_list(hue))
+    return (phone(10, 62, 0.86, -12, shot("p1.jpg", "s1"))
+            + phone(276, 58, 0.86, 12, shot("p3.jpg", "s3"))
+            + phone(140, 34, 0.96, 0, shot("p2.jpg", "s2"))
             + sticker(0, 22, "12 builds", hue, INK, -10)
             + sticker(228, 236, "SwiftUI", "#FFFFFF", INK, 7, 12)
             + smiley(322, 32, 18))
