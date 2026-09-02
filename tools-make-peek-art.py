@@ -21,6 +21,22 @@ def photo(name):
         return "data:image/jpeg;base64," + base64.b64encode(fh.read()).decode()
 
 
+CUT_FILTER = (
+    '<filter id="cut" x="-30%" y="-30%" width="160%" height="160%">'
+    '<feMorphology in="SourceAlpha" operator="dilate" radius="4" result="d"/>'
+    '<feFlood flood-color="#FFFFFF" result="w"/>'
+    '<feComposite in="w" in2="d" operator="in" result="edge"/>'
+    '<feMerge result="m"><feMergeNode in="edge"/>'
+    '<feMergeNode in="SourceGraphic"/></feMerge>'
+    '<feDropShadow in="m" dx="0" dy="9" stdDeviation="11" '
+    'flood-color="#000000" flood-opacity="0.5"/></filter>')
+
+
+def photo_webp(name):
+    with open(os.path.join(SMALL, name), "rb") as fh:
+        return "data:image/webp;base64," + base64.b64encode(fh.read()).decode()
+
+
 def img(href, x, y, w, h, clip):
     return ('<image href="%s" x="%s" y="%s" width="%s" height="%s" '
             'preserveAspectRatio="xMidYMid slice" clip-path="url(#%s)"/>'
@@ -86,22 +102,14 @@ def smiley(cx, cy, r):
 
 
 # ------------------------------------------------------------ illustrations
-# The cut-out silhouette: head, neck and shoulders, no rectangle in sight.
-BUST = ("M20 232c0-56 30-84 66-92-18-8-30-27-30-49 0-30 22-52 50-52"
-        "s50 22 50 52c0 22-12 41-30 49 36 8 66 36 66 92z")
-
-
 def figure(x, y, s=1.0, rot=0):
-    """The real headshot, clipped to that silhouette and given a white
-    sticker edge - the same treatment the reference uses on its cut-out."""
-    body = ('<clipPath id="bust"><path d="%s"/></clipPath>' % BUST
-            + '<path d="%s" fill="none" stroke="%s" stroke-width="15" '
-              'stroke-linejoin="round"/>' % (BUST, CUT)
-            + img(photo("user.jpg"), 6, 22, 220, 216, "bust")
-            + '<path d="%s" fill="none" stroke="%s" stroke-width="4" '
-              'stroke-opacity="0.5" stroke-linejoin="round"/>' % (BUST, CUT))
-    return ('<g transform="translate(%s %s) scale(%s) rotate(%s 110 130)" '
-            'filter="url(#d)">%s</g>' % (x, y, s, rot, body))
+    """The headshot with its background actually removed, given a white
+    sticker edge by dilating its own alpha - so the outline follows her,
+    not a generic silhouette."""
+    body = ('<image href="%s" x="0" y="0" width="256" height="300" '
+            'filter="url(#cut)"/>' % photo_webp("cut.webp"))
+    return ('<g transform="translate(%s %s) scale(%s) rotate(%s 128 150)">'
+            '%s</g>' % (x, y, s, rot, body))
 
 
 def cap(x, y, s=1.0, rot=0, hue="#8FB8EA"):
@@ -177,10 +185,12 @@ def imessage(x, y, s=1.0):
 
 # ------------------------------------------------------------------ scenes
 def art_about(hue):
-    return (figure(96, 22, 0.98, -4)
-            + sticker(6, 30, "MS @ NYU &#8217;27", hue, INK, -9)
-            + sticker(228, 208, "Ships clean code", "#FFFFFF", INK, 7, 12)
-            + smiley(300, 40, 19))
+    return (figure(92, 8, 0.92, -3)
+            + sticker(2, 40, "MS @ NYU &#8217;27", hue, INK, -9)
+            + sticker(4, 168, "git push", "#FFFFFF", INK, 8, 12)
+            + sticker(244, 96, "&lt;/&gt;", "#2F6BE0", "#FFFFFF", 11, 13)
+            + sticker(228, 214, "Ships clean code", "#FFFFFF", INK, 7, 12)
+            + smiley(316, 32, 18))
 
 
 def art_education(hue):
@@ -192,14 +202,19 @@ def art_education(hue):
             + cap(56, 40, 0.98, -8, hue)
             + sticker(2, 44, "Dean&#8217;s List", hue, INK, -10)
             + sticker(196, 250, "Penn State", "#FFFFFF", INK, 6, 12)
-            + sticker(292, 26, "AI / ML", "#FFFFFF", INK, 9, 12))
+            + sticker(292, 26, "AI / ML", "#FFFFFF", INK, 9, 12)
+            + sticker(6, 132, "O(n log n)", "#FFFFFF", INK, 7, 12)
+            + sticker(300, 108, "CS &#8226; NYU", hue, INK, -8, 12))
 
 
 def art_craft(hue):
     return (laptop(66, 54, 1.0, -5, hue)
             + sticker(4, 32, "PyTorch", hue, INK, -10)
-            + sticker(236, 214, "30+ reviews / wk", "#FFFFFF", INK, 7, 12)
-            + sticker(298, 34, "Python", "#FFFFFF", INK, 9, 12))
+            + sticker(236, 220, "30+ reviews / wk", "#FFFFFF", INK, 7, 12)
+            + sticker(300, 30, "Python", "#FFFFFF", INK, 9, 12)
+            + sticker(2, 146, "{ }", "#2F6BE0", "#FFFFFF", 8, 14)
+            + sticker(306, 148, "npm run dev", "#FFFFFF", INK, -8, 11)
+            + smiley(146, 246, 17))
 
 
 def art_projects(hue):
@@ -207,15 +222,19 @@ def art_projects(hue):
             + phone(276, 58, 0.86, 12, shot("p3.jpg", "s3"))
             + phone(140, 34, 0.96, 0, shot("p2.jpg", "s2"))
             + sticker(0, 22, "12 builds", hue, INK, -10)
-            + sticker(228, 236, "SwiftUI", "#FFFFFF", INK, 7, 12)
-            + smiley(322, 32, 18))
+            + sticker(226, 244, "SwiftUI", "#FFFFFF", INK, 7, 12)
+            + sticker(310, 22, "Xcode", "#FFFFFF", INK, 9, 12)
+            + sticker(0, 176, "git commit", "#FFFFFF", INK, 8, 11)
+            + smiley(346, 132, 17))
 
 
 def art_contact(hue):
     return (imessage(74, 46, 0.94)
             + sticker(4, 26, "Let&#8217;s talk", hue, INK, -9)
-            + sticker(214, 226, "Open to interns", "#FFFFFF", INK, 7, 12)
-            + smiley(318, 38, 18))
+            + sticker(214, 232, "Open to interns", "#FFFFFF", INK, 7, 12)
+            + sticker(2, 176, "@ inbox", "#FFFFFF", INK, 8, 12)
+            + sticker(302, 132, "say hi", hue, INK, -8, 12)
+            + smiley(330, 34, 18))
 
 
 ART = {"about": art_about, "education": art_education, "craft": art_craft,
@@ -269,9 +288,9 @@ for sid, hue, deep in SECTIONS:
            '<radialGradient id="g" cx="50%%" cy="50%%" r="62%%">'
            '<stop offset="0" stop-color="%s" stop-opacity="0.24"/>'
            '<stop offset="1" stop-color="%s" stop-opacity="0"/>'
-           '</radialGradient></defs>'
+           '</radialGradient>%s</defs>'
            '<ellipse cx="215" cy="150" rx="212" ry="146" fill="url(#g)"/>'
-           '%s</svg>' % (SHADOW, hue, deep, ART[sid](hue)))
+           '%s</svg>' % (SHADOW, hue, deep, CUT_FILTER, ART[sid](hue)))
     icon = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" '
             'width="48" height="48">'
             '<defs><linearGradient id="b" x1="0.1" y1="0" x2="0.75" y2="1">'
@@ -285,8 +304,7 @@ for sid, hue, deep in SECTIONS:
             '<path d="M0 13.5A13.5 13.5 0 0 1 13.5 0h21A13.5 13.5 0 0 1 48 13.5V22'
             'C36 28 12 28 0 22z" fill="url(#s)"/>'
             '<g transform="translate(24 24) scale(0.8) translate(-24 -24)">%s</g>'
-            '<rect x="0.7" y="0.7" width="46.6" height="46.6" rx="12.9" fill="none" '
-            'stroke="#FFFFFF" stroke-opacity="0.32"/></svg>'
+            '</svg>'
             % (hue, deep, ICONS[sid]))
     for name, data in (("peek-%s.svg" % sid, art), ("icon-%s.svg" % sid, icon)):
         with open(os.path.join(OUT, name), "w") as fh:
