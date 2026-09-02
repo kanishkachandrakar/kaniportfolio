@@ -65,6 +65,11 @@
     /* The stage slides right while a preview is open, so an anchor measured
        mid-preview already carries the shift. Measure every icon up front,
        while nothing is open, and always place from those resting boxes. */
+    // Fading .shell itself does nothing useful - it owns the backdrop-filter,
+    // and Chrome keeps painting that. Fade its contents instead.
+    var shellKids = document.querySelectorAll(".sidebar, .content");
+    var stage = document.querySelector(".stage");
+    var SHIFT_PX = 150;
     var restingBox = new WeakMap();
 
     function cacheBoxes() {
@@ -136,6 +141,10 @@
 
       if (active) placeItem(active, anchor);
       document.body.classList.add("is-peeking");
+      // Set inline so nothing in the cascade can get in the way. Both are
+      // compositor-only properties, so this stays cheap.
+      if (stage) stage.style.transform = "translateX(" + SHIFT_PX + "px)";
+      shellKids.forEach(function (el) { el.style.opacity = "0.18"; });
       peek.setAttribute("aria-hidden", "false");
       openId = id;
       openAnchor = anchor;
@@ -148,14 +157,22 @@
       });
       railItems.forEach(function (r) { r.classList.remove("is-peeked"); });
       document.body.classList.remove("is-peeking");
+      if (stage) stage.style.transform = "";
+      shellKids.forEach(function (el) { el.style.opacity = ""; });
       peek.setAttribute("aria-hidden", "true");
       openId = null;
       openAnchor = null;
     }
 
+    var ptrX = 0, ptrY = 0;
+
     function scheduleClose() {
       clearTimeout(closeTimer);
-      closeTimer = setTimeout(closePeek, 160);
+      closeTimer = setTimeout(function () {
+        // The icon may have slid out from under a stationary pointer.
+        if (inSafeZone(ptrX, ptrY)) return scheduleClose();
+        closePeek();
+      }, 200);
     }
 
     /* The icon, the art and the copy are three separate boxes with gaps
@@ -166,7 +183,11 @@
       if (!openAnchor) return false;
       var pad = 34;
       var active = peek.querySelector(".peek-item.is-active");
-      var boxes = [openAnchor.getBoundingClientRect()];
+      var ar = openAnchor.getBoundingClientRect();
+      var boxes = [{ left: ar.left - 150, right: ar.right,
+                     top: ar.top, bottom: ar.bottom },
+                   { left: ar.left, right: ar.right,
+                     top: ar.top, bottom: ar.bottom }];
       if (active) {
         boxes.push(active.querySelector(".peek-art").getBoundingClientRect());
         boxes.push(active.querySelector(".peek-body").getBoundingClientRect());
@@ -180,10 +201,12 @@
     }
 
     document.addEventListener("mousemove", function (e) {
+      ptrX = e.clientX;
+      ptrY = e.clientY;
       if (!openId) return;
-      if (inSafeZone(e.clientX, e.clientY)) clearTimeout(closeTimer);
+      if (inSafeZone(ptrX, ptrY)) clearTimeout(closeTimer);
       else scheduleClose();
-    });
+    }, { passive: true });
 
     railItems.forEach(function (item) {
       var id = item.getAttribute("data-peek");
