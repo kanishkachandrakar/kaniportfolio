@@ -927,6 +927,15 @@ body {
                 transform 0.42s cubic-bezier(0.34, 1.56, 0.52, 1);
   }
 
+  .stage {
+    transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+                filter 0.32s ease, opacity 0.32s ease;
+  }
+
+  body.is-peeking .stage {
+    transform: translateX(150px);
+  }
+
   body.is-peeking .shell {
     filter: blur(15px) saturate(0.85);
     opacity: 0.5;
@@ -961,12 +970,12 @@ body {
 .menu-btn { display: none; }
 
 /* ---------- Responsive ------------------------------------- */
-/* Wide screens: reserve a lane on the left wide enough for the rail and
-   the preview it opens, so the preview never covers the toolbar. */
+/* Wide screens: the margin equals the space the rail occupies, so the rail
+   and card centre together as one group instead of leaving a dead lane. */
 @media (min-width: 1301px) {
   .frame {
-    margin-left: 340px;
-    width: min(1060px, calc(100% - 340px));
+    margin-left: 116px;
+    width: min(1020px, calc(100% - 116px));
   }
 }
 

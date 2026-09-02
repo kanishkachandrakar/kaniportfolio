@@ -63,13 +63,22 @@
     /* One column to the left of the rail, vertically centred on the icon
        it belongs to, so the preview never sits over the toolbar. */
     function placeItem(item, anchor) {
-      var W = 250, EDGE = 16, GAP = 22, STACK = 10;
+      var SHIFT = 150, EDGE = 16, GAP = 22, STACK = 10;
       var art = item.querySelector(".peek-art");
       var body = item.querySelector(".peek-body");
       var a = anchor.getBoundingClientRect();
 
-      var left = a.left - GAP - W;
-      if (left < EDGE) left = a.right + GAP;   // no room: fall back to the other side
+      // The stage slides right while a preview is open; the anchor has not
+      // finished moving yet, so work from where it is about to land.
+      var iconLeft = a.left + SHIFT;
+      var iconRight = a.right + SHIFT;
+
+      var avail = iconLeft - GAP - EDGE;
+      var w = Math.max(184, Math.min(250, avail));
+      art.style.width = body.style.width = w + "px";
+
+      var left = iconLeft - GAP - w;
+      if (left < EDGE) left = iconRight + GAP;   // no room: use the other side
       art.style.left = body.style.left = Math.round(left) + "px";
 
       var total = art.offsetHeight + STACK + body.offsetHeight;
@@ -126,7 +135,9 @@
       if (!openAnchor) return false;
       var pad = 34;
       var active = peek.querySelector(".peek-item.is-active");
-      var boxes = [openAnchor.getBoundingClientRect()];
+      var ar = openAnchor.getBoundingClientRect();
+      var boxes = [{ left: ar.left, right: ar.right + 150,
+                     top: ar.top, bottom: ar.bottom }];
       if (active) {
         boxes.push(active.querySelector(".peek-art").getBoundingClientRect());
         boxes.push(active.querySelector(".peek-body").getBoundingClientRect());
