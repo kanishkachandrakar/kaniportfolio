@@ -140,8 +140,8 @@ body {
   z-index: 6;
   display: flex;
   flex-direction: column;
-  gap: 11px;
-  padding: 17px 12px;
+  gap: 9px;
+  padding: 15px 10px;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.10);
@@ -152,9 +152,9 @@ body {
 
 .rail a {
   display: block;
-  width: 64px;
-  height: 64px;
-  border-radius: 19px;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
   text-decoration: none;
   transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
@@ -164,9 +164,7 @@ body {
   display: block;
   width: 100%;
   height: 100%;
-  border-radius: 19px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  object-fit: cover;
+  border-radius: 14px;
 }
 
 .rail a:hover {
@@ -850,38 +848,18 @@ body {
 .peek-body { width: 250px; }
 
 .peek-art {
-  /* A stage for tilted photo tiles - transparent, so the artwork can tuck
-     under the icon instead of reading as a card beside it. */
-  width: 288px;
-  height: 208px;
-  position: relative;
+  /* One generated mockup - frameless, so it tucks under its icon. */
+  width: 310px;
+  height: 180px;
+  object-fit: contain;
   transform-origin: 100% 50%;
-  animation: peekArt 0.3s cubic-bezier(0.34, 1.4, 0.55, 1) both;
-}
-
-.peek-bg {
-  position: absolute;
-  left: -44px;
-  top: -30px;
-  width: 340px;
-  height: 246px;
-  opacity: 0.85;
-  transform: rotate(-4deg);
-}
-
-.peek-tile {
-  position: absolute;
-  object-fit: cover;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.62);
-  transform: rotate(var(--rot, 0deg));
+  animation: peekArt 0.26s cubic-bezier(0.34, 1.36, 0.55, 1) both;
 }
 
 .peek-body {
   text-align: center;
   transform-origin: 100% 50%;
-  animation: peekBody 0.28s cubic-bezier(0.34, 1.36, 0.55, 1) 0.02s both;
+  animation: peekBody 0.24s cubic-bezier(0.34, 1.32, 0.55, 1) 0.02s both;
 }
 
 @keyframes peekArt {
@@ -938,17 +916,18 @@ body {
 @media (min-width: 1301px) and (hover: hover) {
   .shell,
   .rail {
-    transition: filter 0.2s ease, opacity 0.2s ease, background 0.2s ease,
-                border-color 0.2s ease;
+    transition: opacity 0.18s ease, filter 0.18s ease, background 0.18s ease,
+                border-color 0.18s ease;
   }
 
   .rail-item {
-    transition: filter 0.2s ease, opacity 0.2s ease,
-                transform 0.24s cubic-bezier(0.34, 1.5, 0.52, 1);
+    transition: opacity 0.18s ease,
+                transform 0.2s cubic-bezier(0.34, 1.5, 0.52, 1);
   }
 
   .stage {
-    transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
   }
 
   body.is-peeking .stage {
@@ -956,7 +935,10 @@ body {
   }
 
   body.is-peeking .shell {
-    filter: blur(8px) saturate(0.85);
+    /* Drop the card's own 30px backdrop-filter so only one blur runs. */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    filter: blur(7px);
     opacity: 0.42;
   }
 
@@ -970,8 +952,7 @@ body {
   }
 
   body.is-peeking .rail-item:not(.is-peeked) {
-    filter: blur(4px);
-    opacity: 0.36;
+    opacity: 0.3;
   }
 
   body.is-peeking .rail-item.is-peeked {
@@ -995,8 +976,8 @@ body {
    and card centre together as one group instead of leaving a dead lane. */
 @media (min-width: 1301px) {
   .frame {
-    margin-left: 146px;
-    width: min(1020px, calc(100% - 146px));
+    margin-left: 124px;
+    width: min(1020px, calc(100% - 124px));
   }
 }
 

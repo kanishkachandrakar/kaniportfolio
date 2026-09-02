@@ -146,7 +146,7 @@
 
     function scheduleClose() {
       clearTimeout(closeTimer);
-      closeTimer = setTimeout(closePeek, 200);
+      closeTimer = setTimeout(closePeek, 160);
     }
 
     /* The icon, the art and the copy are three separate boxes with gaps
