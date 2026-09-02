@@ -63,7 +63,7 @@
     /* Place the art above the icon and the copy below it, both centred
        on the icon and nudged back inside the viewport if they would spill. */
     function placeItem(item, anchor) {
-      var W = 322, EDGE = 18, GAP = 16;
+      var W = 322, EDGE = 18, GAP = 4, BODY_GAP = 14;
       var art = item.querySelector(".peek-art");
       var body = item.querySelector(".peek-body");
       var a = anchor.getBoundingClientRect();
@@ -82,7 +82,7 @@
       art.style.left = Math.round(centre(art, art.offsetWidth)) + "px";
       art.style.top = Math.round(Math.max(a.top - GAP - art.offsetHeight, EDGE)) + "px";
 
-      var bodyTop = a.bottom + GAP;
+      var bodyTop = a.bottom + BODY_GAP;
       var overflow = bodyTop + body.offsetHeight - (window.innerHeight - EDGE);
       if (overflow > 0) bodyTop -= overflow;
       body.style.top = Math.round(bodyTop) + "px";

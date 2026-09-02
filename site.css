@@ -844,30 +844,37 @@ body {
 }
 
 .peek-art {
-  /* Sized to the image's own aspect so the rounding clips the artwork
-     itself rather than a letterboxed box around it. */
-  height: 196px;
+  height: 214px;
   width: auto;
-  max-width: 322px;
-  border-radius: 16px;
+  max-width: 330px;
   object-fit: contain;
-  filter: drop-shadow(0 26px 46px rgba(0, 0, 0, 0.62));
-  animation: peekArt 0.34s cubic-bezier(0.22, 1, 0.36, 1) both;
+  /* Feathered edges instead of a rounded frame - the art should read as
+     something that flew out of the icon, not a card that appeared. */
+  -webkit-mask-image:
+    radial-gradient(68% 66% at 50% 44%, #000 34%, rgba(0, 0, 0, 0.6) 66%, transparent 86%);
+  mask-image:
+    radial-gradient(68% 66% at 50% 44%, #000 34%, rgba(0, 0, 0, 0.6) 66%, transparent 86%);
+  /* Grows out of the icon: the origin is the edge nearest it. */
+  transform-origin: 50% 100%;
+  animation: peekArt 0.46s cubic-bezier(0.34, 1.48, 0.52, 1) both;
 }
 
 .peek-body {
   text-align: center;
-  animation: peekBody 0.34s cubic-bezier(0.22, 1, 0.36, 1) 0.03s both;
+  transform-origin: 50% 0;
+  animation: peekBody 0.42s cubic-bezier(0.34, 1.4, 0.55, 1) 0.05s both;
 }
 
 @keyframes peekArt {
-  from { opacity: 0; transform: translateY(22px) scale(0.94); }
-  to   { opacity: 1; transform: none; }
+  0%   { opacity: 0; transform: translateY(34px) scale(0.24); }
+  55%  { opacity: 1; }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @keyframes peekBody {
-  from { opacity: 0; transform: translateY(-12px); }
-  to   { opacity: 1; transform: none; }
+  0%   { opacity: 0; transform: translateY(-26px) scale(0.6); }
+  55%  { opacity: 1; }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .peek-title {
@@ -910,10 +917,14 @@ body {
    and becomes the anchor of the composition. */
 @media (min-width: 1301px) and (hover: hover) {
   .shell,
-  .rail,
-  .rail-item {
+  .rail {
     transition: filter 0.32s ease, opacity 0.32s ease, background 0.32s ease,
-                border-color 0.32s ease, transform 0.24s ease;
+                border-color 0.32s ease;
+  }
+
+  .rail-item {
+    transition: filter 0.32s ease, opacity 0.32s ease, background 0.3s ease,
+                transform 0.42s cubic-bezier(0.34, 1.56, 0.52, 1);
   }
 
   body.is-peeking .shell {
@@ -936,8 +947,8 @@ body {
   }
 
   body.is-peeking .rail-item.is-peeked {
-    background: rgba(255, 255, 255, 0.16);
-    transform: scale(1.14);
+    background: rgba(255, 255, 255, 0.18);
+    transform: scale(1.38);
   }
 }
 
