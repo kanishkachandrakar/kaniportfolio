@@ -841,66 +841,66 @@ body {
   position: fixed;
   left: 0;
   top: 0;
-  width: 322px;
+  width: 250px;
   pointer-events: auto;
 }
 
 .peek-art {
-  height: 224px;
-  width: auto;
-  max-width: 340px;
+  height: 150px;
+  width: 250px;
+  object-fit: contain;
   object-fit: contain;
   /* Transparent artwork, so it needs no mask - just a glow in its own
      colour, which is the same colour as the icon it grows out of. */
   filter: drop-shadow(0 18px 34px color-mix(in srgb, var(--hue) 30%, transparent));
   /* Grows out of the icon: the origin is the edge nearest it. */
-  transform-origin: 50% 100%;
-  animation: peekArt 0.46s cubic-bezier(0.34, 1.48, 0.52, 1) both;
+  transform-origin: 100% 50%;
+  animation: peekArt 0.44s cubic-bezier(0.34, 1.46, 0.52, 1) both;
 }
 
 .peek-body {
   text-align: center;
-  transform-origin: 50% 0;
-  animation: peekBody 0.42s cubic-bezier(0.34, 1.4, 0.55, 1) 0.05s both;
+  transform-origin: 100% 50%;
+  animation: peekBody 0.42s cubic-bezier(0.34, 1.4, 0.55, 1) 0.04s both;
 }
 
 @keyframes peekArt {
-  0%   { opacity: 0; transform: translateY(34px) scale(0.24); }
+  0%   { opacity: 0; transform: translateX(46px) scale(0.26); }
   55%  { opacity: 1; }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
 }
 
 @keyframes peekBody {
-  0%   { opacity: 0; transform: translateY(-26px) scale(0.6); }
+  0%   { opacity: 0; transform: translateX(38px) scale(0.62); }
   55%  { opacity: 1; }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
 }
 
 .peek-title {
   color: color-mix(in srgb, var(--hue) 34%, #F6F2EA);
-  margin: 0 0 7px;
-  font-size: 26px;
+  margin: 0 0 6px;
+  font-size: 21px;
   font-weight: 700;
   letter-spacing: -0.028em;
 }
 
 .peek-desc {
-  margin: 0 auto 16px;
-  max-width: 30ch;
-  font-size: 14px;
-  line-height: 1.55;
+  margin: 0 auto 14px;
+  max-width: 28ch;
+  font-size: 13px;
+  line-height: 1.52;
   color: var(--ink-soft);
 }
 
 .peek-cta {
   display: inline-flex;
   align-items: center;
-  padding: 11px 22px;
+  padding: 9px 18px;
   border-radius: 999px;
   border: 1px solid color-mix(in srgb, var(--hue) 40%, transparent);
   background: color-mix(in srgb, var(--hue) 16%, rgba(255, 255, 255, 0.08));
   color: var(--ink);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   text-decoration: none;
   backdrop-filter: blur(18px);
@@ -961,10 +961,13 @@ body {
 .menu-btn { display: none; }
 
 /* ---------- Responsive ------------------------------------- */
-/* Wide screens: offset the card to the right so the rail has open space
-   on its left instead of sitting hard against the viewport edge. */
+/* Wide screens: reserve a lane on the left wide enough for the rail and
+   the preview it opens, so the preview never covers the toolbar. */
 @media (min-width: 1301px) {
-  .frame { margin-left: 120px; }
+  .frame {
+    margin-left: 340px;
+    width: min(1060px, calc(100% - 340px));
+  }
 }
 
 @media (max-width: 1300px) {

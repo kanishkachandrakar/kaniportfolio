@@ -60,32 +60,24 @@
       return window.matchMedia("(min-width: 1301px) and (hover: hover)").matches;
     }
 
-    /* Place the art above the icon and the copy below it, both centred
-       on the icon and nudged back inside the viewport if they would spill. */
+    /* One column to the left of the rail, vertically centred on the icon
+       it belongs to, so the preview never sits over the toolbar. */
     function placeItem(item, anchor) {
-      var W = 322, EDGE = 18, GAP = 4, BODY_GAP = 14;
+      var W = 250, EDGE = 16, GAP = 22, STACK = 10;
       var art = item.querySelector(".peek-art");
       var body = item.querySelector(".peek-body");
       var a = anchor.getBoundingClientRect();
 
-      var cx = a.left + a.width / 2;
+      var left = a.left - GAP - W;
+      if (left < EDGE) left = a.right + GAP;   // no room: fall back to the other side
+      art.style.left = body.style.left = Math.round(left) + "px";
 
-      function centre(el, w) {
-        return Math.min(Math.max(cx - w / 2, EDGE), window.innerWidth - w - EDGE);
-      }
+      var total = art.offsetHeight + STACK + body.offsetHeight;
+      var top = a.top + a.height / 2 - total / 2;
+      top = Math.min(Math.max(top, EDGE), window.innerHeight - total - EDGE);
 
-      body.style.left = Math.round(centre(body, W)) + "px";
-
-      // The art keeps its own aspect, so measure it before centring.
-      art.style.left = "0px";
-      art.style.top = "0px";
-      art.style.left = Math.round(centre(art, art.offsetWidth)) + "px";
-      art.style.top = Math.round(Math.max(a.top - GAP - art.offsetHeight, EDGE)) + "px";
-
-      var bodyTop = a.bottom + BODY_GAP;
-      var overflow = bodyTop + body.offsetHeight - (window.innerHeight - EDGE);
-      if (overflow > 0) bodyTop -= overflow;
-      body.style.top = Math.round(bodyTop) + "px";
+      art.style.top = Math.round(top) + "px";
+      body.style.top = Math.round(top + art.offsetHeight + STACK) + "px";
     }
 
     function openPeek(id, anchor) {
@@ -123,8 +115,35 @@
 
     function scheduleClose() {
       clearTimeout(closeTimer);
-      closeTimer = setTimeout(closePeek, 180);
+      closeTimer = setTimeout(closePeek, 260);
     }
+
+    /* The icon, the art and the copy are three separate boxes with gaps
+       between them. Treat their union (plus a margin) as one hover zone,
+       otherwise crossing a gap fires mouseleave and the preview flickers
+       shut while the pointer is still heading for it. */
+    function inSafeZone(x, y) {
+      if (!openAnchor) return false;
+      var pad = 34;
+      var active = peek.querySelector(".peek-item.is-active");
+      var boxes = [openAnchor.getBoundingClientRect()];
+      if (active) {
+        boxes.push(active.querySelector(".peek-art").getBoundingClientRect());
+        boxes.push(active.querySelector(".peek-body").getBoundingClientRect());
+      }
+      var l = Infinity, r = -Infinity, t = Infinity, b = -Infinity;
+      boxes.forEach(function (bx) {
+        l = Math.min(l, bx.left); r = Math.max(r, bx.right);
+        t = Math.min(t, bx.top);  b = Math.max(b, bx.bottom);
+      });
+      return x >= l - pad && x <= r + pad && y >= t - pad && y <= b + pad;
+    }
+
+    document.addEventListener("mousemove", function (e) {
+      if (!openId) return;
+      if (inSafeZone(e.clientX, e.clientY)) clearTimeout(closeTimer);
+      else scheduleClose();
+    });
 
     railItems.forEach(function (item) {
       var id = item.getAttribute("data-peek");
