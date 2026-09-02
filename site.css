@@ -829,82 +829,71 @@ body {
   pointer-events: none;
 }
 
-/* Anchored beside the hovered rail icon, not centred on the page.
-   JS sets left/top from the icon's position. */
-.peek-card {
+.peek-item { display: none; }
+.peek-item.is-active { display: block; }
+
+/* Both halves are placed by JS relative to the icon: art above it,
+   copy below it, each centred on the icon and clamped to the viewport. */
+.peek-art,
+.peek-body {
   position: fixed;
   left: 0;
   top: 0;
-  display: none;
-  width: 372px;
-  text-align: center;
-}
-
-.peek-card.is-active {
-  display: block;
+  width: 322px;
   pointer-events: auto;
-  animation: peekIn 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
-  transform-origin: left center;
-}
-
-@keyframes peekIn {
-  from { opacity: 0; transform: translateX(-14px) scale(0.97); }
-  to   { opacity: 1; transform: none; }
 }
 
 .peek-art {
-  display: block;
-  width: 100%;
-  height: 208px;
-  /* contain, not cover: these are whole illustrations and app mockups,
-     and cropping them loses the subject. */
+  /* Sized to the image's own aspect so the rounding clips the artwork
+     itself rather than a letterboxed box around it. */
+  height: 196px;
+  width: auto;
+  max-width: 322px;
+  border-radius: 16px;
   object-fit: contain;
-  padding: 16px;
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: linear-gradient(152deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.025));
-  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.62);
+  filter: drop-shadow(0 26px 46px rgba(0, 0, 0, 0.62));
+  animation: peekArt 0.34s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.peek-icon {
-  display: grid;
-  place-items: center;
-  width: 62px;
-  height: 62px;
-  margin: -31px auto 16px;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: linear-gradient(150deg, #4A3B2C, #251D18);
-  border-color: rgba(232, 184, 124, 0.34);
-  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.55);
-  color: var(--accent);
-  font-size: 23px;
+.peek-body {
+  text-align: center;
+  animation: peekBody 0.34s cubic-bezier(0.22, 1, 0.36, 1) 0.03s both;
+}
+
+@keyframes peekArt {
+  from { opacity: 0; transform: translateY(22px) scale(0.94); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes peekBody {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: none; }
 }
 
 .peek-title {
   margin: 0 0 7px;
-  font-size: 25px;
+  font-size: 26px;
   font-weight: 700;
   letter-spacing: -0.028em;
 }
 
 .peek-desc {
-  margin: 0 auto 20px;
-  max-width: 34ch;
-  font-size: 14.5px;
-  line-height: 1.6;
+  margin: 0 auto 16px;
+  max-width: 30ch;
+  font-size: 14px;
+  line-height: 1.55;
   color: var(--ink-soft);
 }
 
 .peek-cta {
   display: inline-flex;
   align-items: center;
-  padding: 12px 24px;
+  padding: 11px 22px;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   background: rgba(255, 255, 255, 0.12);
   color: var(--ink);
-  font-size: 14.5px;
+  font-size: 14px;
   font-weight: 500;
   text-decoration: none;
   backdrop-filter: blur(18px);
@@ -917,17 +906,38 @@ body {
   transform: translateY(-1px);
 }
 
-/* The page recedes behind the card. Only here, where the rail floats
-   free of the card and a pointer exists - the filter would otherwise
-   trap the fixed mobile drawer inside .stage. */
+/* Everything recedes except the icon being pointed at, which stays sharp
+   and becomes the anchor of the composition. */
 @media (min-width: 1301px) and (hover: hover) {
-  .stage {
-    transition: filter 0.32s ease, opacity 0.32s ease;
+  .shell,
+  .rail,
+  .rail-item {
+    transition: filter 0.32s ease, opacity 0.32s ease, background 0.32s ease,
+                border-color 0.32s ease, transform 0.24s ease;
   }
 
-  body.is-peeking .stage {
+  body.is-peeking .shell {
     filter: blur(15px) saturate(0.85);
     opacity: 0.5;
+  }
+
+  /* The pill drops away so the icons read as free-floating. */
+  body.is-peeking .rail {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  body.is-peeking .rail-item:not(.is-peeked) {
+    filter: blur(5px);
+    opacity: 0.4;
+  }
+
+  body.is-peeking .rail-item.is-peeked {
+    background: rgba(255, 255, 255, 0.16);
+    transform: scale(1.14);
   }
 }
 

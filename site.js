@@ -60,23 +60,32 @@
       return window.matchMedia("(min-width: 1301px) and (hover: hover)").matches;
     }
 
-    /* Park the card beside its icon, kept inside the viewport. */
-    function placeCard(card, anchor) {
-      var GAP = 22, EDGE = 16;
+    /* Place the art above the icon and the copy below it, both centred
+       on the icon and nudged back inside the viewport if they would spill. */
+    function placeItem(item, anchor) {
+      var W = 322, EDGE = 18, GAP = 16;
+      var art = item.querySelector(".peek-art");
+      var body = item.querySelector(".peek-body");
       var a = anchor.getBoundingClientRect();
-      var w = card.offsetWidth;
-      var h = card.offsetHeight;
 
-      var left = a.right + GAP;
-      if (left + w > window.innerWidth - EDGE) {
-        left = Math.max(EDGE, a.left - GAP - w);
+      var cx = a.left + a.width / 2;
+
+      function centre(el, w) {
+        return Math.min(Math.max(cx - w / 2, EDGE), window.innerWidth - w - EDGE);
       }
 
-      var top = a.top + a.height / 2 - h / 2;
-      top = Math.min(Math.max(top, EDGE), window.innerHeight - h - EDGE);
+      body.style.left = Math.round(centre(body, W)) + "px";
 
-      card.style.left = Math.round(left) + "px";
-      card.style.top = Math.round(top) + "px";
+      // The art keeps its own aspect, so measure it before centring.
+      art.style.left = "0px";
+      art.style.top = "0px";
+      art.style.left = Math.round(centre(art, art.offsetWidth)) + "px";
+      art.style.top = Math.round(Math.max(a.top - GAP - art.offsetHeight, EDGE)) + "px";
+
+      var bodyTop = a.bottom + GAP;
+      var overflow = bodyTop + body.offsetHeight - (window.innerHeight - EDGE);
+      if (overflow > 0) bodyTop -= overflow;
+      body.style.top = Math.round(bodyTop) + "px";
     }
 
     function openPeek(id, anchor) {
@@ -84,13 +93,16 @@
       clearTimeout(closeTimer);
 
       var active = null;
-      peek.querySelectorAll(".peek-card").forEach(function (c) {
+      peek.querySelectorAll(".peek-item").forEach(function (c) {
         var on = c.getAttribute("data-peek") === id;
         c.classList.toggle("is-active", on);
         if (on) active = c;
       });
+      railItems.forEach(function (r) {
+        r.classList.toggle("is-peeked", r === anchor);
+      });
 
-      if (active) placeCard(active, anchor);
+      if (active) placeItem(active, anchor);
       document.body.classList.add("is-peeking");
       peek.setAttribute("aria-hidden", "false");
       openId = id;
@@ -99,9 +111,10 @@
 
     function closePeek() {
       clearTimeout(closeTimer);
-      peek.querySelectorAll(".peek-card").forEach(function (c) {
+      peek.querySelectorAll(".peek-item").forEach(function (c) {
         c.classList.remove("is-active");
       });
+      railItems.forEach(function (r) { r.classList.remove("is-peeked"); });
       document.body.classList.remove("is-peeking");
       peek.setAttribute("aria-hidden", "true");
       openId = null;
@@ -133,8 +146,8 @@
     window.addEventListener("resize", function () {
       if (!openId) return;
       if (!peekEnabled()) return closePeek();
-      var active = peek.querySelector(".peek-card.is-active");
-      if (active && openAnchor) placeCard(active, openAnchor);
+      var active = peek.querySelector(".peek-item.is-active");
+      if (active && openAnchor) placeItem(active, openAnchor);
     });
   }
 
