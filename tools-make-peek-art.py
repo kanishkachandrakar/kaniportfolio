@@ -1,54 +1,45 @@
 # -*- coding: utf-8 -*-
-"""Draw everything the rail needs: one app-icon tile and one product mockup
-per section. All generated - no photographs.
+"""Draw the rail icons and the illustration each one opens.
+
+Every asset is generated - flat cut-out illustrations with a white sticker
+outline, plus badges carrying real phrases.
 Run: python3 tools-make-peek-art.py
 """
 import os
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "images")
 
-GLASS = "#211D1A"
-W = "#FFFFFF"
-
-
-def bar(x, y, w, h=6, o=0.30, fill=W):
-    return ('<rect x="%s" y="%s" width="%s" height="%s" rx="%s" fill="%s" '
-            'fill-opacity="%s"/>' % (x, y, w, h, h / 2.0, fill, o))
-
-
-def box(x, y, w, h, r, fill, o=1.0):
-    return ('<rect x="%s" y="%s" width="%s" height="%s" rx="%s" fill="%s" '
-            'fill-opacity="%s"/>' % (x, y, w, h, r, fill, o))
-
-
-def dot(cx, cy, r, fill, o=1.0):
-    return ('<circle cx="%s" cy="%s" r="%s" fill="%s" fill-opacity="%s"/>'
-            % (cx, cy, r, fill, o))
-
-
-def screen(x, y, w, h, rot, inner):
-    """A device-ish window: frame, title bar with dots, then its content."""
-    cx, cy = x + w / 2.0, y + h / 2.0
-    return ('<g transform="rotate(%s %s %s)" filter="url(#d)">'
-            '<rect x="%s" y="%s" width="%s" height="%s" rx="16" fill="%s" '
-            'stroke="%s" stroke-opacity="0.18"/>'
-            '%s%s%s'
-            '<line x1="%s" y1="%s" x2="%s" y2="%s" stroke="%s" '
-            'stroke-opacity="0.12"/>'
-            '%s</g>'
-            % (rot, cx, cy, x, y, w, h, GLASS, W,
-               dot(x + 15, y + 15, 3, W, 0.30),
-               dot(x + 25, y + 15, 3, W, 0.18),
-               dot(x + 35, y + 15, 3, W, 0.18),
-               x, y + 30, x + w, y + 30, W,
-               inner))
-
-
 FONT = "Helvetica Neue,Helvetica,Arial,sans-serif"
+INK = "#2A2521"
+SKIN = "#EFC49C"
+HAIR = "#241A15"
+NAVY = "#2B3A58"
+CUT = "#FFFFFF"          # the sticker cut-out edge
+
+
+def o(fill, sw=7):
+    return ('fill="%s" stroke="%s" stroke-width="%s" stroke-linejoin="round" '
+            'stroke-linecap="round"' % (fill, CUT, sw))
+
+
+def path(d, fill, sw=7):
+    return '<path d="%s" %s/>' % (d, o(fill, sw))
+
+
+def rect(x, y, w, h, r, fill, sw=7):
+    return ('<rect x="%s" y="%s" width="%s" height="%s" rx="%s" %s/>'
+            % (x, y, w, h, r, o(fill, sw)))
+
+
+def circ(cx, cy, r, fill, sw=7):
+    return '<circle cx="%s" cy="%s" r="%s" %s/>' % (cx, cy, r, o(fill, sw))
+
+
+def plain(shape):
+    return shape
 
 
 def sticker(x, y, text, fill, fg, rot, fs=13):
-    """A tilted badge with a white sticker outline and actual words on it."""
     w = len(text) * fs * 0.60 + 26
     h = fs + 17
     cx, cy = x + w / 2.0, y + h / 2.0
@@ -57,144 +48,203 @@ def sticker(x, y, text, fill, fg, rot, fs=13):
             '<rect x="%s" y="%s" width="%s" height="%s" rx="%s" fill="%s"/>'
             '<text x="%s" y="%s" text-anchor="middle" font-family="%s" '
             'font-size="%s" font-weight="700" fill="%s">%s</text></g>'
-            % (rot, cx, cy,
-               x - 3.5, y - 3.5, w + 7, h + 7, (h + 7) / 2.0,
+            % (rot, cx, cy, x - 3.5, y - 3.5, w + 7, h + 7, (h + 7) / 2.0,
                x, y, w, h, h / 2.0, fill,
                cx, y + h - (h - fs) / 2.0 - 1, FONT, fs, fg, text))
 
 
 def smiley(cx, cy, r):
-    return ('<g filter="url(#d)">'
-            '<circle cx="%s" cy="%s" r="%s" fill="#FFFFFF"/>'
+    return ('<g filter="url(#d)"><circle cx="%s" cy="%s" r="%s" fill="#FFFFFF"/>'
             '<circle cx="%s" cy="%s" r="%s" fill="#FFD452"/>'
-            '<circle cx="%s" cy="%s" r="%s" fill="#2A2521"/>'
-            '<circle cx="%s" cy="%s" r="%s" fill="#2A2521"/>'
-            '<path d="M%s %sq%s %s %s 0" stroke="#2A2521" stroke-width="%s" '
+            '<circle cx="%s" cy="%s" r="%s" fill="%s"/>'
+            '<circle cx="%s" cy="%s" r="%s" fill="%s"/>'
+            '<path d="M%s %sq%s %s %s 0" stroke="%s" stroke-width="%s" '
             'fill="none" stroke-linecap="round"/></g>'
             % (cx, cy, r + 3.5, cx, cy, r,
-               cx - r * 0.34, cy - r * 0.16, r * 0.13,
-               cx + r * 0.34, cy - r * 0.16, r * 0.13,
+               cx - r * 0.34, cy - r * 0.16, r * 0.13, INK,
+               cx + r * 0.34, cy - r * 0.16, r * 0.13, INK,
                cx - r * 0.42, cy + r * 0.24, r * 0.42, r * 0.42, r * 0.84,
-               r * 0.15))
+               INK, r * 0.15))
 
 
-def tag(x, y, w, hue, label_w):
-    """A small floating chip, like the file tags on the reference site."""
-    return ('<g transform="rotate(9 %s %s)" filter="url(#d)">'
-            '<rect x="%s" y="%s" width="%s" height="34" rx="10" fill="#F7F3EC"/>'
-            '%s%s</g>'
-            % (x + w / 2.0, y + 17, x, y, w,
-               box(x + 10, y + 10, 14, 14, 4, hue, 0.9),
-               bar(x + 30, y + 14, w - 42, 6, 0.55, "#2A2521")))
+# ------------------------------------------------------------ illustrations
+def figure(x, y, s=1.0, rot=0):
+    """A cut-out of a person. Drawn twice: once fattened in white for the
+    sticker edge, then in colour on top - otherwise the outlines of the
+    overlapping parts read as a hood."""
+    parts = [
+        ("path", "M18 214C18 150 50 124 86 124s68 26 68 90z", NAVY),   # shoulders
+        ("rect", (74, 92, 24, 38, 11), SKIN),                          # neck
+        ("rect", (40, 62, 20, 96, 10), HAIR),                          # left lock
+        ("rect", (112, 62, 20, 96, 10), HAIR),                         # right lock
+        ("circle", (86, 84, 41), SKIN),                                # head
+        ("path", "M45 80c1-32 18-50 41-50s40 18 41 50c-9-19-23-29-41-29"
+                 "s-32 10-41 29z", HAIR),                              # fringe
+    ]
+
+    def draw(fill_override=None, sw=0):
+        out = ""
+        for kind, a, fill in parts:
+            f = fill_override or fill
+            extra = ('stroke="%s" stroke-width="%s" stroke-linejoin="round"'
+                     % (CUT, sw)) if sw else ""
+            if kind == "path":
+                out += '<path d="%s" fill="%s" %s/>' % (a, f, extra)
+            elif kind == "rect":
+                out += ('<rect x="%s" y="%s" width="%s" height="%s" rx="%s" '
+                        'fill="%s" %s/>' % (a[0], a[1], a[2], a[3], a[4], f, extra))
+            else:
+                out += ('<circle cx="%s" cy="%s" r="%s" fill="%s" %s/>'
+                        % (a[0], a[1], a[2], f, extra))
+        return out
+
+    face = ('<circle cx="72" cy="86" r="3.8" fill="%s"/>'
+            '<circle cx="100" cy="86" r="3.8" fill="%s"/>'
+            '<path d="M76 102q10 8 20 0" stroke="%s" stroke-width="3.4" '
+            'fill="none" stroke-linecap="round"/>'
+            '<path d="M70 132 86 168 102 132" stroke="#F7F3EC" stroke-width="9" '
+            'fill="none" stroke-linejoin="round"/>' % (INK, INK, INK))
+
+    body = draw(CUT, 15) + draw() + face
+    return ('<g transform="translate(%s %s) scale(%s) rotate(%s 86 120)" '
+            'filter="url(#d)">%s</g>' % (x, y, s, rot, body))
 
 
-# --------------------------------------------------------------- content
-# Each content function takes its screen's origin so the content follows
-# the frame it belongs to rather than sitting at fixed coordinates.
-def c_about(x, y, w, hue):
-    return (dot(x + 40, y + 62, 17, hue, 0.9)
-            + bar(x + 64, y + 54, w - 92, 7, 0.38)
-            + bar(x + 64, y + 68, w - 118, 5, 0.16)
-            + box(x + 16, y + 92, w - 32, 30, 8, W, 0.07)
-            + bar(x + 28, y + 103, w - 76, 6, 0.22)
-            + box(x + 16, y + 132, (w - 40) / 2.0, 22, 7, hue, 0.34)
-            + box(x + 24 + (w - 40) / 2.0, y + 132, (w - 40) / 2.0, 22, 7, W, 0.10))
+def cap(x, y, s=1.0, rot=0, hue="#8FB8EA"):
+    body = (path("M84 8 164 44 84 80 4 44z", hue)
+            + path("M30 56v34c0 15 24 26 54 26s54-11 54-26V56L84 80z", "#F2F5FA")
+            + '<path d="M152 50v42" stroke="%s" stroke-width="7" fill="none" '
+              'stroke-linecap="round"/>' % CUT
+            + '<path d="M152 50v42" stroke="%s" stroke-width="3.5" fill="none" '
+              'stroke-linecap="round"/>' % INK
+            + circ(152, 100, 10, "#FFD452", 5))
+    return ('<g transform="translate(%s %s) scale(%s) rotate(%s 84 60)" '
+            'filter="url(#d)">%s</g>' % (x, y, s, rot, body))
 
 
-def c_rows(x, y, w, hue):
-    out = ""
+def books(x, y, s=1.0, rot=0):
+    body = (rect(0, 56, 140, 26, 7, "#E5798A", 5)
+            + rect(8, 30, 132, 26, 7, "#7FB6E8", 5)
+            + rect(0, 4, 128, 26, 7, "#FBD489", 5))
+    return ('<g transform="translate(%s %s) scale(%s) rotate(%s 70 44)" '
+            'filter="url(#d)">%s</g>' % (x, y, s, rot, body))
+
+
+def scroll(x, y, s=1.0, rot=0, hue="#8FB8EA"):
+    body = (rect(0, 0, 68, 92, 8, "#F7F3EC", 5)
+            + '<path d="M14 22h40M14 40h40M14 58h26" stroke="%s" '
+              'stroke-width="4" stroke-linecap="round"/>' % INK
+            + rect(-8, 34, 84, 18, 9, hue, 5))
+    return ('<g transform="translate(%s %s) scale(%s) rotate(%s 34 46)" '
+            'filter="url(#d)">%s</g>' % (x, y, s, rot, body))
+
+
+def laptop(x, y, s=1.0, rot=0, hue="#93D3AC"):
+    code = ""
+    for i, (dx, w, c) in enumerate([(0, 54, hue), (0, 88, "#DDE6E1"),
+                                    (12, 66, "#DDE6E1"), (12, 44, hue),
+                                    (0, 74, "#DDE6E1")]):
+        code += ('<rect x="%s" y="%s" width="%s" height="8" rx="4" fill="%s" '
+                 'fill-opacity="0.92"/>' % (34 + dx, 40 + i * 17, w, c))
+    body = (rect(14, 12, 172, 116, 12, "#F7F3EC", 6)
+            + '<rect x="26" y="24" width="148" height="92" rx="7" fill="#1C1A18"/>'
+            + code
+            + path("M0 128h200l16 26H-16z", "#DCE3E8", 6))
+    return ('<g transform="translate(%s %s) scale(%s) rotate(%s 100 84)" '
+            'filter="url(#d)">%s</g>' % (x, y, s, rot, body))
+
+
+def phone(x, y, s, rot, screen):
+    body = rect(0, 0, 104, 190, 20, "#F7F3EC", 6) + screen
+    return ('<g transform="translate(%s %s) scale(%s) rotate(%s 52 95)" '
+            'filter="url(#d)">%s</g>' % (x, y, s, rot, body))
+
+
+def scr_game():
+    blocks = ""
+    for i, (bx, by, bw) in enumerate([(16, 46, 32), (54, 46, 26), (16, 74, 20),
+                                      (44, 74, 36), (16, 102, 44), (66, 102, 14),
+                                      (16, 130, 26), (48, 130, 32)]):
+        blocks += ('<rect x="%s" y="%s" width="%s" height="18" rx="4" '
+                   'fill="#C2A2EA" fill-opacity="%s"/>'
+                   % (bx, by, bw, 0.95 if i % 3 == 0 else 0.5))
+    return ('<rect x="10" y="34" width="84" height="140" rx="10" fill="#241C33"/>'
+            + blocks)
+
+
+def scr_list(hue):
+    rows = ""
     for i in range(4):
-        yy = y + 46 + i * 27
-        out += dot(x + 22, yy + 7, 6, hue if i == 0 else W, 1 if i == 0 else 0.20)
-        out += bar(x + 36, yy + 1, w - 60 - i * 8, 6, 0.30)
-        out += bar(x + 36, yy + 12, w - 96, 5, 0.14)
-    return out
+        rows += ('<rect x="18" y="%s" width="%s" height="10" rx="5" fill="#8A8078"/>'
+                 '<circle cx="%s" cy="%s" r="6" fill="%s"/>'
+                 % (60 + i * 26, 44 - i * 4, 80, 65 + i * 26,
+                    hue if i < 2 else "#CFC7BF"))
+    return ('<rect x="10" y="34" width="84" height="140" rx="10" fill="#F1ECE6"/>'
+            '<rect x="10" y="34" width="84" height="20" rx="10" fill="%s"/>' % hue
+            + rows)
 
 
-def c_chips(x, y, w, hue):
-    out = bar(x + 16, y + 46, 52, 7, 0.34)
-    rows = [(0, 42), (48, 34), (88, 46), (0, 36), (42, 52), (100, 34),
-            (0, 48), (54, 38), (98, 40)]
-    for i, (dx, cw) in enumerate(rows):
-        r = i // 3
-        out += box(x + 16 + dx, y + 66 + r * 26, cw, 19, 6,
-                   hue if i % 3 == 0 else W, 0.34 if i % 3 == 0 else 0.11)
-    return out
+def scr_chat(hue):
+    return ('<rect x="10" y="34" width="84" height="140" rx="10" fill="#151A22"/>'
+            '<rect x="18" y="48" width="52" height="22" rx="11" fill="#3B4658"/>'
+            '<rect x="34" y="78" width="52" height="22" rx="11" fill="%s"/>' % hue
+            + '<rect x="18" y="108" width="62" height="22" rx="11" fill="#3B4658"/>'
+              '<rect x="18" y="140" width="76" height="20" rx="10" fill="#232B36"/>')
 
 
-def c_chart(x, y, w, hue):
-    out = bar(x + 16, y + 46, 46, 7, 0.34)
-    for i, h in enumerate((22, 40, 30, 52, 44, 62)):
-        out += box(x + 18 + i * 19, y + 132 - h, 12, h, 4, hue,
-                   0.85 if i in (3, 5) else 0.34)
-    return out + bar(x + 16, y + 142, w - 40, 5, 0.12)
+def bubble(x, y, w, h, fill, right=False, sw=6):
+    tail = ("M%s %sq14 4 20 12-16 0-24-8z" % (x + w - 12, y + h - 18)
+            if right else "M%s %sq-14 4-20 12 16 0 24-8z" % (x + 12, y + h - 18))
+    return (rect(x, y, w, h, h / 2.0, fill, sw) + path(tail, fill, sw))
 
 
-def c_app(x, y, w, hue, accent):
-    return (box(x + 14, y + 42, w - 28, 58, 12, accent, 0.55)
-            + bar(x + 14, y + 110, w - 46, 7, 0.30)
-            + bar(x + 14, y + 124, w - 72, 6, 0.14)
-            + box(x + 14, y + 144, w - 28, 22, 8, accent, 0.34))
+def imessage(x, y, s=1.0):
+    body = (bubble(0, 0, 150, 46, "#E9E4DE")
+            + bubble(58, 62, 158, 48, "#2C8BF0", True)
+            + bubble(0, 126, 116, 44, "#E9E4DE")
+            + ''.join('<circle cx="%s" cy="148" r="6.5" fill="#8A8078"/>' % cx
+                      for cx in (36, 58, 80)))
+    return ('<g transform="translate(%s %s) scale(%s)" filter="url(#d)">%s</g>'
+            % (x, y, s, body))
 
 
-def c_compose(x, y, w, hue):
-    return (bar(x + 16, y + 46, 62, 7, 0.34)
-            + box(x + 16, y + 62, w - 32, 26, 8, W, 0.07)
-            + box(x + 16, y + 96, w - 32, 26, 8, W, 0.07)
-            + box(x + 16, y + 132, 62, 24, 9, hue, 0.6)
-            + bar(x + 28, y + 141, 38, 6, 0.55, "#2A2521"))
-
-
-def c_badge(x, y, w, hue):
-    cx = x + w / 2.0
-    return ('<polygon points="%s,%s %s,%s %s,%s %s,%s" fill="%s" '
-            'fill-opacity="0.85"/>'
-            % (cx, y + 50, cx + 46, y + 71, cx, y + 92, cx - 46, y + 71, hue)
-            + bar(x + 18, y + 110, w - 36, 7, 0.30)
-            + bar(x + 30, y + 126, w - 60, 6, 0.14)
-            + box(x + 18, y + 146, w - 36, 22, 7, W, 0.10))
-
-
-# Screens are spaced apart rather than stacked, so each reads on its own.
+# ------------------------------------------------------------------ scenes
 def art_about(hue):
-    return (screen(14, 54, 160, 178, -7, c_about(14, 54, 160, hue))
-            + screen(210, 34, 176, 196, 6, c_rows(210, 34, 176, hue))
-            + sticker(20, 12, "MS @ NYU &#8217;27", hue, "#2A2521", -8)
-            + sticker(268, 200, "Ships clean code", "#FFFFFF", "#2A2521", 7, 12)
-            + smiley(392, 60, 18))
+    return (figure(96, 30, 1.0, -4)
+            + sticker(6, 30, "MS @ NYU &#8217;27", hue, INK, -9)
+            + sticker(228, 208, "Ships clean code", "#FFFFFF", INK, 7, 12)
+            + smiley(300, 40, 19))
 
 
 def art_education(hue):
-    return (screen(14, 44, 150, 190, -8, c_badge(14, 44, 150, hue))
-            + screen(200, 38, 186, 196, 5, c_rows(200, 38, 186, hue))
-            + sticker(30, 8, "Dean&#8217;s List", hue, "#2A2521", -7)
-            + sticker(246, 206, "AI / ML", "#FFFFFF", "#2A2521", 8, 12)
-            + sticker(300, 6, "Penn State", "#FFFFFF", "#2A2521", 6, 12))
+    return (books(24, 176, 0.9, -6) + scroll(276, 150, 1.0, 12, hue)
+            + cap(70, 44, 1.0, -8, hue)
+            + sticker(2, 44, "Dean&#8217;s List", hue, INK, -10)
+            + sticker(230, 240, "Penn State", "#FFFFFF", INK, 6, 12)
+            + sticker(292, 26, "AI / ML", "#FFFFFF", INK, 9, 12))
 
 
 def art_craft(hue):
-    return (screen(10, 48, 158, 180, -8, c_chart(10, 48, 158, hue))
-            + screen(202, 30, 182, 206, 6, c_chips(202, 30, 182, hue))
-            + sticker(22, 10, "PyTorch", hue, "#2A2521", -8)
-            + sticker(238, 208, "30+ reviews / wk", "#FFFFFF", "#2A2521", 7, 12)
-            + sticker(304, 4, "Python", "#FFFFFF", "#2A2521", 9, 12))
+    return (laptop(66, 54, 1.0, -5, hue)
+            + sticker(4, 32, "PyTorch", hue, INK, -10)
+            + sticker(236, 214, "30+ reviews / wk", "#FFFFFF", INK, 7, 12)
+            + sticker(298, 34, "Python", "#FFFFFF", INK, 9, 12))
 
 
 def art_projects(hue):
-    return (screen(6, 56, 122, 182, -10, c_app(6, 56, 122, hue, "#7EC4F0"))
-            + screen(148, 34, 126, 206, 0, c_app(148, 34, 126, hue, hue))
-            + screen(292, 54, 118, 180, 9, c_app(292, 54, 118, hue, "#F0A9C0"))
-            + sticker(16, 8, "12 builds", hue, "#2A2521", -9)
-            + sticker(250, 212, "SwiftUI", "#FFFFFF", "#2A2521", 8, 12)
-            + smiley(392, 52, 17))
+    return (phone(10, 62, 0.86, -12, scr_game())
+            + phone(276, 58, 0.86, 12, scr_chat(hue))
+            + phone(140, 34, 0.96, 0, scr_list(hue))
+            + sticker(0, 22, "12 builds", hue, INK, -10)
+            + sticker(228, 236, "SwiftUI", "#FFFFFF", INK, 7, 12)
+            + smiley(322, 32, 18))
 
 
 def art_contact(hue):
-    return (screen(12, 52, 152, 180, -7, c_rows(12, 52, 152, hue))
-            + screen(198, 36, 180, 198, 6, c_compose(198, 36, 180, hue))
-            + sticker(24, 10, "Let&#8217;s talk", hue, "#2A2521", -8)
-            + sticker(258, 208, "Open to interns", "#FFFFFF", "#2A2521", 7, 12)
-            + smiley(390, 58, 17))
+    return (imessage(74, 46, 0.94)
+            + sticker(4, 26, "Let&#8217;s talk", hue, INK, -9)
+            + sticker(214, 226, "Open to interns", "#FFFFFF", INK, 7, 12)
+            + smiley(318, 38, 18))
 
 
 ART = {"about": art_about, "education": art_education, "craft": art_craft,
@@ -213,11 +263,10 @@ ICONS = {
         'stroke-linecap="round" fill="none"/>'
         '<circle cx="40.4" cy="31.8" r="2.7" fill="#FFFFFF"/>',
     "craft":
-        '<polygon points="24,7 41,15.8 24,24.6 7,15.8" fill="#FFFFFF"/>'
-        '<polygon points="24,27.6 38.4,20.4 41,21.8 24,30.6 7,21.8 9.6,20.4" '
-        'fill="#FFFFFF" fill-opacity="0.72"/>'
-        '<polygon points="24,34.4 38.4,27.2 41,28.6 24,37.4 7,28.6 9.6,27.2" '
-        'fill="#FFFFFF" fill-opacity="0.48"/>',
+        '<rect x="8" y="11" width="32" height="22" rx="3.4" fill="#FFFFFF"/>'
+        '<rect x="11.4" y="14.4" width="25.2" height="15.2" rx="2" '
+        'fill="#FFFFFF" fill-opacity="0.35"/>'
+        '<path d="M4 35h40l3 5H1z" fill="#FFFFFF" fill-opacity="0.8"/>',
     "projects":
         '<rect x="7" y="7" width="15.6" height="15.6" rx="4.6" fill="#FFFFFF"/>'
         '<rect x="25.4" y="7" width="15.6" height="15.6" rx="4.6" fill="#FFFFFF" '
@@ -241,18 +290,17 @@ SECTIONS = [
 
 SHADOW = ('<filter id="d" x="-30%" y="-30%" width="170%" height="170%">'
           '<feDropShadow dx="0" dy="10" stdDeviation="13" flood-color="#000000" '
-          'flood-opacity="0.6"/></filter>')
+          'flood-opacity="0.55"/></filter>')
 
 for sid, hue, deep in SECTIONS:
-    art = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 472 302" '
-           'width="472" height="302"><defs>%s'
+    art = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 300" '
+           'width="430" height="300"><defs>%s'
            '<radialGradient id="g" cx="50%%" cy="50%%" r="62%%">'
            '<stop offset="0" stop-color="%s" stop-opacity="0.24"/>'
            '<stop offset="1" stop-color="%s" stop-opacity="0"/>'
            '</radialGradient></defs>'
-           '<ellipse cx="236" cy="151" rx="234" ry="146" fill="url(#g)"/>'
-           '<g transform="translate(21 26)">%s</g></svg>'
-           % (SHADOW, hue, deep, ART[sid](hue)))
+           '<ellipse cx="215" cy="150" rx="212" ry="146" fill="url(#g)"/>'
+           '%s</svg>' % (SHADOW, hue, deep, ART[sid](hue)))
     icon = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" '
             'width="48" height="48">'
             '<defs><linearGradient id="b" x1="0.1" y1="0" x2="0.75" y2="1">'
