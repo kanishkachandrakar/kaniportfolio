@@ -44,6 +44,40 @@ def screen(x, y, w, h, rot, inner):
                inner))
 
 
+FONT = "Helvetica Neue,Helvetica,Arial,sans-serif"
+
+
+def sticker(x, y, text, fill, fg, rot, fs=13):
+    """A tilted badge with a white sticker outline and actual words on it."""
+    w = len(text) * fs * 0.60 + 26
+    h = fs + 17
+    cx, cy = x + w / 2.0, y + h / 2.0
+    return ('<g transform="rotate(%s %s %s)" filter="url(#d)">'
+            '<rect x="%s" y="%s" width="%s" height="%s" rx="%s" fill="#FFFFFF"/>'
+            '<rect x="%s" y="%s" width="%s" height="%s" rx="%s" fill="%s"/>'
+            '<text x="%s" y="%s" text-anchor="middle" font-family="%s" '
+            'font-size="%s" font-weight="700" fill="%s">%s</text></g>'
+            % (rot, cx, cy,
+               x - 3.5, y - 3.5, w + 7, h + 7, (h + 7) / 2.0,
+               x, y, w, h, h / 2.0, fill,
+               cx, y + h - (h - fs) / 2.0 - 1, FONT, fs, fg, text))
+
+
+def smiley(cx, cy, r):
+    return ('<g filter="url(#d)">'
+            '<circle cx="%s" cy="%s" r="%s" fill="#FFFFFF"/>'
+            '<circle cx="%s" cy="%s" r="%s" fill="#FFD452"/>'
+            '<circle cx="%s" cy="%s" r="%s" fill="#2A2521"/>'
+            '<circle cx="%s" cy="%s" r="%s" fill="#2A2521"/>'
+            '<path d="M%s %sq%s %s %s 0" stroke="#2A2521" stroke-width="%s" '
+            'fill="none" stroke-linecap="round"/></g>'
+            % (cx, cy, r + 3.5, cx, cy, r,
+               cx - r * 0.34, cy - r * 0.16, r * 0.13,
+               cx + r * 0.34, cy - r * 0.16, r * 0.13,
+               cx - r * 0.42, cy + r * 0.24, r * 0.42, r * 0.42, r * 0.84,
+               r * 0.15))
+
+
 def tag(x, y, w, hue, label_w):
     """A small floating chip, like the file tags on the reference site."""
     return ('<g transform="rotate(9 %s %s)" filter="url(#d)">'
@@ -125,32 +159,42 @@ def c_badge(x, y, w, hue):
 def art_about(hue):
     return (screen(14, 54, 160, 178, -7, c_about(14, 54, 160, hue))
             + screen(210, 34, 176, 196, 6, c_rows(210, 34, 176, hue))
-            + tag(238, 4, 116, hue, 0))
+            + sticker(20, 12, "MS @ NYU &#8217;27", hue, "#2A2521", -8)
+            + sticker(268, 200, "Ships clean code", "#FFFFFF", "#2A2521", 7, 12)
+            + smiley(392, 60, 18))
 
 
 def art_education(hue):
     return (screen(14, 44, 150, 190, -8, c_badge(14, 44, 150, hue))
             + screen(200, 38, 186, 196, 5, c_rows(200, 38, 186, hue))
-            + tag(230, 6, 112, hue, 0))
+            + sticker(30, 8, "Dean&#8217;s List", hue, "#2A2521", -7)
+            + sticker(246, 206, "AI / ML", "#FFFFFF", "#2A2521", 8, 12)
+            + sticker(300, 6, "Penn State", "#FFFFFF", "#2A2521", 6, 12))
 
 
 def art_craft(hue):
     return (screen(10, 48, 158, 180, -8, c_chart(10, 48, 158, hue))
             + screen(202, 30, 182, 206, 6, c_chips(202, 30, 182, hue))
-            + tag(232, 2, 118, hue, 0))
+            + sticker(22, 10, "PyTorch", hue, "#2A2521", -8)
+            + sticker(238, 208, "30+ reviews / wk", "#FFFFFF", "#2A2521", 7, 12)
+            + sticker(304, 4, "Python", "#FFFFFF", "#2A2521", 9, 12))
 
 
 def art_projects(hue):
     return (screen(6, 56, 122, 182, -10, c_app(6, 56, 122, hue, "#7EC4F0"))
             + screen(148, 34, 126, 206, 0, c_app(148, 34, 126, hue, hue))
             + screen(292, 54, 118, 180, 9, c_app(292, 54, 118, hue, "#F0A9C0"))
-            + tag(282, 2, 104, hue, 0))
+            + sticker(16, 8, "12 builds", hue, "#2A2521", -9)
+            + sticker(250, 212, "SwiftUI", "#FFFFFF", "#2A2521", 8, 12)
+            + smiley(392, 52, 17))
 
 
 def art_contact(hue):
     return (screen(12, 52, 152, 180, -7, c_rows(12, 52, 152, hue))
             + screen(198, 36, 180, 198, 6, c_compose(198, 36, 180, hue))
-            + tag(228, 4, 112, hue, 0))
+            + sticker(24, 10, "Let&#8217;s talk", hue, "#2A2521", -8)
+            + sticker(258, 208, "Open to interns", "#FFFFFF", "#2A2521", 7, 12)
+            + smiley(390, 58, 17))
 
 
 ART = {"about": art_about, "education": art_education, "craft": art_craft,
@@ -200,14 +244,15 @@ SHADOW = ('<filter id="d" x="-30%" y="-30%" width="170%" height="170%">'
           'flood-opacity="0.6"/></filter>')
 
 for sid, hue, deep in SECTIONS:
-    art = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 250" '
-           'width="430" height="250"><defs>%s'
+    art = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 472 302" '
+           'width="472" height="302"><defs>%s'
            '<radialGradient id="g" cx="50%%" cy="50%%" r="62%%">'
            '<stop offset="0" stop-color="%s" stop-opacity="0.24"/>'
            '<stop offset="1" stop-color="%s" stop-opacity="0"/>'
            '</radialGradient></defs>'
-           '<ellipse cx="215" cy="130" rx="214" ry="124" fill="url(#g)"/>'
-           '%s</svg>' % (SHADOW, hue, deep, ART[sid](hue)))
+           '<ellipse cx="236" cy="151" rx="234" ry="146" fill="url(#g)"/>'
+           '<g transform="translate(21 26)">%s</g></svg>'
+           % (SHADOW, hue, deep, ART[sid](hue)))
     icon = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" '
             'width="48" height="48">'
             '<defs><linearGradient id="b" x1="0.1" y1="0" x2="0.75" y2="1">'
