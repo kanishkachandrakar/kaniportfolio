@@ -140,8 +140,8 @@ body {
   z-index: 6;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 16px 11px;
+  gap: 11px;
+  padding: 17px 12px;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.10);
@@ -152,9 +152,9 @@ body {
 
 .rail a {
   display: block;
-  width: 52px;
-  height: 52px;
-  border-radius: 16px;
+  width: 64px;
+  height: 64px;
+  border-radius: 19px;
   text-decoration: none;
   transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
@@ -164,7 +164,7 @@ body {
   display: block;
   width: 100%;
   height: 100%;
-  border-radius: 16px;
+  border-radius: 19px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   object-fit: cover;
 }
@@ -854,8 +854,19 @@ body {
      under the icon instead of reading as a card beside it. */
   width: 288px;
   height: 208px;
+  position: relative;
   transform-origin: 100% 50%;
   animation: peekArt 0.3s cubic-bezier(0.34, 1.4, 0.55, 1) both;
+}
+
+.peek-bg {
+  position: absolute;
+  left: -44px;
+  top: -30px;
+  width: 340px;
+  height: 246px;
+  opacity: 0.85;
+  transform: rotate(-4deg);
 }
 
 .peek-tile {
@@ -984,8 +995,8 @@ body {
    and card centre together as one group instead of leaving a dead lane. */
 @media (min-width: 1301px) {
   .frame {
-    margin-left: 132px;
-    width: min(1020px, calc(100% - 132px));
+    margin-left: 146px;
+    width: min(1020px, calc(100% - 146px));
   }
 }
 
