@@ -160,18 +160,27 @@ def laptop(x, y, s=1.0, rot=0, hue="#93D3AC"):
 
 
 def phone(x, y, s, rot, screen):
-    body = rect(0, 0, 104, 190, 20, "#F7F3EC", 6) + screen
-    return ('<g transform="translate(%s %s) scale(%s) rotate(%s 52 95)" '
+    """A handset: rounded shell, inset screen, island and a side button."""
+    body = (rect(0, 0, 104, 212, 22, "#F4F0E9", 6)
+            + screen
+            + '<rect x="38" y="14" width="28" height="8" rx="4" fill="#15161A"/>'
+            + '<rect x="104" y="56" width="4" height="30" rx="2" '
+              'fill="#DCD6CD"/>')
+    return ('<g transform="translate(%s %s) scale(%s) rotate(%s 52 106)" '
             'filter="url(#d)">%s</g>' % (x, y, s, rot, body))
 
 
 def shot(name, cid):
-    """A real screenshot filling a phone's screen."""
-    return ('<clipPath id="%s"><rect x="10" y="34" width="84" height="140" '
-            'rx="10"/></clipPath>' % cid
-            + '<rect x="10" y="34" width="84" height="140" rx="10" '
-              'fill="#1C1A18"/>'
-            + img(photo(name), 10, 34, 84, 140, cid))
+    """A real app screen filling the handset's display."""
+    return ('<clipPath id="%s"><rect x="9" y="10" width="86" height="192" '
+            'rx="15"/></clipPath>' % cid
+            + '<rect x="9" y="10" width="86" height="192" rx="15" '
+              'fill="#15161A"/>'
+            + '<image href="%s" x="9" y="10" width="86" height="192" '
+              'preserveAspectRatio="xMidYMid slice" clip-path="url(#%s)"/>'
+              % (photo_webp(name), cid)
+            + '<rect x="9" y="10" width="86" height="192" rx="15" fill="none" '
+              'stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="1.6"/>')
 
 
 def bubble(x, y, w, h, fill, right=False, sw=6):
@@ -223,14 +232,13 @@ def art_craft(hue):
 
 
 def art_projects(hue):
-    return (phone(10, 62, 0.86, -12, shot("p1.jpg", "s1"))
-            + phone(276, 58, 0.86, 12, shot("p3.jpg", "s3"))
-            + phone(140, 34, 0.96, 0, shot("p2.jpg", "s2"))
-            + sticker(16, 36, "12 builds", hue, INK, -10)
-            + sticker(222, 236, "SwiftUI", "#FFFFFF", INK, 7, 12)
-            + sticker(296, 38, "Xcode", "#FFFFFF", INK, 9, 12)
-            + sticker(18, 170, "git commit", "#FFFFFF", INK, 8, 11)
-            + smiley(330, 130, 17))
+    return (phone(16, 54, 0.80, -12, shot("p1.webp", "s1"))
+            + phone(276, 50, 0.80, 12, shot("p3.webp", "s3"))
+            + phone(146, 28, 0.92, 0, shot("p2.webp", "s2"))
+            + sticker(2, 40, "12 builds", hue, INK, -10)
+            + sticker(150, 254, "SwiftUI", "#FFFFFF", INK, 6, 12)
+            + sticker(330, 160, "Xcode", "#FFFFFF", INK, -8, 12)
+            + smiley(46, 200, 17))
 
 
 def art_contact(hue):
