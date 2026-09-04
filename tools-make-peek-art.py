@@ -251,34 +251,57 @@ def art_contact(hue):
 ART = {"about": art_about, "education": art_education, "craft": art_craft,
        "projects": art_projects, "contact": art_contact}
 
+# Each icon shows the same object its preview opens on, rather than a
+# generic pictogram - an ID card, a cap on books, a terminal, a fan of app
+# screens, a chat thread.
 ICONS = {
     "about":
-        '<circle cx="24" cy="19" r="7.6" fill="#FFFFFF"/>'
-        '<path d="M9.6 39.4c0-7.8 6.4-12.4 14.4-12.4s14.4 4.6 14.4 12.4z" '
-        'fill="#FFFFFF" fill-opacity="0.88"/>',
+        '<rect x="8" y="11" width="32" height="26" rx="5" fill="#FFFFFF"/>'
+        '<rect x="8" y="11" width="32" height="7.5" rx="5" fill="#FFFFFF"/>'
+        '<rect x="8" y="15" width="32" height="3.5" fill="#E4D8C6"/>'
+        '<circle cx="18" cy="27" r="5.4" fill="#C79A62"/>'
+        '<path d="M11.4 35.6c0-3.7 2.9-6 6.6-6s6.6 2.3 6.6 6z" fill="#C79A62"/>'
+        '<rect x="27" y="24" width="10.5" height="2.8" rx="1.4" fill="#CFC2AE"/>'
+        '<rect x="27" y="29" width="7.5" height="2.8" rx="1.4" fill="#DFD5C6"/>',
     "education":
-        '<polygon points="24,9 42,18 24,27 6,18" fill="#FFFFFF"/>'
-        '<path d="M13.5 22.5v9.6c0 3.5 4.7 6.1 10.5 6.1s10.5-2.6 10.5-6.1v-9.6'
-        'L24 27.6z" fill="#FFFFFF" fill-opacity="0.72"/>'
-        '<path d="M40.4 19.2v10.6" stroke="#FFFFFF" stroke-width="2.4" '
+        '<rect x="9" y="30" width="30" height="5.4" rx="2.2" fill="#E58B9B"/>'
+        '<rect x="11" y="24.6" width="26" height="5.4" rx="2.2" fill="#7FB6E8"/>'
+        '<polygon points="24,8 42,16 24,24 6,16" fill="#FFFFFF"/>'
+        '<path d="M15 19.6v3.8c0 2.2 4 3.8 9 3.8s9-1.6 9-3.8v-3.8L24 23.6z" '
+        'fill="#DCE7F8"/>'
+        '<path d="M40.4 17v7.4" stroke="#FFFFFF" stroke-width="1.9" '
         'stroke-linecap="round" fill="none"/>'
-        '<circle cx="40.4" cy="31.8" r="2.7" fill="#FFFFFF"/>',
+        '<circle cx="40.4" cy="26" r="2.2" fill="#FFD452"/>',
     "craft":
-        '<rect x="8" y="11" width="32" height="22" rx="3.4" fill="#FFFFFF"/>'
-        '<rect x="11.4" y="14.4" width="25.2" height="15.2" rx="2" '
-        'fill="#FFFFFF" fill-opacity="0.35"/>'
-        '<path d="M4 35h40l3 5H1z" fill="#FFFFFF" fill-opacity="0.8"/>',
+        '<rect x="7" y="10" width="34" height="28" rx="5" fill="#F2EFE8"/>'
+        '<rect x="7" y="10" width="34" height="7.6" rx="5" fill="#D9D3C7"/>'
+        '<rect x="7" y="14" width="34" height="3.6" fill="#D9D3C7"/>'
+        '<circle cx="12.6" cy="13.8" r="1.5" fill="#E5796F"/>'
+        '<circle cx="17.4" cy="13.8" r="1.5" fill="#EBBE63"/>'
+        '<circle cx="22.2" cy="13.8" r="1.5" fill="#7FBF87"/>'
+        '<rect x="7" y="17.6" width="34" height="20.4" rx="0" fill="#1B1E24"/>'
+        '<path d="M12.5 23.5l4.5 4-4.5 4" stroke="#8FE3B0" stroke-width="2.4" '
+        'fill="none" stroke-linecap="round" stroke-linejoin="round"/>'
+        '<rect x="20" y="29.4" width="11" height="2.6" rx="1.3" fill="#8FE3B0"/>',
     "projects":
-        '<rect x="7" y="7" width="15.6" height="15.6" rx="4.6" fill="#FFFFFF"/>'
-        '<rect x="25.4" y="7" width="15.6" height="15.6" rx="4.6" fill="#FFFFFF" '
-        'fill-opacity="0.62"/>'
-        '<rect x="7" y="25.4" width="15.6" height="15.6" rx="4.6" fill="#FFFFFF" '
-        'fill-opacity="0.62"/>'
-        '<rect x="25.4" y="25.4" width="15.6" height="15.6" rx="4.6" fill="#FFFFFF"/>',
+        '<g transform="rotate(-13 17 25)">'
+        '<rect x="7" y="13" width="15" height="24" rx="3.4" fill="#F2EFE8"/>'
+        '<rect x="9" y="16" width="11" height="14" rx="2" fill="#7EC4F0"/></g>'
+        '<g transform="rotate(13 31 25)">'
+        '<rect x="26" y="13" width="15" height="24" rx="3.4" fill="#F2EFE8"/>'
+        '<rect x="28" y="16" width="11" height="14" rx="2" fill="#F0A9C0"/></g>'
+        '<rect x="16.5" y="9" width="15" height="30" rx="3.6" fill="#FFFFFF"/>'
+        '<rect x="18.6" y="12.4" width="10.8" height="16" rx="2.2" fill="#C2A2EA"/>'
+        '<rect x="18.6" y="30.4" width="10.8" height="2.4" rx="1.2" '
+        'fill="#D8CFE6"/>',
     "contact":
-        '<path d="M42 7 6 22.4l13.4 4.8 4.4 13.8z" fill="#FFFFFF"/>'
-        '<path d="M19.4 27.2 42 7l-18 33.6-4.6-13.8z" fill="#FFFFFF" '
-        'fill-opacity="0.7"/>',
+        '<path d="M9 12.5h20a4 4 0 0 1 4 4v7a4 4 0 0 1-4 4H17l-6 4.6v-4.6h-2'
+        'a4 4 0 0 1-4-4v-7a4 4 0 0 1 4-4z" fill="#FFFFFF"/>'
+        '<circle cx="14.5" cy="20" r="1.9" fill="#B5556F"/>'
+        '<circle cx="20" cy="20" r="1.9" fill="#B5556F"/>'
+        '<circle cx="25.5" cy="20" r="1.9" fill="#B5556F"/>'
+        '<path d="M43 21.5a3.4 3.4 0 0 0-3.4-3.4h-4.2v9.4a3.4 3.4 0 0 0 3.4 3.4'
+        'h1.6l3.2 2.6v-2.6h-.6z" fill="#FBDCE4"/>',
 }
 
 SECTIONS = [
