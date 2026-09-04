@@ -43,6 +43,13 @@ d = ImageDraw.Draw(img)
 for y in range(HORIZON):
     d.line([(0, y), (W, y)], fill=sky_colour(y / float(HORIZON)))
 
+# the sun's warmth bleeding sideways along the horizon
+spread = Image.new("L", (W, H), 0)
+ImageDraw.Draw(spread).ellipse([-W * 0.35, HORIZON - H * 0.30,
+                                W * 1.35, HORIZON + H * 0.06], fill=120)
+spread = spread.filter(ImageFilter.GaussianBlur(150))
+img = Image.composite(Image.new("RGB", (W, H), (198, 112, 66)), img, spread)
+
 # --- stars, only where the sky is still dark ------------------------------
 for _ in range(260):
     x = random.uniform(0, W)
@@ -62,6 +69,25 @@ for r, v in ((360, 44), (210, 82), (110, 148), (42, 255)):
     sd.ellipse([SUNX - r, SUNY - r * 0.92, SUNX + r, SUNY + r * 0.92], fill=v)
 sun = sun.filter(ImageFilter.GaussianBlur(48))
 img = Image.composite(Image.new("RGB", (W, H), (255, 214, 150)), img, sun)
+
+# --- rays fanning out of the sun ------------------------------------------
+rays = Image.new("L", (W, H), 0)
+ryd = ImageDraw.Draw(rays)
+for k in range(11):
+    ang = math.radians(-118 + k * 13 + random.uniform(-3, 3))
+    spread_a = math.radians(random.uniform(1.1, 3.0))
+    far = H * 1.5
+    ryd.polygon([(SUNX, SUNY),
+                 (SUNX + far * math.cos(ang - spread_a),
+                  SUNY + far * math.sin(ang - spread_a)),
+                 (SUNX + far * math.cos(ang + spread_a),
+                  SUNY + far * math.sin(ang + spread_a))],
+                fill=random.randint(26, 54))
+rays = rays.filter(ImageFilter.GaussianBlur(34))
+mask = Image.new("L", (W, H), 0)
+ImageDraw.Draw(mask).rectangle([0, 0, W, HORIZON], fill=255)
+rays = ImageChops.multiply(rays, mask.filter(ImageFilter.GaussianBlur(20)))
+img = Image.composite(Image.new("RGB", (W, H), (255, 208, 152)), img, rays)
 
 # --- clouds: long, thin, catching the light from below --------------------
 clouds = Image.new("RGBA", (W, H), (0, 0, 0, 0))
@@ -166,8 +192,42 @@ ImageDraw.Draw(mist).rectangle([0, HORIZON - 26, W, HORIZON + 16], fill=120)
 mist = mist.filter(ImageFilter.GaussianBlur(30))
 img = Image.composite(Image.new("RGB", (W, H), (208, 150, 116)), img, mist)
 
+# --- headlands framing the lower corners ----------------------------------
+shore = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+shd = ImageDraw.Draw(shore)
+for side in (0, 1):
+    rnd = random.Random(41 + side)
+    pts = []
+    for i in range(13):
+        t = i / 12.0
+        x = (-W * 0.06 + t * W * 0.46) if side == 0 else (W * 1.06 - t * W * 0.46)
+        y = H * (0.86 + 0.16 * t) - rnd.uniform(0, H * 0.10) * (1 - t)
+        pts.append((x, y))
+    shd.polygon(pts + [(pts[-1][0], H + 40), (pts[0][0], H + 40)],
+                fill=(6, 6, 11, 255))
+    shd.line(pts, fill=(150, 104, 84, 90), width=3)
+shore = shore.filter(ImageFilter.GaussianBlur(1.6))
+img = Image.alpha_composite(img.convert("RGBA"), shore).convert("RGB")
+
+# --- birds, for scale ------------------------------------------------------
+bd2 = ImageDraw.Draw(img)
+for bx, by, sc in ((W * 0.20, H * 0.19, 1.0), (W * 0.245, H * 0.155, 0.8),
+                   (W * 0.285, H * 0.205, 0.7), (W * 0.83, H * 0.14, 0.85),
+                   (W * 0.875, H * 0.175, 0.65)):
+    w2, h2 = 13 * sc, 5 * sc
+    bd2.line([(bx - w2, by), (bx - w2 * 0.35, by - h2), (bx, by - h2 * 0.25)],
+             fill=(24, 22, 34), width=max(1, int(2 * sc)))
+    bd2.line([(bx, by - h2 * 0.25), (bx + w2 * 0.35, by - h2), (bx + w2, by)],
+             fill=(24, 22, 34), width=max(1, int(2 * sc)))
+
 # --- settle -----------------------------------------------------------------
 img = img.filter(ImageFilter.GaussianBlur(0.8))
+# Dither the long sky gradient so it does not band on a wide screen.
+# effect_noise centres on 128, so subtract that back off rather than
+# adding a flat +128 to every channel.
+grain = Image.effect_noise((W, H), 3).convert("L")
+img = ImageChops.add(img, Image.merge("RGB", (grain, grain, grain)),
+                     scale=1, offset=-128)
 img = img.point(lambda v: int(v * 0.92))
 
 vig = Image.new("L", (W, H), 0)
@@ -175,6 +235,6 @@ ImageDraw.Draw(vig).ellipse([-W * 0.16, -H * 0.20, W * 1.16, H * 1.20], fill=255
 vig = vig.filter(ImageFilter.GaussianBlur(250))
 img = Image.composite(img, Image.new("RGB", (W, H), (5, 5, 9)), vig)
 
-img.save(DST, quality=84, method=6)
+img.save(DST, quality=88, method=6)
 print("wrote %s %s (%dKB)" % (os.path.relpath(DST, HERE), img.size,
                               os.path.getsize(DST) // 1024))
