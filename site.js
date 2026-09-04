@@ -254,6 +254,41 @@
     });
   }
 
+  /* ---------- Bento cards rise as they come into view ---------- */
+  var bento = document.querySelector(".bento");
+  if (bento && window.IntersectionObserver &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    bento.classList.add("is-revealing");
+    var cards = bento.querySelectorAll(".bento-card");
+    function reveal(card) {
+      card.style.transitionDelay = (card.dataset.delay || "0") + "ms";
+      card.classList.add("is-in");
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        reveal(entry.target);
+        io.unobserve(entry.target);
+      });
+    }, { root: document.querySelector(".content"), threshold: 0.15 });
+
+    cards.forEach(function (card, i) {
+      card.dataset.delay = String(i * 70);
+      io.observe(card);
+    });
+
+    // Hiding things up front is only safe with a way back: if the observer
+    // never reports (some browsers with an unusual scroll root, a page that
+    // opens already scrolled past), show them anyway rather than leave the
+    // grid blank.
+    setTimeout(function () {
+      cards.forEach(function (card) {
+        if (!card.classList.contains("is-in")) reveal(card);
+      });
+    }, 2500);
+  }
+
   /* ---------- Modals ---------- */
   var lastFocused = null;
 
