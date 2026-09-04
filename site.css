@@ -835,6 +835,41 @@ body {
   pointer-events: none;
 }
 
+/* Sits on the artwork's top corner, and only once the pointer is in the
+   preview's neighbourhood - it should not advertise itself otherwise. */
+.peek-close {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 55;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0 0 2px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: rgba(26, 20, 16, 0.92);
+  color: var(--ink);
+  font: 400 18px/1 var(--font);
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0.72);
+  pointer-events: none;
+  transition: opacity 0.16s ease, transform 0.16s ease, background 0.16s ease;
+}
+
+.peek-close.is-shown {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.peek-close:hover {
+  background: rgba(58, 45, 36, 0.96);
+  border-color: color-mix(in srgb, var(--hue, #E8B87C) 55%, transparent);
+}
+
 .peek-item { display: none; }
 .peek-item.is-active { display: block; }
 

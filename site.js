@@ -70,6 +70,7 @@
     var shellKids = document.querySelectorAll(".sidebar, .content");
     var stage = document.querySelector(".stage");
     var SHIFT_PX = 150;
+    var closeBtn = document.getElementById("peekClose");
     var restingBox = new WeakMap();
 
     function cacheBoxes() {
@@ -123,6 +124,14 @@
 
       art.style.top = Math.round(top) + "px";
       body.style.top = Math.round(top + art.offsetHeight + STACK) + "px";
+
+      if (closeBtn) {
+        // Inside the artwork's top corner, clear of the rail beside it.
+        closeBtn.style.left = Math.round(artLeft + art.offsetWidth - 64) + "px";
+        closeBtn.style.top = Math.round(top + 2) + "px";
+        closeBtn.style.setProperty("--hue",
+          item.style.getPropertyValue("--hue"));
+      }
     }
 
     function openPeek(id, anchor) {
@@ -156,6 +165,7 @@
         c.classList.remove("is-active");
       });
       railItems.forEach(function (r) { r.classList.remove("is-peeked"); });
+      if (closeBtn) closeBtn.classList.remove("is-shown");
       document.body.classList.remove("is-peeking");
       if (stage) stage.style.transform = "";
       shellKids.forEach(function (el) { el.style.opacity = ""; });
@@ -204,7 +214,9 @@
       ptrX = e.clientX;
       ptrY = e.clientY;
       if (!openId) return;
-      if (inSafeZone(ptrX, ptrY)) clearTimeout(closeTimer);
+      var near = inSafeZone(ptrX, ptrY);
+      if (closeBtn) closeBtn.classList.toggle("is-shown", near);
+      if (near) clearTimeout(closeTimer);
       else scheduleClose();
     }, { passive: true });
 
@@ -215,6 +227,14 @@
       item.addEventListener("focus", function () { openPeek(id, item); });
       item.addEventListener("blur", scheduleClose);
     });
+
+    if (closeBtn) {
+      closeBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        closePeek();
+      });
+    }
 
     peek.addEventListener("mouseenter", function () { clearTimeout(closeTimer); }, true);
     peek.addEventListener("mouseleave", scheduleClose, true);
