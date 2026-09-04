@@ -67,7 +67,7 @@
        while nothing is open, and always place from those resting boxes. */
     // Fading .shell itself does nothing useful - it owns the backdrop-filter,
     // and Chrome keeps painting that. Fade its contents instead.
-    var shellKids = document.querySelectorAll(".sidebar, .content");
+    var shellKids = document.querySelectorAll(".topbar, .content");
     var stage = document.querySelector(".stage");
     var SHIFT_PX = 150;
     var closeBtn = document.getElementById("peekClose");

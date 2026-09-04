@@ -26,7 +26,6 @@
   --radius:     26px;
   --radius-sm:  14px;
   --pad:        clamp(14px, 2.4vw, 40px);
-  --sidebar:    266px;
 
   --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
           Helvetica, Arial, sans-serif;
@@ -120,7 +119,7 @@ body {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: var(--sidebar) 1fr;
+  grid-template-rows: auto minmax(0, 1fr);
   border-radius: var(--radius);
   border: 1px solid var(--line);
   background: linear-gradient(148deg, rgba(38, 29, 22, 0.62), rgba(24, 18, 14, 0.72));
@@ -173,15 +172,14 @@ body {
   box-shadow: 0 10px 24px color-mix(in srgb, var(--hue, #E8B87C) 38%, transparent);
 }
 
-/* ---------- Sidebar ---------------------------------------- */
-.sidebar {
-  transition: opacity 0.2s ease;
+/* ---------- Top bar ---------------------------------------- */
+.topbar {
   display: flex;
-  flex-direction: column;
-  gap: 22px;
-  padding: 26px 18px 22px 34px;
-  border-right: 1px solid var(--line-soft);
-  min-height: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px clamp(20px, 2.6vw, 36px);
+  border-bottom: 1px solid var(--line-soft);
 }
 
 .identity {
@@ -193,8 +191,8 @@ body {
 }
 
 .identity img {
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   object-fit: cover;
   object-position: center top;
@@ -203,7 +201,7 @@ body {
 }
 
 .identity-name {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: -0.015em;
   line-height: 1.25;
@@ -212,25 +210,47 @@ body {
 
 .identity-role {
   margin-top: 2px;
-  font-size: 11.5px;
-  white-space: nowrap;
+  font-size: 12px;
   color: var(--ink-soft);
-  line-height: 1.35;
+  white-space: nowrap;
 }
 
-.nav {
+.topbar-actions {
   display: flex;
-  flex-direction: column;
-  gap: 3px;
-  flex: 1;
-  overflow-y: auto;
-  min-height: 0;
+  align-items: center;
+  gap: 14px;
+}
+
+.topbar-social {
+  display: flex;
+  gap: 2px;
+}
+
+.topbar-social a {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: var(--ink-faint);
+  font-size: 14px;
+  text-decoration: none;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.topbar-social a:hover {
+  background: rgba(255, 255, 255, 0.10);
+  color: var(--ink);
+}
+
+/* The rail is the navigation on wide screens; this list is the phone
+   drawer, and stays out of the way until then. */
+.nav {
+  display: none;
   margin: 0;
   padding: 0;
   list-style: none;
-  scrollbar-width: none;
 }
-.nav::-webkit-scrollbar { display: none; }
 
 .nav a {
   display: block;
@@ -252,30 +272,6 @@ body {
   background: rgba(255, 255, 255, 0.15);
   border-color: rgba(255, 255, 255, 0.16);
   color: #fff;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-.nav-foot {
-  margin-top: auto;
-  padding-top: 20px;
-}
-
-/* The resume item lives in the nav list, so it needs to win over `.nav a`. */
-.nav .nav-foot a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  padding: 13px 20px;
-  border-radius: 999px;
-  color: #FBE8CD;
-  font-weight: 500;
-  font-size: 14.5px;
-}
-
-.nav .nav-foot a:hover {
-  background: rgba(232, 184, 124, 0.30);
-  color: #FFF3E0;
 }
 
 /* ---------- Buttons ---------------------------------------- */
@@ -355,6 +351,8 @@ body {
   font-weight: 650;
   letter-spacing: -0.015em;
 }
+
+.prose { max-width: 74ch; }
 
 .prose p {
   margin: 0 0 17px;
@@ -805,29 +803,6 @@ body {
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--hue, #E8B87C) 30%, transparent);
 }
 
-.nav-social {
-  display: flex;
-  justify-content: center;
-  gap: 4px;
-  margin-top: 12px;
-}
-
-.nav .nav-social a {
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  padding: 0;
-  border-radius: 50%;
-  color: var(--ink-faint);
-  font-size: 14px;
-}
-
-.nav .nav-social a:hover {
-  background: rgba(255, 255, 255, 0.10);
-  color: var(--ink);
-}
-
 .peek {
   position: fixed;
   inset: 0;
@@ -945,6 +920,11 @@ body {
   transition: background 0.18s ease, transform 0.18s ease;
 }
 
+.peek-cta2 {
+  margin-left: 8px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
 .peek-cta:hover {
   background: rgba(255, 255, 255, 0.22);
   transform: translateY(-1px);
@@ -972,7 +952,7 @@ body {
   /* The shift is applied inline by JS so it cannot be missed; this keeps
      the easing. */
 
-  /* The card is faded by JS, on .sidebar and .content rather than on
+  /* The card is faded by JS, on .topbar and .content rather than on
      .shell: Chrome ignores opacity on the element that owns the
      backdrop-filter, and keeps painting it. */
 
@@ -1019,11 +999,6 @@ body {
   }
 }
 
-@media (max-width: 1080px) {
-  :root { --sidebar: 262px; }
-  .sidebar { padding-left: 34px; }
-}
-
 @media (max-width: 900px) {
   .stage { padding: 0; place-items: stretch; }
 
@@ -1061,41 +1036,26 @@ body {
     width: max-content;
   }
 
-  .sidebar {
+  .topbar {
     position: sticky;
     top: 0;
     z-index: 20;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 13px 16px;
-    border-right: 0;
-    border-bottom: 1px solid var(--line-soft);
-    /* No backdrop-filter here: it would become the containing block for the
-       fixed nav drawer and trap it inside this header. */
+    padding: 12px 14px;
+    /* No backdrop-filter here: it would become the containing block for
+       the fixed nav drawer and trap it inside this bar. */
     background: rgb(26, 21, 18);
   }
 
-  .identity img { width: 42px; height: 42px; }
-  .identity-name { font-size: 16px; }
+  .identity img { width: 40px; height: 40px; }
+  .identity-name { font-size: 15px; }
   .identity-role { display: none; }
-
-  .menu-btn {
-    display: grid;
-    place-items: center;
-    width: 42px;
-    height: 42px;
-    flex: none;
-    border-radius: 12px;
-    border: 1px solid var(--line);
-    background: rgba(255, 255, 255, 0.08);
-    color: var(--ink);
-    font-size: 17px;
-    cursor: pointer;
-  }
+  .topbar-social { display: none; }
+  .topbar-actions .btn { padding: 10px 15px; font-size: 13.5px; }
 
   .nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
     position: fixed;
     inset: 0 0 0 auto;
     width: min(280px, 82vw);
@@ -1111,7 +1071,6 @@ body {
 
   .nav.is-open { transform: none; }
 
-  .nav-foot { padding-top: 26px; }
 
   .content { padding: 26px 18px 60px; }
 
