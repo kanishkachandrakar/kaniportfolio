@@ -254,54 +254,54 @@ ART = {"about": art_about, "education": art_education, "craft": art_craft,
 # Each icon shows the same object its preview opens on, rather than a
 # generic pictogram - an ID card, a cap on books, a terminal, a fan of app
 # screens, a chat thread.
+# Solid objects with light and shade rather than little windows and cards -
+# the panels read as UI chrome at this size.
 ICONS = {
+    # her initial, bevelled
     "about":
-        '<rect x="8" y="11" width="32" height="26" rx="5" fill="#FFFFFF"/>'
-        '<rect x="8" y="11" width="32" height="7.5" rx="5" fill="#FFFFFF"/>'
-        '<rect x="8" y="15" width="32" height="3.5" fill="#E4D8C6"/>'
-        '<circle cx="18" cy="27" r="5.4" fill="#C79A62"/>'
-        '<path d="M11.4 35.6c0-3.7 2.9-6 6.6-6s6.6 2.3 6.6 6z" fill="#C79A62"/>'
-        '<rect x="27" y="24" width="10.5" height="2.8" rx="1.4" fill="#CFC2AE"/>'
-        '<rect x="27" y="29" width="7.5" height="2.8" rx="1.4" fill="#DFD5C6"/>',
+        '<path d="M16 11h6v10.6L32.4 11h7.6L28.4 23.2 40.6 37h-7.8l-8.4-9.8'
+        '-2.4 2.5V37h-6z" fill="#FFFFFF"/>'
+        '<path d="M16 11h6v26h-6z" fill="#F0DCC0"/>'
+        '<path d="M22 21.6 32.4 11h3.4L24.6 23z" fill="#E7CCA6"/>',
+    # mortarboard, seen at an angle
     "education":
-        '<rect x="9" y="30" width="30" height="5.4" rx="2.2" fill="#E58B9B"/>'
-        '<rect x="11" y="24.6" width="26" height="5.4" rx="2.2" fill="#7FB6E8"/>'
-        '<polygon points="24,8 42,16 24,24 6,16" fill="#FFFFFF"/>'
-        '<path d="M15 19.6v3.8c0 2.2 4 3.8 9 3.8s9-1.6 9-3.8v-3.8L24 23.6z" '
-        'fill="#DCE7F8"/>'
-        '<path d="M40.4 17v7.4" stroke="#FFFFFF" stroke-width="1.9" '
+        '<path d="M24 9 42 17.4 24 25.8 6 17.4z" fill="#FFFFFF"/>'
+        '<path d="M24 25.8 6 17.4v2.4L24 28.2z" fill="#BFCFE6"/>'
+        '<path d="M24 25.8 42 17.4v2.4L24 28.2z" fill="#94AFD1"/>'
+        '<path d="M14.4 21.6v6.9c0 2.6 4.3 4.6 9.6 4.6s9.6-2 9.6-4.6v-6.9'
+        'L24 26.2z" fill="#E3EAF6"/>'
+        '<path d="M24 26.2v7c3.6-.1 7-1 9.6-2.7v-8.9z" fill="#C3D2E8"/>'
+        '<path d="M40.2 18.6v8.6" stroke="#FFFFFF" stroke-width="2" '
         'stroke-linecap="round" fill="none"/>'
-        '<circle cx="40.4" cy="26" r="2.2" fill="#FFD452"/>',
+        '<circle cx="40.2" cy="29.4" r="2.6" fill="#FFD452"/>',
+    # three cubes, stacked and lit from the left
     "craft":
-        '<rect x="7" y="10" width="34" height="28" rx="5" fill="#F2EFE8"/>'
-        '<rect x="7" y="10" width="34" height="7.6" rx="5" fill="#D9D3C7"/>'
-        '<rect x="7" y="14" width="34" height="3.6" fill="#D9D3C7"/>'
-        '<circle cx="12.6" cy="13.8" r="1.5" fill="#E5796F"/>'
-        '<circle cx="17.4" cy="13.8" r="1.5" fill="#EBBE63"/>'
-        '<circle cx="22.2" cy="13.8" r="1.5" fill="#7FBF87"/>'
-        '<rect x="7" y="17.6" width="34" height="20.4" rx="0" fill="#1B1E24"/>'
-        '<path d="M12.5 23.5l4.5 4-4.5 4" stroke="#8FE3B0" stroke-width="2.4" '
-        'fill="none" stroke-linecap="round" stroke-linejoin="round"/>'
-        '<rect x="20" y="29.4" width="11" height="2.6" rx="1.3" fill="#8FE3B0"/>',
+        '<path d="M14 21.5 24 26.2 14 30.9 4 26.2z" fill="#EAF7F0"/>'
+        '<path d="M4 26.2 14 30.9v9.4L4 35.6z" fill="#9ED9B8"/>'
+        '<path d="M24 26.2 14 30.9v9.4l10-4.7z" fill="#6FBF95"/>'
+        '<path d="M34 21.5 44 26.2 34 30.9 24 26.2z" fill="#EAF7F0"/>'
+        '<path d="M24 26.2 34 30.9v9.4l-10-4.7z" fill="#9ED9B8"/>'
+        '<path d="M44 26.2 34 30.9v9.4l10-4.7z" fill="#6FBF95"/>'
+        '<path d="M24 8.6 34 13.3 24 18 14 13.3z" fill="#FFFFFF"/>'
+        '<path d="M14 13.3 24 18v9.4l-10-4.7z" fill="#BEE8D2"/>'
+        '<path d="M34 13.3 24 18v9.4l10-4.7z" fill="#8ACFAA"/>',
+    # a rocket, because the projects are things that shipped
     "projects":
-        '<g transform="rotate(-13 17 25)">'
-        '<rect x="7" y="13" width="15" height="24" rx="3.4" fill="#F2EFE8"/>'
-        '<rect x="9" y="16" width="11" height="14" rx="2" fill="#7EC4F0"/></g>'
-        '<g transform="rotate(13 31 25)">'
-        '<rect x="26" y="13" width="15" height="24" rx="3.4" fill="#F2EFE8"/>'
-        '<rect x="28" y="16" width="11" height="14" rx="2" fill="#F0A9C0"/></g>'
-        '<rect x="16.5" y="9" width="15" height="30" rx="3.6" fill="#FFFFFF"/>'
-        '<rect x="18.6" y="12.4" width="10.8" height="16" rx="2.2" fill="#C2A2EA"/>'
-        '<rect x="18.6" y="30.4" width="10.8" height="2.4" rx="1.2" '
-        'fill="#D8CFE6"/>',
+        '<path d="M24 5c5.4 4.4 8.4 10.8 8.4 17.8L30 29H18l-2.4-6.2'
+        'C15.6 15.8 18.6 9.4 24 5z" fill="#FFFFFF"/>'
+        '<path d="M24 5c5.4 4.4 8.4 10.8 8.4 17.8L30 29h-6z" fill="#E4D7F6"/>'
+        '<circle cx="24" cy="18.4" r="4" fill="#8C6BC4"/>'
+        '<circle cx="24" cy="18.4" r="2.4" fill="#CBB6EC"/>'
+        '<path d="M15.4 24 10 29.6V36l5.4-3.4z" fill="#C2A2EA"/>'
+        '<path d="M32.6 24 38 29.6V36l-5.4-3.4z" fill="#9C7BD0"/>'
+        '<path d="M20.4 31h7.2L24 41z" fill="#FFB459"/>'
+        '<path d="M22.6 33h2.8L24 38z" fill="#FFE07A"/>',
+    # a paper plane, mid-flight
     "contact":
-        '<path d="M9 12.5h20a4 4 0 0 1 4 4v7a4 4 0 0 1-4 4H17l-6 4.6v-4.6h-2'
-        'a4 4 0 0 1-4-4v-7a4 4 0 0 1 4-4z" fill="#FFFFFF"/>'
-        '<circle cx="14.5" cy="20" r="1.9" fill="#B5556F"/>'
-        '<circle cx="20" cy="20" r="1.9" fill="#B5556F"/>'
-        '<circle cx="25.5" cy="20" r="1.9" fill="#B5556F"/>'
-        '<path d="M43 21.5a3.4 3.4 0 0 0-3.4-3.4h-4.2v9.4a3.4 3.4 0 0 0 3.4 3.4'
-        'h1.6l3.2 2.6v-2.6h-.6z" fill="#FBDCE4"/>',
+        '<path d="M42 7 6 22.6l13.6 4.8z" fill="#FFFFFF"/>'
+        '<path d="M42 7 19.6 27.4 24 41z" fill="#F6C9D6"/>'
+        '<path d="M19.6 27.4 42 7l-9.2 24.6z" fill="#FBE3EA"/>'
+        '<path d="M19.6 27.4 26 33.4l-6.4 4.6z" fill="#E9A8BC"/>',
 }
 
 SECTIONS = [
@@ -331,7 +331,7 @@ for sid, hue, deep in SECTIONS:
             '<stop offset="0" stop-color="%s"/><stop offset="1" stop-color="%s"/>'
             '</linearGradient>'
             '<linearGradient id="s" x1="0" y1="0" x2="0" y2="1">'
-            '<stop offset="0" stop-color="#FFFFFF" stop-opacity="0.40"/>'
+            '<stop offset="0" stop-color="#FFFFFF" stop-opacity="0.24"/>'
             '<stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>'
             '</linearGradient></defs>'
             '<rect width="48" height="48" rx="13.5" fill="url(#b)"/>'
