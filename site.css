@@ -477,8 +477,8 @@ body {
 /* ---------- Bento grid ------------------------------------- */
 .bento {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-auto-rows: minmax(212px, auto);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: minmax(258px, auto);
   gap: 14px;
 }
 
@@ -529,9 +529,9 @@ body {
 
 /* left column stacks; the two on the right run the full height */
 .b-about    { grid-column: 1; grid-row: 1; }
+.b-projects { grid-column: 2; grid-row: 1; }
 .b-craft    { grid-column: 1; grid-row: 2; }
-.b-projects { grid-column: 2; grid-row: 1 / span 2; }
-.b-contact  { grid-column: 3; grid-row: 1 / span 2; }
+.b-contact  { grid-column: 2; grid-row: 2; }
 
 .bento-ico {
   width: 26px;
@@ -577,9 +577,9 @@ body {
 }
 
 .deco-cut {
-  right: 14px;
-  bottom: 0;              /* the card edge lands on her neck */
-  width: 100px;
+  right: -6px;
+  bottom: -18px;          /* the corner takes her shoulders */
+  width: 132px;
 }
 
 .deco-grad {
@@ -595,10 +595,10 @@ body {
    never reads - only the desk and the figure on it. */
 .deco-desk {
   right: 0;
-  top: 0;                 /* her neck continues from the card above */
-  width: 218px;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 20%);
-  mask-image: linear-gradient(90deg, transparent, #000 20%);
+  bottom: 0;
+  width: 252px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%);
+  mask-image: linear-gradient(90deg, transparent, #000 18%);
 }
 
 /* a row of project screens, looping past both edges */
@@ -1306,7 +1306,7 @@ body {
 
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
-  .bento { grid-template-columns: 1fr; grid-auto-rows: minmax(150px, auto); }
+  .bento { grid-template-columns: 1fr; grid-auto-rows: minmax(220px, auto); }
   .b-about, .b-craft, .b-projects, .b-contact {
     grid-column: 1;
     grid-row: auto;
