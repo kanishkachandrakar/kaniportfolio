@@ -461,8 +461,8 @@ body {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(200px, 320px);
   gap: clamp(18px, 2.2vw, 30px);
-  /* top-aligned: centring it against the whole hero, stats included, left
-     the portrait sitting low and adrift from the text beside it */
+  /* top-aligned: centring it against the full height of the hero left the
+     portrait sitting low and adrift from the text beside it */
   align-items: start;
 }
 
@@ -776,33 +776,6 @@ body {
 }
 
 /* ---------- Stats ------------------------------------------ */
-.stats {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 11px;
-  margin-top: 28px;
-}
-
-.stat {
-  padding: 15px 16px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--line-soft);
-  background: rgba(255, 255, 255, 0.045);
-}
-
-.stat b {
-  display: block;
-  font-size: 19px;
-  font-weight: 650;
-  letter-spacing: -0.02em;
-}
-
-.stat span {
-  font-size: 12px;
-  line-height: 1.35;
-  color: var(--ink-faint);
-}
-
 /* ---------- Tabs (education) ------------------------------- */
 .tabs {
   display: flex;
@@ -1394,7 +1367,6 @@ body {
 
   .cards { grid-template-columns: 1fr; }
 
-  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
   .bento { grid-template-columns: 1fr; grid-auto-rows: minmax(220px, auto); }
   .b-about, .b-craft, .b-projects, .b-contact {
