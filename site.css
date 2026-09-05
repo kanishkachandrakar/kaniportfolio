@@ -459,9 +459,11 @@ body {
 /* ---------- Home ------------------------------------------- */
 .home {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(170px, 244px);
-  gap: clamp(22px, 3vw, 40px);
-  align-items: center;
+  grid-template-columns: minmax(0, 1fr) minmax(200px, 320px);
+  gap: clamp(18px, 2.2vw, 30px);
+  /* top-aligned: centring it against the whole hero, stats included, left
+     the portrait sitting low and adrift from the text beside it */
+  align-items: start;
 }
 
 .eyebrow {
@@ -501,6 +503,12 @@ body {
 .fact-ico { font-size: 16px; line-height: 1.45; }
 
 .home-actions { display: flex; flex-wrap: wrap; gap: 11px; }
+
+.home-portrait {
+  width: min(100%, 258px);
+  justify-self: center;
+  margin-top: 4px;
+}
 
 /* ---------- Bento grid ------------------------------------- */
 .bento {
