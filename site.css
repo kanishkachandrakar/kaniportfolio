@@ -574,9 +574,9 @@ body {
 }
 
 .deco-cut {
-  right: -6px;
-  bottom: -42px;          /* chopped at the chest by the card edge */
-  width: 182px;
+  right: 6px;
+  bottom: -48px;          /* chopped at the chest by the card edge */
+  width: 150px;
 }
 
 .deco-grad {
