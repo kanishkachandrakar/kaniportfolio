@@ -213,10 +213,19 @@ SCENE = [
     # her, behind the desk
     '<ellipse cx="332" cy="196" rx="86" ry="92" %s/>' % o(HAIR),
     '<path d="M232 372c0-62 45-100 100-100s100 38 100 100z" %s/>' % o(NAVY),
+    # the shoulder turned away from the light
+    '<path d="M232 372c0-48 27-82 62-95-14 26-20 58-20 95z" fill="%s"/>' % NAVY_SH,
     '<path d="M332 278l-18 94h36z" %s/>' % o(SHIRT),
+    # lapels, so the jacket has a front rather than a painted stripe
+    '<path d="M300 280l32 22-26 70-18-84z" fill="%s"/>' % NAVY_SH,
+    '<path d="M364 280l-32 22 26 70 18-84z" fill="%s"/>' % NAVY,
+    '<path d="M300 280l32 22 32-22" fill="none" stroke="%s" '
+    'stroke-width="5" stroke-linejoin="round"/>' % INK,
     '<ellipse cx="332" cy="188" rx="72" ry="80" %s/>' % o(SKIN),
     '<path d="M260 180c2-52 32-84 72-84s70 32 72 84c-12-30-32-46-72-46'
     's-60 16-72 46z" %s/>' % o(HAIR),
+    '<path d="M282 140c12-18 30-28 50-29" stroke="%s" stroke-width="9" '
+    'fill="none" stroke-linecap="round" opacity="0.85"/>' % HAIR_HI,
     # headphones
     '<rect x="236" y="164" width="34" height="58" rx="16" %s/>' % o(CUP),
     '<rect x="394" y="164" width="34" height="58" rx="16" %s/>' % o(CUP),
