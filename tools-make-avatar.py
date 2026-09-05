@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
-"""Draw the cartoon of Kanishka used on the About card.
+"""Draw the cartoons of Kanishka used on the bento cards.
 
-Flat shapes with a dark outline, in the manner of the reference site's own
-character. The headphones are the point: her bio says she debugs to
-Bollywood and Punjabi songs, so the avatar says something true about her
-rather than being a generic head.
+Two of them, from the same character: a bust for About, and the same
+person behind a laptop for Skills & Experience - both cropped by the card
+edge the way the reference crops its own.
 
-Run: python3 tools-make-avatar.py  ->  images/kanishka-avatar.svg
+Flat shapes with a dark outline. The headphones are the point: her bio
+says she debugs to Bollywood and Punjabi songs, so the character says
+something true about her rather than being a generic head.
+
+Run: python3 tools-make-avatar.py
 """
 import os
 
@@ -32,17 +35,11 @@ def o(fill):
             'stroke-linecap="round"' % (fill, INK, SW))
 
 
-parts = [
+HEAD = [
     # hair, behind everything
     '<path d="M60 196c0-72 40-118 100-118s100 46 100 118c0 40-6 74-14 104'
     'c-4 14-22 16-26 2-6-20-10-44-10-70-14 12-32 18-50 18s-36-6-50-18'
     'c0 26-4 50-10 70-4 14-22 12-26-2-8-30-14-64-14-104z" %s/>' % o(HAIR),
-
-    # shoulders
-    '<path d="M40 420c0-64 44-102 120-102s120 38 120 102z" %s/>' % o(NAVY),
-    '<path d="M160 330l-26 90h52z" %s/>' % o(SHIRT),
-    '<path d="M118 322l42 26-14 26-30-38z" fill="%s"/>' % NAVY_SH,
-    '<path d="M202 322l-42 26 14 26 30-38z" fill="%s"/>' % NAVY_SH,
 
     # neck
     '<path d="M136 268h48v56c0 14-48 14-48 0z" %s/>' % o(SKIN),
@@ -98,10 +95,40 @@ parts = [
     '<circle cx="210" cy="214" r="11" fill="#E79A94" opacity="0.55"/>',
 ]
 
-svg = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 430" '
-       'width="320" height="430">'
-       '<g transform="translate(0 0)">%s</g></svg>' % "".join(parts))
+SHOULDERS = [
+    '<path d="M40 420c0-64 44-102 120-102s120 38 120 102z" %s/>' % o(NAVY),
+    '<path d="M160 330l-26 90h52z" %s/>' % o(SHIRT),
+    '<path d="M118 322l42 26-14 26-30-38z" fill="%s"/>' % NAVY_SH,
+    '<path d="M202 322l-42 26 14 26 30-38z" fill="%s"/>' % NAVY_SH,
+]
 
-with open(DST, "w") as fh:
-    fh.write(svg)
-print("wrote %s (%d bytes)" % (os.path.relpath(DST, HERE), len(svg)))
+# Behind a laptop: the same person, arms out to the keyboard.
+DESK = [
+    '<path d="M18 430c0-72 52-114 142-114s142 42 142 114z" %s/>' % o(NAVY),
+    '<path d="M160 330l-22 62h44z" %s/>' % o(SHIRT),
+    # arms reaching in
+    '<path d="M44 430c-4-44 14-74 44-84l16 30c-18 8-28 28-26 54z" %s/>' % o(NAVY),
+    '<path d="M276 430c4-44-14-74-44-84l-16 30c18 8 28 28 26 54z" %s/>' % o(NAVY),
+    '<ellipse cx="72" cy="404" rx="20" ry="16" %s/>' % o(SKIN),
+    '<ellipse cx="248" cy="404" rx="20" ry="16" %s/>' % o(SKIN),
+    # the machine
+    '<path d="M74 356h172l14 46H60z" %s/>' % o("#EDE8DF"),
+    '<path d="M60 402h200l10 20H50z" %s/>' % o("#D7D1C6"),
+    '<rect x="132" y="408" width="56" height="7" rx="3.5" fill="%s"/>' % INK,
+    '<path d="M96 366h128l8 28H88z" fill="#1B1E24"/>',
+    '<path d="M108 374h44M108 382h62M108 390h34" stroke="#8FE3B0" '
+    'stroke-width="4" stroke-linecap="round"/>',
+]
+
+
+def write(name, body, box="0 0 320 430"):
+    svg = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="%s" '
+           'width="320" height="430">%s</svg>' % (box, "".join(body)))
+    path = os.path.join(HERE, "images", name)
+    with open(path, "w") as fh:
+        fh.write(svg)
+    print("wrote images/%s (%d bytes)" % (name, len(svg)))
+
+
+write("kanishka-avatar.svg", HEAD[:1] + SHOULDERS + HEAD[1:])
+write("kanishka-desk.svg", HEAD[:1] + DESK[:3] + HEAD[1:] + DESK[3:])
