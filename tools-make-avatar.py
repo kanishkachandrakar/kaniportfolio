@@ -223,7 +223,7 @@ SCENE = [
     '<path d="M300 280l32 22 32-22" fill="none" stroke="%s" '
     'stroke-width="5" stroke-linejoin="round"/>' % INK,
     '<g transform="rotate(-8 332 190)">',
-    '<ellipse cx="332" cy="188" rx="72" ry="80" %s/>' % o(SKIN),
+    '<ellipse cx="332" cy="188" rx="77" ry="80" %s/>' % o(SKIN),
     '<path d="M260 180c2-52 32-84 72-84s70 32 72 84c-12-30-32-46-72-46'
     's-60 16-72 46z" %s/>' % o(HAIR),
     '<path d="M282 140c12-18 30-28 50-29" stroke="%s" stroke-width="9" '
@@ -236,14 +236,14 @@ SCENE = [
     '<path d="M254 176c0-46 35-80 78-80s78 34 78 80" fill="none" stroke="%s" '
     'stroke-width="8" stroke-linecap="round"/>' % CUP,
     # startled, the way his is
-    '<circle cx="297" cy="188" r="23" fill="#FFFFFF" stroke="%s" '
-    'stroke-width="5"/>' % INK,
-    '<circle cx="363" cy="188" r="25" fill="#FFFFFF" stroke="%s" '
-    'stroke-width="5"/>' % INK,
-    '<circle cx="302" cy="192" r="10" fill="%s"/>' % INK,
-    '<circle cx="368" cy="192" r="11" fill="%s"/>' % INK,
-    '<circle cx="306" cy="187" r="3.6" fill="#FFFFFF"/>',
-    '<circle cx="372" cy="187" r="4" fill="#FFFFFF"/>',
+    '<circle cx="295" cy="186" r="28" fill="#FFFFFF" stroke="%s" '
+    'stroke-width="8"/>' % INK,
+    '<circle cx="365" cy="186" r="30" fill="#FFFFFF" stroke="%s" '
+    'stroke-width="8"/>' % INK,
+    '<circle cx="301" cy="191" r="12" fill="%s"/>' % INK,
+    '<circle cx="371" cy="191" r="13" fill="%s"/>' % INK,
+    '<circle cx="306" cy="184" r="4.5" fill="#FFFFFF"/>',
+    '<circle cx="376" cy="184" r="5" fill="#FFFFFF"/>',
     '<path d="M275 146c10-9 25-10 37-4" stroke="%s" stroke-width="7" '
     'fill="none" stroke-linecap="round"/>' % INK,
     '<path d="M347 143c12-6 28-4 38 5" stroke="%s" stroke-width="7" '
