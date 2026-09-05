@@ -577,9 +577,9 @@ body {
 }
 
 .deco-cut {
-  right: 8px;
-  bottom: -16px;          /* the corner takes her shoulders */
-  width: 152px;
+  right: -22px;
+  bottom: 30px;           /* level with the title, cut by the right edge */
+  width: 108px;
 }
 
 .deco-grad {
@@ -595,10 +595,10 @@ body {
    never reads - only the desk and the figure on it. */
 .deco-desk {
   right: 0;
-  bottom: 0;
-  width: 292px;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%);
-  mask-image: linear-gradient(90deg, transparent, #000 18%);
+  top: 0;
+  width: 306px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%);
+  mask-image: linear-gradient(90deg, transparent, #000 14%);
 }
 
 /* a row of project screens, looping past both edges */
