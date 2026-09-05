@@ -477,8 +477,8 @@ body {
 /* ---------- Bento grid ------------------------------------- */
 .bento {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-auto-rows: minmax(258px, auto);
+  grid-template-columns: 1.58fr 1fr;
+  grid-auto-rows: minmax(252px, auto);
   gap: 14px;
 }
 
@@ -529,8 +529,8 @@ body {
 
 /* left column stacks; the two on the right run the full height */
 .b-about    { grid-column: 1; grid-row: 1; }
-.b-projects { grid-column: 2; grid-row: 1; }
 .b-craft    { grid-column: 1; grid-row: 2; }
+.b-projects { grid-column: 2; grid-row: 1; }
 .b-contact  { grid-column: 2; grid-row: 2; }
 
 .bento-ico {
@@ -577,9 +577,9 @@ body {
 }
 
 .deco-cut {
-  right: -6px;
-  bottom: -18px;          /* the corner takes her shoulders */
-  width: 132px;
+  right: 8px;
+  bottom: -16px;          /* the corner takes her shoulders */
+  width: 152px;
 }
 
 .deco-grad {
@@ -596,7 +596,7 @@ body {
 .deco-desk {
   right: 0;
   bottom: 0;
-  width: 252px;
+  width: 292px;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%);
   mask-image: linear-gradient(90deg, transparent, #000 18%);
 }
@@ -639,12 +639,12 @@ body {
 
 /* a thread, mid-conversation */
 .deco-chat {
-  left: 20px;
-  right: 20px;
-  top: 26px;
+  left: 22px;
+  right: 22px;
+  top: 24px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 11px;
 }
 
 .bub {
@@ -675,7 +675,6 @@ body {
 .bub i:nth-child(3) { animation-delay: 0.36s; }
 .bub:nth-child(2) i { animation-delay: 0.5s; }
 .bub:nth-child(3) i { animation-delay: 0.9s; }
-.bub:nth-child(4) i { animation-delay: 1.2s; }
 
 @keyframes bubDot {
   0%, 60%, 100% { opacity: 0.35; transform: translateY(0); }
