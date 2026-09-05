@@ -1,22 +1,23 @@
 """Lift the painted irises out of the About crop.
 
 She wanted the two moving eyes to match, and they could not while the drawn
-ones sat under them: the crop has one iris 43px tall and the other 35px, each
-filling its socket nearly edge to edge, so a cover big enough to hide both had
-to be lopsided and had nowhere left to travel. This paints both sockets back
-to sclera and site.css puts a matched pair on top.
+ones sat under them: the crop has one iris 41px across and the other 35px,
+each filling its socket nearly edge to edge, so a cover big enough to hide
+both had to be lopsided and had nowhere left to travel. This paints both
+sockets back to sclera and cuts one iris out to move on top of them.
 
-Nothing here is filled on colour alone, because none of it separates cleanly:
-her pupil is as dark as her lash line, and the lit underside of her iris is
-the same warm brown as the shadow on her lid. So the fill goes by distance
-from skin as well - the lash hugs her lid, the pupil sits deep inside - and
-leaves an unpainted gap next to skin no matter what, which is what keeps the
-white from ever bleeding onto a lid or a cheek.
+Where a socket ends is a hand trace, and it has to be. Her lash line and her
+iris are both near-black and they touch, so no colour test separates them, and
+her sockets are pointed almonds, so no ellipse follows one without either
+cutting into the lash or leaving a sliver of old iris behind in the white.
+Every rule tried here - warmth, depth from skin, filling inwards from the lid,
+filling outwards from the pupil - put one of those two faults on screen.
 
     python3 tools-blank-eyes.py                    # rewrites the crop
     python3 tools-blank-eyes.py --preview out.png  # before/after strip instead
 
-The crop itself can be remade from images/kani-edit.png if this needs redoing.
+Reads the untouched crop, so restore it from images/kani-edit.png before
+re-running. Writes images/kani-about.webp and images/kani-iris.webp.
 """
 
 import sys
@@ -24,12 +25,27 @@ from PIL import Image, ImageDraw, ImageFilter
 
 SRC = "images/kani-about.webp"
 
-# Where to look for each socket: centre and radii as fractions of the crop,
-# hugging the eye she drew. Only the colour tests below decide what is actually
-# painted, but this keeps the search off her lid shadow, which is the one thing
-# that reads the same as the lit underside of an iris.
-EYES = [(0.68740, 0.76180, 0.01600, 0.03300),   # her right
-        (0.77380, 0.82960, 0.02080, 0.02720)]   # her left
+# Each socket traced along the inside of her lash line, in crop pixels.
+#
+# This is a hand trace because nothing automatic could draw it. Her lash and
+# her iris are both near-black and they touch, so no colour test separates
+# them; and her sockets are pointed almonds, so no ellipse follows one without
+# either cutting the lash or leaving a sliver of old iris behind in the white.
+# Every version that tried left one fault or the other on screen.
+EYES = [
+    # her right
+    [(699, 476), (703, 471), (707, 468), (711, 466), (715, 464), (719, 463),
+     (723, 463), (727, 464), (731, 466), (735, 469), (739, 474), (742, 480),
+     (743, 486), (743, 492), (741, 499), (738, 504), (734, 506), (730, 505),
+     (726, 503), (722, 501), (718, 498), (714, 494), (710, 489), (706, 484),
+     (702, 479)],
+    # her left
+    [(772, 529), (775, 523), (779, 518), (784, 514), (789, 512), (794, 510),
+     (799, 509), (804, 509), (809, 509), (814, 510), (819, 512), (824, 515),
+     (829, 519), (833, 525), (837, 532), (838, 535), (835, 540), (831, 543),
+     (826, 545), (821, 545), (816, 545), (811, 544), (806, 543), (801, 541),
+     (796, 539), (791, 536), (786, 534), (781, 531), (776, 529)],
+]
 
 # Her left iris, which she drew almost fully open - centre and radius in crop
 # pixels. Cut out and reused for both eyes, so the pair matches by construction
@@ -58,30 +74,33 @@ def is_sclera(p):
     return r + g + b >= 500 and abs(r - b) < 30
 
 
-def socket(px, cx, cy, rx, ry, W, H):
-    """The part of one eye to paint back to sclera.
+def socket(px, poly, W, H):
+    """One traced socket, as {pixel: how much of it to paint}.
 
-    The ellipse is the whole rule now, and it is drawn to sit inside her lash
-    line rather than across it. Earlier versions reached out to the lid and
-    tried to work out by colour or by depth which of the dark pixels there
-    were lash and which were the old iris - and every setting either left
-    strokes of iris lying in the sclera or thinned her lashes. Staying inside
-    means her lashes are never a candidate in the first place.
-
-    What that leaves is a sliver of the old iris between this ellipse and the
-    lash. It sits against the lash and reads as part of it, which is roughly
-    what she drew there anyway.
+    Drawn at 4x and shrunk so the outline antialiases; at this size a hard
+    edge against her lash is plainly visible. Skin is still refused outright,
+    as a backstop against a mistraced point.
     """
-    fill = set()
-    x0, x1 = int((cx - rx) * W) - 1, int((cx + rx) * W) + 2
-    y0, y1 = int((cy - ry) * H) - 1, int((cy + ry) * H) + 2
-    for y in range(y0, y1):
-        for x in range(x0, x1):
-            nx = (x - cx * W) / (rx * W)
-            ny = (y - cy * H) / (ry * H)
-            if nx * nx + ny * ny <= 1.0 and not is_skin(px[x, y]):
-                fill.add((x, y))
-    return fill
+    xs = [p[0] for p in poly]
+    ys = [p[1] for p in poly]
+    x0, y0 = min(xs) - 2, min(ys) - 2
+    w, h = max(xs) - x0 + 3, max(ys) - y0 + 3
+
+    Z = 4
+    mask = Image.new("L", (w * Z, h * Z), 0)
+    ImageDraw.Draw(mask).polygon(
+        [((x - x0) * Z + Z // 2, (y - y0) * Z + Z // 2) for x, y in poly],
+        fill=255)
+    mask = mask.resize((w, h), Image.LANCZOS)
+    mp = mask.load()
+
+    out = {}
+    for y in range(h):
+        for x in range(w):
+            a = mp[x, y]
+            if a and not is_skin(px[x0 + x, y0 + y]):
+                out[(x0 + x, y0 + y)] = a / 255.0
+    return out
 
 
 def cut_iris(im):
@@ -119,25 +138,24 @@ def main():
     cut_iris(im)
 
     holes = set()
-    for cx, cy, rx, ry in EYES:
-        m = socket(px, cx, cy, rx, ry, W, H)
+    for poly in EYES:
+        m = socket(px, poly, W, H)
         xs = [p[0] for p in m]
         ys = [p[1] for p in m]
         top, bot = min(ys), max(ys)
-        for x, y in m:
+        for (x, y), a in m.items():
             # the top of a socket sits in the lid's shadow, the rest is lit
             t = min(1.0, (y - top) / max(1.0, (bot - top) * 0.45))
-            px[x, y] = tuple(
+            lit = tuple(
                 int(SCLERA_SHADE[i] + (SCLERA_LIT[i] - SCLERA_SHADE[i]) * t)
                 for i in range(3))
-        print("  socket x %.2f%%..%.2f%%  y %.2f%%..%.2f%%  %dx%d px  (%d filled)"
+            old = px[x, y]
+            px[x, y] = tuple(int(old[i] + (lit[i] - old[i]) * a) for i in range(3))
+            if a > 0.5:
+                holes.add((x, y))
+        print("  socket x %.2f%%..%.2f%%  y %.2f%%..%.2f%%  %dx%d px  (%d painted)"
               % (min(xs) / W * 100, max(xs) / W * 100, top / H * 100, bot / H * 100,
                  max(xs) - min(xs) + 1, bot - top + 1, len(m)))
-        # what site.css should use for the clip box: the cleared patch itself
-        print("         css: left %.2f%% top %.2f%% width %.2f%% height %.2f%%"
-              % (min(xs) / W * 100, top / H * 100,
-                 (max(xs) - min(xs) + 1) / W * 100, (bot - top + 1) / H * 100))
-        holes |= m
 
     # take the hard edge off the seam, inside the sockets only
     soft = im.filter(ImageFilter.GaussianBlur(0.7))
