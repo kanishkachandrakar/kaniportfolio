@@ -260,6 +260,19 @@ SCENE = [
     '<path d="M86 396h170l22 16H64z" fill="#CFC9BE"/>',
     '<rect x="140" y="414" width="62" height="6" rx="3" fill="%s" '
     'fill-opacity="0.7"/>' % INK,
+
+    # Arms reaching to the keyboard. Drawn after the machine so her hands
+    # rest on it rather than disappearing behind it.
+    '<path d="M286 332C276 358 272 380 276 396" stroke="%s" stroke-width="34" '
+    'fill="none" stroke-linecap="round"/>' % INK,
+    '<path d="M286 332C276 358 272 380 276 396" stroke="%s" stroke-width="25" '
+    'fill="none" stroke-linecap="round"/>' % NAVY,
+    '<path d="M400 342C376 376 338 396 312 404" stroke="%s" stroke-width="34" '
+    'fill="none" stroke-linecap="round"/>' % INK,
+    '<path d="M400 342C376 376 338 396 312 404" stroke="%s" stroke-width="25" '
+    'fill="none" stroke-linecap="round"/>' % NAVY,
+    '<ellipse cx="270" cy="403" rx="19" ry="13" %s/>' % o(SKIN),
+    '<ellipse cx="304" cy="409" rx="19" ry="13" %s/>' % o(SKIN),
 ]
 
 write("kanishka-avatar.svg", HEAD[:1] + SHOULDERS + HEAD[1:])
