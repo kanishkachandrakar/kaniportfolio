@@ -209,81 +209,132 @@ WIDE = [
 # cards. The About card frames just the head; the work card frames the desk
 # and machine with the head cut off above its top edge. Two drawings could
 # never line up the way one drawing cropped twice does.
+GRADS = (
+    '<defs>'
+    '<radialGradient id="gSkin" cx="36%" cy="30%" r="78%">'
+    '<stop offset="0" stop-color="#F7D6B4"/>'
+    '<stop offset="0.62" stop-color="#EEC49C"/>'
+    '<stop offset="1" stop-color="#D9A87C"/></radialGradient>'
+    '<linearGradient id="gHair" x1="0.2" y1="0" x2="0.8" y2="1">'
+    '<stop offset="0" stop-color="#5A4130"/>'
+    '<stop offset="0.45" stop-color="#3B2A20"/>'
+    '<stop offset="1" stop-color="#241A14"/></linearGradient>'
+    '<linearGradient id="gNavy" x1="0.15" y1="0" x2="0.85" y2="1">'
+    '<stop offset="0" stop-color="#3B4E70"/>'
+    '<stop offset="0.55" stop-color="#2C3B59"/>'
+    '<stop offset="1" stop-color="#1E2942"/></linearGradient>'
+    '<linearGradient id="gLid" x1="0" y1="0" x2="0.6" y2="1">'
+    '<stop offset="0" stop-color="#D3D8DE"/>'
+    '<stop offset="0.5" stop-color="#B4BAC1"/>'
+    '<stop offset="1" stop-color="#8F959C"/></linearGradient>'
+    '<linearGradient id="gDesk" x1="0" y1="0" x2="0" y2="1">'
+    '<stop offset="0" stop-color="#8A6142"/>'
+    '<stop offset="0.14" stop-color="#6E4B31"/>'
+    '<stop offset="1" stop-color="#4E3624"/></linearGradient>'
+    '<filter id="soft" x="-30%" y="-30%" width="170%" height="170%">'
+    '<feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#120C08" '
+    'flood-opacity="0.55"/></filter>'
+    '</defs>'
+)
+
+# Painted rather than filled: every surface takes a gradient, the forms carry
+# their own shading, and the face has lids, a nose and a lip.
 SCENE = [
-    # her, behind the desk
+    GRADS,
+
     '<g transform="rotate(-8 332 190)">'
-    '<ellipse cx="332" cy="196" rx="86" ry="92" %s/></g>' % o(HAIR),
-    '<path d="M232 372c0-62 45-100 100-100s100 38 100 100z" %s/>' % o(NAVY),
-    # the shoulder turned away from the light
-    '<path d="M232 372c0-48 27-82 62-95-14 26-20 58-20 95z" fill="%s"/>' % NAVY_SH,
-    '<path d="M332 278l-18 94h36z" %s/>' % o(SHIRT),
-    # lapels, so the jacket has a front rather than a painted stripe
-    '<path d="M300 280l32 22-26 70-18-84z" fill="%s"/>' % NAVY_SH,
-    '<path d="M364 280l-32 22 26 70 18-84z" fill="%s"/>' % NAVY,
-    '<path d="M300 280l32 22 32-22" fill="none" stroke="%s" '
-    'stroke-width="5" stroke-linejoin="round"/>' % INK,
+    '<ellipse cx="332" cy="196" rx="90" ry="94" fill="url(#gHair)"/></g>',
+
+    '<g filter="url(#soft)">'
+    '<path d="M232 372c0-62 45-100 100-100s100 38 100 100z" '
+    'fill="url(#gNavy)" stroke="%s" stroke-width="6" stroke-linejoin="round"/>'
+    '</g>' % INK,
+    '<path d="M266 300c-14 22-22 46-24 72" stroke="#1B2437" stroke-width="5" '
+    'fill="none" stroke-linecap="round" opacity="0.55"/>',
+    '<path d="M398 300c14 22 22 46 24 72" stroke="#1B2437" stroke-width="5" '
+    'fill="none" stroke-linecap="round" opacity="0.55"/>',
+    '<path d="M332 278l-18 94h36z" fill="#F7F3EA" stroke="%s" '
+    'stroke-width="6" stroke-linejoin="round"/>' % INK,
+    '<path d="M300 280l32 22-26 70-18-84z" fill="#243049"/>',
+    '<path d="M364 280l-32 22 26 70 18-84z" fill="#33456A"/>',
+    '<path d="M300 280l32 22 32-22" fill="none" stroke="%s" stroke-width="5" '
+    'stroke-linejoin="round"/>' % INK,
+
     '<g transform="rotate(-8 332 190)">',
-    '<ellipse cx="332" cy="188" rx="77" ry="80" %s/>' % o(SKIN),
+    '<ellipse cx="332" cy="188" rx="77" ry="80" fill="url(#gSkin)" '
+    'stroke="%s" stroke-width="6"/>' % INK,
+    '<path d="M262 196c4 40 32 70 70 72-46 4-72-30-70-72z" fill="#CE9B71" '
+    'fill-opacity="0.45"/>',
     '<path d="M260 180c2-52 32-84 72-84s70 32 72 84c-12-30-32-46-72-46'
-    's-60 16-72 46z" %s/>' % o(HAIR),
-    '<path d="M282 140c12-18 30-28 50-29" stroke="%s" stroke-width="9" '
-    'fill="none" stroke-linecap="round" opacity="0.85"/>' % HAIR_HI,
-    # headphones
-    '<rect x="236" y="164" width="34" height="58" rx="16" %s/>' % o(CUP),
-    '<rect x="394" y="164" width="34" height="58" rx="16" %s/>' % o(CUP),
+    's-60 16-72 46z" fill="url(#gHair)" stroke="%s" stroke-width="6" '
+    'stroke-linejoin="round"/>' % INK,
+    '<path d="M280 140c14-20 34-30 54-31M296 122c16-11 34-15 52-13" '
+    'stroke="#6B4E38" stroke-width="6" fill="none" stroke-linecap="round" '
+    'opacity="0.8"/>',
+    '<rect x="236" y="164" width="34" height="58" rx="16" fill="%s" '
+    'stroke="%s" stroke-width="6"/>' % (CUP, INK),
+    '<rect x="394" y="164" width="34" height="58" rx="16" fill="%s" '
+    'stroke="%s" stroke-width="6"/>' % (CUP, INK),
+    '<rect x="244" y="176" width="18" height="34" rx="9" fill="%s"/>' % CUP_SH,
+    '<rect x="402" y="176" width="18" height="34" rx="9" fill="%s"/>' % CUP_SH,
     '<path d="M254 176c0-46 35-80 78-80s78 34 78 80" fill="none" stroke="%s" '
     'stroke-width="15" stroke-linecap="round"/>' % INK,
     '<path d="M254 176c0-46 35-80 78-80s78 34 78 80" fill="none" stroke="%s" '
     'stroke-width="8" stroke-linecap="round"/>' % CUP,
-    # startled, the way his is
+
     '<circle cx="295" cy="186" r="28" fill="#FFFFFF" stroke="%s" '
     'stroke-width="8"/>' % INK,
     '<circle cx="365" cy="186" r="30" fill="#FFFFFF" stroke="%s" '
     'stroke-width="8"/>' % INK,
-    '<circle cx="301" cy="191" r="12" fill="%s"/>' % INK,
-    '<circle cx="371" cy="191" r="13" fill="%s"/>' % INK,
+    '<circle cx="301" cy="191" r="12" fill="#2A1C14"/>',
+    '<circle cx="371" cy="191" r="13" fill="#2A1C14"/>',
     '<circle cx="306" cy="184" r="4.5" fill="#FFFFFF"/>',
     '<circle cx="376" cy="184" r="5" fill="#FFFFFF"/>',
-    '<path d="M275 146c10-9 25-10 37-4" stroke="%s" stroke-width="7" '
+    '<path d="M270 172c10-12 34-14 48-4" stroke="%s" stroke-width="7" '
     'fill="none" stroke-linecap="round"/>' % INK,
-    '<path d="M347 143c12-6 28-4 38 5" stroke="%s" stroke-width="7" '
+    '<path d="M340 170c12-11 36-10 48 3" stroke="%s" stroke-width="7" '
     'fill="none" stroke-linecap="round"/>' % INK,
-    '<ellipse cx="328" cy="240" rx="18" ry="15" fill="#4A2A28" stroke="%s" '
+    '<path d="M268 138c11-10 27-11 40-4" stroke="%s" stroke-width="7" '
+    'fill="none" stroke-linecap="round"/>' % INK,
+    '<path d="M352 136c13-6 30-4 41 6" stroke="%s" stroke-width="7" '
+    'fill="none" stroke-linecap="round"/>' % INK,
+    '<path d="M330 200c-3 12-8 18-14 21 6 4 12 4 18 1" stroke="#C68F66" '
+    'stroke-width="5" fill="none" stroke-linecap="round" '
+    'stroke-linejoin="round"/>',
+    '<ellipse cx="328" cy="242" rx="18" ry="15" fill="#5A2A2C" stroke="%s" '
     'stroke-width="5"/>' % INK,
-    '<circle cx="268" cy="222" r="13" fill="#E79A94" opacity="0.55"/>',
-    '<circle cx="388" cy="222" r="13" fill="#E79A94" opacity="0.55"/>',
+    '<path d="M314 246c8-6 20-6 28 0-4 7-24 7-28 0z" fill="#C4566A"/>',
+    '<circle cx="268" cy="222" r="14" fill="#E58C86" opacity="0.45"/>',
+    '<circle cx="388" cy="222" r="14" fill="#E58C86" opacity="0.45"/>',
     '</g>',
 
-    # the desk, in front of her
-    '<path d="M0 386L500 370L500 500L0 500Z" fill="#6B4A31"/>',
-    '<path d="M0 386L500 370L500 382L0 400Z" fill="#8C6444"/>',
+    '<path d="M0 386L500 370L500 500L0 500Z" fill="url(#gDesk)"/>',
+    '<path d="M0 386L500 370L500 380L0 396Z" fill="#9A6E4A" '
+    'fill-opacity="0.85"/>',
+    '<path d="M40 430h420M20 470h460" stroke="#3F2B1B" stroke-width="3" '
+    'opacity="0.35"/>',
 
-    # The laptop faces away from us, because she is behind it - we see the
-    # back of the lid, not the screen. The lid narrows toward the top as it
-    # leans away.
-    '<ellipse cx="172" cy="410" rx="146" ry="16" fill="#3B2718" '
-    'fill-opacity="0.55"/>',
-    # a few degrees off square, so it sits on the desk rather than facing
-    # the viewer head on
+    '<ellipse cx="172" cy="410" rx="146" ry="16" fill="#2E1D12" '
+    'fill-opacity="0.6"/>',
     '<g transform="rotate(-3 172 350)">',
-    '<path d="M88 292h168l30 100H58z" %s/>' % o("#B9BEC4"),
-    '<path d="M100 302h144l24 80H76z" fill="#A7ADB4"/>',
-    '<circle cx="172" cy="342" r="15" fill="#E7EAEE" fill-opacity="0.9"/>',
-    # the front lip of the base, all we see of it from this side
-    '<path d="M58 392h228l16 16H42z" %s/>' % o("#D7D1C6"),
+    '<path d="M88 292h168l30 100H58z" fill="url(#gLid)" stroke="%s" '
+    'stroke-width="6" stroke-linejoin="round"/>' % INK,
+    '<path d="M104 302l140-2-22 74H82z" fill="#FFFFFF" fill-opacity="0.10"/>',
+    '<circle cx="172" cy="342" r="15" fill="#EDF0F3" fill-opacity="0.85"/>',
+    '<path d="M58 392h228l16 16H42z" fill="#CFCAC0" stroke="%s" '
+    'stroke-width="6" stroke-linejoin="round"/>' % INK,
     '</g>',
 
-    # Her forearms come round the sides and disappear behind the machine;
-    # the hands are on a keyboard we cannot see from here.
     '<path d="M282 330C288 352 292 370 294 386" stroke="%s" stroke-width="34" '
     'fill="none" stroke-linecap="round"/>' % INK,
-    '<path d="M282 330C288 352 292 370 294 386" stroke="%s" stroke-width="25" '
-    'fill="none" stroke-linecap="round"/>' % NAVY,
+    '<path d="M282 330C288 352 292 370 294 386" stroke="url(#gNavy)" '
+    'stroke-width="25" fill="none" stroke-linecap="round"/>',
     '<path d="M402 340C388 372 356 392 330 398" stroke="%s" stroke-width="34" '
     'fill="none" stroke-linecap="round"/>' % INK,
-    '<path d="M402 340C388 372 356 392 330 398" stroke="%s" stroke-width="25" '
-    'fill="none" stroke-linecap="round"/>' % NAVY,
-    '<ellipse cx="318" cy="399" rx="19" ry="13" %s/>' % o(SKIN),
+    '<path d="M402 340C388 372 356 392 330 398" stroke="url(#gNavy)" '
+    'stroke-width="25" fill="none" stroke-linecap="round"/>',
+    '<ellipse cx="318" cy="399" rx="19" ry="13" fill="url(#gSkin)" '
+    'stroke="%s" stroke-width="6"/>' % INK,
 ]
 
 write("kanishka-avatar.svg", HEAD[:1] + SHOULDERS + HEAD[1:])
