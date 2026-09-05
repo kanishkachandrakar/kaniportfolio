@@ -645,8 +645,8 @@ body {
   overflow: hidden;
 }
 
-.eye-l { left: 67.05%; top: 72.86%; width: 3.58%; height: 6.72%; }
-.eye-r { left: 75.54%; top: 80.56%; width: 3.80%; height: 5.94%; }
+.eye-l { left: 66.76%; top: 73.02%; width: 3.29%; height: 5.06%; }
+.eye-r { left: 75.36%; top: 80.41%; width: 3.73%; height: 5.06%; }
 
 .eye b {
   position: absolute;
@@ -662,10 +662,10 @@ body {
   will-change: transform;
 }
 
-/* Both irises come out the same 25px on the crop, so the pair reads as a
+/* Both irises come out the same 22px on the crop, so the pair reads as a
    matched set however differently her two sockets are drawn. */
-.eye-l b { width: 66.5%; height: 58.5%; }
-.eye-r b { width: 62.7%; height: 66.1%; }
+.eye-l b { width: 63.8%; height: 68.3%; }
+.eye-r b { width: 56.3%; height: 68.3%; }
 
 @media (prefers-reduced-motion: reduce) {
   .eye b { transition: none; }
