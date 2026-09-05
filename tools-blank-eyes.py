@@ -20,7 +20,7 @@ The crop itself can be remade from images/kani-edit.png if this needs redoing.
 """
 
 import sys
-from PIL import Image, ImageFilter
+from PIL import Image, ImageDraw, ImageFilter
 
 SRC = "images/kani-about.webp"
 
@@ -30,6 +30,12 @@ SRC = "images/kani-about.webp"
 # that reads the same as the lit underside of an iris.
 EYES = [(0.68830, 0.76120, 0.02150, 0.03870),   # her right
         (0.77410, 0.82990, 0.02250, 0.03330)]   # her left
+
+# Her left iris, which she drew almost fully open - centre and radius in crop
+# pixels. Cut out and reused for both eyes, so the pair matches by construction
+# and the moving part is her own artwork rather than anything drawn here.
+IRIS = (810.5, 527.5, 16.5)
+IRIS_OUT = "images/kani-iris.webp"
 
 SCLERA_LIT = (252, 252, 249)
 SCLERA_SHADE = (216, 215, 217)      # under the upper lid
@@ -155,10 +161,39 @@ def inscribed(mask, W, H):
             rx * 2 / W * 100, ry * 2 / H * 100, rx * 2, ry * 2)
 
 
+def cut_iris(im):
+    """Save one of her irises as a disc with a soft edge.
+
+    Has to run before the sockets are painted, or there is nothing left to cut.
+    The mask is drawn at 8x and shrunk so the rim antialiases instead of
+    stair-stepping - at this size a hard edge is obvious against the sclera.
+    """
+    cx, cy, r = IRIS
+    if sum(im.getpixel((int(cx), int(cy)))) > 300:
+        raise SystemExit(
+            "the sockets are already painted - this reads the original crop, "
+            "so restore it from images/kani-edit.png before running again")
+    # cropped tight to the disc, so the element site.css sizes is the iris
+    # itself - any transparent margin would eat into how far it can travel
+    x0, y0, n = int(cx - r), int(cy - r), int(r * 2)
+    disc = im.crop((x0, y0, x0 + n, y0 + n)).convert("RGBA")
+
+    Z = 8
+    mask = Image.new("L", (n * Z, n * Z), 0)
+    mx, my = (cx - x0) * Z, (cy - y0) * Z
+    ImageDraw.Draw(mask).ellipse(
+        [mx - r * Z, my - r * Z, mx + r * Z, my + r * Z], fill=255)
+    disc.putalpha(mask.resize((n, n), Image.LANCZOS))
+    disc.save(IRIS_OUT, "WEBP", quality=95, method=6, lossless=True)
+    print("  iris   %s (%d x %d)" % (IRIS_OUT, n, n))
+
+
 def main():
     im = Image.open(SRC).convert("RGB")
     W, H = im.size
     px = im.load()
+
+    cut_iris(im)
 
     holes = set()
     for cx, cy, rx, ry in EYES:

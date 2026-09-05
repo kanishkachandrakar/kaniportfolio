@@ -652,29 +652,21 @@ body {
   position: absolute;
   left: 50%;
   top: 50%;
-  border-radius: 50%;
-  /* Her own eye, sampled off the crop: a near-black pupil opening out to a
-     warm brown rim, with the catchlight high and to the right. The first
-     version had this backwards - pale in the middle, black at the edge - and
-     it read as a glass marble rather than an eye. */
-  background:
-    radial-gradient(circle at 66% 27%,
-                    rgba(255, 255, 255, 0.95) 0 19%, transparent 22%),
-    radial-gradient(circle at 50% 56%,
-                    #080402 0 38%, #34210f 64%, #6d4a2e 100%);
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.45);
+  /* Her own iris, cut out of the crop by tools-blank-eyes.py before the
+     sockets were painted over. Drawing one by hand never matched: hers is a
+     near-black pupil opening to a warm brown rim with the catchlight high and
+     left, and the first attempt had it exactly backwards. */
+  background: url("images/kani-iris.webp") center / 100% 100% no-repeat;
   transform: translate(-50%, -50%);
-  /* the lag is the point: the pupils drift after the pointer, they don't snap */
+  /* the lag is the point: the irises drift after the pointer, they don't snap */
   transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
 }
 
-/* Both irises come out the same 30px on the crop - about what she drew, which
-   is nearly the width of a socket. A small iris in a wide white eye reads as
-   alarm, not as looking at something. The box above is the whole socket, so
-   the lids crop the iris at the extremes the way they would on a real eye. */
-.eye-l b { width: 76.9%; height: 66.7%; }
-.eye-r b { width: 65.2%; height: 85.7%; }
+/* Both come out the same 31px on the crop, so the pair matches by construction
+   however differently her two sockets are drawn. */
+.eye-l b { width: 79.5%; height: 68.9%; }
+.eye-r b { width: 67.4%; height: 88.6%; }
 
 @media (prefers-reduced-motion: reduce) {
   .eye b { transition: none; }

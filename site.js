@@ -347,6 +347,9 @@
   // over as they go. Roughly a face's worth of screen.
   var REACH = 420;
 
+  // how far past its socket an iris may slide, as a fraction of the socket
+  var OVERSHOOT = 0.08;
+
   function paint() {
     queued = false;
 
@@ -361,8 +364,13 @@
       // Her sockets are drawn at different sizes, so each has a different
       // amount of slack. Both eyes take the smaller of the two, which is what
       // stops one drifting further than the other and breaking the pair.
-      roomX = Math.min(roomX, (e.width - p.width) / 2);
-      roomY = Math.min(roomY, (e.height - p.height) / 2);
+      //
+      // The iris is allowed a little past that, because her left eye is only
+      // 35px tall against a 31px iris and would otherwise barely move at all.
+      // Overshooting just lets the lid crop the iris at the extremes, which is
+      // what a real eye does anyway.
+      roomX = Math.min(roomX, (e.width - p.width) / 2 + e.width * OVERSHOOT);
+      roomY = Math.min(roomY, (e.height - p.height) / 2 + e.height * OVERSHOOT);
     }
     roomX = Math.max(0, roomX);
     roomY = Math.max(0, roomY);
