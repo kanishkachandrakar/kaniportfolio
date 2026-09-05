@@ -619,9 +619,9 @@ body {
 .deco-cut {
   /* her own crop: the head is already cut at the bottom in the source, so
      sitting flush to the card's bottom edge preserves that cut */
-  right: -58px;
+  right: -30px;
   bottom: 0;
-  width: 236px;
+  width: 190px;
   /* her crop carries its own near-black ground, a shade off ours, so the
      tile edges are feathered rather than left as a visible rectangle */
   -webkit-mask-image:
