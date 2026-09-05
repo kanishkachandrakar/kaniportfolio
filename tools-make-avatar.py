@@ -139,48 +139,43 @@ def write(name, body, box="0 0 320 430"):
 # A wide desk scene for the Skills card. Drawn back to front - hair, head,
 # face, then the desk and machine in front of her - because layering it the
 # other way puts her hair over her face.
+# The trick on the reference: the head lives on the About card and the body
+# on the card below it, lined up in the same column, so the gap between the
+# two cards reads as the cut across the neck. So this scene starts at the
+# neck - no head - and the desk sits in front of her.
 WIDE = [
-    # Its own backdrop. The reference's work illustration is a rectangular
-    # tile sitting flush in the card corner, not a floating cut-out - without
-    # this the desk just ends on a hard edge in mid-card.
     '<defs><linearGradient id="wb" x1="0" y1="0" x2="0.4" y2="1">'
     '<stop offset="0" stop-color="#17130F"/>'
     '<stop offset="1" stop-color="#100C0A"/></linearGradient></defs>'
-    '<rect width="440" height="196" fill="url(#wb)"/>',
+    '<rect width="440" height="176" fill="url(#wb)"/>',
 
-    # her, behind everything, head running off the top of the frame
-    '<ellipse cx="310" cy="56" rx="60" ry="64" %s/>' % o(HAIR),
-    '<path d="M244 176c0-44 30-70 66-70s66 26 66 70z" %s/>' % o(NAVY),
-    '<path d="M310 112l-13 64h26z" %s/>' % o(SHIRT),
-    '<ellipse cx="310" cy="52" rx="46" ry="52" %s/>' % o(SKIN),
-    '<path d="M264 46c2-34 20-54 46-54s44 20 46 54c-7-20-19-30-46-30'
-    's-39 10-46 30z" %s/>' % o(HAIR),
-    '<circle cx="293" cy="50" r="11" fill="#FFFFFF" stroke="%s" '
-    'stroke-width="4"/>' % INK,
-    '<circle cx="327" cy="50" r="11" fill="#FFFFFF" stroke="%s" '
-    'stroke-width="4"/>' % INK,
-    '<circle cx="295" cy="53" r="5.5" fill="%s"/>' % INK,
-    '<circle cx="329" cy="53" r="5.5" fill="%s"/>' % INK,
-    '<path d="M298 74c8 7 16 7 24 0" stroke="%s" stroke-width="5" '
-    'fill="none" stroke-linecap="round"/>' % INK,
-    '<circle cx="278" cy="66" r="7" fill="#E79A94" opacity="0.5"/>',
-    '<circle cx="342" cy="66" r="7" fill="#E79A94" opacity="0.5"/>',
-    '<rect x="250" y="30" width="24" height="42" rx="11" %s/>' % o(CUP),
-    '<rect x="346" y="30" width="24" height="42" rx="11" %s/>' % o(CUP),
-    '<path d="M266 40c0-30 20-50 44-50s44 20 44 50" fill="none" '
-    'stroke="%s" stroke-width="9" stroke-linecap="round"/>' % CUP,
-    # the desk, in front
-    '<path d="M-12 150h464v60H-12z" fill="#6B4A31"/>',
-    '<path d="M-12 150h464v9H-12z" fill="#8C6444"/>',
+    # neck, continuing straight off the top edge
+    '<path d="M286 -10h48v96c0 12-48 12-48 0z" %s/>' % o(SKIN),
+    # shoulders
+    '<path d="M240 150c0-42 32-68 70-68s70 26 70 68z" %s/>' % o(NAVY),
+    '<path d="M310 88l-13 62h26z" %s/>' % o(SHIRT),
+    # hair falling past the shoulders, the same as on the head above
+    '<path d="M262 6c-10 26-14 54-14 82h18c0-30 4-58 12-82z" %s/>' % o(HAIR),
+    '<path d="M358 6c10 26 14 54 14 82h-18c0-30-4-58-12-82z" %s/>' % o(HAIR),
+    # an arm out to the keyboard
+    '<path d="M244 150c-6-28 6-48 28-58l12 22c-13 8-19 20-17 36z" %s/>' % o(NAVY),
+    '<ellipse cx="250" cy="148" rx="17" ry="12" %s/>' % o(SKIN),
+
+    # the desk, in front of her
+    '<path d="M-12 130h464v60H-12z" fill="#6B4A31"/>',
+    '<path d="M-12 130h464v9H-12z" fill="#8C6444"/>',
+
     # and the machine on it
-    '<path d="M78 58h140l22 92H56z" %s/>' % o("#EDE8DF"),
-    '<path d="M92 70h114l16 68H76z" fill="#1B1E24"/>',
-    '<path d="M104 84h52M100 100h72M96 116h40" stroke="#8FE3B0" '
+    '<path d="M78 40h140l22 90H56z" %s/>' % o("#EDE8DF"),
+    '<path d="M92 52h114l16 66H76z" fill="#1B1E24"/>',
+    '<path d="M104 66h52M100 82h72M96 98h40" stroke="#8FE3B0" '
     'stroke-width="5" stroke-linecap="round"/>',
-    '<path d="M56 150h184l20 20H36z" %s/>' % o("#D7D1C6"),
-    '<rect x="122" y="156" width="50" height="6" rx="3" fill="%s"/>' % INK,
+    '<path d="M56 130h184l20 20H36z" %s/>' % o("#D7D1C6"),
+    '<rect x="122" y="136" width="50" height="6" rx="3" fill="%s"/>' % INK,
 ]
 
 write("kanishka-avatar.svg", HEAD[:1] + SHOULDERS + HEAD[1:])
 write("kanishka-desk.svg", HEAD[:1] + DESK[:3] + HEAD[1:] + DESK[3:])
-write("kanishka-desk-wide.svg", WIDE, box="0 0 440 196")
+write("kanishka-desk-wide.svg", WIDE, box="0 0 440 176")
+# head only, ending at the neck, for the card above
+write("kanishka-head.svg", HEAD, box="44 56 232 250")

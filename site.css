@@ -577,9 +577,9 @@ body {
 }
 
 .deco-cut {
-  right: -8px;
-  bottom: -14px;
-  width: 98px;            /* small, and taken by the corner */
+  right: 14px;
+  bottom: 0;              /* the card edge lands on her neck */
+  width: 100px;
 }
 
 .deco-grad {
@@ -595,16 +595,10 @@ body {
    never reads - only the desk and the figure on it. */
 .deco-desk {
   right: 0;
-  top: 0;
+  top: 0;                 /* her neck continues from the card above */
   width: 218px;
-  -webkit-mask-image:
-    linear-gradient(90deg, transparent, #000 22%),
-    linear-gradient(180deg, #000 62%, transparent);
-  -webkit-mask-composite: source-in;
-  mask-image:
-    linear-gradient(90deg, transparent, #000 22%),
-    linear-gradient(180deg, #000 62%, transparent);
-  mask-composite: intersect;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 20%);
+  mask-image: linear-gradient(90deg, transparent, #000 20%);
 }
 
 /* a row of project screens, looping past both edges */
