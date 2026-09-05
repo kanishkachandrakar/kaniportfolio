@@ -616,43 +616,19 @@ body {
   pointer-events: none;
 }
 
-.deco-cut {
-  /* her own crop: the head is already cut at the bottom in the source, so
-     sitting flush to the card's bottom edge preserves that cut */
-  right: 33px;
-  bottom: 0;
-  width: 190px;
-  /* her crop carries its own near-black ground, a shade off ours, so the
-     tile edges are feathered rather than left as a visible rectangle */
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 26%);
-  mask-image: linear-gradient(90deg, transparent, #000 26%);
-}
-
-.deco-grad {
-  right: -22px;
-  top: -14px;
-  width: 128px;
-  border-radius: 50%;
-  opacity: 0.9;
-}
-
-/* the desk scene: a tile flush into the top-right corner, cropped by the
-   card's edges. Its inner edges are feathered so the rectangle itself
-   never reads - only the desk and the figure on it. */
+/* Her own framing, used as it comes. Both crops are the same width, so
+   spanning each across its card puts them at an identical scale - which is
+   what preserves the alignment she set. The card edge crops the overflow:
+   About from the bottom, where her head is; Experience from the top. */
+.deco-cut,
 .deco-desk {
-  /* the desk scene runs off the right edge, its top flush with the card */
-  right: 0;
-  top: 0;
-  width: 280px;
-  -webkit-mask-image:
-    linear-gradient(90deg, transparent, #000 20%),
-    linear-gradient(0deg, transparent, #000 24%);
-  -webkit-mask-composite: source-in;
-  mask-image:
-    linear-gradient(90deg, transparent, #000 20%),
-    linear-gradient(0deg, transparent, #000 24%);
-  mask-composite: intersect;
+  left: 0;
+  width: 100%;
+  height: auto;
 }
+
+.deco-cut  { bottom: 0; }
+.deco-desk { top: 0; }
 
 /* a row of project screens, looping past both edges */
 .deco-apps {
