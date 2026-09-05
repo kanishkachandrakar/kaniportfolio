@@ -577,9 +577,10 @@ body {
 }
 
 .deco-cut {
-  right: 12px;
-  bottom: -20px;          /* the corner takes her collar */
-  width: 104px;
+  /* framed on her head; the desk and laptop hang below the card */
+  right: -11px;
+  bottom: -150px;
+  width: 300px;
 }
 
 .deco-grad {
@@ -594,11 +595,12 @@ body {
    card's edges. Its inner edges are feathered so the rectangle itself
    never reads - only the desk and the figure on it. */
 .deco-desk {
+  /* framed on the desk and the machine, the cut falling below her chin */
   right: 0;
-  top: 0;
-  width: 306px;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%);
-  mask-image: linear-gradient(90deg, transparent, #000 14%);
+  top: -182px;
+  width: 360px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 16%);
+  mask-image: linear-gradient(90deg, transparent, #000 16%);
 }
 
 /* a row of project screens, looping past both edges */

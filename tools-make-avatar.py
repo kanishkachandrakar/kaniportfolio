@@ -202,73 +202,59 @@ WIDE = [
 ]
 
 
-# A face for the About card. The reference's is a caricature - eyes wide,
-# mouth open, mid-reaction - not a calm portrait, and that is most of why
-# his card has personality.
-FACE = [
-    '<ellipse cx="160" cy="150" rx="86" ry="72" %s/>' % o(HAIR),
-    '<ellipse cx="160" cy="146" rx="74" ry="80" %s/>' % o(SKIN),
-    '<path d="M86 140c2-52 32-82 74-82s72 30 74 82c-12-30-34-46-74-46'
-    's-62 16-74 46z" %s/>' % o(HAIR),
+# ONE 500x500 scene, used on both cards.
+#
+# This is how the reference does it: a single file (/finalincon.png - him at
+# a desk, startled, laptop in front) placed twice and cropped two ways by the
+# cards. The About card frames just the head; the work card frames the desk
+# and machine with the head cut off above its top edge. Two drawings could
+# never line up the way one drawing cropped twice does.
+SCENE = [
+    # her, behind the desk
+    '<ellipse cx="332" cy="196" rx="86" ry="92" %s/>' % o(HAIR),
+    '<path d="M232 372c0-62 45-100 100-100s100 38 100 100z" %s/>' % o(NAVY),
+    '<path d="M332 278l-18 94h36z" %s/>' % o(SHIRT),
+    '<ellipse cx="332" cy="188" rx="72" ry="80" %s/>' % o(SKIN),
+    '<path d="M260 180c2-52 32-84 72-84s70 32 72 84c-12-30-32-46-72-46'
+    's-60 16-72 46z" %s/>' % o(HAIR),
     # headphones
-    '<rect x="66" y="126" width="34" height="56" rx="16" %s/>' % o(CUP),
-    '<rect x="220" y="126" width="34" height="56" rx="16" %s/>' % o(CUP),
-    '<path d="M84 138c0-46 34-80 76-80s76 34 76 80" fill="none" stroke="%s" '
-    'stroke-width="14" stroke-linecap="round"/>' % INK,
-    '<path d="M84 138c0-46 34-80 76-80s76 34 76 80" fill="none" stroke="%s" '
-    'stroke-width="7" stroke-linecap="round"/>' % CUP,
-    # eyes, wide open
-    '<circle cx="126" cy="146" r="25" fill="#FFFFFF" stroke="%s" '
+    '<rect x="236" y="164" width="34" height="58" rx="16" %s/>' % o(CUP),
+    '<rect x="394" y="164" width="34" height="58" rx="16" %s/>' % o(CUP),
+    '<path d="M254 176c0-46 35-80 78-80s78 34 78 80" fill="none" stroke="%s" '
+    'stroke-width="15" stroke-linecap="round"/>' % INK,
+    '<path d="M254 176c0-46 35-80 78-80s78 34 78 80" fill="none" stroke="%s" '
+    'stroke-width="8" stroke-linecap="round"/>' % CUP,
+    # startled, the way his is
+    '<circle cx="300" cy="188" r="25" fill="#FFFFFF" stroke="%s" '
     'stroke-width="5"/>' % INK,
-    '<circle cx="196" cy="146" r="25" fill="#FFFFFF" stroke="%s" '
+    '<circle cx="366" cy="188" r="25" fill="#FFFFFF" stroke="%s" '
     'stroke-width="5"/>' % INK,
-    '<circle cx="130" cy="150" r="11" fill="%s"/>' % INK,
-    '<circle cx="200" cy="150" r="11" fill="%s"/>' % INK,
-    '<circle cx="134" cy="145" r="4" fill="#FFFFFF"/>',
-    '<circle cx="204" cy="145" r="4" fill="#FFFFFF"/>',
-    # brows up
-    '<path d="M104 108c10-9 26-10 38-4" stroke="%s" stroke-width="7" '
+    '<circle cx="304" cy="192" r="11" fill="%s"/>' % INK,
+    '<circle cx="370" cy="192" r="11" fill="%s"/>' % INK,
+    '<circle cx="308" cy="187" r="4" fill="#FFFFFF"/>',
+    '<circle cx="374" cy="187" r="4" fill="#FFFFFF"/>',
+    '<path d="M278 148c10-9 26-10 38-4" stroke="%s" stroke-width="7" '
     'fill="none" stroke-linecap="round"/>' % INK,
-    '<path d="M178 104c12-6 28-4 38 5" stroke="%s" stroke-width="7" '
+    '<path d="M350 144c12-6 28-4 38 5" stroke="%s" stroke-width="7" '
     'fill="none" stroke-linecap="round"/>' % INK,
-    # mouth open, mid-word
-    '<ellipse cx="160" cy="196" rx="20" ry="16" fill="#4A2A28" stroke="%s" '
+    '<ellipse cx="332" cy="240" rx="19" ry="15" fill="#4A2A28" stroke="%s" '
     'stroke-width="5"/>' % INK,
-    '<path d="M146 202c8-5 20-5 28 0z" fill="#E4788A"/>',
-    '<circle cx="98" cy="180" r="13" fill="#E79A94" opacity="0.55"/>',
-    '<circle cx="222" cy="180" r="13" fill="#E79A94" opacity="0.55"/>',
-    # a shoulder for the card edge to take
-    '<path d="M96 300c0-38 28-60 64-60s64 22 64 60z" %s/>' % o(NAVY),
-    '<path d="M160 244l-12 56h24z" %s/>' % o(SHIRT),
-]
+    '<circle cx="272" cy="222" r="13" fill="#E79A94" opacity="0.55"/>',
+    '<circle cx="392" cy="222" r="13" fill="#E79A94" opacity="0.55"/>',
 
-# The work tile. His laptop is small and there is a lot of dark room around
-# it; the desk is a thin strip along the bottom and the figure is cut by the
-# right edge as well as the top.
-WORK = [
-    '<defs><linearGradient id="wt" x1="0" y1="0" x2="0.35" y2="1">'
-    '<stop offset="0" stop-color="#18130F"/>'
-    '<stop offset="1" stop-color="#0F0B09"/></linearGradient></defs>'
-    '<rect width="400" height="210" fill="url(#wt)"/>',
+    # the desk, in front of her
+    '<path d="M0 356 500 340 500 500 0 500z" fill="#6B4A31"/>'.replace(
+        "M0 356 500 340 500 500 0 500z",
+        "M0 356L500 340L500 500L0 500Z"),
+    '<path d="M0 356L500 340L500 352L0 370Z" fill="#8C6444"/>',
 
-    # her, at the right, head gone above the frame and her side past it
-    '<path d="M286 150c0-64 26-96 58-96s58 32 58 96z" %s/>' % o(NAVY),
-    '<path d="M344 58l-11 92h22z" %s/>' % o(SHIRT),
-    '<path d="M300 -6c-8 26-11 54-11 78h15c0-26 3-54 10-78z" %s/>' % o(HAIR),
-    '<path d="M290 150c-5-24 4-41 22-49l10 19c-11 6-16 17-14 30z" %s/>' % o(NAVY),
-    '<ellipse cx="295" cy="148" rx="14" ry="10" %s/>' % o(SKIN),
-
-    # a thin desk along the bottom
-    '<path d="M-10 146h420v70H-10z" fill="#6B4A31"/>',
-    '<path d="M-10 146h420v8H-10z" fill="#8C6444"/>',
-
-    # a small laptop on it
-    '<path d="M96 74h108l18 72H78z" %s/>' % o("#EDE8DF", 5),
-    '<path d="M107 84h86l13 52H85z" fill="#1B1E24"/>',
-    '<path d="M117 96h40M113 108h54M109 120h32" stroke="#8FE3B0" '
-    'stroke-width="4" stroke-linecap="round"/>',
-    '<path d="M78 146h144l14 14H64z" %s/>' % o("#D7D1C6", 5),
-    '<rect x="132" y="149" width="36" height="5" rx="2.5" fill="%s"/>' % INK,
+    # and the laptop on it
+    '<path d="M66 258h176l30 106H36z" %s/>' % o("#EDE8DF"),
+    '<path d="M82 272h144l22 78H60z" fill="#1B1E24"/>',
+    '<path d="M96 290h64M92 308h86M88 326h50" stroke="#8FE3B0" '
+    'stroke-width="6" stroke-linecap="round"/>',
+    '<path d="M36 364h236l26 24H10z" %s/>' % o("#D7D1C6"),
+    '<rect x="124" y="370" width="60" height="7" rx="3.5" fill="%s"/>' % INK,
 ]
 
 write("kanishka-avatar.svg", HEAD[:1] + SHOULDERS + HEAD[1:])
@@ -276,5 +262,4 @@ write("kanishka-desk.svg", HEAD[:1] + DESK[:3] + HEAD[1:] + DESK[3:])
 write("kanishka-desk-wide.svg", WIDE, box="0 0 440 300")
 # head only, ending at the neck, for the card above
 write("kanishka-head.svg", HEAD, box="44 56 232 250")
-write("kanishka-face.svg", FACE, box="52 46 216 244")
-write("kanishka-work.svg", WORK, box="0 0 400 210")
+write("kanishka-scene.svg", SCENE, box="0 0 500 500")
