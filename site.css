@@ -610,7 +610,7 @@ body {
 .deco-apps {
   left: 0;
   right: 0;
-  top: 26px;
+  top: 17px;
   overflow: hidden;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%,
                                       #000 91%, transparent);
@@ -620,9 +620,9 @@ body {
 
 .apps-track {
   display: flex;
-  gap: 12px;
+  gap: 11px;
   width: max-content;
-  padding-left: 12px;
+  padding-left: 11px;
   animation: appsMarquee 26s linear infinite;
 }
 
@@ -633,10 +633,10 @@ body {
 .bento-card:hover .apps-track { animation-play-state: paused; }
 
 .deco-apps img {
-  width: 54px;
-  height: 54px;
+  width: 76px;
+  height: 76px;
   flex: none;
-  border-radius: 13px;
+  border-radius: 17px;
   object-fit: cover;
   border: 1px solid rgba(255, 255, 255, 0.16);
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.5);
