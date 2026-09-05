@@ -645,8 +645,8 @@ body {
   overflow: hidden;
 }
 
-.eye-l { left: 66.73%; top: 72.33%; width: 3.72%; height: 7.07%; }
-.eye-r { left: 75.21%; top: 80.03%; width: 4.39%; height: 5.50%; }
+.eye-l { left: 67.21%; top: 72.96%; width: 3.15%; height: 6.45%; }
+.eye-r { left: 75.31%; top: 80.35%; width: 4.19%; height: 5.35%; }
 
 .eye b {
   position: absolute;
@@ -663,10 +663,12 @@ body {
   will-change: transform;
 }
 
-/* Both come out the same 31px on the crop, so the pair matches by construction
-   however differently her two sockets are drawn. */
-.eye-l b { width: 79.5%; height: 68.9%; }
-.eye-r b { width: 67.4%; height: 88.6%; }
+/* Both come out the same 26px on the crop, so the pair matches by construction
+   however differently her two sockets are drawn. Smaller than she drew them:
+   what her sockets hold is now bounded by leaving her lashes alone, and an
+   iris sized to fill them would have nowhere to travel. */
+.eye-l b { width: 78.8%; height: 63.4%; }
+.eye-r b { width: 59.1%; height: 76.5%; }
 
 @media (prefers-reduced-motion: reduce) {
   .eye b { transition: none; }

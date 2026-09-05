@@ -28,8 +28,8 @@ SRC = "images/kani-about.webp"
 # hugging the eye she drew. Only the colour tests below decide what is actually
 # painted, but this keeps the search off her lid shadow, which is the one thing
 # that reads the same as the lit underside of an iris.
-EYES = [(0.68830, 0.76120, 0.02150, 0.03870),   # her right
-        (0.77410, 0.82990, 0.02250, 0.03330)]   # her left
+EYES = [(0.68740, 0.76180, 0.01600, 0.03300),   # her right
+        (0.77380, 0.82960, 0.02080, 0.02720)]   # her left
 
 # Her left iris, which she drew almost fully open - centre and radius in crop
 # pixels. Cut out and reused for both eyes, so the pair matches by construction
@@ -39,8 +39,6 @@ IRIS_OUT = "images/kani-iris.webp"
 
 SCLERA_LIT = (252, 252, 249)
 SCLERA_SHADE = (216, 215, 217)      # under the upper lid
-LASH_REACH = 4                      # how thick her lash line runs, in px
-SKIN_GAP = 1                        # never paint right up against skin
 SKIN_GAP = 2                        # never paint this close to skin
 
 
@@ -61,92 +59,29 @@ def is_sclera(p):
 
 
 def socket(px, cx, cy, rx, ry, W, H):
-    """The inside of one eye, as a set of pixels.
+    """The part of one eye to paint back to sclera.
 
-    Sclera goes by colour. The iris cannot, because it darkens to black at the
-    pupil and meets a lash line that is black as well - so those two are told
-    apart by where they sit: the lash hugs her lid and is never more than a few
-    pixels from skin, while the pupil sits deep in the socket. Along her lower
-    lid there is no lash at all, only iris meeting cheek, so warmth decides
-    there instead; her lash stays neutral even at its darkest.
+    The ellipse is the whole rule now, and it is drawn to sit inside her lash
+    line rather than across it. Earlier versions reached out to the lid and
+    tried to work out by colour or by depth which of the dark pixels there
+    were lash and which were the old iris - and every setting either left
+    strokes of iris lying in the sclera or thinned her lashes. Staying inside
+    means her lashes are never a candidate in the first place.
+
+    What that leaves is a sliver of the old iris between this ellipse and the
+    lash. It sits against the lash and reads as part of it, which is roughly
+    what she drew there anyway.
     """
-    pad = 14
-    x0, x1 = int((cx - rx) * W) - pad, int((cx + rx) * W) + pad
-    y0, y1 = int((cy - ry) * H) - pad, int((cy + ry) * H) + pad
-
-    dist, stack, head = {}, [], 0
-    for y in range(y0, y1):
-        for x in range(x0, x1):
-            if is_skin(px[x, y]):
-                dist[(x, y)] = 0
-                stack.append((x, y))
-    while head < len(stack):
-        a, b = stack[head]
-        head += 1
-        if dist[(a, b)] > LASH_REACH:
-            continue
-        for da, db in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-            n = (a + da, b + db)
-            if x0 <= n[0] < x1 and y0 <= n[1] < y1 and n not in dist:
-                dist[n] = dist[(a, b)] + 1
-                stack.append(n)
-
     fill = set()
+    x0, x1 = int((cx - rx) * W) - 1, int((cx + rx) * W) + 2
+    y0, y1 = int((cy - ry) * H) - 1, int((cy + ry) * H) + 2
     for y in range(y0, y1):
         for x in range(x0, x1):
             nx = (x - cx * W) / (rx * W)
             ny = (y - cy * H) / (ry * H)
-            if nx * nx + ny * ny > 1.0:
-                continue
-            p = px[x, y]
-            if is_skin(p):
-                continue
-            d = dist.get((x, y), 99)
-            if d <= SKIN_GAP:
-                continue            # her lid's own edge, whatever colour it is
-            # Past the lash, or already white, or warm. Only that last one
-            # needs saying twice: along her lower lid there is no lash at all,
-            # just iris meeting cheek, so the rim of the old eye sits as close
-            # to skin as a lash would. Her lash stays neutral even at its
-            # darkest, and the iris stays warm, which is what separates them.
-            if d > LASH_REACH or is_sclera(p) or p[0] - p[2] >= 26:
+            if nx * nx + ny * ny <= 1.0 and not is_skin(px[x, y]):
                 fill.add((x, y))
     return fill
-
-
-def inscribed(mask, W, H):
-    """The largest ellipse that fits in a socket, as a CSS box.
-
-    site.css puts the moving iris inside this, so it has to be clear of her
-    lashes at every angle - hence a fit rather than a bounding box.
-    """
-    xs = [p[0] for p in mask]
-    ys = [p[1] for p in mask]
-    cx = (min(xs) + max(xs)) / 2.0
-    cy = (min(ys) + max(ys)) / 2.0
-
-    def fits(ox, oy, rx, ry):
-        for y in range(int(oy - ry), int(oy + ry) + 1):
-            for x in range(int(ox - rx), int(ox + rx) + 1):
-                nx, ny = (x - ox) / rx, (y - oy) / ry
-                if nx * nx + ny * ny <= 1.0 and (x, y) not in mask:
-                    return False
-        return True
-
-    best = (0, 0, 0, 0, 0)
-    for ox in (cx - 2, cx - 1, cx, cx + 1, cx + 2):
-        for oy in (cy - 2, cy - 1, cy, cy + 1, cy + 2):
-            for ry in range(6, 40):
-                rx = 4
-                while rx < 40 and fits(ox, oy, rx + 1, ry):
-                    rx += 1
-                if not fits(ox, oy, rx, ry):
-                    continue
-                if rx * ry > best[0]:
-                    best = (rx * ry, ox, oy, rx, ry)
-    _, ox, oy, rx, ry = best
-    return ((ox - rx) / W * 100, (oy - ry) / H * 100,
-            rx * 2 / W * 100, ry * 2 / H * 100, rx * 2, ry * 2)
 
 
 def cut_iris(im):
@@ -198,8 +133,10 @@ def main():
         print("  socket x %.2f%%..%.2f%%  y %.2f%%..%.2f%%  %dx%d px  (%d filled)"
               % (min(xs) / W * 100, max(xs) / W * 100, top / H * 100, bot / H * 100,
                  max(xs) - min(xs) + 1, bot - top + 1, len(m)))
+        # what site.css should use for the clip box: the cleared patch itself
         print("         css: left %.2f%% top %.2f%% width %.2f%% height %.2f%%"
-              " (%dx%d px)" % inscribed(m, W, H))
+              % (min(xs) / W * 100, top / H * 100,
+                 (max(xs) - min(xs) + 1) / W * 100, (bot - top + 1) / H * 100))
         holes |= m
 
     # take the hard edge off the seam, inside the sockets only
