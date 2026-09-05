@@ -144,8 +144,8 @@ WIDE = [
     # tile sitting flush in the card corner, not a floating cut-out - without
     # this the desk just ends on a hard edge in mid-card.
     '<defs><linearGradient id="wb" x1="0" y1="0" x2="0.4" y2="1">'
-    '<stop offset="0" stop-color="#241C17"/>'
-    '<stop offset="1" stop-color="#15100D"/></linearGradient></defs>'
+    '<stop offset="0" stop-color="#17130F"/>'
+    '<stop offset="1" stop-color="#100C0A"/></linearGradient></defs>'
     '<rect width="440" height="196" fill="url(#wb)"/>',
 
     # her, behind everything, head running off the top of the frame
