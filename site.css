@@ -556,7 +556,7 @@ body {
   position: relative;
   z-index: 2;
   margin: 0;
-  max-width: 26ch;
+  max-width: 24ch;
   font-size: 13.5px;
   line-height: 1.5;
   color: var(--ink-soft);
@@ -573,10 +573,10 @@ body {
   pointer-events: none;
 }
 
-.deco-cut {                       /* the cut-out, cropped by the edge */
-  right: -14px;
-  bottom: -6px;
-  width: 132px;
+.deco-cut {
+  right: -6px;
+  bottom: -42px;          /* chopped at the chest by the card edge */
+  width: 182px;
 }
 
 .deco-grad {
@@ -589,9 +589,9 @@ body {
 
 .deco-art {
   right: -30px;
-  top: -24px;
-  width: 172px;          /* clear of the title, which sits at the bottom */
-  opacity: 0.92;
+  top: -44px;             /* chopped along the top edge, as in the reference */
+  width: 196px;
+  opacity: 0.95;
 }
 
 /* a row of project screens, looping past both edges */
