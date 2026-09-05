@@ -577,9 +577,9 @@ body {
 }
 
 .deco-cut {
-  right: 2px;
-  top: 6px;
-  width: 176px;           /* the bottom edge lands across her shoulders */
+  right: -10px;
+  bottom: -16px;
+  width: 104px;           /* small, and taken by the corner */
 }
 
 .deco-grad {
@@ -590,15 +590,12 @@ body {
   opacity: 0.9;
 }
 
-/* the desk scene, windowed: cropped along the top and again below the
-   laptop, so it sits in the upper right and leaves the title its room */
+/* the desk scene: landscape, along the top edge, cut by the top and the
+   right - the shape the reference uses for its work card */
 .deco-desk {
-  right: -18px;
-  top: 0;
-  width: 196px;
-  height: 122px;
-  object-fit: cover;
-  object-position: 50% 79%;
+  right: -12px;
+  top: -6px;
+  width: 232px;
 }
 
 /* a row of project screens, looping past both edges */

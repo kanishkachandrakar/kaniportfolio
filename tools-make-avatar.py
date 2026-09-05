@@ -122,13 +122,57 @@ DESK = [
 
 
 def write(name, body, box="0 0 320 430"):
+    # width/height must follow the box, or a landscape scene gets letterboxed
+    # into a portrait frame.
+    w, h = box.split()[2:]
     svg = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="%s" '
-           'width="320" height="430">%s</svg>' % (box, "".join(body)))
+           'width="%s" height="%s">%s</svg>' % (box, w, h, "".join(body)))
     path = os.path.join(HERE, "images", name)
     with open(path, "w") as fh:
         fh.write(svg)
     print("wrote images/%s (%d bytes)" % (name, len(svg)))
 
 
+# A wide desk scene for the Skills card: the reference's work illustration
+# is landscape and sits along the top edge, so this is built to match -
+# the desk and machine lead, and she is cut by the top of the frame.
+# A wide desk scene for the Skills card. Drawn back to front - hair, head,
+# face, then the desk and machine in front of her - because layering it the
+# other way puts her hair over her face.
+WIDE = [
+    # her, behind everything, head running off the top of the frame
+    '<ellipse cx="310" cy="56" rx="60" ry="64" %s/>' % o(HAIR),
+    '<path d="M244 176c0-44 30-70 66-70s66 26 66 70z" %s/>' % o(NAVY),
+    '<path d="M310 112l-13 64h26z" %s/>' % o(SHIRT),
+    '<ellipse cx="310" cy="52" rx="46" ry="52" %s/>' % o(SKIN),
+    '<path d="M264 46c2-34 20-54 46-54s44 20 46 54c-7-20-19-30-46-30'
+    's-39 10-46 30z" %s/>' % o(HAIR),
+    '<circle cx="293" cy="50" r="11" fill="#FFFFFF" stroke="%s" '
+    'stroke-width="4"/>' % INK,
+    '<circle cx="327" cy="50" r="11" fill="#FFFFFF" stroke="%s" '
+    'stroke-width="4"/>' % INK,
+    '<circle cx="295" cy="53" r="5.5" fill="%s"/>' % INK,
+    '<circle cx="329" cy="53" r="5.5" fill="%s"/>' % INK,
+    '<path d="M298 74c8 7 16 7 24 0" stroke="%s" stroke-width="5" '
+    'fill="none" stroke-linecap="round"/>' % INK,
+    '<circle cx="278" cy="66" r="7" fill="#E79A94" opacity="0.5"/>',
+    '<circle cx="342" cy="66" r="7" fill="#E79A94" opacity="0.5"/>',
+    '<rect x="250" y="30" width="24" height="42" rx="11" %s/>' % o(CUP),
+    '<rect x="346" y="30" width="24" height="42" rx="11" %s/>' % o(CUP),
+    '<path d="M266 40c0-30 20-50 44-50s44 20 44 50" fill="none" '
+    'stroke="%s" stroke-width="9" stroke-linecap="round"/>' % CUP,
+    # the desk, in front
+    '<path d="M-12 156h464v56H-12z" %s/>' % o("#6B4A31"),
+    '<path d="M-12 156h464v10H-12z" fill="#8C6444"/>',
+    # and the machine on it
+    '<path d="M78 58h140l22 92H56z" %s/>' % o("#EDE8DF"),
+    '<path d="M92 70h114l16 68H76z" fill="#1B1E24"/>',
+    '<path d="M104 84h52M100 100h72M96 116h40" stroke="#8FE3B0" '
+    'stroke-width="5" stroke-linecap="round"/>',
+    '<path d="M56 150h184l20 20H36z" %s/>' % o("#D7D1C6"),
+    '<rect x="122" y="156" width="50" height="6" rx="3" fill="%s"/>' % INK,
+]
+
 write("kanishka-avatar.svg", HEAD[:1] + SHOULDERS + HEAD[1:])
 write("kanishka-desk.svg", HEAD[:1] + DESK[:3] + HEAD[1:] + DESK[3:])
+write("kanishka-desk-wide.svg", WIDE, box="0 0 440 196")
