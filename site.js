@@ -349,25 +349,38 @@
 
   function paint() {
     queued = false;
-    for (var i = 0; i < eyes.length; i++) {
-      // Measured every frame rather than cached: the card lifts and scales on
-      // hover, and the page scrolls, both of which move these boxes.
+
+    // Measured every frame rather than cached: the card lifts and scales on
+    // hover, and the page scrolls, both of which move these boxes.
+    var boxes = [], roomX = Infinity, roomY = Infinity, i;
+    for (i = 0; i < eyes.length; i++) {
       var e = eyes[i].getBoundingClientRect();
-      if (!e.width) continue;
+      if (!e.width) return;
       var p = pupils[i].getBoundingClientRect();
-      var dx = ptrX - (e.left + e.width / 2);
-      var dy = ptrY - (e.top + e.height / 2);
+      boxes.push(e);
+      // Her sockets are drawn at different sizes, so each has a different
+      // amount of slack. Both eyes take the smaller of the two, which is what
+      // stops one drifting further than the other and breaking the pair.
+      roomX = Math.min(roomX, (e.width - p.width) / 2);
+      roomY = Math.min(roomY, (e.height - p.height) / 2);
+    }
+    roomX = Math.max(0, roomX);
+    roomY = Math.max(0, roomY);
+
+    for (i = 0; i < eyes.length; i++) {
+      var b = boxes[i];
+      var dx = ptrX - (b.left + b.width / 2);
+      var dy = ptrY - (b.top + b.height / 2);
       var d = Math.sqrt(dx * dx + dy * dy) || 1;
 
       // ease-out on distance, so small movements near her face still read
       var k = Math.min(1, d / REACH);
       k = k * (2 - k);
 
-      var tx = (dx / d) * k * Math.max(0, (e.width - p.width) / 2);
-      var ty = (dy / d) * k * Math.max(0, (e.height - p.height) / 2);
       pupils[i].style.transform =
-        "translate(-50%, -50%) translate(" + tx.toFixed(2) + "px, " +
-        ty.toFixed(2) + "px)";
+        "translate(-50%, -50%) translate(" +
+        ((dx / d) * k * roomX).toFixed(2) + "px, " +
+        ((dy / d) * k * roomY).toFixed(2) + "px)";
     }
   }
 

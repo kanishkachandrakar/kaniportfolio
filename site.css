@@ -635,17 +635,18 @@ body {
 .deco-cut { display: block; line-height: 0; }
 .deco-cut img { display: block; width: 100%; }
 
-/* Each patch covers one of her painted eyes; percentages are measured off the
-   crop, so they hold at whatever width the card ends up. */
+/* One box per socket, matching the ellipses tools-blank-eyes.py wiped back to
+   sclera. They only clip: her own eye white shows through, and the iris inside
+   cannot wander onto a lid. Percentages are off the crop, so they hold at
+   whatever width the card ends up. */
 .eye {
   position: absolute;
   border-radius: 50%;
-  background: #fcfaf5;
   overflow: hidden;
 }
 
-.eye-l { left: 66.5%; top: 72.8%; width: 4.2%; height: 7.4%; }
-.eye-r { left: 73.9%; top: 79.8%; width: 5.7%; height: 6.2%; }
+.eye-l { left: 67.05%; top: 72.86%; width: 3.58%; height: 6.72%; }
+.eye-r { left: 75.54%; top: 80.56%; width: 3.80%; height: 5.94%; }
 
 .eye b {
   position: absolute;
@@ -661,8 +662,10 @@ body {
   will-change: transform;
 }
 
-.eye-l b { width: 60%; height: 56%; }
-.eye-r b { width: 58%; height: 88%; }
+/* Both irises come out the same 25px on the crop, so the pair reads as a
+   matched set however differently her two sockets are drawn. */
+.eye-l b { width: 66.5%; height: 58.5%; }
+.eye-r b { width: 62.7%; height: 66.1%; }
 
 @media (prefers-reduced-motion: reduce) {
   .eye b { transition: none; }
