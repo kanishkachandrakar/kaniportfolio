@@ -570,8 +570,12 @@ body {
 .b-contact  { grid-column: 2; grid-row: 2; }
 
 .bento-ico {
-  width: 26px;
-  height: 26px;
+  /* positioned so it stacks above the decoration; without this it paints
+     underneath and the marquee hides it */
+  position: relative;
+  z-index: 3;
+  width: 33px;
+  height: 33px;
   fill: none;
   stroke: rgba(246, 242, 234, 0.62);
   stroke-width: 1.6;
@@ -644,14 +648,14 @@ body {
 
 /* a row of project screens, looping past both edges */
 .deco-apps {
-  left: 0;
+  left: 62px;             /* clear of the folder icon in the corner */
   right: 0;
   top: 12px;
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%,
-                                      #000 91%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 9%,
-                              #000 91%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%,
+                                      #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%,
+                              #000 92%, transparent);
 }
 
 .apps-track {
