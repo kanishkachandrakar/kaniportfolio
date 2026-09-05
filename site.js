@@ -332,3 +332,63 @@
     }
   });
 })();
+
+/* --- her eyes follow the pointer ------------------------------------- */
+(function () {
+  var eyes = [].slice.call(document.querySelectorAll(".deco-cut .eye"));
+  if (!eyes.length) return;
+  // touch has no pointer to follow, and the card's hover scale never fires
+  if (!window.matchMedia("(hover: hover)").matches) return;
+
+  var pupils = eyes.map(function (eye) { return eye.firstElementChild; });
+  var ptrX = 0, ptrY = 0, queued = false, seen = false;
+
+  // Reach: how far the pointer has to be before the pupils are looking as far
+  // over as they go. Roughly a face's worth of screen.
+  var REACH = 420;
+
+  function paint() {
+    queued = false;
+    for (var i = 0; i < eyes.length; i++) {
+      // Measured every frame rather than cached: the card lifts and scales on
+      // hover, and the page scrolls, both of which move these boxes.
+      var e = eyes[i].getBoundingClientRect();
+      if (!e.width) continue;
+      var p = pupils[i].getBoundingClientRect();
+      var dx = ptrX - (e.left + e.width / 2);
+      var dy = ptrY - (e.top + e.height / 2);
+      var d = Math.sqrt(dx * dx + dy * dy) || 1;
+
+      // ease-out on distance, so small movements near her face still read
+      var k = Math.min(1, d / REACH);
+      k = k * (2 - k);
+
+      var tx = (dx / d) * k * Math.max(0, (e.width - p.width) / 2);
+      var ty = (dy / d) * k * Math.max(0, (e.height - p.height) / 2);
+      pupils[i].style.transform =
+        "translate(-50%, -50%) translate(" + tx.toFixed(2) + "px, " +
+        ty.toFixed(2) + "px)";
+    }
+  }
+
+  function queue() {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(paint);
+  }
+
+  document.addEventListener("mousemove", function (e) {
+    ptrX = e.clientX;
+    ptrY = e.clientY;
+    seen = true;
+    queue();
+  }, { passive: true });
+
+  // Pointer gone from the window, or the page moved under a still pointer.
+  document.addEventListener("mouseleave", function () {
+    for (var i = 0; i < pupils.length; i++) pupils[i].style.transform = "";
+  });
+  window.addEventListener("scroll", function () { if (seen) queue(); },
+                          { passive: true });
+  window.addEventListener("resize", function () { if (seen) queue(); });
+})();
