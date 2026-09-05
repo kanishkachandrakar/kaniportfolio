@@ -243,18 +243,17 @@ SCENE = [
     '<circle cx="392" cy="222" r="13" fill="#E79A94" opacity="0.55"/>',
 
     # the desk, in front of her
-    '<path d="M0 356 500 340 500 500 0 500z" fill="#6B4A31"/>'.replace(
-        "M0 356 500 340 500 500 0 500z",
-        "M0 356L500 340L500 500L0 500Z"),
-    '<path d="M0 356L500 340L500 352L0 370Z" fill="#8C6444"/>',
+    '<path d="M0 386L500 370L500 500L0 500Z" fill="#6B4A31"/>',
+    '<path d="M0 386L500 370L500 382L0 400Z" fill="#8C6444"/>',
 
-    # and the laptop on it
-    '<path d="M66 258h176l30 106H36z" %s/>' % o("#EDE8DF"),
-    '<path d="M82 272h144l22 78H60z" fill="#1B1E24"/>',
-    '<path d="M96 290h64M92 308h86M88 326h50" stroke="#8FE3B0" '
+    # The laptop sits well below her chin, so the work card can crop between
+    # the two without clipping either.
+    '<path d="M74 300h164l28 92H46z" %s/>' % o("#EDE8DF"),
+    '<path d="M89 312h134l21 68H68z" fill="#1B1E24"/>',
+    '<path d="M102 328h60M98 344h80M94 360h46" stroke="#8FE3B0" '
     'stroke-width="6" stroke-linecap="round"/>',
-    '<path d="M36 364h236l26 24H10z" %s/>' % o("#D7D1C6"),
-    '<rect x="124" y="370" width="60" height="7" rx="3.5" fill="%s"/>' % INK,
+    '<path d="M46 392h220l24 22H22z" %s/>' % o("#D7D1C6"),
+    '<rect x="126" y="398" width="56" height="7" rx="3.5" fill="%s"/>' % INK,
 ]
 
 write("kanishka-avatar.svg", HEAD[:1] + SHOULDERS + HEAD[1:])

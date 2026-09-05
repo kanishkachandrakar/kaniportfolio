@@ -478,7 +478,7 @@ body {
 .bento {
   display: grid;
   grid-template-columns: 1.58fr 1fr;
-  grid-auto-rows: minmax(198px, auto);
+  grid-auto-rows: minmax(168px, auto);
   gap: 14px;
 }
 
@@ -487,7 +487,7 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  padding: 17px 19px;
+  padding: 15px 17px;
   border-radius: 13px;
   border: 1px solid rgba(255, 255, 255, 0.10);
   background: rgba(9, 7, 6, 0.55);
@@ -548,7 +548,7 @@ body {
   z-index: 2;
   margin: auto 0 4px;
   font-family: "Newsreader", Georgia, "Times New Roman", serif;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.01em;
   color: #fff;
@@ -559,7 +559,7 @@ body {
   z-index: 2;
   margin: 0;
   max-width: 24ch;
-  font-size: 13px;
+  font-size: 12.5px;
   line-height: 1.5;
   color: var(--ink-soft);
 }
@@ -579,8 +579,8 @@ body {
 .deco-cut {
   /* framed on her head; the desk and laptop hang below the card */
   right: -2px;
-  bottom: -134px;
-  width: 260px;
+  bottom: -103px;
+  width: 240px;
 }
 
 .deco-grad {
@@ -597,8 +597,8 @@ body {
 .deco-desk {
   /* framed on the desk and the machine, the cut falling below her chin */
   right: 0;
-  top: -174px;
-  width: 310px;
+  top: -161px;
+  width: 280px;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 16%);
   mask-image: linear-gradient(90deg, transparent, #000 16%);
 }
@@ -630,10 +630,10 @@ body {
 .bento-card:hover .apps-track { animation-play-state: paused; }
 
 .deco-apps img {
-  width: 62px;
-  height: 62px;
+  width: 54px;
+  height: 54px;
   flex: none;
-  border-radius: 15px;
+  border-radius: 13px;
   object-fit: cover;
   border: 1px solid rgba(255, 255, 255, 0.16);
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.5);
@@ -641,19 +641,19 @@ body {
 
 /* a thread, mid-conversation */
 .deco-chat {
-  left: 20px;
-  right: 20px;
-  top: 14px;
+  left: 18px;
+  right: 18px;
+  top: 10px;
   display: flex;
   flex-direction: column;
-  gap: 9px;
+  gap: 7px;
 }
 
 .bub {
   display: block;
-  width: 64px;
-  height: 26px;
-  border-radius: 13px;
+  width: 54px;
+  height: 21px;
+  border-radius: 10.5px;
   position: relative;
 }
 
