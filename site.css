@@ -478,7 +478,7 @@ body {
 .bento {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-auto-rows: minmax(178px, auto);
+  grid-auto-rows: minmax(212px, auto);
   gap: 14px;
 }
 
@@ -577,9 +577,9 @@ body {
 }
 
 .deco-cut {
-  right: 6px;
-  bottom: -48px;          /* chopped at the chest by the card edge */
-  width: 150px;
+  right: 2px;
+  top: 6px;
+  width: 176px;           /* the bottom edge lands across her shoulders */
 }
 
 .deco-grad {
@@ -590,12 +590,15 @@ body {
   opacity: 0.9;
 }
 
-/* the desk scene: the card's bottom edge takes the laptop, the way the
-   reference's own work illustration is cut */
+/* the desk scene, windowed: cropped along the top and again below the
+   laptop, so it sits in the upper right and leaves the title its room */
 .deco-desk {
-  right: -24px;
-  bottom: -14px;
-  width: 138px;
+  right: -18px;
+  top: 0;
+  width: 196px;
+  height: 122px;
+  object-fit: cover;
+  object-position: 50% 79%;
 }
 
 /* a row of project screens, looping past both edges */
