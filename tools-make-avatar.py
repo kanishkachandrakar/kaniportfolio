@@ -258,33 +258,32 @@ SCENE = [
     '<path d="M0 386L500 370L500 500L0 500Z" fill="#6B4A31"/>',
     '<path d="M0 386L500 370L500 382L0 400Z" fill="#8C6444"/>',
 
-    # The laptop sits well below her chin, so the work card can crop between
-    # the two without clipping either. It is angled and shadowed so it reads
-    # as standing on the desk rather than pasted onto it.
-    '<ellipse cx="168" cy="424" rx="150" ry="17" fill="#3B2718" '
+    # The laptop faces away from us, because she is behind it - we see the
+    # back of the lid, not the screen. The lid narrows toward the top as it
+    # leans away.
+    '<ellipse cx="172" cy="410" rx="146" ry="16" fill="#3B2718" '
     'fill-opacity="0.55"/>',
-    '<path d="M96 302h150l26 88H70z" %s/>' % o("#EDE8DF"),
-    '<path d="M110 314h122l19 64H88z" fill="#1B1E24"/>',
-    '<path d="M122 330h56M118 346h74M114 362h42" stroke="#8FE3B0" '
-    'stroke-width="6" stroke-linecap="round"/>',
-    # the deck, wider at the front than the hinge
-    '<path d="M70 390h202l34 30H36z" %s/>' % o("#E4DFD6"),
-    '<path d="M86 396h170l22 16H64z" fill="#CFC9BE"/>',
-    '<rect x="140" y="414" width="62" height="6" rx="3" fill="%s" '
-    'fill-opacity="0.7"/>' % INK,
+    # a few degrees off square, so it sits on the desk rather than facing
+    # the viewer head on
+    '<g transform="rotate(-3 172 350)">',
+    '<path d="M88 292h168l30 100H58z" %s/>' % o("#B9BEC4"),
+    '<path d="M100 302h144l24 80H76z" fill="#A7ADB4"/>',
+    '<circle cx="172" cy="342" r="15" fill="#E7EAEE" fill-opacity="0.9"/>',
+    # the front lip of the base, all we see of it from this side
+    '<path d="M58 392h228l16 16H42z" %s/>' % o("#D7D1C6"),
+    '</g>',
 
-    # Arms reaching to the keyboard. Drawn after the machine so her hands
-    # rest on it rather than disappearing behind it.
-    '<path d="M286 332C276 358 272 380 276 396" stroke="%s" stroke-width="34" '
+    # Her forearms come round the sides and disappear behind the machine;
+    # the hands are on a keyboard we cannot see from here.
+    '<path d="M282 330C288 352 292 370 294 386" stroke="%s" stroke-width="34" '
     'fill="none" stroke-linecap="round"/>' % INK,
-    '<path d="M286 332C276 358 272 380 276 396" stroke="%s" stroke-width="25" '
+    '<path d="M282 330C288 352 292 370 294 386" stroke="%s" stroke-width="25" '
     'fill="none" stroke-linecap="round"/>' % NAVY,
-    '<path d="M400 342C376 376 338 396 312 404" stroke="%s" stroke-width="34" '
+    '<path d="M402 340C388 372 356 392 330 398" stroke="%s" stroke-width="34" '
     'fill="none" stroke-linecap="round"/>' % INK,
-    '<path d="M400 342C376 376 338 396 312 404" stroke="%s" stroke-width="25" '
+    '<path d="M402 340C388 372 356 392 330 398" stroke="%s" stroke-width="25" '
     'fill="none" stroke-linecap="round"/>' % NAVY,
-    '<ellipse cx="270" cy="403" rx="19" ry="13" %s/>' % o(SKIN),
-    '<ellipse cx="304" cy="409" rx="19" ry="13" %s/>' % o(SKIN),
+    '<ellipse cx="318" cy="399" rx="19" ry="13" %s/>' % o(SKIN),
 ]
 
 write("kanishka-avatar.svg", HEAD[:1] + SHOULDERS + HEAD[1:])
