@@ -30,9 +30,9 @@ CUP_SH = "#C89355"
 SW = 6          # outline weight
 
 
-def o(fill):
+def o(fill, sw=None):
     return ('fill="%s" stroke="%s" stroke-width="%s" stroke-linejoin="round" '
-            'stroke-linecap="round"' % (fill, INK, SW))
+            'stroke-linecap="round"' % (fill, INK, SW if sw is None else sw))
 
 
 HEAD = [
@@ -237,32 +237,38 @@ FACE = [
     '<path d="M146 202c8-5 20-5 28 0z" fill="#E4788A"/>',
     '<circle cx="98" cy="180" r="13" fill="#E79A94" opacity="0.55"/>',
     '<circle cx="222" cy="180" r="13" fill="#E79A94" opacity="0.55"/>',
+    # a shoulder for the card edge to take
+    '<path d="M96 300c0-38 28-60 64-60s64 22 64 60z" %s/>' % o(NAVY),
+    '<path d="M160 244l-12 56h24z" %s/>' % o(SHIRT),
 ]
 
-# The work tile: a rectangle for the card corner. Her head is cut away by
-# its top edge, exactly as the reference cuts its own.
+# The work tile. His laptop is small and there is a lot of dark room around
+# it; the desk is a thin strip along the bottom and the figure is cut by the
+# right edge as well as the top.
 WORK = [
     '<defs><linearGradient id="wt" x1="0" y1="0" x2="0.35" y2="1">'
     '<stop offset="0" stop-color="#18130F"/>'
     '<stop offset="1" stop-color="#0F0B09"/></linearGradient></defs>'
     '<rect width="400" height="210" fill="url(#wt)"/>',
-    # her, head already gone above the frame
-    '<path d="M236 128c0-72 30-108 66-108s66 36 66 108z" %s/>' % o(NAVY),
-    '<path d="M302 22l-14 106h28z" %s/>' % o(SHIRT),
-    '<path d="M252 -8c-10 30-13 62-13 90h18c0-30 4-62 12-90z" %s/>' % o(HAIR),
-    '<path d="M352 -8c10 30 13 62 13 90h-18c0-30-4-62-12-90z" %s/>' % o(HAIR),
-    '<path d="M240 128c-6-26 5-45 26-54l11 21c-12 7-18 19-16 33z" %s/>' % o(NAVY),
-    '<ellipse cx="246" cy="126" rx="16" ry="11" %s/>' % o(SKIN),
-    # desk
-    '<path d="M-10 112h420v110H-10z" fill="#6B4A31"/>',
-    '<path d="M-10 112h420v9H-10z" fill="#8C6444"/>',
-    # laptop
-    '<path d="M64 32h136l22 80H42z" %s/>' % o("#EDE8DF"),
-    '<path d="M77 43h110l16 58H62z" fill="#1B1E24"/>',
-    '<path d="M89 56h50M85 71h68M81 86h40" stroke="#8FE3B0" stroke-width="5" '
-    'stroke-linecap="round"/>',
-    '<path d="M42 112h180l18 17H24z" %s/>' % o("#D7D1C6"),
-    '<rect x="110" y="116" width="46" height="6" rx="3" fill="%s"/>' % INK,
+
+    # her, at the right, head gone above the frame and her side past it
+    '<path d="M286 150c0-64 26-96 58-96s58 32 58 96z" %s/>' % o(NAVY),
+    '<path d="M344 58l-11 92h22z" %s/>' % o(SHIRT),
+    '<path d="M300 -6c-8 26-11 54-11 78h15c0-26 3-54 10-78z" %s/>' % o(HAIR),
+    '<path d="M290 150c-5-24 4-41 22-49l10 19c-11 6-16 17-14 30z" %s/>' % o(NAVY),
+    '<ellipse cx="295" cy="148" rx="14" ry="10" %s/>' % o(SKIN),
+
+    # a thin desk along the bottom
+    '<path d="M-10 146h420v70H-10z" fill="#6B4A31"/>',
+    '<path d="M-10 146h420v8H-10z" fill="#8C6444"/>',
+
+    # a small laptop on it
+    '<path d="M96 74h108l18 72H78z" %s/>' % o("#EDE8DF", 5),
+    '<path d="M107 84h86l13 52H85z" fill="#1B1E24"/>',
+    '<path d="M117 96h40M113 108h54M109 120h32" stroke="#8FE3B0" '
+    'stroke-width="4" stroke-linecap="round"/>',
+    '<path d="M78 146h144l14 14H64z" %s/>' % o("#D7D1C6", 5),
+    '<rect x="132" y="149" width="36" height="5" rx="2.5" fill="%s"/>' % INK,
 ]
 
 write("kanishka-avatar.svg", HEAD[:1] + SHOULDERS + HEAD[1:])
@@ -270,5 +276,5 @@ write("kanishka-desk.svg", HEAD[:1] + DESK[:3] + HEAD[1:] + DESK[3:])
 write("kanishka-desk-wide.svg", WIDE, box="0 0 440 300")
 # head only, ending at the neck, for the card above
 write("kanishka-head.svg", HEAD, box="44 56 232 250")
-write("kanishka-face.svg", FACE, box="52 46 216 190")
+write("kanishka-face.svg", FACE, box="52 46 216 244")
 write("kanishka-work.svg", WORK, box="0 0 400 210")

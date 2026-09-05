@@ -577,9 +577,9 @@ body {
 }
 
 .deco-cut {
-  right: -22px;
-  bottom: 30px;           /* level with the title, cut by the right edge */
-  width: 108px;
+  right: 12px;
+  bottom: -20px;          /* the corner takes her collar */
+  width: 104px;
 }
 
 .deco-grad {
