@@ -140,6 +140,14 @@ def write(name, body, box="0 0 320 430"):
 # face, then the desk and machine in front of her - because layering it the
 # other way puts her hair over her face.
 WIDE = [
+    # Its own backdrop. The reference's work illustration is a rectangular
+    # tile sitting flush in the card corner, not a floating cut-out - without
+    # this the desk just ends on a hard edge in mid-card.
+    '<defs><linearGradient id="wb" x1="0" y1="0" x2="0.4" y2="1">'
+    '<stop offset="0" stop-color="#241C17"/>'
+    '<stop offset="1" stop-color="#15100D"/></linearGradient></defs>'
+    '<rect width="440" height="196" fill="url(#wb)"/>',
+
     # her, behind everything, head running off the top of the frame
     '<ellipse cx="310" cy="56" rx="60" ry="64" %s/>' % o(HAIR),
     '<path d="M244 176c0-44 30-70 66-70s66 26 66 70z" %s/>' % o(NAVY),
@@ -162,8 +170,8 @@ WIDE = [
     '<path d="M266 40c0-30 20-50 44-50s44 20 44 50" fill="none" '
     'stroke="%s" stroke-width="9" stroke-linecap="round"/>' % CUP,
     # the desk, in front
-    '<path d="M-12 156h464v56H-12z" %s/>' % o("#6B4A31"),
-    '<path d="M-12 156h464v10H-12z" fill="#8C6444"/>',
+    '<path d="M-12 150h464v60H-12z" fill="#6B4A31"/>',
+    '<path d="M-12 150h464v9H-12z" fill="#8C6444"/>',
     # and the machine on it
     '<path d="M78 58h140l22 92H56z" %s/>' % o("#EDE8DF"),
     '<path d="M92 70h114l16 68H76z" fill="#1B1E24"/>',
