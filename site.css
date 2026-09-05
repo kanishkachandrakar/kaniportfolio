@@ -578,7 +578,10 @@ body {
 
 .deco-cut {
   /* framed on her head; the desk and laptop hang below the card */
-  right: -2px;
+  /* right offset chosen so her head sits in the same column as her body
+     on the card below - both cards frame the same drawing at different
+     scales, so the two do not line up by default */
+  right: 13px;
   bottom: -103px;
   width: 240px;
 }
