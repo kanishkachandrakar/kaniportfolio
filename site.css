@@ -478,7 +478,7 @@ body {
 .bento {
   display: grid;
   grid-template-columns: 1.58fr 1fr;
-  grid-auto-rows: minmax(252px, auto);
+  grid-auto-rows: minmax(198px, auto);
   gap: 14px;
 }
 
@@ -487,8 +487,8 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  padding: 20px 22px;
-  border-radius: 14px;
+  padding: 17px 19px;
+  border-radius: 13px;
   border: 1px solid rgba(255, 255, 255, 0.10);
   background: rgba(9, 7, 6, 0.55);
   color: inherit;
@@ -548,7 +548,7 @@ body {
   z-index: 2;
   margin: auto 0 4px;
   font-family: "Newsreader", Georgia, "Times New Roman", serif;
-  font-size: 25px;
+  font-size: 22px;
   font-weight: 600;
   letter-spacing: -0.01em;
   color: #fff;
@@ -559,7 +559,7 @@ body {
   z-index: 2;
   margin: 0;
   max-width: 24ch;
-  font-size: 13.5px;
+  font-size: 13px;
   line-height: 1.5;
   color: var(--ink-soft);
 }
@@ -578,9 +578,9 @@ body {
 
 .deco-cut {
   /* framed on her head; the desk and laptop hang below the card */
-  right: -11px;
-  bottom: -150px;
-  width: 300px;
+  right: -2px;
+  bottom: -134px;
+  width: 260px;
 }
 
 .deco-grad {
@@ -597,8 +597,8 @@ body {
 .deco-desk {
   /* framed on the desk and the machine, the cut falling below her chin */
   right: 0;
-  top: -182px;
-  width: 360px;
+  top: -174px;
+  width: 310px;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 16%);
   mask-image: linear-gradient(90deg, transparent, #000 16%);
 }
@@ -630,10 +630,10 @@ body {
 .bento-card:hover .apps-track { animation-play-state: paused; }
 
 .deco-apps img {
-  width: 74px;
-  height: 74px;
+  width: 62px;
+  height: 62px;
   flex: none;
-  border-radius: 17px;
+  border-radius: 15px;
   object-fit: cover;
   border: 1px solid rgba(255, 255, 255, 0.16);
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.5);
@@ -641,19 +641,19 @@ body {
 
 /* a thread, mid-conversation */
 .deco-chat {
-  left: 22px;
-  right: 22px;
-  top: 24px;
+  left: 20px;
+  right: 20px;
+  top: 14px;
   display: flex;
   flex-direction: column;
-  gap: 11px;
+  gap: 9px;
 }
 
 .bub {
   display: block;
-  width: 74px;
-  height: 30px;
-  border-radius: 15px;
+  width: 64px;
+  height: 26px;
+  border-radius: 13px;
   position: relative;
 }
 
@@ -662,12 +662,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 5px;
 }
 
 .bub i {
-  width: 6.5px;
-  height: 6.5px;
+  width: 5.5px;
+  height: 5.5px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.92);
   animation: bubDot 1.5s ease-in-out infinite;
