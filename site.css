@@ -621,9 +621,9 @@ body {
   /* right offset chosen so her head sits in the same column as her body
      on the card below - both cards frame the same drawing at different
      scales, so the two do not line up by default */
-  right: 13px;
-  bottom: -103px;
-  width: 240px;
+  right: -2px;
+  bottom: -126px;
+  width: 287px;
 }
 
 .deco-grad {
