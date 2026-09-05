@@ -34,17 +34,16 @@ SRC = "images/kani-about.webp"
 # Every version that tried left one fault or the other on screen.
 EYES = [
     # her right
-    [(699, 476), (703, 471), (707, 468), (711, 466), (715, 464), (719, 463),
-     (723, 463), (727, 464), (731, 466), (735, 469), (739, 474), (742, 480),
-     (743, 486), (743, 492), (741, 499), (738, 504), (734, 506), (730, 505),
-     (726, 503), (722, 501), (718, 498), (714, 494), (710, 489), (706, 484),
-     (702, 479)],
+    [(699, 475), (703, 468), (708, 464), (713, 462), (718, 462), (723, 463),
+     (728, 465), (733, 469), (738, 474), (742, 481), (744, 488), (744, 495),
+     (741, 501), (737, 506), (733, 508), (729, 507), (725, 505), (721, 503),
+     (717, 500), (713, 497), (709, 493), (705, 489), (702, 484), (699, 480)],
     # her left
-    [(772, 529), (775, 523), (779, 518), (784, 514), (789, 512), (794, 510),
-     (799, 509), (804, 509), (809, 509), (814, 510), (819, 512), (824, 515),
-     (829, 519), (833, 525), (837, 532), (838, 535), (835, 540), (831, 543),
-     (826, 545), (821, 545), (816, 545), (811, 544), (806, 543), (801, 541),
-     (796, 539), (791, 536), (786, 534), (781, 531), (776, 529)],
+    [(774, 529), (777, 523), (781, 518), (786, 514), (791, 512), (796, 511),
+     (801, 510), (806, 510), (811, 510), (816, 511), (821, 513), (826, 516),
+     (830, 520), (834, 526), (837, 532), (838, 536), (836, 541), (832, 544),
+     (827, 546), (822, 547), (817, 547), (812, 546), (807, 545), (802, 544),
+     (797, 542), (792, 540), (787, 537), (782, 534), (778, 531)],
 ]
 
 # Her left iris, which she drew almost fully open - centre and radius in crop
@@ -92,6 +91,11 @@ def socket(px, poly, W, H):
         [((x - x0) * Z + Z // 2, (y - y0) * Z + Z // 2) for x, y in poly],
         fill=255)
     mask = mask.resize((w, h), Image.LANCZOS)
+    # Back off a pixel from the trace. What that leaves is the thin lid line
+    # she drew under each eye - in her artwork most of the dark weight along
+    # the bottom is the iris itself, so clearing right up to the trace takes
+    # the lower lash with it and the eye ends up open to the skin.
+    mask = mask.filter(ImageFilter.MinFilter(3))
     mp = mask.load()
 
     out = {}
@@ -130,6 +134,41 @@ def cut_iris(im):
     print("  iris   %s (%d x %d)" % (IRIS_OUT, n, n))
 
 
+def inscribed(mask, W, H):
+    """The largest upright ellipse that fits inside a cleared socket.
+
+    site.css clips the moving iris to this. It has to sit wholly within the
+    sclera, because anywhere the clip crosses open white it slices the iris and
+    the cut edge reads as a dark arc lying in the eye - which is what a clip
+    box left over from an older, differently shaped socket was doing.
+    """
+    xs = [p[0] for p in mask]
+    ys = [p[1] for p in mask]
+    cx = (min(xs) + max(xs)) / 2.0
+    cy = (min(ys) + max(ys)) / 2.0
+
+    def fits(ox, oy, rx, ry):
+        for y in range(int(oy - ry), int(oy + ry) + 1):
+            for x in range(int(ox - rx), int(ox + rx) + 1):
+                nx, ny = (x - ox) / rx, (y - oy) / ry
+                if nx * nx + ny * ny <= 1.0 and (x, y) not in mask:
+                    return False
+        return True
+
+    best = (0, 0, 0, 0, 0)
+    for ox in (cx - 3, cx - 1.5, cx, cx + 1.5, cx + 3):
+        for oy in (cy - 3, cy - 1.5, cy, cy + 1.5, cy + 3):
+            for ry in range(5, 34):
+                rx = 4
+                while rx < 40 and fits(ox, oy, rx + 1, ry):
+                    rx += 1
+                if rx * ry > best[0] and fits(ox, oy, rx, ry):
+                    best = (rx * ry, ox, oy, rx, ry)
+    _, ox, oy, rx, ry = best
+    return ((ox - rx) / W * 100, (oy - ry) / H * 100,
+            rx * 2 / W * 100, ry * 2 / H * 100, rx * 2, ry * 2)
+
+
 def main():
     im = Image.open(SRC).convert("RGB")
     W, H = im.size
@@ -156,6 +195,8 @@ def main():
         print("  socket x %.2f%%..%.2f%%  y %.2f%%..%.2f%%  %dx%d px  (%d painted)"
               % (min(xs) / W * 100, max(xs) / W * 100, top / H * 100, bot / H * 100,
                  max(xs) - min(xs) + 1, bot - top + 1, len(m)))
+        print("         css: left %.2f%%; top %.2f%%; width %.2f%%; height %.2f%%;"
+              "   (%dx%d px)" % inscribed(set(m), W, H))
 
     # take the hard edge off the seam, inside the sockets only
     soft = im.filter(ImageFilter.GaussianBlur(0.7))

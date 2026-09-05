@@ -348,7 +348,7 @@
   var REACH = 420;
 
   // how far past its socket an iris may slide, as a fraction of the socket
-  var OVERSHOOT = 0.08;
+  var OVERSHOOT = 0.02;
 
   function paint() {
     queued = false;

@@ -645,8 +645,8 @@ body {
   overflow: hidden;
 }
 
-.eye-l { left: 67.21%; top: 72.96%; width: 3.15%; height: 6.45%; }
-.eye-r { left: 75.31%; top: 80.35%; width: 4.19%; height: 5.35%; }
+.eye-l { left: 67.21%; top: 73.43%; width: 3.05%; height: 4.72%; }
+.eye-r { left: 74.93%; top: 80.35%; width: 4.19%; height: 5.03%; }
 
 .eye b {
   position: absolute;
@@ -667,8 +667,8 @@ body {
    however differently her two sockets are drawn. Smaller than she drew them:
    what her sockets hold is now bounded by leaving her lashes alone, and an
    iris sized to fill them would have nowhere to travel. */
-.eye-l b { width: 78.8%; height: 63.4%; }
-.eye-r b { width: 59.1%; height: 76.5%; }
+.eye-l b { width: 81.3%; height: 86.7%; }
+.eye-r b { width: 59.1%; height: 81.3%; }
 
 @media (prefers-reduced-motion: reduce) {
   .eye b { transition: none; }
