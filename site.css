@@ -610,7 +610,7 @@ body {
 .deco-apps {
   left: 0;
   right: 0;
-  top: 17px;
+  top: 12px;
   overflow: hidden;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%,
                                       #000 91%, transparent);
@@ -633,10 +633,10 @@ body {
 .bento-card:hover .apps-track { animation-play-state: paused; }
 
 .deco-apps img {
-  width: 76px;
-  height: 76px;
+  width: 90px;
+  height: 90px;
   flex: none;
-  border-radius: 17px;
+  border-radius: 20px;
   object-fit: cover;
   border: 1px solid rgba(255, 255, 255, 0.16);
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.5);
