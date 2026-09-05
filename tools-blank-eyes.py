@@ -39,7 +39,8 @@ IRIS_OUT = "images/kani-iris.webp"
 
 SCLERA_LIT = (252, 252, 249)
 SCLERA_SHADE = (216, 215, 217)      # under the upper lid
-LASH_REACH = 8                      # how thick her lash line runs, in px
+LASH_REACH = 4                      # how thick her lash line runs, in px
+SKIN_GAP = 1                        # never paint right up against skin
 SKIN_GAP = 2                        # never paint this close to skin
 
 
@@ -90,7 +91,7 @@ def socket(px, cx, cy, rx, ry, W, H):
                 dist[n] = dist[(a, b)] + 1
                 stack.append(n)
 
-    fill, inside = set(), set()
+    fill = set()
     for y in range(y0, y1):
         for x in range(x0, x1):
             nx = (x - cx * W) / (rx * W)
@@ -100,30 +101,17 @@ def socket(px, cx, cy, rx, ry, W, H):
             p = px[x, y]
             if is_skin(p):
                 continue
-            inside.add((x, y))
             d = dist.get((x, y), 99)
             if d <= SKIN_GAP:
-                continue        # her lid's own edge, whatever colour it is
-            near = d <= LASH_REACH
-            if is_sclera(p) or not near or p[0] - p[2] >= 26:
+                continue            # her lid's own edge, whatever colour it is
+            # Past the lash, or already white, or warm. Only that last one
+            # needs saying twice: along her lower lid there is no lash at all,
+            # just iris meeting cheek, so the rim of the old eye sits as close
+            # to skin as a lash would. Her lash stays neutral even at its
+            # darkest, and the iris stays warm, which is what separates them.
+            if d > LASH_REACH or is_sclera(p) or p[0] - p[2] >= 26:
                 fill.add((x, y))
-
-    # What that spared is either lash, which runs off the edge of the search
-    # area, or a last scrap of pupil ringed by sclera. Walk in from the rim:
-    # what the walk reaches is lash and stays, the rest is eye.
-    rest = inside - fill
-    stack = [q for q in rest
-             if any((q[0] + a, q[1] + b) not in inside
-                    for a, b in ((1, 0), (-1, 0), (0, 1), (0, -1)))]
-    lash = set(stack)
-    while stack:
-        a, b = stack.pop()
-        for da, db in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-            n = (a + da, b + db)
-            if n in rest and n not in lash:
-                lash.add(n)
-                stack.append(n)
-    return fill | (rest - lash)
+    return fill
 
 
 def inscribed(mask, W, H):
