@@ -211,7 +211,8 @@ WIDE = [
 # never line up the way one drawing cropped twice does.
 SCENE = [
     # her, behind the desk
-    '<ellipse cx="332" cy="196" rx="86" ry="92" %s/>' % o(HAIR),
+    '<g transform="rotate(-8 332 190)">'
+    '<ellipse cx="332" cy="196" rx="86" ry="92" %s/></g>' % o(HAIR),
     '<path d="M232 372c0-62 45-100 100-100s100 38 100 100z" %s/>' % o(NAVY),
     # the shoulder turned away from the light
     '<path d="M232 372c0-48 27-82 62-95-14 26-20 58-20 95z" fill="%s"/>' % NAVY_SH,
@@ -221,6 +222,7 @@ SCENE = [
     '<path d="M364 280l-32 22 26 70 18-84z" fill="%s"/>' % NAVY,
     '<path d="M300 280l32 22 32-22" fill="none" stroke="%s" '
     'stroke-width="5" stroke-linejoin="round"/>' % INK,
+    '<g transform="rotate(-8 332 190)">',
     '<ellipse cx="332" cy="188" rx="72" ry="80" %s/>' % o(SKIN),
     '<path d="M260 180c2-52 32-84 72-84s70 32 72 84c-12-30-32-46-72-46'
     's-60 16-72 46z" %s/>' % o(HAIR),
@@ -234,22 +236,23 @@ SCENE = [
     '<path d="M254 176c0-46 35-80 78-80s78 34 78 80" fill="none" stroke="%s" '
     'stroke-width="8" stroke-linecap="round"/>' % CUP,
     # startled, the way his is
-    '<circle cx="300" cy="188" r="25" fill="#FFFFFF" stroke="%s" '
+    '<circle cx="297" cy="188" r="23" fill="#FFFFFF" stroke="%s" '
     'stroke-width="5"/>' % INK,
-    '<circle cx="366" cy="188" r="25" fill="#FFFFFF" stroke="%s" '
+    '<circle cx="363" cy="188" r="25" fill="#FFFFFF" stroke="%s" '
     'stroke-width="5"/>' % INK,
-    '<circle cx="304" cy="192" r="11" fill="%s"/>' % INK,
-    '<circle cx="370" cy="192" r="11" fill="%s"/>' % INK,
-    '<circle cx="308" cy="187" r="4" fill="#FFFFFF"/>',
-    '<circle cx="374" cy="187" r="4" fill="#FFFFFF"/>',
-    '<path d="M278 148c10-9 26-10 38-4" stroke="%s" stroke-width="7" '
+    '<circle cx="302" cy="192" r="10" fill="%s"/>' % INK,
+    '<circle cx="368" cy="192" r="11" fill="%s"/>' % INK,
+    '<circle cx="306" cy="187" r="3.6" fill="#FFFFFF"/>',
+    '<circle cx="372" cy="187" r="4" fill="#FFFFFF"/>',
+    '<path d="M275 146c10-9 25-10 37-4" stroke="%s" stroke-width="7" '
     'fill="none" stroke-linecap="round"/>' % INK,
-    '<path d="M350 144c12-6 28-4 38 5" stroke="%s" stroke-width="7" '
+    '<path d="M347 143c12-6 28-4 38 5" stroke="%s" stroke-width="7" '
     'fill="none" stroke-linecap="round"/>' % INK,
-    '<ellipse cx="332" cy="240" rx="19" ry="15" fill="#4A2A28" stroke="%s" '
+    '<ellipse cx="328" cy="240" rx="18" ry="15" fill="#4A2A28" stroke="%s" '
     'stroke-width="5"/>' % INK,
-    '<circle cx="272" cy="222" r="13" fill="#E79A94" opacity="0.55"/>',
-    '<circle cx="392" cy="222" r="13" fill="#E79A94" opacity="0.55"/>',
+    '<circle cx="268" cy="222" r="13" fill="#E79A94" opacity="0.55"/>',
+    '<circle cx="388" cy="222" r="13" fill="#E79A94" opacity="0.55"/>',
+    '</g>',
 
     # the desk, in front of her
     '<path d="M0 386L500 370L500 500L0 500Z" fill="#6B4A31"/>',
