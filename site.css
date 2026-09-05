@@ -684,7 +684,7 @@ body {
 
 /* a thread, mid-conversation */
 .deco-chat {
-  left: 18px;
+  left: 60px;             /* clear of the plane icon in the corner */
   right: 18px;
   top: 10px;
   display: flex;
