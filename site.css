@@ -645,27 +645,36 @@ body {
   overflow: hidden;
 }
 
-.eye-l { left: 66.76%; top: 73.02%; width: 3.29%; height: 5.06%; }
-.eye-r { left: 75.36%; top: 80.41%; width: 3.73%; height: 5.06%; }
+.eye-l { left: 66.73%; top: 72.33%; width: 3.72%; height: 7.07%; }
+.eye-r { left: 75.21%; top: 80.03%; width: 4.39%; height: 5.50%; }
 
 .eye b {
   position: absolute;
   left: 50%;
   top: 50%;
   border-radius: 50%;
-  background: radial-gradient(circle at 32% 30%,
-                              rgba(255, 255, 255, 0.92) 0 11%,
-                              #3a2317 34%, #1c100a 100%);
+  /* Her own eye, sampled off the crop: a near-black pupil opening out to a
+     warm brown rim, with the catchlight high and to the right. The first
+     version had this backwards - pale in the middle, black at the edge - and
+     it read as a glass marble rather than an eye. */
+  background:
+    radial-gradient(circle at 66% 27%,
+                    rgba(255, 255, 255, 0.95) 0 19%, transparent 22%),
+    radial-gradient(circle at 50% 56%,
+                    #080402 0 38%, #34210f 64%, #6d4a2e 100%);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.45);
   transform: translate(-50%, -50%);
   /* the lag is the point: the pupils drift after the pointer, they don't snap */
   transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
 }
 
-/* Both irises come out the same 22px on the crop, so the pair reads as a
-   matched set however differently her two sockets are drawn. */
-.eye-l b { width: 63.8%; height: 68.3%; }
-.eye-r b { width: 56.3%; height: 68.3%; }
+/* Both irises come out the same 30px on the crop - about what she drew, which
+   is nearly the width of a socket. A small iris in a wide white eye reads as
+   alarm, not as looking at something. The box above is the whole socket, so
+   the lids crop the iris at the extremes the way they would on a real eye. */
+.eye-l b { width: 76.9%; height: 66.7%; }
+.eye-r b { width: 65.2%; height: 85.7%; }
 
 @media (prefers-reduced-motion: reduce) {
   .eye b { transition: none; }
