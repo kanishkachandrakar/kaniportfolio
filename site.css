@@ -770,6 +770,23 @@ body {
   transform: none;
 }
 
+/* The bento artwork was drawn on a dark card and carries that background in
+   its pixels, so these tiles stay dark under either theme - as image tiles
+   rather than as panels. Cutting the figures out was the alternative and it
+   does not work: the card runs 15-23 and her hair goes below that in shadow,
+   so a fill that crosses the card eats into her hair.
+
+   Ink is re-declared rather than hard-coded, so the titles that sit on the
+   artwork follow the tile instead of the page. */
+:root[data-theme="light"] .bento-card {
+  --ink:      #F6F2EA;
+  --ink-soft: rgba(246, 242, 234, 0.74);
+  --card:     rgba(22, 20, 24, 0.90);
+  --card-hi:  rgba(30, 27, 32, 0.94);
+  --line:     rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.10);
+}
+
 /* left column stacks; the two on the right run the full height */
 .b-about    { grid-column: 1; grid-row: 1; }
 .b-craft    { grid-column: 1; grid-row: 2; }
