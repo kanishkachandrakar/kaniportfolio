@@ -525,8 +525,13 @@
 
       for (var j = 1; j <= LINKS; j++) {
         var target = xs[j - 1] + share;
-        vs[j] += (target - xs[j]) * 0.16;   // spring towards the link above
-        vs[j] *= 0.86;                      // damping, or it never settles
+        // Simulated before picking these. At 0.16/0.86 the tip overshot its
+        // resting place by ten times the distance it had to travel and was
+        // still wobbling four seconds later. This overshoots by about a
+        // seventh and is done inside a second: enough follow-through to read
+        // as weight on a chain, not enough to look loose.
+        vs[j] += (target - xs[j]) * 0.12;   // spring towards the link above
+        vs[j] *= 0.70;                      // damping, or it never settles
         xs[j] += vs[j];
         if (Math.abs(vs[j]) > 0.002 || Math.abs(target - xs[j]) > 0.002) {
           moving = true;
