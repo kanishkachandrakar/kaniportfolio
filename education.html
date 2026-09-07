@@ -24,17 +24,36 @@
   <meta name="twitter:title" content="Education | Kanishka Chandrakar">
   <meta name="twitter:description" content="Education, coursework and achievements — Kanishka Chandrakar.">
   <meta name="twitter:image" content="https://kanishkachandrakar.github.io/kaniportfolio/images/user.jpg">
-  <link rel="preload" href="site.css?v=73ff4397" as="style">
+  <script>
+    // before the stylesheet, so the page is never painted in one theme and
+    // then repainted in the other
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (!t && window.matchMedia("(prefers-color-scheme: light)").matches) {
+          t = "light";
+        }
+        if (t) document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="preload" href="site.css?v=f16a1c52" as="style">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="site.css?v=73ff4397">
+  <link rel="stylesheet" href="site.css?v=f16a1c52">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
 
 <div class="backdrop" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
+
+<button class="lamp" id="lampPull" type="button"
+        aria-label="Switch theme" aria-pressed="false">
+  <span class="lamp-cord" aria-hidden="true"></span>
+  <span class="lamp-bead" aria-hidden="true"></span>
+</button>
 
 <div class="stage">
   <div class="frame">
@@ -174,7 +193,7 @@
     </div>
   </div>
 </div>
-<script src="site.js?v=e6b365f2"></script>
+<script src="site.js?v=5e748254"></script>
 
 </body>
 </html>

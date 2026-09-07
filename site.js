@@ -413,3 +413,65 @@
                           { passive: true });
   window.addEventListener("resize", function () { if (seen) queue(); });
 })();
+
+/* --- the lamp pull swaps the theme ------------------------------------ */
+(function () {
+  var lamp = document.getElementById("lampPull");
+  if (!lamp) return;
+  var root = document.documentElement;
+
+  function current() {
+    return root.getAttribute("data-theme") === "light" ? "light" : "dark";
+  }
+
+  function label() {
+    var light = current() === "light";
+    lamp.setAttribute("aria-pressed", light ? "true" : "false");
+    lamp.setAttribute("aria-label",
+      light ? "Switch to the dark theme" : "Switch to the light theme");
+  }
+  label();
+
+  lamp.addEventListener("click", function () {
+    var next = current() === "light" ? "dark" : "light";
+    if (next === "light") {
+      root.setAttribute("data-theme", "light");
+    } else {
+      root.removeAttribute("data-theme");
+    }
+    try {
+      localStorage.setItem("theme", next);
+    } catch (e) {
+      // private browsing; the choice just will not outlive the tab
+    }
+    label();
+
+    // restart the tug even on a second click in quick succession
+    lamp.classList.remove("is-pulled");
+    void lamp.offsetWidth;
+    lamp.classList.add("is-pulled");
+  });
+
+  lamp.addEventListener("animationend", function () {
+    lamp.classList.remove("is-pulled");
+  });
+
+  // Follow the system setting only while the reader has not chosen for
+  // themselves; once they pull the cord, that is the answer.
+  var mq = window.matchMedia("(prefers-color-scheme: light)");
+  var onSystem = function (e) {
+    try {
+      if (localStorage.getItem("theme")) return;
+    } catch (err) {
+      return;
+    }
+    if (e.matches) {
+      root.setAttribute("data-theme", "light");
+    } else {
+      root.removeAttribute("data-theme");
+    }
+    label();
+  };
+  if (mq.addEventListener) mq.addEventListener("change", onSystem);
+  else if (mq.addListener) mq.addListener(onSystem);
+})();

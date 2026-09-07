@@ -41,6 +41,9 @@
   --panel-solid: linear-gradient(150deg, rgba(38, 31, 26, 0.96), rgba(20, 16, 14, 0.97));
   --chip-ink:   #F2D6AC;
   --dot:        rgba(255, 255, 255, 0.92);
+  --cord:       rgba(246, 242, 234, 0.30);
+  --bead:       linear-gradient(160deg, #F4D9A6, #C79A55);
+  --bead-glow:  rgba(240, 200, 130, 0.55);
 
   --shadow-lg:  0 44px 110px rgba(0, 0, 0, 0.55);
   --shadow-md:  0 18px 44px rgba(0, 0, 0, 0.42);
@@ -105,6 +108,9 @@
   --panel-solid: linear-gradient(150deg, rgba(255, 255, 255, 0.97), rgba(248, 247, 242, 0.98));
   --chip-ink:   #4A6357;
   --dot:        rgba(59, 58, 51, 0.55);
+  --cord:       rgba(59, 58, 51, 0.28);
+  --bead:       linear-gradient(160deg, #FFFFFF, #C9CDC4);
+  --bead-glow:  rgba(120, 130, 118, 0.28);
 
   /* warm grey rather than black: a neutral shadow over an oat ground
      goes muddy and pulls the warmth out from under it */
@@ -193,6 +199,72 @@ body {
   opacity: var(--grain-op);
   mix-blend-mode: var(--grain-blend);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+
+/* ---------- Lamp pull --------------------------------------
+   A cord hanging into the top of the page. Tugging it swaps
+   the theme; the bead is lit under the dark one and dull under
+   the light one, so the thing you are pulling matches the
+   state you are in.
+   ----------------------------------------------------------- */
+.lamp {
+  position: fixed;
+  top: 0;
+  right: clamp(22px, 7vw, 110px);
+  z-index: 30;
+  width: 34px;
+  height: 118px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* hangs from the top edge, so it swings from a fixed point */
+  transform-origin: 50% 0;
+  transition: transform 0.42s cubic-bezier(0.22, 1.4, 0.4, 1);
+}
+
+.lamp-cord {
+  flex: 1;
+  width: 2px;
+  border-radius: 1px;
+  background: linear-gradient(var(--cord), var(--cord));
+}
+
+.lamp-bead {
+  width: 15px;
+  height: 21px;
+  border-radius: 8px 8px 9px 9px;
+  background: var(--bead);
+  box-shadow: 0 0 16px var(--bead-glow), var(--shadow-sm);
+  transition: box-shadow 0.3s ease;
+}
+
+/* the cord gives a little before it pulls */
+.lamp:hover   { transform: translateY(7px); }
+.lamp:active  { transform: translateY(16px); }
+.lamp:hover .lamp-bead { box-shadow: 0 0 24px var(--bead-glow), var(--shadow-sm); }
+
+/* the tug itself: down hard, then settle */
+.lamp.is-pulled { animation: lampTug 0.62s cubic-bezier(0.3, 1.5, 0.4, 1); }
+
+@keyframes lampTug {
+  0%   { transform: translateY(16px); }
+  38%  { transform: translateY(26px); }
+  68%  { transform: translateY(-4px); }
+  100% { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lamp, .lamp.is-pulled { transition: none; animation: none; }
+}
+
+/* On a narrow screen the cord would hang over the menu button. */
+@media (max-width: 900px) {
+  .lamp { height: 74px; right: 14px; }
 }
 
 /* ---------- Stage + glass panel ---------------------------- */
