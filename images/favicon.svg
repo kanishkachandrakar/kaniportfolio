@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img"
+     aria-label="Kanishka Chandrakar">
+  <!-- her accent on the page background, so the tab matches the site -->
+  <rect width="64" height="64" rx="15" fill="#100D0B"/>
+  <path d="M22 15v34M22 33l17-18M28.5 27L41 49"
+        fill="none" stroke="#E8B87C" stroke-width="6"
+        stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
