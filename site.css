@@ -298,7 +298,7 @@ body {
 
 .frame {
   position: relative;
-  width: min(1060px, 100%);
+  width: min(1160px, 100%);
   height: min(648px, max(452px, 80dvh));
   max-height: 100%;
 }
@@ -1510,7 +1510,7 @@ body {
    when it is four loose tiles. The margin beside the card shrinks with the
    viewport (70px at 1200, 50px at 1000), so the offset tightens and then the
    tiles themselves shrink, rather than letting them cross the edge. */
-@media (max-width: 1300px) {
+@media (max-width: 1370px) {
   .rail {
     left: auto;
     right: calc(100% + 18px);
@@ -1518,7 +1518,7 @@ body {
   }
 }
 
-@media (max-width: 1150px) {
+@media (max-width: 1280px) {
   .rail {
     right: calc(100% + 8px);
     gap: 52px;
