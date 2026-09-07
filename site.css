@@ -195,7 +195,10 @@ body {
   height: 46px;
   border-radius: 50%;
   object-fit: cover;
-  object-position: center top;
+  /* The Memoji is cropped square around the figure, so cover fits it whole -
+     the top bias here was for the photograph, and would have taken the
+     thumbs-up off the bottom. */
+  object-position: center;
   border: 1px solid rgba(255, 255, 255, 0.28);
   flex: none;
 }
