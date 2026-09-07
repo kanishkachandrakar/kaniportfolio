@@ -46,6 +46,7 @@
   --bead-glow:  rgba(240, 200, 130, 0.55);
   --avatar-bg:  #F5E6B8;
   --bead-solid: #E9CB92;
+  --ring:       rgba(246, 242, 234, 0.19);
 
   --shadow-lg:  0 44px 110px rgba(0, 0, 0, 0.55);
   --shadow-md:  0 18px 44px rgba(0, 0, 0, 0.42);
@@ -115,6 +116,7 @@
   --bead-glow:  rgba(120, 130, 118, 0.28);
   --avatar-bg:  #E5E0CF;
   --bead-solid: #D9DCD3;
+  --ring:       rgba(255, 255, 255, 0.66);
 
   /* warm grey rather than black: a neutral shadow over an oat ground
      goes muddy and pulls the warmth out from under it */
@@ -621,8 +623,15 @@ body {
   border-radius: 50%;
   object-fit: cover;
   object-position: center 18%;
-  border: 1px solid var(--edge);
-  box-shadow: var(--shadow-md);
+  /* A wide soft ring rather than a hairline. Drawn with a spread shadow, not
+     a border: a border of this thickness would eat into the image, and the
+     photograph is the thing being framed. The hairline stays as the first
+     shadow, inside the ring, so the circle still has a defined edge. */
+  border: 0;
+  box-shadow:
+    0 0 0 1px var(--edge),
+    0 0 0 11px var(--ring),
+    var(--shadow-md);
 }
 
 .divider {
