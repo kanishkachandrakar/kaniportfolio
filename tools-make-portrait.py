@@ -25,7 +25,7 @@ DST = os.path.join(HERE, "images", "kani-portrait.webp")
 
 FACE_X = 0.735      # where her face sits in the frame
 FACE_Y = 0.490
-FACE_DOWN = 0.40    # and where it should sit in the crop
+FACE_DOWN = 0.33    # and where it should sit in the crop
 
 
 def main():
