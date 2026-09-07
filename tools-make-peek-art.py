@@ -266,58 +266,45 @@ ART = {"about": art_about, "education": art_education, "craft": art_craft,
 # screens, a chat thread.
 # Solid objects with light and shade rather than little windows and cards -
 # the panels read as UI chrome at this size.
+# Flat silhouettes, one colour each. The old glyphs were built from facets -
+# a lit face, a shaded face, a dark face - which is what made them look
+# machined. Nothing here is shaded; where a shape needs a hole to stay
+# readable, the tile colour shows through it rather than a darker tone.
 ICONS = {
-    # her initial, bevelled
+    # her initial
     "about":
         '<path d="M16 11h6v10.6L32.4 11h7.6L28.4 23.2 40.6 37h-7.8l-8.4-9.8'
-        '-2.4 2.5V37h-6z" fill="#FFFFFF"/>'
-        '<path d="M16 11h6v26h-6z" fill="#F0DCC0"/>'
-        '<path d="M22 21.6 32.4 11h3.4L24.6 23z" fill="#E7CCA6"/>',
-    # mortarboard, seen at an angle
+        '-2.4 2.5V37h-6z" fill="#FFFFFF"/>',
+    # mortarboard
     "education":
         '<path d="M24 9 42 17.4 24 25.8 6 17.4z" fill="#FFFFFF"/>'
-        '<path d="M24 25.8 6 17.4v2.4L24 28.2z" fill="#BFCFE6"/>'
-        '<path d="M24 25.8 42 17.4v2.4L24 28.2z" fill="#94AFD1"/>'
-        '<path d="M14.4 21.6v6.9c0 2.6 4.3 4.6 9.6 4.6s9.6-2 9.6-4.6v-6.9'
-        'L24 26.2z" fill="#E3EAF6"/>'
-        '<path d="M24 26.2v7c3.6-.1 7-1 9.6-2.7v-8.9z" fill="#C3D2E8"/>'
-        '<path d="M40.2 18.6v8.6" stroke="#FFFFFF" stroke-width="2" '
+        '<path d="M14.4 22.4v6.1c0 2.6 4.3 4.6 9.6 4.6s9.6-2 9.6-4.6v-6.1'
+        'L24 26.6z" fill="#FFFFFF"/>'
+        '<path d="M40.2 19v9.4" stroke="#FFFFFF" stroke-width="2.2" '
         'stroke-linecap="round" fill="none"/>'
-        '<circle cx="40.2" cy="29.4" r="2.6" fill="#FFD452"/>',
-    # three cubes, stacked and lit from the left
+        '<circle cx="40.2" cy="31" r="2.6" fill="#FFFFFF"/>',
+    # a stack, for the things she has built with
     "craft":
-        '<path d="M14 21.5 24 26.2 14 30.9 4 26.2z" fill="#EAF7F0"/>'
-        '<path d="M4 26.2 14 30.9v9.4L4 35.6z" fill="#9ED9B8"/>'
-        '<path d="M24 26.2 14 30.9v9.4l10-4.7z" fill="#6FBF95"/>'
-        '<path d="M34 21.5 44 26.2 34 30.9 24 26.2z" fill="#EAF7F0"/>'
-        '<path d="M24 26.2 34 30.9v9.4l-10-4.7z" fill="#9ED9B8"/>'
-        '<path d="M44 26.2 34 30.9v9.4l10-4.7z" fill="#6FBF95"/>'
-        '<path d="M24 8.6 34 13.3 24 18 14 13.3z" fill="#FFFFFF"/>'
-        '<path d="M14 13.3 24 18v9.4l-10-4.7z" fill="#BEE8D2"/>'
-        '<path d="M34 13.3 24 18v9.4l10-4.7z" fill="#8ACFAA"/>',
+        '<path d="M24 7 41 15.5 24 24 7 15.5z" fill="#FFFFFF"/>'
+        '<path d="M7 21.6 24 30.1 41 21.6v3.6L24 33.7 7 25.2z" '
+        'fill="#FFFFFF"/>'
+        '<path d="M7 29.4 24 37.9 41 29.4V33L24 41.5 7 33z" fill="#FFFFFF"/>',
     # a rocket, because the projects are things that shipped
     "projects":
         '<path d="M24 5c5.4 4.4 8.4 10.8 8.4 17.8L30 29H18l-2.4-6.2'
         'C15.6 15.8 18.6 9.4 24 5z" fill="#FFFFFF"/>'
-        '<path d="M24 5c5.4 4.4 8.4 10.8 8.4 17.8L30 29h-6z" fill="#E4D7F6"/>'
-        '<circle cx="24" cy="18.4" r="4" fill="#8C6BC4"/>'
-        '<circle cx="24" cy="18.4" r="2.4" fill="#CBB6EC"/>'
-        '<path d="M15.4 24 10 29.6V36l5.4-3.4z" fill="#C2A2EA"/>'
-        '<path d="M32.6 24 38 29.6V36l-5.4-3.4z" fill="#9C7BD0"/>'
-        '<path d="M20.4 31h7.2L24 41z" fill="#FFB459"/>'
-        '<path d="M22.6 33h2.8L24 38z" fill="#FFE07A"/>',
+        '<circle cx="24" cy="18.4" r="3.6" fill="%(hole)s"/>'
+        '<path d="M15.4 24 10 29.6V36l5.4-3.4z" fill="#FFFFFF"/>'
+        '<path d="M32.6 24 38 29.6V36l-5.4-3.4z" fill="#FFFFFF"/>'
+        '<path d="M20.4 31h7.2L24 41z" fill="#FFFFFF"/>',
     # a paper plane, mid-flight
     "contact":
         '<path d="M42 7 6 22.6l13.6 4.8z" fill="#FFFFFF"/>'
-        '<path d="M42 7 19.6 27.4 24 41z" fill="#F6C9D6"/>'
-        '<path d="M19.6 27.4 42 7l-9.2 24.6z" fill="#FBE3EA"/>'
-        '<path d="M19.6 27.4 26 33.4l-6.4 4.6z" fill="#E9A8BC"/>',
+        '<path d="M42 7 19.6 27.4 24 41z" fill="#FFFFFF"/>'
+        '<path d="M19.6 27.4 42 7l-9.2 24.6z" fill="#FFFFFF"/>'
+        '<path d="M19.6 27.4 26 33.4l-6.4 4.6z" fill="%(hole)s"/>',
 }
 
-# A light stop, then a deeper one for the gradient to fall into. The deep
-# stops used to be near-black versions of each hue, which is what gave the
-# tiles their metallic look; they are only a couple of steps down now, so a
-# tile reads as one pastel colour with a fall in it rather than as chrome.
 SECTIONS = [
     ("about",     "#FFCFA3", "#EFA45F"),   # apricot
     ("education", "#AFD2F7", "#6FA3DE"),   # sky
@@ -339,21 +326,16 @@ for sid, hue, deep in SECTIONS:
            '</radialGradient>%s</defs>'
            '<ellipse cx="215" cy="150" rx="212" ry="146" fill="url(#g)"/>'
            '%s</svg>' % (SHADOW, hue, deep, CUT_FILTER, ART[sid](hue)))
+    # One flat colour, and no sheen across the top. The gradient ran from the
+    # hue to a much deeper one and the sheen sat over it as a curved highlight,
+    # which together is how you draw glass - the two of them were most of why
+    # these read as chrome.
     icon = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" '
             'width="48" height="48">'
-            '<defs><linearGradient id="b" x1="0.1" y1="0" x2="0.75" y2="1">'
-            '<stop offset="0" stop-color="%s"/><stop offset="1" stop-color="%s"/>'
-            '</linearGradient>'
-            '<linearGradient id="s" x1="0" y1="0" x2="0" y2="1">'
-            '<stop offset="0" stop-color="#FFFFFF" stop-opacity="0.24"/>'
-            '<stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>'
-            '</linearGradient></defs>'
-            '<rect width="48" height="48" rx="13.5" fill="url(#b)"/>'
-            '<path d="M0 13.5A13.5 13.5 0 0 1 13.5 0h21A13.5 13.5 0 0 1 48 13.5V22'
-            'C36 28 12 28 0 22z" fill="url(#s)"/>'
+            '<rect width="48" height="48" rx="13.5" fill="%s"/>'
             '<g transform="translate(24 24) scale(0.8) translate(-24 -24)">%s</g>'
             '</svg>'
-            % (hue, deep, ICONS[sid]))
+            % (hue, ICONS[sid] % {"hole": hue}))
     for name, data in (("peek-%s.svg" % sid, art), ("icon-%s.svg" % sid, icon)):
         with open(os.path.join(OUT, name), "w") as fh:
             fh.write(data)
