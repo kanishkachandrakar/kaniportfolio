@@ -42,11 +42,11 @@
       } catch (e) {}
     })();
   </script>
-  <link rel="preload" href="site.css?v=e133f6b0" as="style">
+  <link rel="preload" href="site.css?v=dd7a2917" as="style">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="site.css?v=e133f6b0">
+  <link rel="stylesheet" href="site.css?v=dd7a2917">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
@@ -56,10 +56,12 @@
 
 <button class="lamp" id="lampPull" type="button"
         aria-label="Switch theme" aria-pressed="false">
-  <span class="lamp-cord" aria-hidden="true">
-    <i></i><i></i><i></i><i></i><i></i><i></i>
-  </span>
-  <span class="lamp-bead" aria-hidden="true"></span>
+  <svg class="lamp-svg" viewBox="0 0 40 124" aria-hidden="true"
+       preserveAspectRatio="xMidYMin meet">
+    <path class="lamp-line" fill="none" d="M20 0 L20 100"/>
+    <g class="lamp-beads"></g>
+    <ellipse class="lamp-knob" cx="20" cy="110" rx="7.5" ry="10.5"/>
+  </svg>
 </button>
 
 <div class="stage">
@@ -211,7 +213,7 @@
     </div>
   </div>
 </div>
-<script src="site.js?v=9471a53a"></script>
+<script src="site.js?v=b336e35c"></script>
 <script>
   (function () {
     var scriptURL = 'https://script.google.com/macros/s/AKfycbxptlQB673K5Zj1cZU8GX2b_nqHctjAFgTgfP1xeSrhKJz8q4wmpk1sY_s8Eh-CJand/exec';

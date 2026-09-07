@@ -470,63 +470,116 @@
     lamp.classList.remove("is-pulled");
   });
 
-  // --- the cord leans towards the pointer -------------------------------
-  // Only worth doing where there is a pointer to lean towards.
-  if (window.matchMedia("(hover: hover)").matches) {
-    var REACH = 420;    // past this the cord has stopped caring
-    var NEAR = 120;     // sideways offset that already means "fully over"
-    var MAX = 14;       // degrees at full lean; more and it looks unhinged
-    var queued = false, px = 0, py = 0;
+  // --- the chain sways -------------------------------------------------
+  // A chain does not swing rigidly, so this is not one rotation. Each link
+  // is a little spring hung off the one above it: the top moves first and
+  // the movement travels down, which is what makes it read as a wave rather
+  // than as a rotating stick. The knob, at the end of the run of lag, always
+  // arrives last and overshoots the most.
+  if (window.matchMedia("(hover: hover)").matches
+      && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var line = lamp.querySelector(".lamp-line");
+    var beadG = lamp.querySelector(".lamp-beads");
+    var knob = lamp.querySelector(".lamp-knob");
 
-    function lean() {
-      queued = false;
+    var LINKS = 7;          // beads between the ceiling and the knob
+    var TOP = 4;            // where the cord leaves the top, in viewBox units
+    var BOTTOM = 100;       // where the knob hangs from
+    var REACH = 420;        // past this the chain has stopped caring
+    var NEAR = 130;         // sideways offset that already means "fully over"
+    var MAX = 15;           // viewBox units of lean at full pull
+
+    var xs = [], vs = [], i;
+    for (i = 0; i <= LINKS; i++) { xs.push(0); vs.push(0); }
+
+    var beads = [];
+    for (i = 1; i < LINKS; i++) {
+      var e = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+      e.setAttribute("rx", "3.1");
+      e.setAttribute("ry", "4.1");
+      beadG.appendChild(e);
+      beads.push(e);
+    }
+
+    var want = 0, ptrX = 0, ptrY = 0, running = false;
+
+    function aim() {
       var b = lamp.getBoundingClientRect();
       if (!b.width) return;
       // measured from where it hangs, not from its middle - that is the
       // point it actually pivots around
-      var dx = px - (b.left + b.width / 2);
-      var dy = py - b.top;
+      var dx = ptrX - (b.left + b.width / 2);
+      var dy = ptrY - b.top;
       var d = Math.sqrt(dx * dx + dy * dy);
       var pull = Math.max(0, 1 - d / REACH);
-      pull = pull * (2 - pull);               // ease out, so near counts most
-      // Direction saturates well before REACH does: a pointer a hand's width
-      // to the left is already fully to the left, it just is not close.
+      pull = pull * (2 - pull);          // ease out, so near counts most
+      // Direction saturates well before distance does: a pointer a hand's
+      // width to the left is already fully to the left, just not close.
       var side = Math.max(-1, Math.min(1, dx / NEAR));
-      // Negated: the cord hangs from its top, and a positive CSS rotation
-      // about that point swings the bead to the left. Without this it leans
-      // away from the pointer instead of after it.
-      lamp.style.setProperty("--sway", (-side * MAX * pull).toFixed(2) + "deg");
+      want = side * MAX * pull;
+    }
+
+    function step() {
+      var share = want / LINKS;
+      var moving = false;
+
+      for (var j = 1; j <= LINKS; j++) {
+        var target = xs[j - 1] + share;
+        vs[j] += (target - xs[j]) * 0.16;   // spring towards the link above
+        vs[j] *= 0.86;                      // damping, or it never settles
+        xs[j] += vs[j];
+        if (Math.abs(vs[j]) > 0.002 || Math.abs(target - xs[j]) > 0.002) {
+          moving = true;
+        }
+      }
+
+      var d = "M" + (20 + xs[0]).toFixed(2) + " " + TOP;
+      for (j = 1; j <= LINKS; j++) {
+        var y = TOP + (BOTTOM - TOP) * (j / LINKS);
+        var py = TOP + (BOTTOM - TOP) * ((j - 1) / LINKS);
+        var mx = 20 + (xs[j - 1] + xs[j]) / 2;
+        // quadratic through the midpoints, so the cord curves between the
+        // beads instead of kinking at each one
+        d += " Q" + (20 + xs[j - 1]).toFixed(2) + " " + ((py + y) / 2).toFixed(2)
+           + " " + mx.toFixed(2) + " " + y.toFixed(2);
+        if (j < LINKS) {
+          beads[j - 1].setAttribute("cx", (20 + xs[j]).toFixed(2));
+          beads[j - 1].setAttribute("cy", y.toFixed(2));
+        }
+      }
+      line.setAttribute("d", d);
+      knob.setAttribute("cx", (20 + xs[LINKS]).toFixed(2));
+      knob.setAttribute("cy", (BOTTOM + 10).toFixed(2));
+
+      // Stops as soon as it has settled. An idle sway looked good and meant
+      // a requestAnimationFrame loop that never ended, which is a frame of
+      // work every 16ms for the life of the page whether or not anyone is
+      // near it.
+      if (moving) {
+        requestAnimationFrame(step);
+      } else {
+        running = false;
+      }
+    }
+
+    function wake() {
+      if (running) return;
+      running = true;
+      requestAnimationFrame(step);
     }
 
     document.addEventListener("mousemove", function (e) {
-      px = e.clientX;
-      py = e.clientY;
-      if (queued) return;
-      queued = true;
-      requestAnimationFrame(lean);
+      ptrX = e.clientX;
+      ptrY = e.clientY;
+      aim();
+      wake();
     }, { passive: true });
 
     document.addEventListener("mouseleave", function () {
-      lamp.style.setProperty("--sway", "0deg");
+      want = 0;
+      wake();
     });
-  }
 
-  // Follow the system setting only while the reader has not chosen for
-  // themselves; once they pull the cord, that is the answer.
-  var mq = window.matchMedia("(prefers-color-scheme: light)");
-  var onSystem = function (e) {
-    try {
-      if (localStorage.getItem("theme")) return;
-    } catch (err) {
-      return;
-    }
-    if (e.matches) {
-      root.setAttribute("data-theme", "light");
-    } else {
-      root.removeAttribute("data-theme");
-    }
-    label();
-  };
-  if (mq.addEventListener) mq.addEventListener("change", onSystem);
-  else if (mq.addListener) mq.addListener(onSystem);
+    wake();
+  }
 })();
