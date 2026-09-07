@@ -34,8 +34,8 @@ def photo(name):
 
 CUT_FILTER = (
     '<filter id="cut" x="-30%" y="-30%" width="160%" height="160%">'
-    '<feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000000" '
-    'flood-opacity="0.55"/></filter>')
+    '<feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#6B4A7A" '
+    'flood-opacity="0.30"/></filter>')
 
 
 def photo_webp(name):
@@ -314,17 +314,21 @@ ICONS = {
         '<path d="M19.6 27.4 26 33.4l-6.4 4.6z" fill="#E9A8BC"/>',
 }
 
+# A light stop, then a deeper one for the gradient to fall into. The deep
+# stops used to be near-black versions of each hue, which is what gave the
+# tiles their metallic look; they are only a couple of steps down now, so a
+# tile reads as one pastel colour with a fall in it rather than as chrome.
 SECTIONS = [
-    ("about",     "#E8B87C", "#96602A"),
-    ("education", "#8FB8EA", "#3F5F8E"),
-    ("craft",     "#93D3AC", "#3F7A5B"),
-    ("projects",  "#C2A2EA", "#63479A"),
-    ("contact",   "#E895AC", "#93475E"),
+    ("about",     "#F9AEC6", "#E06E9B"),   # rose
+    ("education", "#AFD2F7", "#6FA3DE"),   # sky
+    ("craft",     "#A8E7CB", "#5DC3A0"),   # mint
+    ("projects",  "#CDBAF7", "#9782E2"),   # lilac
+    ("contact",   "#FFCBA4", "#F09F62"),   # peach
 ]
 
 SHADOW = ('<filter id="d" x="-30%" y="-30%" width="170%" height="170%">'
-          '<feDropShadow dx="0" dy="10" stdDeviation="13" flood-color="#000000" '
-          'flood-opacity="0.55"/></filter>')
+          '<feDropShadow dx="0" dy="10" stdDeviation="13" flood-color="#6B4A7A" '
+          'flood-opacity="0.28"/></filter>')
 
 for sid, hue, deep in SECTIONS:
     art = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 300" '

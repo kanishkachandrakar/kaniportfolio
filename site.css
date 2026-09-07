@@ -9,42 +9,64 @@
    other image to swap it, or set it to none to fall back to
    the CSS gradient underneath.
    ----------------------------------------------------------- */
+/* ---------- Two themes -------------------------------------
+   Dark is the default and is the original site, unchanged.
+   Light is a quiet, muted counterpart - no pastel brightness.
+   Everything either theme changes lives in these two blocks;
+   no rule below should name a colour directly.
+   ----------------------------------------------------------- */
 :root {
-  --scene: url("images/scene.webp");
+  --scene:      url("images/scene.webp");
 
-  /* Ink is a warm plum-grey, not black. Black on pastel reads as harsh and
-     flattens everything it sits next to. */
-  --ink:        #3E3346;
-  --ink-soft:   rgba(62, 51, 70, 0.72);
-  --ink-faint:  rgba(62, 51, 70, 0.48);
+  --ink:        #F6F2EA;
+  --ink-soft:   rgba(246, 242, 234, 0.70);
+  --ink-faint:  rgba(246, 242, 234, 0.46);
 
-  /* Four hues instead of one amber, so sections can differ without clashing.
-     Each is pastel in feel but held at enough chroma to read on white. */
-  --accent:     #D45C86;   /* rose   */
-  --accent-2:   #3FAE9C;   /* mint   */
-  --accent-3:   #8371D6;   /* lilac  */
-  --accent-4:   #E8944A;   /* peach  */
-  --accent-dim: rgba(212, 92, 134, 0.13);
+  --accent:     #E8B87C;
+  --accent-dim: rgba(232, 184, 124, 0.16);
+  --on-accent:  #241809;
 
-  /* Frosted white over the pastel sky: the panel is white and translucent,
-     so the colours behind it come through the blur rather than being
-     covered up. */
-  --glass:      rgba(255, 255, 255, 0.60);
-  --glass-hi:   rgba(255, 255, 255, 0.82);
-  --surface:    rgba(255, 255, 255, 0.52);
-  --surface-hi: rgba(255, 255, 255, 0.78);
+  --glass:      rgba(255, 255, 255, 0.055);
+  --glass-hi:   rgba(255, 255, 255, 0.10);
+  --surface:    rgba(255, 255, 255, 0.045);
+  --surface-hi: rgba(255, 255, 255, 0.10);
+  --card:       rgba(9, 7, 6, 0.55);
 
-  --line:       rgba(62, 51, 70, 0.12);
-  --line-soft:  rgba(62, 51, 70, 0.06);
-  --edge:       rgba(62, 51, 70, 0.18);
+  --line:       rgba(255, 255, 255, 0.13);
+  --line-soft:  rgba(255, 255, 255, 0.07);
+  --edge:       rgba(255, 255, 255, 0.24);
+  --sheen:      rgba(255, 255, 255, 0.16);
+  --scrim:      rgba(8, 6, 5, 0.62);
+  --card-hi:    rgba(16, 12, 10, 0.68);
+  --panel-solid: linear-gradient(150deg, rgba(38, 31, 26, 0.96), rgba(20, 16, 14, 0.97));
+  --chip-ink:   #F2D6AC;
+  --dot:        rgba(255, 255, 255, 0.92);
 
-  /* Shadows are tinted plum rather than black - a grey shadow over pastel
-     goes muddy and drains the colour out from under it. */
-  --shadow-lg:  0 40px 90px rgba(104, 74, 122, 0.18);
-  --shadow-md:  0 18px 44px rgba(104, 74, 122, 0.16);
-  --shadow-sm:  0 10px 22px rgba(104, 74, 122, 0.14);
+  --shadow-lg:  0 44px 110px rgba(0, 0, 0, 0.55);
+  --shadow-md:  0 18px 44px rgba(0, 0, 0, 0.42);
+  --shadow-sm:  0 10px 22px rgba(0, 0, 0, 0.50);
 
-  --ground:     #FBF6F3;
+  --ground:     #100D0B;
+  --sky:
+    radial-gradient(115% 85% at 80% 14%, rgba(255, 206, 145, 0.30), transparent 58%),
+    radial-gradient(85% 70% at 10% 88%, rgba(126, 158, 196, 0.16), transparent 60%),
+    radial-gradient(95% 80% at 46% 52%, rgba(112, 84, 58, 0.34), transparent 72%),
+    linear-gradient(157deg, #1C1713 0%, #0E0C0A 52%, #171310 100%);
+  --vignette:
+    radial-gradient(120% 120% at 50% 50%, transparent 40%, rgba(0, 0, 0, 0.55) 100%);
+  --shell-bg:   linear-gradient(148deg, rgba(38, 29, 22, 0.62), rgba(24, 18, 14, 0.72));
+
+  /* the grain is there to stop the big gradients banding; it needs a
+     different blend and a different strength over a light ground */
+  --grain-op:    0.35;
+  --grain-blend: overlay;
+
+  --ok:         #4ED07F;
+  --ok-ink:     #8FE3B0;
+  --ok-bg:      rgba(93, 214, 140, 0.12);
+  --ok-line:    rgba(93, 214, 140, 0.34);
+  --ok-pulse:   rgba(78, 208, 127, 0.55);
+  --ok-pulse-0: rgba(78, 208, 127, 0);
 
   --radius:     26px;
   --radius-sm:  14px;
@@ -52,6 +74,63 @@
 
   --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
           Helvetica, Arial, sans-serif;
+}
+
+/* Muted and calm rather than pastel: oat, stone and sage, held well below
+   full brightness. Ink is a warm charcoal, not black - black on a warm
+   ground reads harsh and flattens whatever sits beside it. */
+:root[data-theme="light"] {
+  --scene:      url("images/scene-light.webp");
+
+  --ink:        #3B3A33;
+  --ink-soft:   rgba(59, 58, 51, 0.74);
+  --ink-faint:  rgba(59, 58, 51, 0.50);
+
+  --accent:     #6B8C7B;
+  --accent-dim: rgba(107, 140, 123, 0.14);
+  --on-accent:  #FFFFFF;
+
+  --glass:      rgba(255, 255, 255, 0.58);
+  --glass-hi:   rgba(255, 255, 255, 0.80);
+  --surface:    rgba(255, 255, 255, 0.50);
+  --surface-hi: rgba(255, 255, 255, 0.76);
+  --card:       rgba(255, 255, 255, 0.54);
+
+  --line:       rgba(59, 58, 51, 0.13);
+  --line-soft:  rgba(59, 58, 51, 0.07);
+  --edge:       rgba(59, 58, 51, 0.20);
+  --sheen:      rgba(255, 255, 255, 0.85);
+  --scrim:      rgba(59, 58, 51, 0.32);
+  --card-hi:    rgba(255, 255, 255, 0.78);
+  --panel-solid: linear-gradient(150deg, rgba(255, 255, 255, 0.97), rgba(248, 247, 242, 0.98));
+  --chip-ink:   #4A6357;
+  --dot:        rgba(59, 58, 51, 0.55);
+
+  /* warm grey rather than black: a neutral shadow over an oat ground
+     goes muddy and pulls the warmth out from under it */
+  --shadow-lg:  0 40px 90px rgba(92, 86, 74, 0.16);
+  --shadow-md:  0 18px 44px rgba(92, 86, 74, 0.14);
+  --shadow-sm:  0 10px 22px rgba(92, 86, 74, 0.12);
+
+  --ground:     #F3F1EA;
+  --sky:
+    radial-gradient(105% 80% at 78% 12%, rgba(228, 223, 208, 0.85), transparent 60%),
+    radial-gradient(90% 75% at 12% 22%, rgba(212, 219, 223, 0.75), transparent 62%),
+    radial-gradient(95% 85% at 22% 92%, rgba(205, 217, 203, 0.70), transparent 64%),
+    linear-gradient(157deg, #F1EFE8 0%, #ECEFEC 48%, #F2EEE5 100%);
+  --vignette:
+    radial-gradient(120% 120% at 50% 50%, transparent 46%, rgba(96, 92, 78, 0.13) 100%);
+  --shell-bg:   linear-gradient(148deg, rgba(255, 255, 255, 0.70), rgba(255, 255, 255, 0.54));
+
+  --grain-op:    0.10;
+  --grain-blend: soft-light;
+
+  --ok:         #4E8F6E;
+  --ok-ink:     #2E6B50;
+  --ok-bg:      rgba(78, 143, 110, 0.13);
+  --ok-line:    rgba(78, 143, 110, 0.30);
+  --ok-pulse:   rgba(78, 143, 110, 0.38);
+  --ok-pulse-0: rgba(78, 143, 110, 0);
 }
 
 * { box-sizing: border-box; }
@@ -84,12 +163,7 @@ body {
   inset: 0;
   z-index: -2;
   background-color: var(--ground);
-  background-image:
-    radial-gradient(105% 80% at 78% 12%, rgba(255, 208, 196, 0.85), transparent 60%),
-    radial-gradient(90% 75% at 12% 22%, rgba(214, 205, 255, 0.72), transparent 62%),
-    radial-gradient(95% 85% at 22% 92%, rgba(190, 240, 226, 0.68), transparent 64%),
-    radial-gradient(80% 70% at 88% 84%, rgba(255, 234, 190, 0.70), transparent 62%),
-    linear-gradient(157deg, #FDF3F6 0%, #F6F2FB 48%, #F1F8F5 100%);
+  background-image: var(--sky);
 }
 
 /* Optional photo layer, plus a soft vignette over everything. */
@@ -107,8 +181,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(120% 120% at 50% 50%, transparent 45%, rgba(128, 96, 148, 0.16) 100%);
+  background: var(--vignette);
 }
 
 /* Fine grain so the large gradients never band. */
@@ -117,8 +190,8 @@ body {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.13;
-  mix-blend-mode: soft-light;
+  opacity: var(--grain-op);
+  mix-blend-mode: var(--grain-blend);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
 }
 
@@ -146,12 +219,12 @@ body {
   grid-template-rows: auto minmax(0, 1fr);
   border-radius: var(--radius);
   border: 1px solid var(--line);
-  background: linear-gradient(148deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.56));
+  background: var(--shell-bg);
   backdrop-filter: blur(18px) saturate(1.2);
   -webkit-backdrop-filter: blur(18px) saturate(1.2);
   box-shadow:
     var(--shadow-lg),
-    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    inset 0 1px 0 var(--sheen);
   overflow: hidden;
 }
 
@@ -253,9 +326,9 @@ body {
   gap: 7px;
   padding: 3px 10px 3px 8px;
   border-radius: 999px;
-  border: 1px solid rgba(30, 150, 108, 0.32);
-  background: rgba(58, 190, 142, 0.16);
-  color: #17795A;
+  border: 1px solid var(--ok-line);
+  background: var(--ok-bg);
+  color: var(--ok-ink);
   font-size: 11.5px;
   font-weight: 500;
   letter-spacing: 0.005em;
@@ -265,13 +338,13 @@ body {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #22A874;
+  background: var(--ok);
   animation: openPulse 2.4s ease-out infinite;
 }
 
 @keyframes openPulse {
-  0%        { box-shadow: 0 0 0 0 rgba(30, 165, 118, 0.42); }
-  70%, 100% { box-shadow: 0 0 0 7px rgba(30, 165, 118, 0); }
+  0%        { box-shadow: 0 0 0 0 var(--ok-pulse); }
+  70%, 100% { box-shadow: 0 0 0 7px var(--ok-pulse-0); }
 }
 
 .topbar-actions {
@@ -361,7 +434,7 @@ body {
 .btn-accent {
   background: var(--accent);
   border-color: transparent;
-  color: #fff;
+  color: var(--on-accent);
 }
 
 .btn-accent:hover { background: color-mix(in srgb, var(--accent) 84%, #000); }
@@ -484,7 +557,7 @@ body {
 .chip-accent {
   border-color: color-mix(in srgb, var(--accent) 38%, transparent);
   background: var(--accent-dim);
-  color: #F2D6AC;
+  color: var(--chip-ink);
 }
 
 /* ---------- Home ------------------------------------------- */
@@ -557,14 +630,14 @@ body {
   padding: 15px 17px;
   border-radius: 13px;
   border: 1px solid var(--line);
-  background: rgba(9, 7, 6, 0.55);
+  background: var(--card);
   color: inherit;
   text-decoration: none;
   transition: background 0.22s ease, border-color 0.22s ease;
 }
 
 .bento-card:hover {
-  background: rgba(16, 12, 10, 0.68);
+  background: var(--card-hi);
   border-color: var(--edge);
 }
 
@@ -794,7 +867,7 @@ body {
   width: 5.5px;
   height: 5.5px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--dot);
   animation: bubDot 1.5s ease-in-out infinite;
 }
 
@@ -832,7 +905,7 @@ body {
 .tab.is-active {
   background: var(--accent);
   border-color: transparent;
-  color: #fff;
+  color: var(--on-accent);
 }
 
 .tabpanel { display: none; }
@@ -1041,7 +1114,7 @@ body {
   display: none;
   place-items: center;
   padding: clamp(14px, 3vw, 44px);
-  background: rgba(62, 51, 70, 0.34);
+  background: var(--scrim);
   backdrop-filter: blur(9px);
   -webkit-backdrop-filter: blur(9px);
 }
@@ -1056,7 +1129,7 @@ body {
   padding: 34px clamp(22px, 3.4vw, 40px) 34px;
   border-radius: var(--radius);
   border: 1px solid var(--line);
-  background: linear-gradient(150deg, rgba(38, 31, 26, 0.96), rgba(20, 16, 14, 0.97));
+  background: var(--panel-solid);
   box-shadow: var(--shadow-lg);
   animation: rise 0.26s ease both;
 }
@@ -1128,7 +1201,7 @@ body {
   padding: 0 0 2px;
   border-radius: 50%;
   border: 1px solid var(--edge);
-  background: rgba(26, 20, 16, 0.92);
+  background: var(--panel-solid);
   color: var(--ink);
   font: 400 18px/1 var(--font);
   cursor: pointer;
@@ -1145,7 +1218,7 @@ body {
 }
 
 .peek-close:hover {
-  background: rgba(255, 255, 255, 0.96);
+  background: var(--surface-hi);
   border-color: color-mix(in srgb, var(--hue, var(--accent)) 55%, transparent);
 }
 
@@ -1367,7 +1440,7 @@ body {
     gap: 4px;
     background: rgb(24, 19, 16);
     border-left: 1px solid var(--line);
-    box-shadow: -24px 0 60px rgba(104, 74, 122, 0.20);
+    box-shadow: var(--shadow-lg);
     transform: translateX(100%);
     transition: transform 0.28s ease;
     z-index: 40;
