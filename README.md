@@ -11,6 +11,27 @@ Seven static pages sharing one shell: a full-bleed backdrop, a floating glass
 card, and a rail of icons that show artwork on hover. No framework, no build
 step to install — the HTML is committed and served as-is.
 
+## Themes
+
+Two of them, dark and light, swapped by pulling the lamp cord hanging into the
+top of the page.
+
+Everything either theme changes is a custom property in one of two blocks at
+the top of `site.css`; no rule below them names a colour. Adding a third would
+be another block, not another pass through the file.
+
+The choice is remembered in `localStorage`. Until one is made the system
+setting decides, and keeps deciding — pulling the cord ends that, because an
+explicit choice should outrank it. A small script in `<head>` applies the
+theme before the stylesheet loads, so the page is never painted in one theme
+and repainted in the other.
+
+Two things are deliberately not themed. The bento illustrations were drawn on
+a dark card and carry that background in their pixels, so those tiles stay
+dark under both and read as image tiles; cutting the figures out does not
+work, because the card is darker than parts of her hair. And the rail hues are
+one set, chosen to hold up on either ground.
+
 | | |
 | --- | --- |
 | `index.html` | Hero, plus the Explore grid |
@@ -30,14 +51,21 @@ needs Pillow.
 
 | Script | Makes |
 | --- | --- |
-| `tools-make-backdrop.py` | The scenic backdrop behind the card |
+| `tools-make-backdrop.py` | Both backdrops — one composition, two palettes |
 | `tools-make-peek-art.py` | Rail icons and the hover artwork |
 | `tools-rasterize-peeks.py` | Those SVGs, as WebP |
 | `tools-make-cutout.py` | The headshot, with its background removed |
 | `tools-blank-eyes.py` | Clears the sockets in the About avatar and cuts out an iris, so `site.js` can make the eyes follow the pointer |
+| `tools-make-memoji.py` | Keys the card out from behind her Memoji for the top-bar avatar |
 
-`tools-blank-eyes.py` reads the untouched crop, so restore
-`images/kani-about.webp` from `images/kani-edit.png` before re-running it.
+Two of these have an order to them. `tools-blank-eyes.py` reads the untouched
+crop, so restore `images/kani-about.webp` from `images/kani-edit.png` before
+re-running it. And `tools-rasterize-peeks.py` runs after
+`tools-make-peek-art.py`, never before.
+
+Each tool reads only from `images/`. That is worth keeping: the peek generator
+once read its photographs from a scratch directory outside the repo, and when
+that directory went away the tool could not be run at all.
 
 ## Not in use
 
