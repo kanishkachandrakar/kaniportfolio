@@ -228,10 +228,28 @@ body {
 }
 
 .lamp-cord {
+  position: relative;
   flex: 1;
   width: 2px;
   border-radius: 1px;
   background: linear-gradient(var(--cord), var(--cord));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 14% 0;
+}
+
+/* Beads strung along the cord. A plain line reads as a wire; the beads are
+   what make it a pull. They are spaced by the flexbox rather than by hand so
+   the run stays even at either of the cord's two lengths. */
+.lamp-cord i {
+  width: 6px;
+  height: 8px;
+  border-radius: 3px;
+  background: var(--bead);
+  opacity: 0.85;
+  box-shadow: 0 1px 2px var(--bead-glow);
 }
 
 .lamp-bead {
