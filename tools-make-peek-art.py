@@ -270,39 +270,53 @@ ART = {"about": art_about, "education": art_education, "craft": art_craft,
 # a lit face, a shaded face, a dark face - which is what made them look
 # machined. Nothing here is shaded; where a shape needs a hole to stay
 # readable, the tile colour shows through it rather than a darker tone.
+# Cartoon stickers: a heavy dark outline, chunky rounded shapes, a bit of
+# character in each. Flat silhouettes were the fix for the metallic ones and
+# went too far the other way - correct and dull. The outline is what does most
+# of the work here; without it these are just shapes again.
+INK = "#42323C"          # the one dark line every icon is drawn with
+SPARK = "#FFE9A8"
+
+
+# Every glyph is drawn on the same dark line, so they read as one set.
+_L = 'stroke="%s" stroke-width="2.4" stroke-linejoin="round" ' \
+     'stroke-linecap="round"' % INK
+
 ICONS = {
-    # her initial
+    # her initial, bubbled out into a sticker
     "about":
-        '<path d="M16 11h6v10.6L32.4 11h7.6L28.4 23.2 40.6 37h-7.8l-8.4-9.8'
-        '-2.4 2.5V37h-6z" fill="#FFFFFF"/>',
-    # mortarboard
+        '<path d="M17 12h6.4v8.6l7.8-8.6h8L29.4 23 39.4 36h-7.8l-6.6-8.8'
+        '-1.6 1.7V36H17z" fill="#FFFFFF" ' + _L + '/>',
+    # a mortarboard with the tassel swinging off it
     "education":
-        '<path d="M24 9 42 17.4 24 25.8 6 17.4z" fill="#FFFFFF"/>'
-        '<path d="M14.4 22.4v6.1c0 2.6 4.3 4.6 9.6 4.6s9.6-2 9.6-4.6v-6.1'
-        'L24 26.6z" fill="#FFFFFF"/>'
-        '<path d="M40.2 19v9.4" stroke="#FFFFFF" stroke-width="2.2" '
-        'stroke-linecap="round" fill="none"/>'
-        '<circle cx="40.2" cy="31" r="2.6" fill="#FFFFFF"/>',
-    # a stack, for the things she has built with
+        '<path d="M24 8.5 43 16.5 24 24.5 5 16.5z" fill="#FFFFFF" ' + _L + '/>'
+        '<path d="M14 20.5v7.5c0 2.9 4.5 5 10 5s10-2.1 10-5v-7.5" '
+        'fill="#FFFFFF" ' + _L + '/>'
+        '<path d="M40 18.5v9.5" fill="none" ' + _L + '/>'
+        '<circle cx="40" cy="31.5" r="3.2" fill="' + SPARK + '" ' + _L + '/>',
+    # toy blocks, because the skills stack up
     "craft":
-        '<path d="M24 7 41 15.5 24 24 7 15.5z" fill="#FFFFFF"/>'
-        '<path d="M7 21.6 24 30.1 41 21.6v3.6L24 33.7 7 25.2z" '
-        'fill="#FFFFFF"/>'
-        '<path d="M7 29.4 24 37.9 41 29.4V33L24 41.5 7 33z" fill="#FFFFFF"/>',
-    # a rocket, because the projects are things that shipped
+        '<rect x="7.5" y="25.5" width="15" height="13.5" rx="3.4" '
+        'fill="#FFFFFF" ' + _L + '/>'
+        '<rect x="25.5" y="25.5" width="15" height="13.5" rx="3.4" '
+        'fill="' + SPARK + '" ' + _L + '/>'
+        '<rect x="16.5" y="9.5" width="15" height="13.5" rx="3.4" '
+        'fill="#FFFFFF" ' + _L + '/>',
+    # a rocket with a face-sized window and a proper flame
     "projects":
-        '<path d="M24 5c5.4 4.4 8.4 10.8 8.4 17.8L30 29H18l-2.4-6.2'
-        'C15.6 15.8 18.6 9.4 24 5z" fill="#FFFFFF"/>'
-        '<circle cx="24" cy="18.4" r="3.6" fill="%(hole)s"/>'
-        '<path d="M15.4 24 10 29.6V36l5.4-3.4z" fill="#FFFFFF"/>'
-        '<path d="M32.6 24 38 29.6V36l-5.4-3.4z" fill="#FFFFFF"/>'
-        '<path d="M20.4 31h7.2L24 41z" fill="#FFFFFF"/>',
-    # a paper plane, mid-flight
+        '<path d="M15 24.5 9.5 31v6.5l5.5-3.5z" fill="#FFFFFF" ' + _L + '/>'
+        '<path d="M33 24.5 38.5 31v6.5L33 34z" fill="#FFFFFF" ' + _L + '/>'
+        '<path d="M24 5.5c6 5 9.2 11.8 9.2 19L31 30H17l-2.2-5.5'
+        'c0-7.2 3.2-14 9.2-19z" fill="#FFFFFF" ' + _L + '/>'
+        '<circle cx="24" cy="18" r="4" fill="' + SPARK + '" ' + _L + '/>'
+        '<path d="M19.5 32.5h9L24 42z" fill="#FF9E5A" ' + _L + '/>',
+    # a paper plane with a bit of speed behind it
     "contact":
-        '<path d="M42 7 6 22.6l13.6 4.8z" fill="#FFFFFF"/>'
-        '<path d="M42 7 19.6 27.4 24 41z" fill="#FFFFFF"/>'
-        '<path d="M19.6 27.4 42 7l-9.2 24.6z" fill="#FFFFFF"/>'
-        '<path d="M19.6 27.4 26 33.4l-6.4 4.6z" fill="%(hole)s"/>',
+        '<path d="M4 33c5.5-1.5 9-4 11-8" fill="none" stroke="' + INK + '" '
+        'stroke-width="2.4" stroke-linecap="round" stroke-dasharray="1 5.5"/>'
+        '<path d="M42.5 6.5 8 21.5l12.5 4.5z" fill="#FFFFFF" ' + _L + '/>'
+        '<path d="M42.5 6.5 20.5 26 25 40z" fill="' + SPARK + '" ' + _L + '/>'
+        '<path d="M20.5 26 26.5 31l-6 4.5z" fill="#FFFFFF" ' + _L + '/>',
 }
 
 SECTIONS = [
@@ -326,16 +340,16 @@ for sid, hue, deep in SECTIONS:
            '</radialGradient>%s</defs>'
            '<ellipse cx="215" cy="150" rx="212" ry="146" fill="url(#g)"/>'
            '%s</svg>' % (SHADOW, hue, deep, CUT_FILTER, ART[sid](hue)))
-    # One flat colour, and no sheen across the top. The gradient ran from the
-    # hue to a much deeper one and the sheen sat over it as a curved highlight,
-    # which together is how you draw glass - the two of them were most of why
-    # these read as chrome.
+    # One flat colour, and no sheen across the top: a gradient into a much
+    # deeper hue with a curved highlight over it is how you draw glass, which
+    # is what made these read as chrome. The character comes from the drawing
+    # on top instead.
     icon = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" '
             'width="48" height="48">'
             '<rect width="48" height="48" rx="13.5" fill="%s"/>'
             '<g transform="translate(24 24) scale(0.8) translate(-24 -24)">%s</g>'
             '</svg>'
-            % (hue, ICONS[sid] % {"hole": hue}))
+            % (hue, ICONS[sid]))
     for name, data in (("peek-%s.svg" % sid, art), ("icon-%s.svg" % sid, icon)):
         with open(os.path.join(OUT, name), "w") as fh:
             fh.write(data)
