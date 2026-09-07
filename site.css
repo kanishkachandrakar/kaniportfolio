@@ -44,6 +44,7 @@
   --cord:       rgba(246, 242, 234, 0.30);
   --bead:       linear-gradient(160deg, #F4D9A6, #C79A55);
   --bead-glow:  rgba(240, 200, 130, 0.55);
+  --avatar-bg:  #F5E6B8;
 
   --shadow-lg:  0 44px 110px rgba(0, 0, 0, 0.55);
   --shadow-md:  0 18px 44px rgba(0, 0, 0, 0.42);
@@ -111,6 +112,7 @@
   --cord:       rgba(59, 58, 51, 0.28);
   --bead:       linear-gradient(160deg, #FFFFFF, #C9CDC4);
   --bead-glow:  rgba(120, 130, 118, 0.28);
+  --avatar-bg:  #E5E0CF;
 
   /* warm grey rather than black: a neutral shadow over an oat ground
      goes muddy and pulls the warmth out from under it */
@@ -391,10 +393,11 @@ body {
 }
 
 .identity img {
-  /* Her Memoji is cut out, so this shows through behind it. Pastel rather
-     than the site accent: the accent is a warm amber and her skin sits close
-     to it, which flattened the two together. */
-  background: #F5E6B8;
+  /* Her Memoji is cut out, so this shows through behind it. Held away from
+     the accent in both themes: her skin sits close to the dark theme's amber
+     and the two flattened together. Under the light theme the butter yellow
+     is too warm for an oat and sage page, so it drops to a muted sand. */
+  background: var(--avatar-bg);
   width: 46px;
   height: 46px;
   border-radius: 50%;
