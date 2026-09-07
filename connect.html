@@ -3,10 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- the site is dark only; both of these stop the browser painting
-       its own light chrome around it before the CSS lands -->
-  <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#100D0B">
+  <!-- The site has both, so say so: this is what lets the browser paint its
+       own chrome in the right one before any CSS has loaded. The two
+       theme-colors are the two grounds; site.js keeps them in step when the
+       cord is pulled, since a media query cannot see that choice. -->
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#100D0B"
+        media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#F3F1EA"
+        media="(prefers-color-scheme: light)">
   <title>Contact | Kanishka Chandrakar</title>
   <meta name="description" content="Get in touch with Kanishka Chandrakar — email, LinkedIn, GitHub or the contact form.">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
@@ -206,7 +211,7 @@
     </div>
   </div>
 </div>
-<script src="site.js?v=ae35115b"></script>
+<script src="site.js?v=9471a53a"></script>
 <script>
   (function () {
     var scriptURL = 'https://script.google.com/macros/s/AKfycbxptlQB673K5Zj1cZU8GX2b_nqHctjAFgTgfP1xeSrhKJz8q4wmpk1sY_s8Eh-CJand/exec';

@@ -424,6 +424,19 @@
     return root.getAttribute("data-theme") === "light" ? "light" : "dark";
   }
 
+  // The theme-color metas are chosen by prefers-color-scheme, which cannot
+  // see a choice made here. Once the cord is pulled, pin it directly.
+  function paintChrome() {
+    var tag = document.querySelector('meta[name="theme-color"]:not([media])');
+    if (!tag) {
+      tag = document.createElement("meta");
+      tag.setAttribute("name", "theme-color");
+      document.head.appendChild(tag);
+    }
+    tag.setAttribute("content",
+      current() === "light" ? "#F3F1EA" : "#100D0B");
+  }
+
   function label() {
     var light = current() === "light";
     lamp.setAttribute("aria-pressed", light ? "true" : "false");
@@ -445,6 +458,7 @@
       // private browsing; the choice just will not outlive the tab
     }
     label();
+    paintChrome();
 
     // restart the tug even on a second click in quick succession
     lamp.classList.remove("is-pulled");
