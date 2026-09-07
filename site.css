@@ -832,19 +832,42 @@ body {
   pointer-events: none;
 }
 
-/* Her own framing, used as it comes. Both crops are the same width, so
-   spanning each across its card puts them at an identical scale - which is
-   what preserves the alignment she set. The card edge crops the overflow:
-   About from the bottom, where her head is; Experience from the top. */
+/* Sized from the card's height, not its width.
+   Spanning the card's width meant the artwork's scale followed the width
+   while the card's height changed independently of it, so how much of her
+   showed depended on the window - at some sizes the About card was a giant
+   fragment of her chin. Driving it from the height keeps her the same size
+   relative to the card at every window.
+   The box keeps the image's own aspect ratio (width: auto), which matters:
+   the eye overlay is positioned in percentages of this box, so anything that
+   crops the image inside it - object-fit and the like - would put her irises
+   somewhere other than her eyes. */
 .deco-cut,
 .deco-desk {
-  left: 0;
-  width: 100%;
-  height: auto;
+  left: auto;
+  right: 16%;
+  width: auto;
+  height: 260%;
+}
+
+.deco-cut img,
+.deco-desk img {
+  display: block;
+  height: 100%;
+  width: auto;
 }
 
 .deco-cut  { bottom: 0; }
-.deco-desk { top: 0; }
+
+/* Experience is framed from the top, so it is anchored there and spans the
+   card as before - it is a desk, not a figure, and reads better wide. */
+.deco-desk {
+  top: 0;
+  left: 0;
+  right: auto;
+  width: 100%;
+  height: auto;
+}
 
 /* .deco-cut wraps its image now, so it sizes to it and the eyes can be placed
    against the same box. Without this the span would be a text run. */
