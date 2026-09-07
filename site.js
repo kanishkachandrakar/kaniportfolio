@@ -456,6 +456,47 @@
     lamp.classList.remove("is-pulled");
   });
 
+  // --- the cord leans towards the pointer -------------------------------
+  // Only worth doing where there is a pointer to lean towards.
+  if (window.matchMedia("(hover: hover)").matches) {
+    var REACH = 420;    // past this the cord has stopped caring
+    var NEAR = 120;     // sideways offset that already means "fully over"
+    var MAX = 14;       // degrees at full lean; more and it looks unhinged
+    var queued = false, px = 0, py = 0;
+
+    function lean() {
+      queued = false;
+      var b = lamp.getBoundingClientRect();
+      if (!b.width) return;
+      // measured from where it hangs, not from its middle - that is the
+      // point it actually pivots around
+      var dx = px - (b.left + b.width / 2);
+      var dy = py - b.top;
+      var d = Math.sqrt(dx * dx + dy * dy);
+      var pull = Math.max(0, 1 - d / REACH);
+      pull = pull * (2 - pull);               // ease out, so near counts most
+      // Direction saturates well before REACH does: a pointer a hand's width
+      // to the left is already fully to the left, it just is not close.
+      var side = Math.max(-1, Math.min(1, dx / NEAR));
+      // Negated: the cord hangs from its top, and a positive CSS rotation
+      // about that point swings the bead to the left. Without this it leans
+      // away from the pointer instead of after it.
+      lamp.style.setProperty("--sway", (-side * MAX * pull).toFixed(2) + "deg");
+    }
+
+    document.addEventListener("mousemove", function (e) {
+      px = e.clientX;
+      py = e.clientY;
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(lean);
+    }, { passive: true });
+
+    document.addEventListener("mouseleave", function () {
+      lamp.style.setProperty("--sway", "0deg");
+    });
+  }
+
   // Follow the system setting only while the reader has not chosen for
   // themselves; once they pull the cord, that is the answer.
   var mq = window.matchMedia("(prefers-color-scheme: light)");

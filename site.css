@@ -224,7 +224,10 @@ body {
   align-items: center;
   /* hangs from the top edge, so it swings from a fixed point */
   transform-origin: 50% 0;
-  transition: transform 0.42s cubic-bezier(0.22, 1.4, 0.4, 1);
+  /* --sway is the lean, in degrees, written by site.js from where the pointer
+     is. --drop is the give when it is hovered or held. */
+  transform: translateY(var(--drop, 0px)) rotate(var(--sway, 0deg));
+  transition: transform 0.5s cubic-bezier(0.22, 1.2, 0.4, 1);
 }
 
 .lamp-cord {
@@ -262,18 +265,28 @@ body {
 }
 
 /* the cord gives a little before it pulls */
-.lamp:hover   { transform: translateY(7px); }
-.lamp:active  { transform: translateY(16px); }
+.lamp:hover   { --drop: 7px; }
+.lamp:active  { --drop: 16px; }
 .lamp:hover .lamp-bead { box-shadow: 0 0 24px var(--bead-glow), var(--shadow-sm); }
+
+/* The lean eases out along the cord: the bead swings furthest, the beads
+   nearest the ceiling barely move, which is what a hanging chain does. */
+.lamp-bead { transform: rotate(calc(var(--sway, 0deg) * 0.55)); }
+.lamp-cord i:nth-child(1) { transform: rotate(calc(var(--sway, 0deg) * -0.5)); }
+.lamp-cord i:nth-child(2) { transform: rotate(calc(var(--sway, 0deg) * -0.4)); }
+.lamp-cord i:nth-child(3) { transform: rotate(calc(var(--sway, 0deg) * -0.3)); }
+.lamp-cord i:nth-child(4) { transform: rotate(calc(var(--sway, 0deg) * -0.2)); }
+.lamp-cord i:nth-child(5) { transform: rotate(calc(var(--sway, 0deg) * -0.1)); }
+.lamp-cord i, .lamp-bead { transition: transform 0.5s cubic-bezier(0.22, 1.2, 0.4, 1); }
 
 /* the tug itself: down hard, then settle */
 .lamp.is-pulled { animation: lampTug 0.62s cubic-bezier(0.3, 1.5, 0.4, 1); }
 
 @keyframes lampTug {
-  0%   { transform: translateY(16px); }
-  38%  { transform: translateY(26px); }
-  68%  { transform: translateY(-4px); }
-  100% { transform: translateY(0); }
+  0%   { transform: translateY(16px) rotate(var(--sway, 0deg)); }
+  38%  { transform: translateY(26px) rotate(var(--sway, 0deg)); }
+  68%  { transform: translateY(-4px) rotate(var(--sway, 0deg)); }
+  100% { transform: translateY(0) rotate(var(--sway, 0deg)); }
 }
 
 @media (prefers-reduced-motion: reduce) {
