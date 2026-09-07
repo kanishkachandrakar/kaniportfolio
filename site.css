@@ -661,7 +661,7 @@ body {
   /* The portrait's column gives way as the window narrows. Fixed at its
      widest it held 368px whatever was left for the text, which pushed the
      heading and the fact lines into extra wraps around 1000px. */
-  grid-template-columns: minmax(0, 1fr) minmax(200px, clamp(258px, 26vw, 368px));
+  grid-template-columns: minmax(0, 1fr) minmax(200px, clamp(258px, 27.5vw, 396px));
   gap: clamp(18px, 2.2vw, 30px);
   /* top-aligned: centring it against the full height of the hero left the
      portrait sitting low and adrift from the text beside it */
@@ -711,7 +711,7 @@ body {
      Centred, the gap between her and the text was the column's leftover
      space rather than a chosen distance, so it grew and shrank with the
      window and never looked deliberate. */
-  width: min(100%, 306px);
+  width: min(100%, 342px);
   justify-self: start;
   margin-top: 4px;
 }
