@@ -1,0 +1,7 @@
+# Kanishka Chandrakar — portfolio
+# Everything here is meant to be found.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://kanishkachandrakar.github.io/kaniportfolio/sitemap.xml
