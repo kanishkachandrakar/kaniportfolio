@@ -191,6 +191,10 @@ body {
 }
 
 .identity img {
+  /* Her Memoji is cut out, so this shows through behind it. Pastel rather
+     than the site accent: the accent is a warm amber and her skin sits close
+     to it, which flattened the two together. */
+  background: #F5E6B8;
   width: 46px;
   height: 46px;
   border-radius: 50%;
