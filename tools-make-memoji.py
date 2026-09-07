@@ -22,6 +22,7 @@ SRC = "images/kani-memoji.png"
 OUT = "images/kani-memoji.webp"
 TOL = 3        # how far off the card colour still counts as card
 PAD = 1        # breathing room around the figure, in source pixels
+DROP = 18      # extra headroom above her, so the circle clears her hair
 
 
 def main():
@@ -58,13 +59,18 @@ def main():
     out = im.convert("RGBA")
     out.putalpha(alpha)
 
-    box = out.getbbox()
-    x0, y0, x1, y1 = box
-    cx, cy = (x0 + x1) / 2.0, (y0 + y1) / 2.0
-    half = max(x1 - x0, y1 - y0) / 2.0 + PAD
-    # square, so a circular crop keeps the whole figure rather than a slice
-    sq = out.crop((int(cx - half), int(cy - half),
-                   int(cx + half), int(cy + half)))
+    x0, y0, x1, y1 = out.getbbox()
+    cx = (x0 + x1) / 2.0
+
+    # Square, so a circular crop keeps the whole figure rather than a slice.
+    # The extra room all goes above her: centred, the circle cut across the top
+    # of her hair, because a circle inscribed in a square only reaches the edge
+    # at the four midpoints and takes the corners off everything else.
+    side = max(x1 - x0, y1 - y0) + 2 * PAD + DROP
+    top = y0 - PAD - DROP
+    left = cx - side / 2.0
+    # crop() pads with transparency where it runs past the source
+    sq = out.crop((int(left), int(top), int(left + side), int(top + side)))
     sq = sq.resize((256, 256), Image.LANCZOS)
     sq.save(OUT, "WEBP", quality=92, method=6)
     print("kept %d px of card out of %d" % (len(seen), W * H))
