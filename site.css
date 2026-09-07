@@ -940,9 +940,9 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  /* Width comes from what the bubble holds. Fixed at 54px they were all the
-     same length whatever was in them, which is what made three dots in a pill
-     read as one short message stretched out and repeated. */
+  /* Width comes from how many dots the bubble holds. Fixed at 54px they were
+     all the same length whatever was in them, which is what made the thread
+     read as one short message repeated. */
   padding: 0 9px;
   height: 21px;
   border-radius: 10.5px;
@@ -977,13 +977,27 @@ body {
   93%, 100% { opacity: 0; transform: translateY(-5px) scale(0.94); }
 }
 
-/* Each bar is a word; its width is set inline, per bubble. */
 .bub i {
-  height: 5px;
-  border-radius: 2.5px;
+  width: 5.5px;
+  height: 5.5px;
+  border-radius: 50%;
   background: var(--dot);
-  opacity: 0.82;
   flex: none;
+  animation: bubDot 1.5s ease-in-out infinite;
+}
+
+/* The lift runs along the bubble rather than every dot rising together, so a
+   long one reads as a long message still being typed. */
+.bub i:nth-child(2) { animation-delay: 0.12s; }
+.bub i:nth-child(3) { animation-delay: 0.24s; }
+.bub i:nth-child(4) { animation-delay: 0.36s; }
+.bub i:nth-child(5) { animation-delay: 0.48s; }
+.bub i:nth-child(6) { animation-delay: 0.60s; }
+.bub i:nth-child(7) { animation-delay: 0.72s; }
+
+@keyframes bubDot {
+  0%, 60%, 100% { opacity: 0.35; transform: translateY(0); }
+  30%           { opacity: 1;    transform: translateY(-2.5px); }
 }
 
 /* ---------- Stats ------------------------------------------ */
