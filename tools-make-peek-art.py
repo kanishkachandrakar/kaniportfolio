@@ -319,11 +319,11 @@ ICONS = {
 # tiles their metallic look; they are only a couple of steps down now, so a
 # tile reads as one pastel colour with a fall in it rather than as chrome.
 SECTIONS = [
-    ("about",     "#F9AEC6", "#E06E9B"),   # rose
+    ("about",     "#FFCFA3", "#EFA45F"),   # apricot
     ("education", "#AFD2F7", "#6FA3DE"),   # sky
-    ("craft",     "#A8E7CB", "#5DC3A0"),   # mint
-    ("projects",  "#CDBAF7", "#9782E2"),   # lilac
-    ("contact",   "#FFCBA4", "#F09F62"),   # peach
+    ("craft",     "#B7E3C4", "#6BBE8A"),   # sage
+    ("projects",  "#C2C6F5", "#8A90DE"),   # periwinkle
+    ("contact",   "#A8E0E4", "#55B4BC"),   # teal
 ]
 
 SHADOW = ('<filter id="d" x="-30%" y="-30%" width="170%" height="170%">'
