@@ -11,14 +11,24 @@ import re
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "images")
 
-SMALL = ("/private/tmp/claude-501/-Users-kanishkachandrakar-Desktop-"
-         "kaniportfolio-kaniportfolio-master/"
-         "1265d3b4-3f1f-4a0b-a512-4ded02a83abe/scratchpad/small")
+# The photographs that get inlined into the illustrations. These used to be
+# read from a scratch directory outside the repo, which meant the tool could
+# not be re-run once that directory went away - and it had. The laptop screen
+# only survived because it was already base64'd into peek-craft.svg; it is a
+# real file again now.
+PHOTOS = {
+    "cut.webp": "kanishka-cutout.webp",
+    "grad.webp": "kanishka-grad.webp",
+    "lap.jpg": "peek-laptop-screen.jpg",
+    "p1.webp": "peek-phone-1.webp",
+    "p2.webp": "peek-phone-2.webp",
+    "p3.webp": "peek-phone-3.webp",
+}
 
 
 def photo(name):
     """A real photo, inlined so the SVG stays self-contained."""
-    with open(os.path.join(SMALL, name), "rb") as fh:
+    with open(os.path.join(OUT, PHOTOS[name]), "rb") as fh:
         return "data:image/jpeg;base64," + base64.b64encode(fh.read()).decode()
 
 
@@ -29,7 +39,7 @@ CUT_FILTER = (
 
 
 def photo_webp(name):
-    with open(os.path.join(SMALL, name), "rb") as fh:
+    with open(os.path.join(OUT, PHOTOS[name]), "rb") as fh:
         return "data:image/webp;base64," + base64.b64encode(fh.read()).decode()
 
 
