@@ -10,9 +10,7 @@
    the CSS gradient underneath.
    ----------------------------------------------------------- */
 :root {
-  /* The generated scene is still the dark room; until it is replaced the
-     pastel gradient underneath stands in for it. */
-  --scene: none;
+  --scene: url("images/scene.webp");
 
   /* Ink is a warm plum-grey, not black. Black on pastel reads as harsh and
      flattens everything it sits next to. */

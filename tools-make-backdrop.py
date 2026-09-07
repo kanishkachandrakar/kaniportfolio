@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-"""Paint the scene the glass card floats on: dusk over a mountain lake.
+"""Paint the scene the glass card floats on: first light over a still lake.
 
 Generated rather than photographed, so the site carries no stock imagery.
-The palette is deliberately warm and dark - amber at the horizon, deep
-indigo overhead - so it sits under the card's own amber accent without
-fighting the text.
+The palette is pastel throughout - lilac overhead, blush and peach at the
+horizon, ranges receding through lilac into soft teal. Everything is kept
+light and low in contrast on purpose: the card is white frosted glass, so
+any real darkness behind it shows through and turns the panel grey.
 
 Run: python3 tools-make-backdrop.py  ->  images/scene.webp
 """
@@ -28,8 +29,9 @@ def lerp(a, b, t):
 
 def sky_colour(t):
     """t: 0 at the top of the sky, 1 at the horizon."""
-    stops = [(0.00, (11, 16, 42)), (0.34, (39, 30, 63)), (0.62, (96, 54, 66)),
-             (0.84, (176, 96, 62)), (1.00, (226, 152, 78))]
+    stops = [(0.00, (214, 206, 242)), (0.34, (232, 214, 242)),
+             (0.62, (248, 220, 226)), (0.84, (253, 228, 210)),
+             (1.00, (255, 242, 228))]
     for i in range(len(stops) - 1):
         t0, c0 = stops[i]
         t1, c1 = stops[i + 1]
@@ -46,20 +48,9 @@ for y in range(HORIZON):
 # the sun's warmth bleeding sideways along the horizon
 spread = Image.new("L", (W, H), 0)
 ImageDraw.Draw(spread).ellipse([-W * 0.35, HORIZON - H * 0.30,
-                                W * 1.35, HORIZON + H * 0.06], fill=120)
+                                W * 1.35, HORIZON + H * 0.06], fill=96)
 spread = spread.filter(ImageFilter.GaussianBlur(150))
-img = Image.composite(Image.new("RGB", (W, H), (198, 112, 66)), img, spread)
-
-# --- stars, only where the sky is still dark ------------------------------
-for _ in range(260):
-    x = random.uniform(0, W)
-    y = random.uniform(0, HORIZON * 0.62)
-    fade = 1.0 - (y / (HORIZON * 0.62))
-    if random.random() > fade * 0.9:
-        continue
-    v = int(random.uniform(120, 235) * fade)
-    r = random.choice([0.6, 0.6, 0.9, 1.3])
-    d.ellipse([x - r, y - r, x + r, y + r], fill=(v, v, int(v * 0.94)))
+img = Image.composite(Image.new("RGB", (W, H), (255, 226, 204)), img, spread)
 
 # --- the sun, low and hazy ------------------------------------------------
 SUNX, SUNY = W * 0.655, HORIZON - H * 0.235
@@ -68,7 +59,7 @@ sd = ImageDraw.Draw(sun)
 for r, v in ((360, 44), (210, 82), (110, 148), (42, 255)):
     sd.ellipse([SUNX - r, SUNY - r * 0.92, SUNX + r, SUNY + r * 0.92], fill=v)
 sun = sun.filter(ImageFilter.GaussianBlur(48))
-img = Image.composite(Image.new("RGB", (W, H), (255, 214, 150)), img, sun)
+img = Image.composite(Image.new("RGB", (W, H), (255, 250, 240)), img, sun)
 
 # --- rays fanning out of the sun ------------------------------------------
 rays = Image.new("L", (W, H), 0)
@@ -82,12 +73,12 @@ for k in range(11):
                   SUNY + far * math.sin(ang - spread_a)),
                  (SUNX + far * math.cos(ang + spread_a),
                   SUNY + far * math.sin(ang + spread_a))],
-                fill=random.randint(26, 54))
+                fill=random.randint(12, 26))
 rays = rays.filter(ImageFilter.GaussianBlur(34))
 mask = Image.new("L", (W, H), 0)
 ImageDraw.Draw(mask).rectangle([0, 0, W, HORIZON], fill=255)
 rays = ImageChops.multiply(rays, mask.filter(ImageFilter.GaussianBlur(20)))
-img = Image.composite(Image.new("RGB", (W, H), (255, 208, 152)), img, rays)
+img = Image.composite(Image.new("RGB", (W, H), (255, 246, 234)), img, rays)
 
 # --- clouds: long, thin, catching the light from below --------------------
 clouds = Image.new("RGBA", (W, H), (0, 0, 0, 0))
@@ -99,7 +90,8 @@ for _ in range(26):
     ch = random.uniform(6, 20) * (0.5 + t)
     cx = random.uniform(-W * 0.1, W * 1.1)
     lit = abs(cx - SUNX) < W * 0.34 and t > 0.55
-    col = (238, 176, 116, 150) if lit else lerp((60, 48, 78), (150, 92, 78), t) + (110,)
+    col = ((255, 238, 228, 132) if lit
+           else lerp((208, 200, 234), (248, 218, 218), t) + (96,))
     cd.ellipse([cx - cw / 2, cy - ch / 2, cx + cw / 2, cy + ch / 2], fill=col)
 clouds = clouds.filter(ImageFilter.GaussianBlur(14))
 img = Image.alpha_composite(img.convert("RGBA"), clouds).convert("RGB")
@@ -121,10 +113,10 @@ def ridge(base_y, rough, seed):
 
 
 # --- mountain ranges, hazier the further back -----------------------------
-RANGES = [(HORIZON - H * 0.205, 160, (74, 60, 92), 4),
-          (HORIZON - H * 0.145, 130, (49, 39, 64), 9),
-          (HORIZON - H * 0.088, 100, (30, 24, 41), 17),
-          (HORIZON - H * 0.038, 62, (17, 14, 24), 23)]
+RANGES = [(HORIZON - H * 0.205, 160, (206, 198, 234), 4),
+          (HORIZON - H * 0.145, 130, (184, 190, 226), 9),
+          (HORIZON - H * 0.088, 100, (158, 192, 210), 17),
+          (HORIZON - H * 0.038, 62, (136, 186, 194), 23)]
 for base_y, rough, colour, seed in RANGES:
     ys = ridge(base_y, rough, seed)
     step = W / float(len(ys) - 1)
@@ -133,7 +125,7 @@ for base_y, rough, colour, seed in RANGES:
     ld = ImageDraw.Draw(layer)
     ld.polygon(poly + [(W, HORIZON + 4), (0, HORIZON + 4)], fill=colour + (255,))
     # a rim of light on the slopes facing the sun
-    ld.line(poly, fill=(228, 158, 104, 120), width=3)
+    ld.line(poly, fill=(255, 248, 240, 140), width=3)
     layer = layer.filter(ImageFilter.GaussianBlur(1.2))
     img = Image.alpha_composite(img.convert("RGBA"), layer).convert("RGB")
 
@@ -141,12 +133,12 @@ for base_y, rough, colour, seed in RANGES:
 haze = Image.new("L", (W, H), 0)
 ImageDraw.Draw(haze).rectangle([0, HORIZON - H * 0.20, W, HORIZON], fill=90)
 haze = haze.filter(ImageFilter.GaussianBlur(70))
-img = Image.composite(Image.new("RGB", (W, H), (150, 96, 92)), img, haze)
+img = Image.composite(Image.new("RGB", (W, H), (252, 234, 230)), img, haze)
 
 # --- the lake: the sky again, upside down and disturbed -------------------
 water = img.crop((0, int(HORIZON - (H - HORIZON)), W, HORIZON)).transpose(
     Image.FLIP_TOP_BOTTOM).resize((W, H - HORIZON))
-water = water.point(lambda v: int(v * 0.62))
+water = water.point(lambda v: int(212 + (v - 212) * 0.72))
 water = water.filter(ImageFilter.GaussianBlur(3.0))
 img.paste(water, (0, HORIZON))
 
@@ -155,11 +147,13 @@ rd = ImageDraw.Draw(ripple)
 y = HORIZON + 2
 gap = 3.0
 while y < H:
-    a = int(52 + 70 * ((y - HORIZON) / float(H - HORIZON)))
-    rd.line([(0, y), (W, y)], fill=(6, 8, 18, a), width=1)
+    a = int(12 + 22 * ((y - HORIZON) / float(H - HORIZON)))
+    rd.line([(0, y), (W, y)], fill=(150, 146, 186, a), width=1)
     y += gap
     gap *= 1.035
-ripple = ripple.filter(ImageFilter.GaussianBlur(1.8))
+# a heavier blur than the dark version needed: at this contrast the lines
+# read as stripes rather than as water
+ripple = ripple.filter(ImageFilter.GaussianBlur(3.2))
 img = Image.alpha_composite(img.convert("RGBA"), ripple).convert("RGB")
 
 # the sun's path on the water: one soft wedge, broken by the ripples
@@ -184,13 +178,13 @@ path = ImageChops.lighter(path.point(lambda v: int(v * 0.55)),
                           ImageChops.multiply(glint, path.point(
                               lambda v: 255 if v > 30 else 0)))
 path = path.point(lambda v: int(v * 0.8))
-img = Image.composite(Image.new("RGB", (W, H), (255, 206, 146)), img, path)
+img = Image.composite(Image.new("RGB", (W, H), (255, 252, 244)), img, path)
 
 # a band of mist where the water meets the land
 mist = Image.new("L", (W, H), 0)
 ImageDraw.Draw(mist).rectangle([0, HORIZON - 26, W, HORIZON + 16], fill=120)
 mist = mist.filter(ImageFilter.GaussianBlur(30))
-img = Image.composite(Image.new("RGB", (W, H), (208, 150, 116)), img, mist)
+img = Image.composite(Image.new("RGB", (W, H), (255, 246, 240)), img, mist)
 
 # --- headlands framing the lower corners ----------------------------------
 shore = Image.new("RGBA", (W, H), (0, 0, 0, 0))
@@ -204,8 +198,8 @@ for side in (0, 1):
         y = H * (0.86 + 0.16 * t) - rnd.uniform(0, H * 0.10) * (1 - t)
         pts.append((x, y))
     shd.polygon(pts + [(pts[-1][0], H + 40), (pts[0][0], H + 40)],
-                fill=(6, 6, 11, 255))
-    shd.line(pts, fill=(150, 104, 84, 90), width=3)
+                fill=(126, 168, 176, 255))
+    shd.line(pts, fill=(255, 250, 244, 120), width=3)
 shore = shore.filter(ImageFilter.GaussianBlur(1.6))
 img = Image.alpha_composite(img.convert("RGBA"), shore).convert("RGB")
 
@@ -216,9 +210,9 @@ for bx, by, sc in ((W * 0.20, H * 0.19, 1.0), (W * 0.245, H * 0.155, 0.8),
                    (W * 0.875, H * 0.175, 0.65)):
     w2, h2 = 13 * sc, 5 * sc
     bd2.line([(bx - w2, by), (bx - w2 * 0.35, by - h2), (bx, by - h2 * 0.25)],
-             fill=(24, 22, 34), width=max(1, int(2 * sc)))
+             fill=(150, 142, 178), width=max(1, int(2 * sc)))
     bd2.line([(bx, by - h2 * 0.25), (bx + w2 * 0.35, by - h2), (bx + w2, by)],
-             fill=(24, 22, 34), width=max(1, int(2 * sc)))
+             fill=(150, 142, 178), width=max(1, int(2 * sc)))
 
 # --- settle -----------------------------------------------------------------
 img = img.filter(ImageFilter.GaussianBlur(0.8))
@@ -228,12 +222,12 @@ img = img.filter(ImageFilter.GaussianBlur(0.8))
 grain = Image.effect_noise((W, H), 3).convert("L")
 img = ImageChops.add(img, Image.merge("RGB", (grain, grain, grain)),
                      scale=1, offset=-128)
-img = img.point(lambda v: int(v * 0.92))
+img = img.point(lambda v: min(255, int(v * 1.02)))
 
 vig = Image.new("L", (W, H), 0)
 ImageDraw.Draw(vig).ellipse([-W * 0.16, -H * 0.20, W * 1.16, H * 1.20], fill=255)
 vig = vig.filter(ImageFilter.GaussianBlur(250))
-img = Image.composite(img, Image.new("RGB", (W, H), (5, 5, 9)), vig)
+img = Image.composite(img, Image.new("RGB", (W, H), (250, 244, 250)), vig)
 
 img.save(DST, quality=88, method=6)
 print("wrote %s %s (%dKB)" % (os.path.relpath(DST, HERE), img.size,
