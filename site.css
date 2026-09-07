@@ -292,6 +292,11 @@ body {
   min-height: 100vh;
   min-height: 100dvh;
   display: grid;
+  /* One full-width column. Without it the column is sized to the card's own
+     content, so the 100% in the card's min() resolved to that instead of to
+     the space available - and the card could never be set wider than the
+     1020px its content happened to measure, whatever number it was given. */
+  grid-template-columns: minmax(0, 1fr);
   place-items: center;
   padding: clamp(16px, 6vh, 90px) clamp(16px, 5vw, 90px);
 }
@@ -1497,11 +1502,19 @@ body {
 
 /* ---------- Responsive ------------------------------------- */
 /* Wide screens: the margin equals the space the rail occupies, so the rail
-   and card centre together as one group instead of leaving a dead lane. */
-@media (min-width: 1301px) {
+   and card centre together as one group instead of leaving a dead lane.
+
+   The width here overrides the base one, and it had been left at 1020px -
+   which is why setting the base width wider changed nothing above this
+   breakpoint. It follows the base width now.
+
+   It also starts 20px lower than it did. At 1290px the rule was off, so the
+   card centred on its own and the rail was left with half a pixel of the
+   window to sit in. */
+@media (min-width: 1281px) {
   .frame {
     margin-left: 124px;
-    width: min(1020px, calc(100% - 124px));
+    width: min(1260px, calc(100% - 124px));
   }
 }
 
@@ -1516,6 +1529,14 @@ body {
     right: calc(100% + 18px);
     gap: 62px;
   }
+
+  /* The reserved margin follows the rail. Left at 124px while the rail had
+     tightened to 64px, the lane the pair sits in was wider on the left than
+     the gap on the right, and the group leaned the other way. */
+  .frame {
+    margin-left: 78px;
+    width: min(1260px, calc(100% - 78px));
+  }
 }
 
 @media (max-width: 1280px) {
@@ -1525,6 +1546,14 @@ body {
   }
 
   .rail a { width: 36px; height: 36px; }
+}
+
+/* and again for the smallest rail, down to where it turns horizontal */
+@media (min-width: 901px) and (max-width: 1280px) {
+  .frame {
+    margin-left: 52px;
+    width: min(1260px, calc(100% - 52px));
+  }
 }
 
 @media (max-width: 900px) {
