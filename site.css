@@ -1188,6 +1188,72 @@ body {
   color: var(--ink);
 }
 
+.ask-form {
+  position: relative;
+  margin: 14px auto 0;
+  max-width: 780px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.ask-form:focus-within {
+  border-color: var(--edge);
+  background: var(--surface-hi);
+}
+
+.ask-input {
+  display: block;
+  width: 100%;
+  /* room on the right for the button, so a long question does not run under it */
+  padding: 15px 62px 15px 16px;
+  border: 0;
+  background: none;
+  resize: none;
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.ask-input::placeholder { color: var(--ink-faint); }
+.ask-input:focus { outline: none; }
+
+.ask-send {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  border: 0;
+  background: var(--accent);
+  color: var(--on-accent);
+  cursor: pointer;
+  transition: transform 0.16s ease, opacity 0.16s ease;
+}
+
+.ask-send svg { width: 19px; height: 19px; fill: currentColor; }
+.ask-send:hover { transform: scale(1.06); }
+.ask-send:active { transform: scale(0.95); }
+
+/* a label the eye does not need but a screen reader does */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ---------- Tabs (education) ------------------------------- */
 .tabs {
   display: flex;
