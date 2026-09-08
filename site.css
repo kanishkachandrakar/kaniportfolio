@@ -47,6 +47,7 @@
   --avatar-bg:  #F5E6B8;
   --bead-solid: #E9CB92;
   --ring:       rgba(246, 242, 234, 0.19);
+  --disc:       rgba(228, 226, 236, 0.30);
 
   --shadow-lg:  0 44px 110px rgba(0, 0, 0, 0.55);
   --shadow-md:  0 18px 44px rgba(0, 0, 0, 0.42);
@@ -117,6 +118,7 @@
   --avatar-bg:  #E5E0CF;
   --bead-solid: #D9DCD3;
   --ring:       rgba(255, 255, 255, 0.66);
+  --disc:       rgba(255, 255, 255, 0.72);
 
   /* warm grey rather than black: a neutral shadow over an oat ground
      goes muddy and pulls the warmth out from under it */
@@ -732,7 +734,51 @@ body {
   margin-top: 4px;
 }
 
-.home-portrait { width: 100%; }
+.home-portrait {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  /* The flat band is dropped here for the disc below; the hairline stays, so
+     the photograph still has an edge against it. Other portraits keep it. */
+  box-shadow: 0 0 0 1px var(--edge), var(--shadow-md);
+}
+
+/* The disc the photograph is pressed into. A conic gradient rather than a
+   flat ring, so the light runs round it the way it does on a CD.
+
+   It turns faster than the photograph does - 8s against 18s. On a real disc
+   the pattern is fixed to the surface but the reflection sweeps across it, and
+   matching the two rates loses that entirely: the sheen would sit still
+   relative to her and the whole thing would just look like a rotating photo
+   with a coloured edge. */
+.turntable::before {
+  content: "";
+  position: absolute;
+  inset: -13px;
+  z-index: 0;
+  border-radius: 50%;
+  background:
+    conic-gradient(from 0deg,
+      rgba(255, 255, 255, 0.10),
+      rgba(110, 198, 255, 0.52) 11%,
+      rgba(174, 142, 255, 0.44) 25%,
+      rgba(255, 190, 128, 0.50) 40%,
+      rgba(130, 255, 205, 0.46) 55%,
+      rgba(255, 255, 255, 0.12) 66%,
+      rgba(128, 184, 255, 0.52) 78%,
+      rgba(255, 160, 196, 0.44) 90%,
+      rgba(255, 255, 255, 0.10)),
+    /* a base under the sheen: the ring alone is too transparent on the dark
+       theme for any colour to register against the backdrop */
+    var(--disc);
+  animation: recordSpin 8s linear infinite;
+  animation-play-state: paused;
+}
+
+.turntable.is-playing::before { animation-play-state: running; }
+
+/* above the disc, so it stays pointable */
+.spin-btn { z-index: 2; }
 
 /* The record turns while the music plays. It is paused rather than removed
    when the music stops, so it holds the angle it reached and picks up from
@@ -754,7 +800,9 @@ body {
    The music is the point and still plays; only the record stops. */
 @media (prefers-reduced-motion: reduce) {
   .home-portrait,
-  .turntable.is-playing .home-portrait { animation: none; }
+  .turntable.is-playing .home-portrait,
+  .turntable::before,
+  .turntable.is-playing::before { animation: none; }
 }
 
 /* Sits on the portrait's lower right, outside the spin - it is a control, so
