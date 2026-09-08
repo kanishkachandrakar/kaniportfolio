@@ -149,6 +149,16 @@
 
 * { box-sizing: border-box; }
 
+html {
+  /* the nav's Ask KaniGPT entry jumps into the page rather than to another
+     one, and a jump that lands without moving reads as a page swap */
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
 html, body {
   height: 100%;
   /* The off-canvas mobile menu parks itself past the right edge; keep it
@@ -1142,8 +1152,23 @@ body {
 /* Outside the card now, sitting on the backdrop under it. It lines up with
    the card's edges by taking the same width and margin - see the responsive
    rules, where .ask is named alongside .frame. */
+/* The way in. The panel is below the fold, so without something up here the
+   page ends at Explore as far as the reader can tell. */
+.ask-link {
+  gap: 7px;
+  font-size: 12.5px;
+}
+
+.ask-link i { font-size: 13px; }
+
+@media (max-width: 1080px) {
+  .ask-link { display: none; }        /* the drawer carries it below this */
+}
+
 .ask {
   position: relative;
+  /* so the heading does not land flush against the top of the window */
+  scroll-margin-top: clamp(16px, 6vh, 70px);
   padding: clamp(30px, 6vh, 66px) 0 clamp(24px, 5vh, 56px);
   text-align: center;
 }
