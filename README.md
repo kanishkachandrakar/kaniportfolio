@@ -44,6 +44,30 @@ one set, chosen to hold up on either ground.
 Asset links carry `?v=<hash of the file>`, so a stale cached copy can never
 pair with fresh markup.
 
+## Ask KaniGPT
+
+The panel at the bottom of the home page answers questions about her.
+
+**There is no model behind it, and there cannot be one.** The site is static,
+so an API key would ship to the browser for anyone to read and spend. What it
+does instead is match the question against answers written in `build.py`
+(`ASK`) by keyword, and reply with what she has already said — which covers
+what people actually ask a portfolio.
+
+To add an answer, add an entry to `ASK`: the `keys` it should match on, the
+`a` it replies with, and optionally a page to link on to. The suggestion chips
+come from `ASK_CHIPS`, so a chip can never ask something there is no answer
+for.
+
+Two behaviours worth keeping:
+
+- **Scoring, not first match.** "What has she built with?" reaches both
+  projects and skills, and the entry sharing more of the question should win.
+  Common words are dropped first, or they would decide it on their own.
+- **It says when it does not know.** `ASK_MISS` names what it can talk about
+  and points at her email. A portfolio bot confidently answering the wrong
+  question is worse than one admitting the limit.
+
 ## Music
 
 The hero portrait is a record. A play button sits on its lower right, and the
