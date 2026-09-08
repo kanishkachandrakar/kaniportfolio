@@ -750,6 +750,35 @@ body {
   to { transform: rotate(360deg); }
 }
 
+/* Sits on the portrait's lower right, outside the spin - it is a control, so
+   it has to stay still and stay pointable while the record turns. */
+.spin-btn {
+  position: absolute;
+  right: 4%;
+  bottom: 4%;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--edge);
+  background: var(--accent);
+  color: var(--on-accent);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.spin-btn:hover  { transform: scale(1.08); box-shadow: var(--shadow-md); }
+.spin-btn:active { transform: scale(0.96); }
+.spin-btn svg    { width: 24px; height: 24px; fill: currentColor; }
+
+/* one icon at a time, chosen by the same class that drives the spin */
+.spin-btn .ico-pause,
+.turntable.is-playing .spin-btn .ico-play { display: none; }
+.turntable.is-playing .spin-btn .ico-pause { display: block; }
+
 /* ---------- Bento grid ------------------------------------- */
 .bento {
   display: grid;

@@ -42,11 +42,11 @@
       } catch (e) {}
     })();
   </script>
-  <link rel="preload" href="site.css?v=b5baaff7" as="style">
+  <link rel="preload" href="site.css?v=16ca907d" as="style">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="site.css?v=b5baaff7">
+  <link rel="stylesheet" href="site.css?v=16ca907d">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
@@ -129,6 +129,14 @@
 
         <div class="turntable">
           <img decoding="async" class="portrait home-portrait" src="images/kani-portrait.webp?v=066f03e1" alt="Kanishka Chandrakar">
+          <button class="spin-btn" id="spinBtn" type="button"
+                  aria-label="Play music" aria-pressed="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path class="ico-play" d="M9 6.5v11l9-5.5z"/>
+              <path class="ico-pause" d="M9 6h2.4v12H9zM14.6 6H17v12h-2.4z"/>
+            </svg>
+          </button>
+          <audio id="spinAudio" src="audio/track.wav" loop preload="metadata"></audio>
         </div>
       </section>
 
