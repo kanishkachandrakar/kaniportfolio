@@ -42,11 +42,11 @@
       } catch (e) {}
     })();
   </script>
-  <link rel="preload" href="site.css?v=8a02a5cb" as="style">
+  <link rel="preload" href="site.css?v=ff9535ed" as="style">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="site.css?v=8a02a5cb">
+  <link rel="stylesheet" href="site.css?v=ff9535ed">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
@@ -171,41 +171,40 @@
         </a>
       </div>
 
-      <hr class="divider">
 
-      <section class="ask">
-        <h2 class="ask-title">Ask KaniGPT</h2>
-        <p class="ask-sub">Anything you would ask her, without waiting for a
-          reply.</p>
+    </main>
 
-        <div class="ask-chips">
+    </div>
+  </div>
+  <section class="ask">
+    <h2 class="ask-title">Ask KaniGPT</h2>
+    <p class="ask-sub">Anything you would ask her, without waiting for a
+      reply.</p>
+
+    <div class="ask-chips">
           <button class="ask-chip" type="button">Who is Kanishka?</button>
           <button class="ask-chip" type="button">What is she studying?</button>
           <button class="ask-chip" type="button">What has she built?</button>
           <button class="ask-chip" type="button">What does she code in?</button>
           <button class="ask-chip" type="button">How can I reach her?</button>
-        </div>
-
-        <!-- answers land here; aria-live so a screen reader is told one
-             arrived, since nothing moves focus -->
-        <div class="ask-thread" id="askThread" aria-live="polite"></div>
-
-        <form class="ask-form" id="askForm" autocomplete="off">
-          <label class="sr-only" for="askInput">Ask about Kanishka</label>
-          <textarea class="ask-input" id="askInput" rows="2"
-                    placeholder="What would you like to know?"></textarea>
-          <button class="ask-send" type="submit" aria-label="Ask">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M3.4 20.6 21 12 3.4 3.4 3.4 10.2 15.6 12 3.4 13.8z"/>
-            </svg>
-          </button>
-        </form>
-      </section>
-<script type="application/json" id="askData">{"answers":[{"id":"who","keys":"who what tell about yourself introduce you kanishka name","a":"I&rsquo;m Kanishka Chandrakar &mdash; a CS grad student at NYU Courant, working on AI and machine learning, by way of a BS at Penn State. I like building things that ship: iOS apps, ML pipelines, systems work, and the odd game.","more":["about.html","More about me"]},{"id":"study","keys":"study studying school college university degree education nyu courant penn state masters bachelors graduate major","a":"I&rsquo;m doing an MS in Computer Science at NYU Courant with a focus on AI and machine learning, graduating May 2027. Before that I did my BS in Computer Science at Penn State.","more":["education.html","See education"]},{"id":"experience","keys":"experience work job role internship intern career employment worked research assistant teaching","a":"Six roles so far &mdash; research, engineering and teaching. The Experience page has each one with what I actually did on it rather than a title and a date.","more":["work.html","See experience"]},{"id":"skills","keys":"skills stack tech technology languages language programming tools frameworks code build python swift know","a":"Python and Swift most days, plus C, SwiftUI, PyTorch, scikit-learn, Flask, Firebase and the usual web stack. The Skills page lists them by what I use them for.","more":["skills.html","See skills"]},{"id":"projects","keys":"project projects built build make made portfolio work app apps ios game ml","a":"Twelve of them, across iOS, machine learning, systems and the web &mdash; a multiplayer doodle game, a to-do app, a stock prediction model, a 32-bit pipelined CPU, a spam classifier and more. Each one opens with what it does and what it is made of.","more":["projects.html","See projects"]},{"id":"contact","keys":"contact reach email hire available hiring opportunity opportunities touch message linkedin github talk","a":"Email is best: kanishka.chandrakar02@gmail.com. I&rsquo;m also on LinkedIn and GitHub, and I&rsquo;m open to internships, research collaborations, or just a good conversation about AI.","more":["connect.html","Get in touch"]},{"id":"hobbies","keys":"hobbies hobby fun free time music interests outside enjoy like love listen songs","a":"I debug to Bollywood and Punjabi music, which is why there is a record player on this page. Outside that: building small things that were not assigned to me, and learning whatever the current project demands."}],"miss":{"a":"That one I don&rsquo;t have an answer written for &mdash; I only know what&rsquo;s on this site. Try asking about her studies, her experience, what she builds with, or her projects. For anything else, she answers her email.","more":["connect.html","Ask her directly"]}}</script>
-    </main>
-
     </div>
-  </div>
+
+    <!-- answers land here; aria-live so a screen reader is told one
+         arrived, since nothing moves focus -->
+    <div class="ask-thread" id="askThread" aria-live="polite"></div>
+
+    <form class="ask-form" id="askForm" autocomplete="off">
+      <label class="sr-only" for="askInput">Ask about Kanishka</label>
+      <textarea class="ask-input" id="askInput" rows="2"
+                placeholder="What would you like to know?"></textarea>
+      <button class="ask-send" type="submit" aria-label="Ask">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3.4 20.6 21 12 3.4 3.4 3.4 10.2 15.6 12 3.4 13.8z"/>
+        </svg>
+      </button>
+    </form>
+  </section>
+<script type="application/json" id="askData">{"answers":[{"id":"who","keys":"who what tell about yourself introduce you kanishka name","a":"I&rsquo;m Kanishka Chandrakar &mdash; a CS grad student at NYU Courant, working on AI and machine learning, by way of a BS at Penn State. I like building things that ship: iOS apps, ML pipelines, systems work, and the odd game.","more":["about.html","More about me"]},{"id":"study","keys":"study studying school college university degree education nyu courant penn state masters bachelors graduate major","a":"I&rsquo;m doing an MS in Computer Science at NYU Courant with a focus on AI and machine learning, graduating May 2027. Before that I did my BS in Computer Science at Penn State.","more":["education.html","See education"]},{"id":"experience","keys":"experience work job role internship intern career employment worked research assistant teaching","a":"Six roles so far &mdash; research, engineering and teaching. The Experience page has each one with what I actually did on it rather than a title and a date.","more":["work.html","See experience"]},{"id":"skills","keys":"skills stack tech technology languages language programming tools frameworks code build python swift know","a":"Python and Swift most days, plus C, SwiftUI, PyTorch, scikit-learn, Flask, Firebase and the usual web stack. The Skills page lists them by what I use them for.","more":["skills.html","See skills"]},{"id":"projects","keys":"project projects built build make made portfolio work app apps ios game ml","a":"Twelve of them, across iOS, machine learning, systems and the web &mdash; a multiplayer doodle game, a to-do app, a stock prediction model, a 32-bit pipelined CPU, a spam classifier and more. Each one opens with what it does and what it is made of.","more":["projects.html","See projects"]},{"id":"contact","keys":"contact reach email hire available hiring opportunity opportunities touch message linkedin github talk","a":"Email is best: kanishka.chandrakar02@gmail.com. I&rsquo;m also on LinkedIn and GitHub, and I&rsquo;m open to internships, research collaborations, or just a good conversation about AI.","more":["connect.html","Get in touch"]},{"id":"hobbies","keys":"hobbies hobby fun free time music interests outside enjoy like love listen songs","a":"I debug to Bollywood and Punjabi music, which is why there is a record player on this page. Outside that: building small things that were not assigned to me, and learning whatever the current project demands."}],"miss":{"a":"That one I don&rsquo;t have an answer written for &mdash; I only know what&rsquo;s on this site. Try asking about her studies, her experience, what she builds with, or her projects. For anything else, she answers her email.","more":["connect.html","Ask her directly"]}}</script>
 </div>
 
 

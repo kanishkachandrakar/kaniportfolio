@@ -37,6 +37,7 @@
   --edge:       rgba(255, 255, 255, 0.24);
   --sheen:      rgba(255, 255, 255, 0.16);
   --scrim:      rgba(8, 6, 5, 0.62);
+  --scrim-soft: rgba(10, 8, 11, 0.78);
   --card-hi:    rgba(16, 12, 10, 0.68);
   --panel-solid: linear-gradient(150deg, rgba(38, 31, 26, 0.96), rgba(20, 16, 14, 0.97));
   --chip-ink:   #F2D6AC;
@@ -107,6 +108,7 @@
   --edge:       rgba(59, 58, 51, 0.20);
   --sheen:      rgba(255, 255, 255, 0.85);
   --scrim:      rgba(59, 58, 51, 0.32);
+  --scrim-soft: rgba(246, 245, 239, 0.86);
   --card-hi:    rgba(255, 255, 255, 0.78);
   --panel-solid: linear-gradient(150deg, rgba(255, 255, 255, 0.97), rgba(248, 247, 242, 0.98));
   --chip-ink:   #4A6357;
@@ -1137,9 +1139,27 @@ body {
 
 /* ---------- Stats ------------------------------------------ */
 /* ---------- Ask KaniGPT ------------------------------------ */
+/* Outside the card now, sitting on the backdrop under it. It lines up with
+   the card's edges by taking the same width and margin - see the responsive
+   rules, where .ask is named alongside .frame. */
 .ask {
-  padding: 6px 0 10px;
+  position: relative;
+  padding: clamp(30px, 6vh, 66px) 0 clamp(24px, 5vh, 56px);
   text-align: center;
+}
+
+/* A soft pool of ground behind the section. On the backdrop the heading was
+   competing with a mountain ridge running straight through it. This settles
+   the scenery without drawing an edge - a panel here would just be a second
+   card under the first. */
+.ask::before {
+  content: "";
+  position: absolute;
+  inset: 0 -10vw;
+  z-index: -1;
+  background: radial-gradient(120% 78% at 50% 50%,
+              var(--scrim-soft) 0%, transparent 74%);
+  pointer-events: none;
 }
 
 .ask-title {
@@ -1174,7 +1194,9 @@ body {
   padding: 7px 14px;
   border-radius: 999px;
   border: 1px solid var(--line);
-  background: var(--surface);
+  background: var(--glass);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
   color: var(--ink-soft);
   font: inherit;
   font-size: 12.5px;
@@ -1221,7 +1243,11 @@ body {
   padding: 13px 15px;
   border-radius: 14px;
   border: 1px solid var(--line);
-  background: var(--surface);
+  /* frosted, like the card - on the backdrop rather than on a panel, a
+     translucent fill alone would leave the text sitting on the scenery */
+  background: var(--glass);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
   font-size: 13.5px;
   line-height: 1.62;
   color: var(--ink-soft);
@@ -1266,7 +1292,9 @@ body {
   max-width: 780px;
   border-radius: 18px;
   border: 1px solid var(--line);
-  background: var(--surface);
+  background: var(--glass);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
   transition: border-color 0.2s ease, background 0.2s ease;
 }
 
@@ -1816,7 +1844,8 @@ body {
    card centred on its own and the rail was left with half a pixel of the
    window to sit in. */
 @media (min-width: 1281px) {
-  .frame {
+  .frame,
+  .ask {
     margin-left: 124px;
     width: min(1120px, calc(100% - 124px));
   }
@@ -1837,7 +1866,8 @@ body {
   /* The reserved margin follows the rail. Left at 124px while the rail had
      tightened to 64px, the lane the pair sits in was wider on the left than
      the gap on the right, and the group leaned the other way. */
-  .frame {
+  .frame,
+  .ask {
     margin-left: 78px;
     width: min(1120px, calc(100% - 78px));
   }
@@ -1854,7 +1884,8 @@ body {
 
 /* and again for the smallest rail, down to where it turns horizontal */
 @media (min-width: 901px) and (max-width: 1280px) {
-  .frame {
+  .frame,
+  .ask {
     margin-left: 52px;
     width: min(1120px, calc(100% - 52px));
   }

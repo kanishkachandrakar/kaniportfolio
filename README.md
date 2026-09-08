@@ -46,7 +46,10 @@ pair with fresh markup.
 
 ## Ask KaniGPT
 
-The panel at the bottom of the home page answers questions about her.
+The panel below the card on the home page answers questions about her.
+It sits outside the card rather than in it, so it is not caught in the
+card's own scroll — it takes the card's width and reserved margin from the
+same responsive rules, which is what keeps the two aligned.
 
 **There is no model behind it, and there cannot be one.** The site is static,
 so an API key would ship to the browser for anyone to read and spend. What it
