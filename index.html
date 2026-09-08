@@ -42,11 +42,11 @@
       } catch (e) {}
     })();
   </script>
-  <link rel="preload" href="site.css?v=63247798" as="style">
+  <link rel="preload" href="site.css?v=de55a532" as="style">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="site.css?v=63247798">
+  <link rel="stylesheet" href="site.css?v=de55a532">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
@@ -185,6 +185,10 @@
           <button class="ask-chip" type="button">What does she code in?</button>
           <button class="ask-chip" type="button">How can I reach her?</button>
         </div>
+
+        <!-- answers land here; aria-live so a screen reader is told one
+             arrived, since nothing moves focus -->
+        <div class="ask-thread" id="askThread" aria-live="polite"></div>
 
         <form class="ask-form" id="askForm" autocomplete="off">
           <label class="sr-only" for="askInput">Ask about Kanishka</label>
