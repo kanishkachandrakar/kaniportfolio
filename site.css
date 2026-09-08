@@ -734,6 +734,22 @@ body {
 
 .home-portrait { width: 100%; }
 
+/* The record turns while the music plays. It is paused rather than removed
+   when the music stops, so it holds the angle it reached and picks up from
+   there instead of snapping back upright. A paused animation costs nothing
+   while it is stopped. */
+.home-portrait {
+  animation: recordSpin 18s linear infinite;
+  animation-play-state: paused;
+  will-change: transform;
+}
+
+.turntable.is-playing .home-portrait { animation-play-state: running; }
+
+@keyframes recordSpin {
+  to { transform: rotate(360deg); }
+}
+
 /* ---------- Bento grid ------------------------------------- */
 .bento {
   display: grid;
