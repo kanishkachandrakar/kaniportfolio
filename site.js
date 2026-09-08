@@ -638,9 +638,11 @@
   var data = document.getElementById("askData");
   if (!form || !data) return;
 
-  var ANSWERS;
+  var ANSWERS, MISS;
   try {
-    ANSWERS = JSON.parse(data.textContent);
+    var parsed = JSON.parse(data.textContent);
+    ANSWERS = parsed.answers;
+    MISS = parsed.miss;
   } catch (e) {
     return;                       // malformed data: leave the box inert
   }
@@ -696,8 +698,9 @@
   }
 
   function answer(question) {
-    var hit = bestMatch(question);
-    if (!hit) return;
+    // Nothing matched is still an answer. Saying so is the honest reply, and
+    // it beats both silence and guessing at one of the seven.
+    var hit = bestMatch(question) || MISS;
 
     var turn = document.createElement("div");
     turn.className = "ask-turn";
