@@ -631,3 +631,60 @@
     }
   });
 })();
+
+/* --- Ask KaniGPT ------------------------------------------------------ */
+(function () {
+  var form = document.getElementById("askForm");
+  var data = document.getElementById("askData");
+  if (!form || !data) return;
+
+  var ANSWERS;
+  try {
+    ANSWERS = JSON.parse(data.textContent);
+  } catch (e) {
+    return;                       // malformed data: leave the box inert
+  }
+
+  // Words that appear in almost any question and would otherwise decide the
+  // match on their own.
+  var STOP = (" a an and are as at be by can do does for from has have he her "
+            + "hers him his how i in is it its me much of on or she so tell "
+            + "that the their them there they this to was what when where "
+            + "which who whom whose why will with you your ")
+            .split(" ");
+
+  function words(text) {
+    return text.toLowerCase().replace(/[^a-z0-9\s]/g, " ").split(/\s+/)
+      .filter(function (w) { return w && STOP.indexOf(w) < 0; });
+  }
+
+  // Scored rather than first-match: "what has she built with" reaches both
+  // projects and skills, and the one sharing more of the question should win.
+  function bestMatch(question) {
+    var asked = words(question);
+    if (!asked.length) return null;
+    var best = null, bestScore = 0;
+
+    ANSWERS.forEach(function (entry) {
+      var keys = entry.keys.split(" ");
+      var score = 0;
+      asked.forEach(function (w) {
+        keys.forEach(function (k) {
+          if (k === w) score += 2;
+          // a prefix, so "projects" reaches "project" and "coding" reaches
+          // "code" without carrying a stemmer around
+          else if (k.length > 3 && (w.indexOf(k) === 0 || k.indexOf(w) === 0)) {
+            score += 1;
+          }
+        });
+      });
+      if (score > bestScore) {
+        bestScore = score;
+        best = entry;
+      }
+    });
+    return best;
+  }
+
+  form.__askMatch = bestMatch;      // used by the next piece
+})();
