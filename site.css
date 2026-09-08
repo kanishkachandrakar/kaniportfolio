@@ -303,7 +303,7 @@ body {
 
 .frame {
   position: relative;
-  width: min(1260px, 100%);
+  width: min(1120px, 100%);
   height: min(648px, max(452px, 80dvh));
   max-height: 100%;
 }
@@ -1514,7 +1514,7 @@ body {
 @media (min-width: 1281px) {
   .frame {
     margin-left: 124px;
-    width: min(1260px, calc(100% - 124px));
+    width: min(1120px, calc(100% - 124px));
   }
 }
 
@@ -1535,7 +1535,7 @@ body {
      the gap on the right, and the group leaned the other way. */
   .frame {
     margin-left: 78px;
-    width: min(1260px, calc(100% - 78px));
+    width: min(1120px, calc(100% - 78px));
   }
 }
 
@@ -1552,7 +1552,7 @@ body {
 @media (min-width: 901px) and (max-width: 1280px) {
   .frame {
     margin-left: 52px;
-    width: min(1260px, calc(100% - 52px));
+    width: min(1120px, calc(100% - 52px));
   }
 }
 
