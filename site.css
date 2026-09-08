@@ -1159,6 +1159,35 @@ body {
   color: var(--ink-faint);
 }
 
+/* The questions people actually ask, offered rather than waited for - an
+   empty box with a cursor in it asks the reader to think of something. */
+.ask-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 16px auto 0;
+  max-width: 780px;
+}
+
+.ask-chip {
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink-soft);
+  font: inherit;
+  font-size: 12.5px;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.ask-chip:hover {
+  background: var(--surface-hi);
+  border-color: var(--edge);
+  color: var(--ink);
+}
+
 /* ---------- Tabs (education) ------------------------------- */
 .tabs {
   display: flex;
