@@ -44,6 +44,27 @@ one set, chosen to hold up on either ground.
 Asset links carry `?v=<hash of the file>`, so a stale cached copy can never
 pair with fresh markup.
 
+## Music
+
+The hero portrait is a record. A play button sits on its lower right, and the
+photograph turns while a track plays.
+
+`audio/track.wav` is a placeholder synthesised by `tools-make-track.py` —
+generated rather than borrowed, like the rest of the artwork. Replace it with
+something real; an mp3, since it downloads on the home page.
+
+Two things worth keeping if this is edited:
+
+- **The button is hidden until the file reports that it loaded.** A missing or
+  unplayable track leaves no dead control on the page.
+- **The spin follows the audio element, not the button.** Playback stops for
+  reasons that never reach a click handler — the track ending, another tab
+  taking the audio, the media keys — and the photograph should stop with it.
+
+The rotation is paused rather than removed when the music stops, so the
+picture holds its angle instead of snapping upright, and it is dropped
+entirely under `prefers-reduced-motion` — the music still plays.
+
 ## Tools
 
 Small scripts that generate committed artwork. Each is standalone and only
@@ -57,6 +78,8 @@ needs Pillow.
 | `tools-make-cutout.py` | The headshot, with its background removed |
 | `tools-blank-eyes.py` | Clears the sockets in the About avatar and cuts out an iris, so `site.js` can make the eyes follow the pointer |
 | `tools-make-memoji.py` | Keys the card out from behind her Memoji for the top-bar avatar |
+| `tools-make-portrait.py` | Cuts the square hero portrait out of the full-frame photograph |
+| `tools-make-track.py` | The placeholder music loop |
 
 Two of these have an order to them. `tools-blank-eyes.py` reads the untouched
 crop, so restore `images/kani-about.webp` from `images/kani-edit.png` before
