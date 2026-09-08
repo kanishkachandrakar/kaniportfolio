@@ -750,6 +750,13 @@ body {
   to { transform: rotate(360deg); }
 }
 
+/* A turning photograph is motion for its own sake, so it goes entirely here.
+   The music is the point and still plays; only the record stops. */
+@media (prefers-reduced-motion: reduce) {
+  .home-portrait,
+  .turntable.is-playing .home-portrait { animation: none; }
+}
+
 /* Sits on the portrait's lower right, outside the spin - it is a control, so
    it has to stay still and stay pointable while the record turns. */
 .spin-btn {
