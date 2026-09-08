@@ -686,5 +686,55 @@
     return best;
   }
 
-  form.__askMatch = bestMatch;      // used by the next piece
+  var thread = document.getElementById("askThread");
+  var input = document.getElementById("askInput");
+
+  function esc(text) {
+    var d = document.createElement("div");
+    d.textContent = text;
+    return d.innerHTML;
+  }
+
+  function answer(question) {
+    var hit = bestMatch(question);
+    if (!hit) return;
+
+    var turn = document.createElement("div");
+    turn.className = "ask-turn";
+    // The question is escaped; it is whatever the reader typed. The answer is
+    // not, because it is written in the build and carries entities and markup
+    // of its own.
+    turn.innerHTML = '<p class="ask-q">' + esc(question) + "</p>"
+      + '<div class="ask-a">' + hit.a
+      + (hit.more ? '<br><a class="ask-more" href="' + hit.more[0] + '">'
+                    + hit.more[1] + " &rarr;</a>" : "")
+      + "</div>";
+    thread.appendChild(turn);
+    turn.scrollIntoView({ block: "nearest", behavior: "smooth" });
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var q = input.value.trim();
+    if (!q) return;
+    answer(q);
+    input.value = "";
+  });
+
+  // A chip asks its own question, so it behaves the same as typing it
+  document.querySelectorAll(".ask-chip").forEach(function (chip) {
+    chip.addEventListener("click", function () {
+      answer(chip.textContent.trim());
+    });
+  });
+
+  // Enter asks; shift+enter is a new line, as anywhere else that takes a
+  // question in a textarea
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      form.requestSubmit ? form.requestSubmit() : form.dispatchEvent(
+        new Event("submit", { cancelable: true }));
+    }
+  });
 })();
