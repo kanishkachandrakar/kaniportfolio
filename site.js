@@ -588,3 +588,34 @@
     wake();
   }
 })();
+
+/* --- the portrait turns while the music plays ------------------------- */
+(function () {
+  var btn = document.getElementById("spinBtn");
+  var audio = document.getElementById("spinAudio");
+  if (!btn || !audio) return;
+  var deck = btn.closest(".turntable");
+
+  function label(playing) {
+    deck.classList.toggle("is-playing", playing);
+    btn.setAttribute("aria-pressed", playing ? "true" : "false");
+    btn.setAttribute("aria-label", playing ? "Pause music" : "Play music");
+  }
+
+  btn.addEventListener("click", function () {
+    if (!audio.paused) {
+      audio.pause();
+      label(false);
+      return;
+    }
+    // play() returns a promise that rejects if the browser refuses - only
+    // claim it started once it actually has, or the record turns in silence
+    var started = audio.play();
+    if (started && started.then) {
+      started.then(function () { label(true); })
+             .catch(function () { label(false); });
+    } else {
+      label(true);
+    }
+  });
+})();
