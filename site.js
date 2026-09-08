@@ -596,6 +596,14 @@
   if (!btn || !audio) return;
   var deck = btn.closest(".turntable");
 
+  // The button ships hidden and is revealed only once the file reports that
+  // it has loaded. The track is a placeholder meant to be swapped, and if one
+  // is ever missing or in a format the browser will not take, the page should
+  // simply not offer music rather than offer a button that does nothing.
+  function reveal() { btn.hidden = false; }
+  if (audio.readyState >= 1) reveal();          // already loaded from cache
+  audio.addEventListener("loadedmetadata", reveal);
+
   function label(playing) {
     deck.classList.toggle("is-playing", playing);
     btn.setAttribute("aria-pressed", playing ? "true" : "false");

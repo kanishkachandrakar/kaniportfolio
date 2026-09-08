@@ -129,7 +129,9 @@
 
         <div class="turntable">
           <img decoding="async" class="portrait home-portrait" src="images/kani-portrait.webp?v=066f03e1" alt="Kanishka Chandrakar">
-          <button class="spin-btn" id="spinBtn" type="button"
+          <!-- hidden until the track reports that it loaded; site.js reveals
+               it, so a missing or unplayable file leaves no dead control -->
+          <button class="spin-btn" id="spinBtn" type="button" hidden
                   aria-label="Play music" aria-pressed="false">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path class="ico-play" d="M9 6.5v11l9-5.5z"/>
@@ -212,7 +214,7 @@
     </div>
   </div>
 </div>
-<script src="site.js?v=c46e51b6"></script>
+<script src="site.js?v=2428f34f"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.16/typed.umd.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
