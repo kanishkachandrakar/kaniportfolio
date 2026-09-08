@@ -720,15 +720,19 @@ body {
 
 .home-actions { display: flex; flex-wrap: wrap; gap: 11px; }
 
-.home-portrait {
-  /* Bigger, and sitting at the left of its column rather than centred in it.
-     Centred, the gap between her and the text was the column's leftover
-     space rather than a chosen distance, so it grew and shrank with the
-     window and never looked deliberate. */
+/* The portrait sits in a wrapper so a control can be placed against it. The
+   grid properties move here with it - the image is no longer the grid item.
+   At the left of its column rather than centred in it: centred, the gap
+   between her and the text was the column's leftover space rather than a
+   chosen distance, so it grew and shrank with the window. */
+.turntable {
+  position: relative;
   width: min(100%, 342px);
   justify-self: start;
   margin-top: 4px;
 }
+
+.home-portrait { width: 100%; }
 
 /* ---------- Bento grid ------------------------------------- */
 .bento {
