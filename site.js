@@ -610,20 +610,24 @@
     btn.setAttribute("aria-label", playing ? "Pause music" : "Play music");
   }
 
+  // The record follows the audio element rather than the click, so it stays
+  // in step however playback stops - the track ending, another tab taking
+  // the audio, the media keys on a keyboard. The click only asks.
+  audio.addEventListener("play", function () { label(true); });
+  audio.addEventListener("pause", function () { label(false); });
+  audio.addEventListener("ended", function () { label(false); });
+
   btn.addEventListener("click", function () {
     if (!audio.paused) {
       audio.pause();
-      label(false);
       return;
     }
     // play() returns a promise that rejects if the browser refuses - only
     // claim it started once it actually has, or the record turns in silence
     var started = audio.play();
-    if (started && started.then) {
-      started.then(function () { label(true); })
-             .catch(function () { label(false); });
-    } else {
-      label(true);
+    if (started && started.catch) {
+      // the play event covers the success case; this is only for a refusal
+      started.catch(function () { label(false); });
     }
   });
 })();
