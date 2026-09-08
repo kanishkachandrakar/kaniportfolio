@@ -708,12 +708,20 @@
     // not, because it is written in the build and carries entities and markup
     // of its own.
     turn.innerHTML = '<p class="ask-q">' + esc(question) + "</p>"
-      + '<div class="ask-a">' + hit.a
-      + (hit.more ? '<br><a class="ask-more" href="' + hit.more[0] + '">'
-                    + hit.more[1] + " &rarr;</a>" : "")
-      + "</div>";
+      + '<div class="ask-a"><span class="ask-dots"><i></i><i></i><i></i></span></div>';
     thread.appendChild(turn);
     turn.scrollIntoView({ block: "nearest", behavior: "smooth" });
+
+    // A beat before the answer. The lookup is instant, and an answer that
+    // appears the moment you press the button reads as a page jumping rather
+    // than as a reply - the pause is what makes it one.
+    var body = turn.querySelector(".ask-a");
+    setTimeout(function () {
+      body.innerHTML = hit.a
+        + (hit.more ? '<br><a class="ask-more" href="' + hit.more[0] + '">'
+                      + hit.more[1] + " &rarr;</a>" : "");
+      turn.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    }, 480);
   }
 
   form.addEventListener("submit", function (e) {
