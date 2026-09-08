@@ -1189,11 +1189,26 @@ body {
 
 .ask-title {
   margin: 0 0 6px;
-  font-family: "Newsreader", Georgia, "Times New Roman", serif;
   font-size: 26px;
+}
+
+/* The heading is its own link, so the section can be pointed at - clicking it
+   puts #ask in the address bar to copy or bookmark. It carries the type and
+   the underline rather than the h2 around it, so the target is the words and
+   not the full width of the line. */
+.ask-title a {
+  font-family: "Newsreader", Georgia, "Times New Roman", serif;
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+.ask-title a:hover {
+  color: var(--accent);
+  border-bottom-color: color-mix(in srgb, var(--accent) 55%, transparent);
 }
 
 .ask-sub {
