@@ -744,6 +744,11 @@ body {
 
 /* The one hard fact in a sentence of soft ones, so it is drawn rather than
    written - outlined, the way a date is ringed on a page. */
+/* Keeps the pill and the punctuation after it on one line. The pill will not
+   break, so when the line runs out it wraps whole and leaves the semicolon
+   stranded at the start of the next one. */
+.st-nb { white-space: nowrap; }
+
 .st-pill {
   display: inline-block;
   padding: 1px 11px 2px;
