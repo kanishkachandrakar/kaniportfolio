@@ -728,6 +728,17 @@ body {
   color: var(--accent);
 }
 
+/* Emoji take the line's size and sit on its baseline, which leaves them small
+   and low. Lifted and set a touch larger, so it reads as a mark at the end of
+   the line rather than a character that fell off it. */
+.st-ico {
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 1.1em;
+  line-height: 1;
+  vertical-align: -0.14em;
+}
+
 .statement {
   margin: 0 0 26px;
   /* Wide enough to use the column it is in. At 34ch it was setting 408px of
