@@ -721,9 +721,12 @@ body {
   /* Wide enough to use the column it is in. At 34ch it was setting 408px of
      an available 644 and running to six lines, which reads as a narrow
      column of body copy rather than as a statement. */
-  max-width: 46ch;
-  font-size: clamp(15.5px, 1.25vw, 19px);
-  line-height: 1.72;
+  /* Wider than before because it is set smaller: the same words at a smaller
+     size in the same measure just make more lines, and seven of them is a
+     paragraph. At 62ch it uses the column and settles into five. */
+  max-width: 62ch;
+  font-size: clamp(13.8px, 1.02vw, 15.5px);
+  line-height: 1.75;
   color: var(--ink-soft);
 }
 
