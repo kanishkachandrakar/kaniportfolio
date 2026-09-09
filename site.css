@@ -716,6 +716,18 @@ body {
    than body copy and given room between lines - at this length, tight leading
    turns it into a paragraph you skim instead of a line you read. It stops
    short of the heading's size: the name is still first on the page. */
+.statement p {
+  margin: 0 0 11px;
+}
+
+/* The one joke, and it only works alone: after two plain paragraphs it reads
+   as a closing remark rather than as the fourth gag in a row. Set apart in
+   the accent so the eye knows the tone changed. */
+.st-quip {
+  margin-top: 14px !important;
+  color: var(--accent);
+}
+
 .statement {
   margin: 0 0 26px;
   /* Wide enough to use the column it is in. At 34ch it was setting 408px of
@@ -728,18 +740,6 @@ body {
   font-size: clamp(13.8px, 1.02vw, 15.5px);
   line-height: 1.75;
   color: var(--ink-soft);
-}
-
-/* Each icon sits in the run of text as its own object rather than as another
-   character. Emoji inherit the line's size and baseline, which leaves them
-   small and sitting low; these are lifted, given a little air either side,
-   and set slightly larger so they read as marks in the sentence. */
-.st-ico {
-  display: inline-block;
-  margin: 0 2px;
-  font-size: 1.12em;
-  line-height: 1;
-  vertical-align: -0.14em;
 }
 
 /* The one hard fact in a sentence of soft ones, so it is drawn rather than
