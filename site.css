@@ -718,7 +718,10 @@ body {
    short of the heading's size: the name is still first on the page. */
 .statement {
   margin: 0 0 26px;
-  max-width: 34ch;
+  /* Wide enough to use the column it is in. At 34ch it was setting 408px of
+     an available 644 and running to six lines, which reads as a narrow
+     column of body copy rather than as a statement. */
+  max-width: 46ch;
   font-size: clamp(15.5px, 1.25vw, 19px);
   line-height: 1.72;
   color: var(--ink-soft);
