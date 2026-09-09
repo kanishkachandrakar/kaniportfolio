@@ -736,6 +736,21 @@ body {
   vertical-align: -0.14em;
 }
 
+/* The one hard fact in a sentence of soft ones, so it is drawn rather than
+   written - outlined, the way a date is ringed on a page. */
+.st-pill {
+  display: inline-block;
+  padding: 1px 11px 2px;
+  margin: 0 1px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent) 46%, transparent);
+  color: var(--accent);
+  font-size: 0.88em;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
 .home-actions { display: flex; flex-wrap: wrap; gap: 11px; }
 
 /* The portrait sits in a wrapper so a control can be placed against it. The
