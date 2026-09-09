@@ -724,6 +724,18 @@ body {
   color: var(--ink-soft);
 }
 
+/* Each icon sits in the run of text as its own object rather than as another
+   character. Emoji inherit the line's size and baseline, which leaves them
+   small and sitting low; these are lifted, given a little air either side,
+   and set slightly larger so they read as marks in the sentence. */
+.st-ico {
+  display: inline-block;
+  margin: 0 2px;
+  font-size: 1.12em;
+  line-height: 1;
+  vertical-align: -0.14em;
+}
+
 .home-actions { display: flex; flex-wrap: wrap; gap: 11px; }
 
 /* The portrait sits in a wrapper so a control can be placed against it. The
