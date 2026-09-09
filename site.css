@@ -712,23 +712,17 @@ body {
 
 .home h1 span { color: var(--accent); }
 
-.facts {
-  display: flex;
-  flex-direction: column;
-  gap: 11px;
-  margin-bottom: 28px;
-}
-
-.fact {
-  display: flex;
-  align-items: flex-start;
-  gap: 11px;
-  font-size: 15px;
-  line-height: 1.5;
+/* The intro reads as one statement rather than a list, so it is set larger
+   than body copy and given room between lines - at this length, tight leading
+   turns it into a paragraph you skim instead of a line you read. It stops
+   short of the heading's size: the name is still first on the page. */
+.statement {
+  margin: 0 0 26px;
+  max-width: 34ch;
+  font-size: clamp(15.5px, 1.25vw, 19px);
+  line-height: 1.72;
   color: var(--ink-soft);
 }
-
-.fact-ico { font-size: 16px; line-height: 1.45; }
 
 .home-actions { display: flex; flex-wrap: wrap; gap: 11px; }
 
