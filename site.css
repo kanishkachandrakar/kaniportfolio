@@ -1958,8 +1958,18 @@ body {
 @media (max-width: 900px) {
   .stage { padding: 0; place-items: stretch; }
 
-  .frame {
+  .frame,
+  .ask {
+    /* The margin that reserves room for the rail is set in a max-width rule,
+       so it was still applying here - where the rail is a row above the card
+       and needs no lane beside it. The card was 100% wide and pushed 78px
+       right on top of that, so it ran off the screen and the overflow was
+       clipped, taking the end of every line with it. */
+    margin-left: 0;
     width: 100%;
+  }
+
+  .frame {
     height: auto;
     display: flex;
     flex-direction: column-reverse;
@@ -2043,8 +2053,16 @@ body {
 
   .home-portrait { order: -1; }
 
-  .split .portrait,
-  .home-portrait {
+  .split .portrait {
+    max-width: 208px;
+    margin: 0 auto;
+  }
+
+  /* The size has to be set on the wrapper, not the image. Shrinking the image
+     alone left the wrapper at its full width and only as tall as the picture,
+     and the record is drawn on the wrapper - so it came out an ellipse around
+     a circular photograph. */
+  .turntable {
     max-width: 208px;
     margin: 0 auto;
   }
