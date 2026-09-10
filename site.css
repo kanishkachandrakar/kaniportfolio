@@ -987,7 +987,10 @@ body {
    something pencilled in beside the control rather than as a label the page
    shipped with. */
 .spin-nudge-line {
-  max-width: 152px;
+  /* Narrow enough that the line breaks in the middle rather than dropping a
+     single word onto the second row. Two even halves read as one aside; an
+     orphan reads as text that ran out of room. */
+  max-width: 126px;
   padding-bottom: 3px;
   font-family: "Newsreader", Georgia, "Times New Roman", serif;
   font-size: 14.5px;
