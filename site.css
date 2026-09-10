@@ -728,6 +728,21 @@ body {
   color: var(--accent);
 }
 
+/* The line is an invitation, so the words that make it are how you accept it.
+   Underlined rather than left to the accent alone: the whole line is already
+   accent-coloured, so colour is not available to mark the link. The rule sits
+   faint until you are on it, so it reads as a line of copy first. */
+.st-quip a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--accent) 42%, transparent);
+  transition: text-decoration-color 0.18s ease;
+}
+
+.st-quip a:hover { text-decoration-color: currentColor; }
+
 /* Emoji take the line's size and sit on its baseline, which leaves them small
    and low. Lifted and set a touch larger, so it reads as a mark at the end of
    the line rather than a character that fell off it. */
