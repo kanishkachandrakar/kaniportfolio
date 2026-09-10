@@ -638,12 +638,9 @@
     if (!nudge || spent) return;
     spent = true;
 
-    // The entrance animation is filling forwards, and a filling animation
-    // outranks the class about to be set. Dropping it leaves the arrow
-    // exactly where it already is, and the reflow commits that as the state
-    // the fade starts from.
-    nudge.style.animation = "none";
-    void nudge.offsetWidth;
+    // Nothing to unset first. The entrance animations are on the line and on
+    // the two halves of the arrow; what fades here is the element around
+    // them, and no animation is filling on that one to outrank the class.
     nudge.classList.add("is-out");
 
     setTimeout(function () { nudge.hidden = true; }, 450);

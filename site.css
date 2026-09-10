@@ -978,7 +978,6 @@ body {
   align-items: flex-end;
   gap: 5px;
   cursor: pointer;
-  animation: nudgeIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.8s both;
 }
 
 /* The serif is doing the same job here it does on the KaniGPT title: it is
@@ -994,6 +993,7 @@ body {
   line-height: 1.28;
   text-align: right;
   color: var(--accent);
+  animation: nudgeIn 0.4s ease 0.8s both;
 }
 
 .spin-nudge-arrow {
@@ -1013,8 +1013,26 @@ body {
   stroke-linejoin: round;
 }
 
+/* Drawn rather than faded in. A line being made pulls the eye along it, which
+   is the whole point of an arrow, and it arrives in the order a hand would
+   make it: the words, then the stroke toward the button, then the head.
+
+   The dasharray is over-long on purpose. It only has to be at least the
+   length of the path, and both of these are comfortably under 90 user units,
+   so one number covers both without measuring either. */
+.nudge-stem,
+.nudge-head { stroke-dasharray: 90; }
+
+.nudge-stem { animation: nudgeDraw 0.55s ease 1s both; }
+.nudge-head { animation: nudgeDraw 0.28s ease 1.5s both; }
+
+@keyframes nudgeDraw {
+  from { stroke-dashoffset: 90; }
+  to   { stroke-dashoffset: 0; }
+}
+
 @keyframes nudgeIn {
-  from { opacity: 0; transform: translateY(-6px); }
+  from { opacity: 0; transform: translateY(-5px); }
   to   { opacity: 1; transform: none; }
 }
 
