@@ -970,10 +970,12 @@ body {
   position: absolute;
   z-index: 2;
   /* A fixed offset rather than a percentage, because what it has to line up
-     with is a 46px button, not a share of the record. This puts the tip of
-     the arrow under the middle of it at both sizes the record comes in. */
-  right: 24px;
-  bottom: -44px;
+     with is a 46px button, not a share of the record. 28px is what puts the
+     tip of the arrow under the middle of the button at both sizes the record
+     comes in - the tip sits 8.5px in from the arrow's right edge, and the
+     button's centre is 37px in from the record's. */
+  right: 28px;
+  bottom: -40px;
   display: flex;
   align-items: flex-end;
   gap: 5px;
