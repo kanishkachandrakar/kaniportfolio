@@ -618,7 +618,36 @@
   // The record follows the audio element rather than the click, so it stays
   // in step however playback stops - the track ending, another tab taking
   // the audio, the media keys on a keyboard. The click only asks.
-  audio.addEventListener("play", function () { label(true); });
+  // The hint has one job and it is finished the moment the music starts. It
+  // gets a last line on the way out - one that only means anything once you
+  // have pressed the button - and then it goes, rather than sitting on her
+  // face for the rest of the visit.
+  //
+  // It does not come back when the track is paused. By then you know what the
+  // button is, and a hint that returns is not a hint, it is nagging.
+  var spent = false;
+
+  function spendHint() {
+    if (!hint || spent) return;
+    spent = true;
+    hint.innerHTML = "That is basically my whole personality "
+                   + "<span class=\"st-ico\">&#127911;</span>";
+    hint.classList.add("is-said");
+
+    setTimeout(function () {
+      // The entrance animation is filling forwards, and a filling animation
+      // outranks the class about to be set. Dropping it leaves the line
+      // exactly where it already is, and the reflow commits that as the
+      // state the fade starts from.
+      hint.style.animation = "none";
+      void hint.offsetWidth;
+      hint.classList.add("is-out");
+    }, 4200);
+
+    setTimeout(function () { hint.hidden = true; }, 4700);
+  }
+
+  audio.addEventListener("play", function () { label(true); spendHint(); });
   audio.addEventListener("pause", function () { label(false); });
   audio.addEventListener("ended", function () { label(false); });
 
