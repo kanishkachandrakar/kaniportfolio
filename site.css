@@ -890,6 +890,16 @@ body {
   .turntable.is-playing .home-portrait,
   .turntable::after,
   .turntable.is-playing::after { animation: none; }
+
+  /* The hint still has to arrive, so it fades rather than moves, and the ring
+     goes entirely - a pulse is motion with no other way to say itself. */
+  .spin-hint { animation: hintFade 0.3s ease 0.5s both; }
+  .spin-btn::after { animation: none; }
+}
+
+@keyframes hintFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 /* Sits on the portrait's lower right, outside the spin - it is a control, so
@@ -915,6 +925,33 @@ body {
 .spin-btn:hover  { transform: scale(1.08); box-shadow: var(--shadow-md); }
 .spin-btn:active { transform: scale(0.96); }
 .spin-btn svg    { width: 24px; height: 24px; fill: currentColor; }
+
+/* A ring leaving the button, three times and then done. The eye is drawn to
+   the only thing moving, and on a page where the record is already turning
+   the control needs to move differently to be found - outward rather than
+   round, and in the accent rather than in the photograph's colours.
+
+   Three, not forever: a pulse that never stops is not an invitation, it is a
+   notification badge. It asks when you arrive and then leaves you alone. */
+.spin-btn::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent);
+  pointer-events: none;
+  opacity: 0;
+  animation: spinPing 2.4s ease-out 0.9s 3;
+}
+
+@keyframes spinPing {
+  0%   { opacity: 0.6; transform: scale(1); }
+  70%  { opacity: 0;   transform: scale(1.6); }
+  100% { opacity: 0;   transform: scale(1.6); }
+}
+
+/* the question has been answered; stop asking it */
+.turntable.is-playing .spin-btn::after { animation: none; }
 
 /* one icon at a time, chosen by the same class that drives the spin */
 .spin-btn .ico-pause,
@@ -949,6 +986,19 @@ body {
 
 /* the tail, so the line is attached to the control it is about rather than
    floating near it */
+/* It comes in a beat after the page settles, from the direction of the button
+   it belongs to, so it reads as something the button said rather than as
+   another element that was always there. `both` holds it hidden through the
+   delay - without it the line is on screen for the wait, then animates. */
+.spin-hint {
+  animation: hintIn 0.42s cubic-bezier(0.22, 1, 0.36, 1) 0.8s both;
+}
+
+@keyframes hintIn {
+  from { opacity: 0; transform: translateX(8px) scale(0.96); }
+  to   { opacity: 1; transform: none; }
+}
+
 .spin-hint::after {
   content: "";
   position: absolute;
