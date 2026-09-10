@@ -891,15 +891,14 @@ body {
   .turntable::after,
   .turntable.is-playing::after { animation: none; }
 
-  /* The hint still has to arrive, so it fades rather than moves, and the ring
-     goes entirely - a pulse is motion with no other way to say itself. */
-  .spin-hint { animation: hintFade 0.3s ease 0.5s both; }
-  .spin-btn::after { animation: none; }
-}
+  /* The ring goes entirely: a pulse is motion with no other way to say
+     itself, and the line it was pointing at says the same thing in words.
 
-@keyframes hintFade {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+     The hint needs nothing here. The blanket rule at the end of this file
+     already collapses its entrance to nothing, and stating it again in this
+     block only put it above the narrow-layout rules in source order, where it
+     would take the centring out from under the hint on a phone. */
+  .spin-btn::after { animation: none; }
 }
 
 /* Sits on the portrait's lower right, outside the spin - it is a control, so
@@ -2217,6 +2216,48 @@ body {
   .turntable {
     max-width: 208px;
     margin: 0 auto;
+  }
+
+  /* Room under the record for the hint to sit in. Reserved rather than made
+     when the hint arrives, so nothing shifts when it leaves - and skipped for
+     anyone who has already heard the track, since the class that says so is
+     settled at load and never changes underneath the layout. */
+  .turntable:not(.is-heard) { margin-bottom: 36px; }
+
+  /* The record is 208px here and the hint is most of that wide, so beside the
+     button it covers her and hangs off the edge of the disc. Under the record
+     instead, in the gap that is already there, where it is the full width of
+     the line rather than a box wedged into a corner.
+
+     Centred by the two insets and auto margins rather than by a transform:
+     the entrance and the exit are both transforms, and one would cancel the
+     other. The tail moves to the top and sits three quarters across, which is
+     roughly over the button it is still talking about. */
+  .spin-hint {
+    right: 0;
+    left: 0;
+    bottom: -36px;
+    margin-inline: auto;
+    max-width: 240px;
+    text-align: center;
+    animation-name: hintDown;
+  }
+
+  @keyframes hintDown {
+    from { opacity: 0; transform: translateY(-8px) scale(0.96); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  .spin-hint.is-out { transform: translateY(-6px) scale(0.96); }
+
+  .spin-hint::after {
+    right: auto;
+    bottom: auto;
+    left: 72%;
+    top: -5px;
+    border-top: 1px solid var(--line);
+    border-right: 0;
+    border-left: 1px solid var(--line);
   }
 
   .grid-2 { grid-template-columns: 1fr; gap: 32px; }

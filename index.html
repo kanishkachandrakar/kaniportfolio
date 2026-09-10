@@ -42,11 +42,11 @@
       } catch (e) {}
     })();
   </script>
-  <link rel="preload" href="site.css?v=82fb3497" as="style">
+  <link rel="preload" href="site.css?v=38c48468" as="style">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="site.css?v=82fb3497">
+  <link rel="stylesheet" href="site.css?v=38c48468">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
@@ -144,7 +144,8 @@
           <!-- hidden until the track reports that it loaded; site.js reveals
                it, so a missing or unplayable file leaves no dead control -->
           <button class="spin-btn" id="spinBtn" type="button" hidden
-                  aria-label="Play music" aria-pressed="false">
+                  aria-label="Play music" aria-pressed="false"
+                  aria-describedby="spinHint">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path class="ico-play" d="M9 6.5v11l9-5.5z"/>
               <path class="ico-pause" d="M9 6h2.4v12H9zM14.6 6H17v12h-2.4z"/>
@@ -153,7 +154,7 @@
           <!-- revealed with the button and by the same check, so a page
                that never offers music never offers the invitation either -->
           <p class="spin-hint" id="spinHint" hidden>Press play. It is what I
-            debug to <span class="st-ico">&#127911;</span></p>
+            debug to <span class="st-ico" aria-hidden="true">&#127911;</span></p>
           <audio id="spinAudio" src="audio/track.wav" loop preload="metadata"></audio>
         </div>
       </section>
@@ -260,7 +261,7 @@
     </div>
   </div>
 </div>
-<script src="site.js?v=9e5ac0ac"></script>
+<script src="site.js?v=2cac6f1f"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.16/typed.umd.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {

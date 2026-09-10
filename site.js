@@ -641,7 +641,8 @@
     if (!hint || spent) return;
     spent = true;
     hint.innerHTML = "That is basically my whole personality "
-                   + "<span class=\"st-ico\">&#127911;</span>";
+                   + "<span class=\"st-ico\" aria-hidden=\"true\">"
+                   + "&#127911;</span>";
     hint.classList.add("is-said");
 
     setTimeout(function () {
