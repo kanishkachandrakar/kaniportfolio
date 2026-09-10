@@ -600,7 +600,12 @@
   // it has loaded. The track is a placeholder meant to be swapped, and if one
   // is ever missing or in a format the browser will not take, the page should
   // simply not offer music rather than offer a button that does nothing.
-  function reveal() { btn.hidden = false; }
+  var hint = document.getElementById("spinHint");
+
+  function reveal() {
+    btn.hidden = false;
+    if (hint) hint.hidden = false;
+  }
   if (audio.readyState >= 1) reveal();          // already loaded from cache
   audio.addEventListener("loadedmetadata", reveal);
 

@@ -921,6 +921,47 @@ body {
 .turntable.is-playing .spin-btn .ico-play { display: none; }
 .turntable.is-playing .spin-btn .ico-pause { display: block; }
 
+/* The record reads as decoration until something says otherwise, and a round
+   button on a photograph is easy to take for a badge. This says what is under
+   it, in her words rather than as an instruction.
+
+   Backed by the solid panel rather than one of the see-through surfaces: it
+   sits over the photograph, and anything transparent here has leaves and a
+   fence behind it. */
+.spin-hint {
+  position: absolute;
+  z-index: 2;
+  right: calc(4% + 56px);
+  bottom: calc(4% + 2px);
+  width: max-content;
+  max-width: 166px;
+  margin: 0;
+  padding: 8px 11px 9px;
+  border-radius: 11px;
+  border: 1px solid var(--line);
+  background: var(--panel-solid);
+  box-shadow: var(--shadow-sm);
+  color: var(--ink-soft);
+  font-size: 12px;
+  line-height: 1.45;
+  text-align: left;
+}
+
+/* the tail, so the line is attached to the control it is about rather than
+   floating near it */
+.spin-hint::after {
+  content: "";
+  position: absolute;
+  right: -5px;
+  bottom: 14px;
+  width: 9px;
+  height: 9px;
+  transform: rotate(45deg);
+  border-top: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  background: var(--panel-solid);
+}
+
 /* ---------- Bento grid ------------------------------------- */
 .bento {
   display: grid;
