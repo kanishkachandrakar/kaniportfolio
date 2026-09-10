@@ -982,11 +982,21 @@ body {
   font-size: 12px;
   line-height: 1.45;
   text-align: left;
+  cursor: pointer;
 }
 
+/* Nothing to ask of someone who has already heard it. The hint is not
+   rendered at all in this case; the ring is what is left to silence. */
+.turntable.is-heard .spin-btn::after { animation: none; }
+
 /* Once the button has been pressed the line stops being a label and becomes a
-   remark, so it takes the accent the rest of her asides are set in. */
-.spin-hint.is-said { color: var(--accent); }
+   remark, so it takes the accent the rest of her asides are set in - and it
+   stops being a target, because a remark that pauses the music when you click
+   it is a trap. */
+.spin-hint.is-said {
+  color: var(--accent);
+  cursor: default;
+}
 
 .spin-hint.is-out {
   opacity: 0;

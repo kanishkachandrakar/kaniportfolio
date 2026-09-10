@@ -602,9 +602,19 @@
   // simply not offer music rather than offer a button that does nothing.
   var hint = document.getElementById("spinHint");
 
+  // Someone who has played the track once has been told. The hint and the ring
+  // are both there to say the record is a record, and that is not news twice.
+  // It is keyed on having played rather than on having visited: a visit where
+  // nobody pressed the button is a visit where the hint did not land, and it
+  // has earned another go.
+  var HEARD = "spun";
+  var heard = false;
+  try { heard = localStorage.getItem(HEARD) === "1"; } catch (e) {}
+  if (heard) deck.classList.add("is-heard");
+
   function reveal() {
     btn.hidden = false;
-    if (hint) hint.hidden = false;
+    if (hint && !heard) hint.hidden = false;
   }
   if (audio.readyState >= 1) reveal();          // already loaded from cache
   audio.addEventListener("loadedmetadata", reveal);
@@ -647,9 +657,25 @@
     setTimeout(function () { hint.hidden = true; }, 4700);
   }
 
-  audio.addEventListener("play", function () { label(true); spendHint(); });
+  audio.addEventListener("play", function () {
+    label(true);
+    spendHint();
+    try { localStorage.setItem(HEARD, "1"); } catch (e) {}
+  });
   audio.addEventListener("pause", function () { label(false); });
   audio.addEventListener("ended", function () { label(false); });
+
+  // The line is about the button, so it may as well be the button. A 46px
+  // circle in the corner of a photograph is a small thing to hit, and the
+  // hint beside it is the larger half of the same invitation.
+  //
+  // Only until it is spent: after that it is a remark, and a remark that
+  // pauses the music when you click it is a trap.
+  if (hint) {
+    hint.addEventListener("click", function () {
+      if (!spent) btn.click();
+    });
+  }
 
   btn.addEventListener("click", function () {
     if (!audio.paused) {
