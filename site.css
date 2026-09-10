@@ -740,7 +740,7 @@ body {
 }
 
 .statement {
-  margin: 0 0 26px;
+  margin: 0 0 20px;
   /* Wide enough to use the column it is in. At 34ch it was setting 408px of
      an available 644 and running to six lines, which reads as a narrow
      column of body copy rather than as a statement. */
@@ -774,6 +774,13 @@ body {
 }
 
 .home-actions { display: flex; flex-wrap: wrap; gap: 11px; }
+
+/* The content pane is a fixed height, so whatever the hero ends at is the
+   fold. Left at the standard 34px the rule below the hero landed exactly on
+   that edge and the page looked like it ended there - nothing told you the
+   Explore cards were under it. Pulled in, the rule, the heading and the top
+   of the first card clear the edge, and the cut-off card is the cue. */
+.home + .divider { margin: 22px 0; }
 
 /* The portrait sits in a wrapper so a control can be placed against it. The
    grid properties move here with it - the image is no longer the grid item.
