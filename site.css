@@ -958,78 +958,84 @@ body {
 .turntable.is-playing .spin-btn .ico-pause { display: block; }
 
 /* The record reads as decoration until something says otherwise, and a round
-   button on a photograph is easy to take for a badge. This says what is under
-   it, in her words rather than as an instruction.
+   button on a photograph is easy to take for a badge.
 
-   Backed by the solid panel rather than one of the see-through surfaces: it
-   sits over the photograph, and anything transparent here has leaves and a
-   fence behind it. */
-.spin-hint {
+   A panel here was the wrong instrument. It sat on her shoulder and had to be
+   opaque to survive the leaves behind her, which made a small aside into the
+   heaviest object on the page. This is a drawn arrow and a line of her own
+   handwriting instead, kept off the photograph entirely - under the record,
+   against the shell, where thin accent strokes are legible without a box
+   around them. */
+.spin-nudge {
   position: absolute;
   z-index: 2;
-  right: calc(4% + 56px);
-  bottom: calc(4% + 2px);
-  width: max-content;
-  max-width: 166px;
-  margin: 0;
-  padding: 8px 11px 9px;
-  border-radius: 11px;
-  border: 1px solid var(--line);
-  background: var(--panel-solid);
-  box-shadow: var(--shadow-sm);
-  color: var(--ink-soft);
-  font-size: 12px;
-  line-height: 1.45;
-  text-align: left;
+  /* A fixed offset rather than a percentage, because what it has to line up
+     with is a 46px button, not a share of the record. This puts the tip of
+     the arrow under the middle of it at both sizes the record comes in. */
+  right: 24px;
+  bottom: -44px;
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
   cursor: pointer;
+  animation: nudgeIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.8s both;
 }
 
-/* Nothing to ask of someone who has already heard it. The hint is not
-   rendered at all in this case; the ring is what is left to silence. */
-.turntable.is-heard .spin-btn::after { animation: none; }
-
-/* Once the button has been pressed the line stops being a label and becomes a
-   remark, so it takes the accent the rest of her asides are set in - and it
-   stops being a target, because a remark that pauses the music when you click
-   it is a trap. */
-.spin-hint.is-said {
+/* The serif is doing the same job here it does on the KaniGPT title: it is
+   the voice that is not the interface. Italic and small, so it reads as
+   something pencilled in beside the control rather than as a label the page
+   shipped with. */
+.spin-nudge-line {
+  max-width: 152px;
+  padding-bottom: 3px;
+  font-family: "Newsreader", Georgia, "Times New Roman", serif;
+  font-size: 14.5px;
+  font-style: italic;
+  line-height: 1.28;
+  text-align: right;
   color: var(--accent);
-  cursor: default;
 }
 
-.spin-hint.is-out {
-  opacity: 0;
-  transform: translateX(6px) scale(0.96);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+.spin-nudge-arrow {
+  flex: none;
+  width: 34px;
+  height: 39px;
+  margin-bottom: -2px;
 }
 
-/* the tail, so the line is attached to the control it is about rather than
-   floating near it */
-/* It comes in a beat after the page settles, from the direction of the button
-   it belongs to, so it reads as something the button said rather than as
-   another element that was always there. `both` holds it hidden through the
-   delay - without it the line is on screen for the wait, then animates. */
-.spin-hint {
-  animation: hintIn 0.42s cubic-bezier(0.22, 1, 0.36, 1) 0.8s both;
+/* Round caps and an open head, because the point is that a hand did this and
+   the rest of the page did not. */
+.spin-nudge-arrow path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
-@keyframes hintIn {
-  from { opacity: 0; transform: translateX(8px) scale(0.96); }
+@keyframes nudgeIn {
+  from { opacity: 0; transform: translateY(-6px); }
   to   { opacity: 1; transform: none; }
 }
 
-.spin-hint::after {
-  content: "";
-  position: absolute;
-  right: -5px;
-  bottom: 14px;
-  width: 9px;
-  height: 9px;
-  transform: rotate(45deg);
-  border-top: 1px solid var(--line);
-  border-right: 1px solid var(--line);
-  background: var(--panel-solid);
+.spin-nudge.is-out {
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: opacity 0.38s ease, transform 0.38s ease;
 }
+
+/* Room under the record for it. Reserved rather than made when the arrow
+   arrives, so nothing shifts when it leaves - and skipped for anyone who has
+   already heard the track, since that class is settled at load and never
+   changes underneath the layout.
+
+   It costs the hero nothing: the portrait column is the shorter of the two,
+   and 44px more still leaves it shorter than the text beside it. */
+.turntable:not(.is-heard) { margin-bottom: 44px; }
+
+/* Nothing to ask of someone who has already heard it. The arrow is not
+   rendered at all in that case; the ring is what is left to silence. */
+.turntable.is-heard .spin-btn::after { animation: none; }
 
 /* ---------- Bento grid ------------------------------------- */
 .bento {
@@ -2216,48 +2222,6 @@ body {
   .turntable {
     max-width: 208px;
     margin: 0 auto;
-  }
-
-  /* Room under the record for the hint to sit in. Reserved rather than made
-     when the hint arrives, so nothing shifts when it leaves - and skipped for
-     anyone who has already heard the track, since the class that says so is
-     settled at load and never changes underneath the layout. */
-  .turntable:not(.is-heard) { margin-bottom: 36px; }
-
-  /* The record is 208px here and the hint is most of that wide, so beside the
-     button it covers her and hangs off the edge of the disc. Under the record
-     instead, in the gap that is already there, where it is the full width of
-     the line rather than a box wedged into a corner.
-
-     Centred by the two insets and auto margins rather than by a transform:
-     the entrance and the exit are both transforms, and one would cancel the
-     other. The tail moves to the top and sits three quarters across, which is
-     roughly over the button it is still talking about. */
-  .spin-hint {
-    right: 0;
-    left: 0;
-    bottom: -36px;
-    margin-inline: auto;
-    max-width: 240px;
-    text-align: center;
-    animation-name: hintDown;
-  }
-
-  @keyframes hintDown {
-    from { opacity: 0; transform: translateY(-8px) scale(0.96); }
-    to   { opacity: 1; transform: none; }
-  }
-
-  .spin-hint.is-out { transform: translateY(-6px) scale(0.96); }
-
-  .spin-hint::after {
-    right: auto;
-    bottom: auto;
-    left: 72%;
-    top: -5px;
-    border-top: 1px solid var(--line);
-    border-right: 0;
-    border-left: 1px solid var(--line);
   }
 
   .grid-2 { grid-template-columns: 1fr; gap: 32px; }

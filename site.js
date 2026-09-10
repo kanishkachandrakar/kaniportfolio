@@ -600,7 +600,7 @@
   // it has loaded. The track is a placeholder meant to be swapped, and if one
   // is ever missing or in a format the browser will not take, the page should
   // simply not offer music rather than offer a button that does nothing.
-  var hint = document.getElementById("spinHint");
+  var nudge = document.getElementById("spinNudge");
 
   // Someone who has played the track once has been told. The hint and the ring
   // are both there to say the record is a record, and that is not news twice.
@@ -614,7 +614,7 @@
 
   function reveal() {
     btn.hidden = false;
-    if (hint && !heard) hint.hidden = false;
+    if (nudge && !heard) nudge.hidden = false;
   }
   if (audio.readyState >= 1) reveal();          // already loaded from cache
   audio.addEventListener("loadedmetadata", reveal);
@@ -628,52 +628,40 @@
   // The record follows the audio element rather than the click, so it stays
   // in step however playback stops - the track ending, another tab taking
   // the audio, the media keys on a keyboard. The click only asks.
-  // The hint has one job and it is finished the moment the music starts. It
-  // gets a last line on the way out - one that only means anything once you
-  // have pressed the button - and then it goes, rather than sitting on her
-  // face for the rest of the visit.
-  //
-  // It does not come back when the track is paused. By then you know what the
-  // button is, and a hint that returns is not a hint, it is nagging.
+  // The arrow has one job and it is finished the moment the music starts, so
+  // it leaves. It does not come back when the track is paused: by then you
+  // know what the button is, and a nudge that returns is not a nudge, it is
+  // nagging.
   var spent = false;
 
-  function spendHint() {
-    if (!hint || spent) return;
+  function spendNudge() {
+    if (!nudge || spent) return;
     spent = true;
-    hint.innerHTML = "That is basically my whole personality "
-                   + "<span class=\"st-ico\" aria-hidden=\"true\">"
-                   + "&#127911;</span>";
-    hint.classList.add("is-said");
 
-    setTimeout(function () {
-      // The entrance animation is filling forwards, and a filling animation
-      // outranks the class about to be set. Dropping it leaves the line
-      // exactly where it already is, and the reflow commits that as the
-      // state the fade starts from.
-      hint.style.animation = "none";
-      void hint.offsetWidth;
-      hint.classList.add("is-out");
-    }, 4200);
+    // The entrance animation is filling forwards, and a filling animation
+    // outranks the class about to be set. Dropping it leaves the arrow
+    // exactly where it already is, and the reflow commits that as the state
+    // the fade starts from.
+    nudge.style.animation = "none";
+    void nudge.offsetWidth;
+    nudge.classList.add("is-out");
 
-    setTimeout(function () { hint.hidden = true; }, 4700);
+    setTimeout(function () { nudge.hidden = true; }, 450);
   }
 
   audio.addEventListener("play", function () {
     label(true);
-    spendHint();
+    spendNudge();
     try { localStorage.setItem(HEARD, "1"); } catch (e) {}
   });
   audio.addEventListener("pause", function () { label(false); });
   audio.addEventListener("ended", function () { label(false); });
 
-  // The line is about the button, so it may as well be the button. A 46px
+  // The arrow is about the button, so it may as well be the button. A 46px
   // circle in the corner of a photograph is a small thing to hit, and the
-  // hint beside it is the larger half of the same invitation.
-  //
-  // Only until it is spent: after that it is a remark, and a remark that
-  // pauses the music when you click it is a trap.
-  if (hint) {
-    hint.addEventListener("click", function () {
+  // arrow under it is the larger half of the same invitation.
+  if (nudge) {
+    nudge.addEventListener("click", function () {
       if (!spent) btn.click();
     });
   }
