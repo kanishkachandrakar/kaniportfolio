@@ -681,9 +681,14 @@ body {
 /* Then lifted off that centre. Geometric middle is not optical middle here:
    the column beside it ends in a row of buttons, which carry more weight than
    the line spacing above them, so a circle centred on the true midpoint sits
-   low. The margin is on the bottom so the lift survives any length of text -
-   it shifts within the centring rather than replacing it. */
-.split .portrait { margin-bottom: 34px; }
+   low.
+
+   A transform rather than a margin. Once the copy was trimmed the photograph
+   became the taller of the two cells, which means it sets the height of the
+   row - and a margin on the thing defining the height only makes the row
+   taller and leaves the circle where it was. This moves the picture and
+   nothing else, at any length of text, which is all that was wanted. */
+.split .portrait { transform: translateY(-32px); }
 
 /* Only the picture is centred. Centring applies to every cell in the row, so
    once the text was cut back the photograph became the taller of the two and
