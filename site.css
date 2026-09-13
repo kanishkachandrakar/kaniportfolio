@@ -49,6 +49,22 @@
   --bead-solid: #E9CB92;
   --ring:       rgba(246, 242, 234, 0.19);
 
+  /* ---- Feature flag: the side rail -------------------------------
+     The four icons are parked here rather than deleted. Every part of
+     them is still in the build - the markup on each page, the art, the
+     hover previews, the lane the card leaves for them - and this one
+     value decides whether any of it reaches the screen.
+
+       flex   the rail is on
+       none   the rail is filed
+
+     The lane follows it through the style queries further down, so the
+     card recentres on its own and there is no dead column where the
+     icons used to be. Style queries are what makes it one value instead
+     of two; if they are ever missing, the off state is still correct
+     everywhere and it is only the on state that needs the lane back. */
+  --rail: flex;
+
   --shadow-lg:  0 44px 110px rgba(0, 0, 0, 0.55);
   --shadow-md:  0 18px 44px rgba(0, 0, 0, 0.42);
   --shadow-sm:  0 10px 22px rgba(0, 0, 0, 0.50);
@@ -353,7 +369,7 @@ body {
   top: 50%;
   transform: translateY(-50%);
   z-index: 6;
-  display: flex;
+  display: var(--rail);
   flex-direction: column;
   align-items: center;
   gap: 74px;
@@ -2088,10 +2104,12 @@ body {
    card centred on its own and the rail was left with half a pixel of the
    window to sit in. */
 @media (min-width: 1281px) {
-  .frame,
-  .ask {
-    margin-left: 124px;
-    width: min(1120px, calc(100% - 124px));
+  @container style(--rail: flex) {
+    .frame,
+    .ask {
+      margin-left: 124px;
+      width: min(1120px, calc(100% - 124px));
+    }
   }
 }
 
@@ -2110,10 +2128,12 @@ body {
   /* The reserved margin follows the rail. Left at 124px while the rail had
      tightened to 64px, the lane the pair sits in was wider on the left than
      the gap on the right, and the group leaned the other way. */
-  .frame,
-  .ask {
-    margin-left: 78px;
-    width: min(1120px, calc(100% - 78px));
+  @container style(--rail: flex) {
+    .frame,
+    .ask {
+      margin-left: 78px;
+      width: min(1120px, calc(100% - 78px));
+    }
   }
 }
 
@@ -2128,10 +2148,12 @@ body {
 
 /* and again for the smallest rail, down to where it turns horizontal */
 @media (min-width: 901px) and (max-width: 1280px) {
-  .frame,
-  .ask {
-    margin-left: 52px;
-    width: min(1120px, calc(100% - 52px));
+  @container style(--rail: flex) {
+    .frame,
+    .ask {
+      margin-left: 52px;
+      width: min(1120px, calc(100% - 52px));
+    }
   }
 }
 
