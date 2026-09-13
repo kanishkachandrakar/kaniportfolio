@@ -63,7 +63,7 @@
      icons used to be. Style queries are what makes it one value instead
      of two; if they are ever missing, the off state is still correct
      everywhere and it is only the on state that needs the lane back. */
-  --rail: flex;
+  --rail: none;
 
   --shadow-lg:  0 44px 110px rgba(0, 0, 0, 0.55);
   --shadow-md:  0 18px 44px rgba(0, 0, 0, 0.42);
