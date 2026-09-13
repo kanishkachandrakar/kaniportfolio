@@ -1385,26 +1385,99 @@ body {
   .ask-link { display: none; }        /* the drawer carries it below this */
 }
 
-.ask {
-  position: relative;
-  /* so the heading does not land flush against the top of the window */
-  scroll-margin-top: clamp(16px, 6vh, 70px);
-  padding: clamp(30px, 6vh, 66px) 0 clamp(24px, 5vh, 56px);
-  text-align: center;
+/* The dialog it opens in. Fixed and centred rather than in the flow, so the
+   page underneath keeps its place and comes back unchanged when this closes. */
+.askbox {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: clamp(14px, 5vh, 46px) 16px;
 }
 
-/* A soft pool of ground behind the section. On the backdrop the heading was
-   competing with a mountain ridge running straight through it. This settles
-   the scenery without drawing an edge - a panel here would just be a second
-   card under the first. */
-.ask::before {
-  content: "";
+/* A display value in a stylesheet outranks the one the browser gives [hidden],
+   so without this the dialog is laid out and visible from the first paint and
+   the attribute does nothing at all. */
+.askbox[hidden] { display: none; }
+
+/* Blurred rather than merely darkened. The backdrop behind this site is a
+   painted scene with a ridge running through it, and a flat scrim over that
+   still leaves a landscape to read behind the words. */
+.askbox-scrim {
   position: absolute;
-  inset: 0 -10vw;
-  z-index: -1;
-  background: radial-gradient(120% 78% at 50% 50%,
-              var(--scrim-soft) 0%, transparent 74%);
-  pointer-events: none;
+  inset: 0;
+  background: var(--scrim);
+  backdrop-filter: blur(7px) saturate(1.05);
+  -webkit-backdrop-filter: blur(7px) saturate(1.05);
+  animation: askScrim 0.22s ease both;
+}
+
+@keyframes askScrim {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* The panel. It gets the solid token rather than the shell's glass: there is
+   a blurred scene directly behind it, and a second layer of glass over that
+   reads as fog rather than as a card. */
+.ask {
+  position: relative;
+  z-index: 1;
+  width: min(620px, 100%);
+  max-height: min(660px, 86vh);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 34px clamp(20px, 4vw, 38px) 28px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: var(--panel-solid);
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+  scrollbar-width: thin;
+  scrollbar-color: var(--edge) transparent;
+  animation: askPanel 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes askPanel {
+  from { opacity: 0; transform: translateY(10px) scale(0.985); }
+  to   { opacity: 1; transform: none; }
+}
+
+.ask::-webkit-scrollbar { width: 9px; }
+.ask::-webkit-scrollbar-thumb {
+  background: var(--edge);
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+.ask::-webkit-scrollbar-track { background: transparent; }
+
+/* Held to the panel rather than to the scroll, so it stays reachable however
+   long the thread gets. */
+.askbox-close {
+  position: sticky;
+  top: 0;
+  float: right;
+  width: 32px;
+  height: 32px;
+  margin: -8px -6px 0 0;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink-faint);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.askbox-close:hover {
+  background: var(--surface-hi);
+  color: var(--ink);
 }
 
 .ask-title {
@@ -1416,20 +1489,7 @@ body {
    puts #ask in the address bar to copy or bookmark. It carries the type and
    the underline rather than the h2 around it, so the target is the words and
    not the full width of the line. */
-.ask-title a {
-  font-family: "Newsreader", Georgia, "Times New Roman", serif;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: color 0.18s ease, border-color 0.18s ease;
-}
 
-.ask-title a:hover {
-  color: var(--accent);
-  border-bottom-color: color-mix(in srgb, var(--accent) 55%, transparent);
-}
 
 .ask-sub {
   margin: 0 auto;
@@ -2160,8 +2220,7 @@ body {
    window to sit in. */
 @media (min-width: 1281px) {
   @container style(--rail: flex) {
-    .frame,
-    .ask {
+    .frame {
       margin-left: 124px;
       width: min(1120px, calc(100% - 124px));
     }
@@ -2184,8 +2243,7 @@ body {
      tightened to 64px, the lane the pair sits in was wider on the left than
      the gap on the right, and the group leaned the other way. */
   @container style(--rail: flex) {
-    .frame,
-    .ask {
+    .frame {
       margin-left: 78px;
       width: min(1120px, calc(100% - 78px));
     }
@@ -2204,8 +2262,7 @@ body {
 /* and again for the smallest rail, down to where it turns horizontal */
 @media (min-width: 901px) and (max-width: 1280px) {
   @container style(--rail: flex) {
-    .frame,
-    .ask {
+    .frame {
       margin-left: 52px;
       width: min(1120px, calc(100% - 52px));
     }
@@ -2215,8 +2272,7 @@ body {
 @media (max-width: 900px) {
   .stage { padding: 0; place-items: stretch; }
 
-  .frame,
-  .ask {
+  .frame {
     /* The margin that reserves room for the rail is set in a max-width rule,
        so it was still applying here - where the rail is a row above the card
        and needs no lane beside it. The card was 100% wide and pushed 78px

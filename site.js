@@ -695,6 +695,50 @@
   });
 })();
 
+/* --- Ask KaniGPT: the dialog ------------------------------------------
+   The panel used to be a section at the foot of the page that the header
+   label scrolled you to. It opens over the page now, from the same label.
+
+   Inner pages still link to index.html#ask, so the hash is honoured on load:
+   they arrive here and the dialog is already open, which is what the link
+   promised them. */
+(function () {
+  var box = document.getElementById("askBox");
+  if (!box) return;
+
+  function open() {
+    if (!box.hidden) return;
+    box.hidden = false;
+  }
+
+  function close() {
+    if (box.hidden) return;
+    box.hidden = true;
+    // The hash is what opened it, so it has to go, or the next reload opens
+    // the dialog again over a page the reader had just closed it on.
+    if (location.hash === "#ask") {
+      history.replaceState(null, "", location.pathname + location.search);
+    }
+  }
+
+  document.querySelectorAll("[data-ask-open]").forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      e.preventDefault();
+      open();
+    });
+  });
+
+  box.addEventListener("click", function (e) {
+    if (e.target.closest("[data-ask-close]")) close();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") close();
+  });
+
+  if (location.hash === "#ask") open();
+})();
+
 /* --- Ask KaniGPT ------------------------------------------------------ */
 (function () {
   var form = document.getElementById("askForm");
