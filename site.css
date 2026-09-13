@@ -676,6 +676,13 @@ body {
   align-items: center;
 }
 
+/* Then lifted off that centre. Geometric middle is not optical middle here:
+   the column beside it ends in a row of buttons, which carry more weight than
+   the line spacing above them, so a circle centred on the true midpoint sits
+   low. The margin is on the bottom so the lift survives any length of text -
+   it shifts within the centring rather than replacing it. */
+.split .portrait { margin-bottom: 34px; }
+
 .portrait {
   width: 100%;
   aspect-ratio: 1;
