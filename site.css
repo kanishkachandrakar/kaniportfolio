@@ -664,10 +664,12 @@ body {
 
 .split {
   display: grid;
-  /* Wider than it was. At 228px the photograph read as a thumbnail filed
-     beside the text rather than as the other half of the introduction, which
-     is what a portrait on an About page is for. */
-  grid-template-columns: minmax(0, 1fr) minmax(180px, 300px);
+  /* Wider than the 228px it started at, where the photograph read as a
+     thumbnail filed beside the text rather than as the other half of the
+     introduction. Not the 300px it went to either: against the trimmed copy
+     the circle was taller than everything beside it, and a column of empty
+     page opened under the buttons to keep it company. */
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 262px);
   gap: clamp(26px, 3vw, 44px);
   /* Centred against the text, not pinned to the top of it. Top-aligned, the
      circle ended level with the first line and left a column of empty page
@@ -682,6 +684,12 @@ body {
    low. The margin is on the bottom so the lift survives any length of text -
    it shifts within the centring rather than replacing it. */
 .split .portrait { margin-bottom: 34px; }
+
+/* Only the picture is centred. Centring applies to every cell in the row, so
+   once the text was cut back the photograph became the taller of the two and
+   the prose was the thing floating in the middle, leaving a gap under the
+   heading with nothing in it. The text starts where the text should start. */
+.split .prose { align-self: start; }
 
 .portrait {
   width: 100%;
