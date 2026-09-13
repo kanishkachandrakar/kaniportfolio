@@ -706,25 +706,50 @@
   var box = document.getElementById("askBox");
   if (!box) return;
 
-  function open() {
+  var input = document.getElementById("askInput");
+
+  // Where the keyboard was when this opened, so it can be put back. Without
+  // it, closing drops focus onto <body> and the next Tab starts again from
+  // the top of the page rather than from the label that was just used.
+  var returnTo = null;
+
+  function reachable() {
+    return box.querySelectorAll("button, [href], textarea, input, select");
+  }
+
+  function open(from) {
     if (!box.hidden) return;
+    returnTo = from || document.activeElement;
     box.hidden = false;
+    // One of the ways in is the link inside the drawer, and the drawer's own
+    // dismissal ignores clicks landing inside itself - so without this it
+    // stays open behind the scrim, and closing the dialog reveals it again.
+    var drawer = document.querySelector(".nav.is-open");
+    if (drawer) drawer.classList.remove("is-open");
+    document.body.classList.add("is-asking");
+    // Into the box you came here to type in. The chips are one tab away and
+    // read out as the alternative; landing on them first would put five
+    // buttons between the reader and the question they arrived with.
+    if (input) input.focus();
   }
 
   function close() {
     if (box.hidden) return;
     box.hidden = true;
+    document.body.classList.remove("is-asking");
     // The hash is what opened it, so it has to go, or the next reload opens
     // the dialog again over a page the reader had just closed it on.
     if (location.hash === "#ask") {
       history.replaceState(null, "", location.pathname + location.search);
     }
+    if (returnTo && returnTo.focus) returnTo.focus();
+    returnTo = null;
   }
 
   document.querySelectorAll("[data-ask-open]").forEach(function (el) {
     el.addEventListener("click", function (e) {
       e.preventDefault();
-      open();
+      open(el);
     });
   });
 
@@ -733,7 +758,30 @@
   });
 
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") close();
+    if (box.hidden) return;
+
+    if (e.key === "Escape") {
+      close();
+      return;
+    }
+
+    // Tab is held inside the panel while it is open. A modal that lets the
+    // keyboard wander out onto a page nobody can see is a modal in name only:
+    // focus goes somewhere behind the scrim and the reader has no way to tell
+    // where, short of closing it.
+    if (e.key !== "Tab") return;
+    var list = reachable();
+    if (!list.length) return;
+
+    var first = list[0];
+    var last = list[list.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
   });
 
   if (location.hash === "#ask") open();

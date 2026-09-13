@@ -1401,6 +1401,12 @@ body {
    the attribute does nothing at all. */
 .askbox[hidden] { display: none; }
 
+/* The page behind holds still while the dialog is open. Scrolling it is the
+   one thing a reader can do to a modal that neither dismisses it nor answers
+   it, and on a phone it is easy to do by accident while reaching for the
+   panel - you come back to a page that has moved for no reason. */
+body.is-asking { overflow: hidden; }
+
 /* Blurred rather than merely darkened. The backdrop behind this site is a
    painted scene with a ridge running through it, and a flat scrim over that
    still leaves a landscape to read behind the words. */

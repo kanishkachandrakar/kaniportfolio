@@ -42,11 +42,11 @@
       } catch (e) {}
     })();
   </script>
-  <link rel="preload" href="site.css?v=7d5979fc" as="style">
+  <link rel="preload" href="site.css?v=5c8a96fc" as="style">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="site.css?v=7d5979fc">
+  <link rel="stylesheet" href="site.css?v=5c8a96fc">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
@@ -209,7 +209,8 @@
        the end of the body like the other overlay rather than in the flow. -->
   <div class="askbox" id="askBox" hidden>
     <div class="askbox-scrim" data-ask-close></div>
-    <section class="ask" id="ask">
+    <section class="ask" id="ask" role="dialog" aria-modal="true"
+             aria-labelledby="askTitle">
       <button class="askbox-close" type="button" data-ask-close
               aria-label="Close">&times;</button>
       <h2 class="ask-title" id="askTitle">Ask KaniGPT</h2>
@@ -277,7 +278,7 @@
     </div>
   </div>
 </div>
-<script src="site.js?v=8aeb0e07"></script>
+<script src="site.js?v=3d843a3e"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.16/typed.umd.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
