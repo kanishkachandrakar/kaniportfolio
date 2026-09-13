@@ -647,6 +647,21 @@ body {
   gap: 26px;
 }
 
+/* Two columns of equal width, side by side, each one paragraph deep: the one
+   arrangement where justifying earns its keep. The even right edges make the
+   pair read as two blocks of the same thing rather than as two paragraphs
+   that happen to be near each other.
+
+   Hyphenation comes with it and is not optional. Justified text without it
+   pulls word spaces open to fill the line, and at this measure that is how
+   you get rivers of white running down a column. Let it break words and the
+   spacing stays close to normal. */
+.grid-2.is-justified .prose p {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
 .split {
   display: grid;
   /* Wider than it was. At 228px the photograph read as a thumbnail filed
