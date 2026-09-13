@@ -600,6 +600,10 @@ body {
   line-height: 1.1;
 }
 
+/* The subtitle used to carry this gap. Where a page goes straight from the
+   title into its content, the space has to come from somewhere. */
+.page-title + .split { margin-top: 30px; }
+
 .page-sub {
   margin: 0 0 34px;
   font-size: 15px;
