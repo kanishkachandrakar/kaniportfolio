@@ -51,7 +51,16 @@
   var peek = document.getElementById("peek");
   var railItems = document.querySelectorAll(".rail-item");
 
-  if (peek && railItems.length) {
+  // The previews belong to the rail, so they answer to the same switch it
+  // does. Without this the whole module still runs while the rail is parked:
+  // boxes measured on hidden icons, listeners bound to things nobody can
+  // point at, and four scenes decoded for a panel that cannot open.
+  function railOn() {
+    return getComputedStyle(document.documentElement)
+      .getPropertyValue("--rail").trim() === "flex";
+  }
+
+  if (peek && railItems.length && railOn()) {
     var closeTimer = null;
     var openId = null;
     var openAnchor = null;
@@ -85,11 +94,19 @@
     cacheBoxes();
     window.addEventListener("load", cacheBoxes);
 
-    /* The scenes sit inside display:none until hovered, so the browser has
-       no reason to decode them until then - which stalls the first open.
-       Decode them up front instead. */
+    /* The scenes carry their file in data-src rather than src, so nothing
+       fetches them until this runs - and this does not run while the rail is
+       parked, which is the point. Four images that no one can open are four
+       images that should not be on the wire.
+
+       They sit inside display:none once loaded, so the browser has no reason
+       to decode them until the first hover, which stalls that first open.
+       Hence the decode here as well: fetched and decoded together, after the
+       page itself is done loading and has stopped competing for the network. */
     window.addEventListener("load", function () {
       peek.querySelectorAll(".peek-art").forEach(function (im) {
+        var file = im.getAttribute("data-src");
+        if (file && !im.getAttribute("src")) im.setAttribute("src", file);
         if (im.decode) im.decode().catch(function () {});
       });
     });
