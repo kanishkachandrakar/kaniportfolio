@@ -688,7 +688,7 @@ body {
    row - and a margin on the thing defining the height only makes the row
    taller and leaves the circle where it was. This moves the picture and
    nothing else, at any length of text, which is all that was wanted. */
-.split .portrait { transform: translateY(-32px); }
+.split .portrait { transform: translate(-18px, -46px); }
 
 /* Only the picture is centred. Centring applies to every cell in the row, so
    once the text was cut back the photograph became the taller of the two and
