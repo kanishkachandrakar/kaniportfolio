@@ -402,11 +402,16 @@ body {
 .topbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 18px;
   padding: 16px clamp(20px, 2.6vw, 36px);
   border-bottom: 1px solid var(--line-soft);
 }
+
+/* Not space-between any more. With the menu button moved to the front there
+   are three things in this row, and space-between would spread them evenly
+   and leave the button stranded away from the name it belongs beside. The
+   button and the name sit together at the left; this pushes the rest right. */
+.topbar-actions { margin-left: auto; }
 
 .identity {
   display: flex;
@@ -2237,12 +2242,16 @@ body.is-asking { overflow: hidden; }
     border-color: var(--edge);
   }
 
+  /* Anchored to the left edge and sliding in from it, because that is where
+     the button that opens it is. A drawer that arrives from the far side of
+     the window after a click on the near one makes the reader look twice for
+     what they just asked for. */
   .nav {
     display: flex;
     flex-direction: column;
     gap: 4px;
     position: fixed;
-    inset: 0 0 0 auto;
+    inset: 0 auto 0 0;
     width: min(280px, 82vw);
     padding: 84px 18px 26px;
     /* The panel token rather than the flat brown it had. That colour was
@@ -2250,9 +2259,9 @@ body.is-asking { overflow: hidden; }
        and could not be seen at all in the light one - dark panel, dark ink.
        It opens on a desktop now, so it has to be right in both. */
     background: var(--panel-solid);
-    border-left: 1px solid var(--line);
+    border-right: 1px solid var(--line);
     box-shadow: var(--shadow-lg);
-    transform: translateX(100%);
+    transform: translateX(-100%);
     transition: transform 0.28s ease;
     z-index: 40;
   }
