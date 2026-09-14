@@ -702,6 +702,11 @@ body {
   transform: translateX(-18px);
 }
 
+/* The rule under the row can come in as well. 34px is the spacing between two
+   blocks of text; this is a photograph, and the space it has already opened
+   around itself does that job. */
+.split + .divider { margin-top: 20px; }
+
 /* Only the picture is centred. Centring applies to every cell in the row, so
    once the text was cut back the photograph became the taller of the two and
    the prose was the thing floating in the middle, leaving a gap under the
