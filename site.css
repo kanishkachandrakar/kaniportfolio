@@ -656,7 +656,8 @@ body {
    pulls word spaces open to fill the line, and at this measure that is how
    you get rivers of white running down a column. Let it break words and the
    spacing stays close to normal. */
-.grid-2.is-justified .prose p {
+.grid-2.is-justified .prose p,
+.split.is-justified .prose p {
   text-align: justify;
   hyphens: auto;
   -webkit-hyphens: auto;
