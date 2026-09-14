@@ -689,12 +689,18 @@ body {
    the line spacing above them, so a circle centred on the true midpoint sits
    low.
 
-   A transform rather than a margin. Once the copy was trimmed the photograph
-   became the taller of the two cells, which means it sets the height of the
-   row - and a margin on the thing defining the height only makes the row
-   taller and leaves the circle where it was. This moves the picture and
-   nothing else, at any length of text, which is all that was wanted. */
-.split .portrait { transform: translate(-18px, -46px); }
+   The lift is a negative top margin, not a transform. A transform moves only
+   what you see: the picture rode up and left 46px of its own height sitting
+   empty at the bottom of the row, which is where the gap above the rule was
+   coming from. A negative margin takes that height out as it goes, so the
+   row ends where the circle ends and everything below moves up with it.
+
+   The sideways nudge stays a transform, because that one really is meant to
+   move the picture alone - the column keeps its width. */
+.split .portrait {
+  margin-top: -46px;
+  transform: translateX(-18px);
+}
 
 /* Only the picture is centred. Centring applies to every cell in the row, so
    once the text was cut back the photograph became the taller of the two and
