@@ -23,6 +23,15 @@
     });
   }
 
+  // The drawer's own close. The dismissal below ignores anything inside the
+  // drawer, deliberately - clicking a link or the panel itself should not
+  // count as clicking away - so this needs its own handler rather than
+  // falling through to that one.
+  var navClose = document.querySelector(".nav-close");
+  if (navClose) {
+    navClose.addEventListener("click", function () { setMenu(false); });
+  }
+
   document.addEventListener("click", function (e) {
     if (!nav || !nav.classList.contains("is-open")) return;
     if (nav.contains(e.target) || (menuBtn && menuBtn.contains(e.target))) return;
