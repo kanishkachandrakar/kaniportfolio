@@ -707,6 +707,58 @@ body {
    around itself does that job. */
 .split + .divider { margin-top: 20px; }
 
+/* ---------- Education labels ------------------------------- */
+/* Two degrees read as a pair of labels rather than as a page of entries: the
+   mark, then the degree, then where and when. The logos do the work a line of
+   text would otherwise have to - you know both institutions on sight, and a
+   reader scanning for them finds them faster than they would read them. */
+.edu-title { margin-top: 30px; }
+
+.edu {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 26px;
+}
+
+.edu-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+/* A white tile under both of them. One logo is navy on white and the other is
+   white on purple, and neither survives being dropped straight onto a dark
+   translucent card - the first disappears into it, the second brings its own
+   rectangle and looks pasted on. A tile gives them the same ground and the
+   same edge, and lets each keep its own colour inside it. */
+.edu-mark {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  padding: 7px;
+  border-radius: 13px;
+  border: 1px solid var(--line);
+  background: #FFFFFF;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.edu-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.edu-item h3 {
+  margin: 0 0 3px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
 /* Only the picture is centred. Centring applies to every cell in the row, so
    once the text was cut back the photograph became the taller of the two and
    the prose was the thing floating in the middle, leaving a gap under the
