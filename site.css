@@ -65,6 +65,11 @@
      everywhere and it is only the on state that needs the lane back. */
   --rail: none;
 
+  /* The wash over a project screenshot. Bottom-weighted, because that is
+     where the tags are and where a screenshot is usually busiest. */
+  --card-scrim-top: rgba(14, 11, 9, 0.52);
+  --card-scrim-bot: rgba(14, 11, 9, 0.93);
+
   --shadow-lg:  0 44px 110px rgba(0, 0, 0, 0.55);
   --shadow-md:  0 18px 44px rgba(0, 0, 0, 0.42);
   --shadow-sm:  0 10px 22px rgba(0, 0, 0, 0.50);
@@ -127,6 +132,8 @@
   --scrim-soft: rgba(246, 245, 239, 0.86);
   --card-hi:    rgba(255, 255, 255, 0.78);
   --panel-solid: linear-gradient(150deg, rgba(255, 255, 255, 0.97), rgba(248, 247, 242, 0.98));
+  --card-scrim-top: rgba(250, 249, 245, 0.60);
+  --card-scrim-bot: rgba(250, 249, 245, 0.95);
   --chip-ink:   #4A6357;
   --dot:        rgba(59, 58, 51, 0.55);
   --cord:       rgba(59, 58, 51, 0.28);
@@ -1933,6 +1940,8 @@ body.is-asking { overflow: hidden; }
 }
 
 .card {
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 9px;
@@ -1951,6 +1960,52 @@ body.is-asking { overflow: hidden; }
   background: var(--surface-hi);
   border-color: var(--edge);
   transform: translateY(-3px);
+}
+
+/* The screenshot, filling the card behind everything else. Held well back:
+   these are dense pictures - a terminal, a spreadsheet, a game - and at full
+   strength there is no title on this page that stays readable over them. What
+   is wanted is enough to recognise the project by, not enough to study. */
+.card-shot {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+  filter: saturate(0.85);
+  transition: opacity 0.28s ease, transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* A scrim over it, darkest at the bottom where the tags sit. A flat overlay
+   would have taken the same amount off the top, where there is nothing to
+   protect, and the picture is the part worth keeping.
+
+   z-index 1, above the picture. ::before generates as the first child, so it
+   paints before the image and without this the wash is under the thing it is
+   supposed to be washing - which looks exactly like no wash at all. */
+.card.has-shot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to bottom,
+              var(--card-scrim-top) 0%,
+              var(--card-scrim-bot) 100%);
+  pointer-events: none;
+}
+
+/* Everything the card says sits above both layers. */
+.card > i,
+.card > h3,
+.card > .card-tags { position: relative; z-index: 2; }
+
+/* On hover it comes forward and drifts, the same move the home page cards
+   make, so the picture reads as the subject rather than as wallpaper. */
+.card:hover .card-shot {
+  opacity: 0.8;
+  transform: scale(1.06);
 }
 
 .card i { color: var(--accent); font-size: 19px; }
