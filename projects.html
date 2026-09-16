@@ -153,6 +153,15 @@
             <span class="card-tags">TensorFlow &middot; Keras &middot; OpenCV</span>
           </span>
         </button>
+        <button class="card has-shot" data-modal="p16">
+          <img class="card-shot" loading="lazy" decoding="async"
+               src="images/card-fake-news.webp" alt="Fake news detection">
+          <span class="card-body">
+            <i class="fa-solid fa-newspaper"></i>
+            <h3>Fake News Detection</h3>
+            <span class="card-tags">Scikit-learn &middot; NLTK &middot; Streamlit</span>
+          </span>
+        </button>
         <button class="card has-shot" data-modal="p1">
           <img class="card-shot" loading="lazy" decoding="async"
                src="images/card-guess-what.webp" alt="GUESS WHAT? multiplayer doodle game">
@@ -301,6 +310,20 @@
     <p>Each frame is converted to greyscale and passed through a Haar cascade to find the faces in it. Every face found is cropped, resized to 48 by 48, normalised and given to the model, which returns one of seven labels: angry, disgust, fear, happy, neutral, sad or surprise. The label is drawn back onto the frame over the box it belongs to.</p>
     <p>The model is trained in a notebook and saved to disk, so the detection script loads it and starts rather than training on every run. TensorFlow and Keras for the network, OpenCV for the capture, the cascade and the drawing.</p>
     <p><a class="ask-more" href="https://github.com/kanishkachandrakar/Face-emotion-detection" target="_blank" rel="noopener noreferrer">Source on GitHub &rarr;</a></p>
+    </div>
+  </div>
+</div>
+<div class="modal" id="p16" role="dialog" aria-modal="true" aria-label="Fake News Detection">
+  <div class="modal-box">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <h2>Fake News Detection</h2>
+    <p class="page-sub" style="margin-bottom:0">Scikit-learn &middot; NLTK &middot; Streamlit</p>
+    <img loading="lazy" decoding="async" src="images/card-fake-news.webp" alt="Fake News Detection">
+  <div class="prose">
+    <p>A classifier that reads a headline and says whether it belongs to the fake half of the dataset it was trained on. Paste an article into the box and it answers.</p>
+    <p>Author and title are joined into one string, stripped to letters, lowercased, cleared of stopwords and stemmed with Porter, then turned into TF-IDF vectors and fitted with logistic regression. The plain approach on purpose: on this dataset the signal is largely in who filed the story and what they called it, and a linear model over TF-IDF finds that without needing anything heavier.</p>
+    <p>Trained on a labelled Kaggle set, split with stratification so both classes are represented in the test half, and served as a Streamlit page.</p>
+    <p><a class="ask-more" href="https://github.com/kanishkachandrakar/Fake-News-Detection" target="_blank" rel="noopener noreferrer">Source on GitHub &rarr;</a></p>
     </div>
   </div>
 </div>
