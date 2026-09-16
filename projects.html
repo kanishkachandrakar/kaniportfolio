@@ -144,6 +144,15 @@
             <span class="card-tags">Next.js &middot; Prisma &middot; PostgreSQL</span>
           </span>
         </button>
+        <button class="card has-shot" data-modal="p15">
+          <img class="card-shot" loading="lazy" decoding="async"
+               src="images/card-face-emotion.webp" alt="Face emotion detection">
+          <span class="card-body">
+            <i class="fa-solid fa-face-smile"></i>
+            <h3>Face Emotion Detection</h3>
+            <span class="card-tags">TensorFlow &middot; Keras &middot; OpenCV</span>
+          </span>
+        </button>
         <button class="card has-shot" data-modal="p1">
           <img class="card-shot" loading="lazy" decoding="async"
                src="images/card-guess-what.webp" alt="GUESS WHAT? multiplayer doodle game">
@@ -278,6 +287,20 @@
     <p>Next.js and TypeScript on the front, Prisma and PostgreSQL behind it, deployed on Vercel. Holds expire on a timer and every write is guarded, so a link that has been claimed cannot be claimed again by someone who opened it a second earlier. There is a demo mode that runs the whole flow without an account.</p>
     <p>Built for the Stellic Pathfinders Challenge.</p>
     <p><a class="ask-more" href="https://github.com/kanishkachandrakar/standby" target="_blank" rel="noopener noreferrer">Source on GitHub &rarr;</a></p>
+    </div>
+  </div>
+</div>
+<div class="modal" id="p15" role="dialog" aria-modal="true" aria-label="Face Emotion Detection">
+  <div class="modal-box">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <h2>Face Emotion Detection</h2>
+    <p class="page-sub" style="margin-bottom:0">TensorFlow &middot; Keras &middot; OpenCV</p>
+    <img loading="lazy" decoding="async" src="images/card-face-emotion.webp" alt="Face Emotion Detection">
+  <div class="prose">
+    <p>A convolutional network that reads an expression off a face and names it, running live on a webcam feed at whatever frame rate the machine can manage.</p>
+    <p>Each frame is converted to greyscale and passed through a Haar cascade to find the faces in it. Every face found is cropped, resized to 48 by 48, normalised and given to the model, which returns one of seven labels: angry, disgust, fear, happy, neutral, sad or surprise. The label is drawn back onto the frame over the box it belongs to.</p>
+    <p>The model is trained in a notebook and saved to disk, so the detection script loads it and starts rather than training on every run. TensorFlow and Keras for the network, OpenCV for the capture, the cascade and the drawing.</p>
+    <p><a class="ask-more" href="https://github.com/kanishkachandrakar/Face-emotion-detection" target="_blank" rel="noopener noreferrer">Source on GitHub &rarr;</a></p>
     </div>
   </div>
 </div>
