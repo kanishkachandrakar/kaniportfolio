@@ -42,11 +42,11 @@
       } catch (e) {}
     })();
   </script>
-  <link rel="preload" href="site.css?v=eae0919c" as="style">
+  <link rel="preload" href="site.css?v=c8b453ec" as="style">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="site.css?v=eae0919c">
+  <link rel="stylesheet" href="site.css?v=c8b453ec">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
@@ -164,11 +164,11 @@
         </button>
         <button class="card has-shot" data-modal="p5">
           <img class="card-shot" loading="lazy" decoding="async"
-               src="images/card-ai-chatbot.webp" alt="AI chatbot">
+               src="images/card-medical-chatbot.webp" alt="Medical chatbot">
           <span class="card-body">
-            <i class="fa-solid fa-robot"></i>
-            <h3>AI Chatbot</h3>
-            <span class="card-tags">Django &middot; Python &middot; NLP</span>
+            <i class="fa-solid fa-user-doctor"></i>
+            <h3>Medical Chatbot</h3>
+            <span class="card-tags">LangChain &middot; Pinecone &middot; Flask</span>
           </span>
         </button>
         <button class="card has-shot" data-modal="p6">
@@ -283,16 +283,16 @@
     </div>
   </div>
 </div>
-<div class="modal" id="p5" role="dialog" aria-modal="true" aria-label="AI Chatbot">
+<div class="modal" id="p5" role="dialog" aria-modal="true" aria-label="Medical Chatbot">
   <div class="modal-box">
     <button class="modal-close" aria-label="Close">&times;</button>
-    <h2>AI Chatbot</h2>
-    <p class="page-sub" style="margin-bottom:0">Django &middot; Python &middot; NLP</p>
-    <img loading="lazy" decoding="async" src="images/ai-chatbot.png" alt="AI Chatbot">
+    <h2>Medical Chatbot</h2>
+    <p class="page-sub" style="margin-bottom:0">LangChain &middot; Pinecone &middot; Flask</p>
+    <img loading="lazy" decoding="async" src="images/medical-chatbot.webp" alt="Medical Chatbot">
   <div class="prose">
-    <p><strong>AI ChatBot</strong> is a conversational chatbot built on the Django framework.</p>
-    <p>It implements the core chatbot functions &mdash; message handling, user interaction and response generation &mdash; using Python NLP libraries such as NLTK and spaCy to understand and answer user queries. Django models and views manage chatbot data and user sessions.</p>
-    <p>The project covers setting up dialogue flow, integrating NLP tooling, and deploying the application, making it a practical base for customising or embedding a chatbot in another Django app.</p>
+    <p>A retrieval-augmented chatbot that answers medical questions from a body of source documents rather than from whatever the model happens to remember.</p>
+    <p>Reference PDFs are chunked, embedded with a HuggingFace sentence-transformers model and stored in a Pinecone index. A question retrieves the three closest passages, and those passages go to the model as the material it is allowed to answer from, through a LangChain retrieval chain.</p>
+    <p>The model is a distilled reasoning model served on Groq at temperature zero, which is the setting you want when the answer is supposed to come from the documents and not from the model&rsquo;s imagination. Flask serves the chat interface.</p>
     </div>
   </div>
 </div>

@@ -1983,11 +1983,6 @@ body.is-asking { overflow: hidden; }
   padding: 15px 18px 17px;
 }
 
-/* Shopping Calculator has no screenshot anywhere in the repo. Rather than
-   leave its text at the top of a card with a hole above it, the one card
-   without a picture centres what it does have, so the gap reads as space
-   rather than as something that failed to load. */
-.card:not(.has-shot) .card-body { justify-content: center; }
 
 /* On hover it drifts, the same move the home page cards make. The card clips
    it, so it grows into its own frame rather than over the grid. */
