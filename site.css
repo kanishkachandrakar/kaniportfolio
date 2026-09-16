@@ -65,11 +65,6 @@
      everywhere and it is only the on state that needs the lane back. */
   --rail: none;
 
-  /* The wash over a project screenshot. Bottom-weighted, because that is
-     where the tags are and where a screenshot is usually busiest. */
-  --card-scrim-top: rgba(14, 11, 9, 0.52);
-  --card-scrim-bot: rgba(14, 11, 9, 0.93);
-
   --shadow-lg:  0 44px 110px rgba(0, 0, 0, 0.55);
   --shadow-md:  0 18px 44px rgba(0, 0, 0, 0.42);
   --shadow-sm:  0 10px 22px rgba(0, 0, 0, 0.50);
@@ -132,8 +127,6 @@
   --scrim-soft: rgba(246, 245, 239, 0.86);
   --card-hi:    rgba(255, 255, 255, 0.78);
   --panel-solid: linear-gradient(150deg, rgba(255, 255, 255, 0.97), rgba(248, 247, 242, 0.98));
-  --card-scrim-top: rgba(250, 249, 245, 0.60);
-  --card-scrim-bot: rgba(250, 249, 245, 0.95);
   --chip-ink:   #4A6357;
   --dot:        rgba(59, 58, 51, 0.55);
   --cord:       rgba(59, 58, 51, 0.28);
@@ -1944,8 +1937,7 @@ body.is-asking { overflow: hidden; }
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 9px;
-  padding: 20px;
+  padding: 0;
   border-radius: 18px;
   border: 1px solid var(--line-soft);
   background: var(--surface);
@@ -1962,51 +1954,44 @@ body.is-asking { overflow: hidden; }
   transform: translateY(-3px);
 }
 
-/* The screenshot, filling the card behind everything else. Held well back:
-   these are dense pictures - a terminal, a spreadsheet, a game - and at full
-   strength there is no title on this page that stays readable over them. What
-   is wanted is enough to recognise the project by, not enough to study. */
+/* The screenshot, at its own colour. It had been lying behind the text under
+   a wash, which is the only way words sit over a picture and stay readable -
+   and it cost the picture the thing it was put there for. A screenshot dimmed
+   to half of itself is a texture, not a photograph of the work.
+
+   So it takes the top of the card and the words go underneath. Nothing is over
+   the picture now, so nothing has to be taken off it.
+
+   A fixed height rather than an aspect ratio: the columns change width between
+   breakpoints, and an aspect would change the height of every card with them.
+   This way the crop is the same band of the image at every size. */
 .card-shot {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
+  display: block;
   width: 100%;
-  height: 100%;
+  height: 132px;
   object-fit: cover;
-  opacity: 0.55;
-  filter: saturate(0.85);
-  transition: opacity 0.28s ease, transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  object-position: center top;
+  border-bottom: 1px solid var(--line-soft);
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* A scrim over it, darkest at the bottom where the tags sit. A flat overlay
-   would have taken the same amount off the top, where there is nothing to
-   protect, and the picture is the part worth keeping.
-
-   z-index 1, above the picture. ::before generates as the first child, so it
-   paints before the image and without this the wash is under the thing it is
-   supposed to be washing - which looks exactly like no wash at all. */
-.card.has-shot::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(to bottom,
-              var(--card-scrim-top) 0%,
-              var(--card-scrim-bot) 100%);
-  pointer-events: none;
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  flex: 1;
+  padding: 15px 18px 17px;
 }
 
-/* Everything the card says sits above both layers. */
-.card > i,
-.card > h3,
-.card > .card-tags { position: relative; z-index: 2; }
+/* Shopping Calculator has no screenshot anywhere in the repo. Rather than
+   leave its text at the top of a card with a hole above it, the one card
+   without a picture centres what it does have, so the gap reads as space
+   rather than as something that failed to load. */
+.card:not(.has-shot) .card-body { justify-content: center; }
 
-/* On hover it comes forward and drifts, the same move the home page cards
-   make, so the picture reads as the subject rather than as wallpaper. */
-.card:hover .card-shot {
-  opacity: 0.8;
-  transform: scale(1.06);
-}
+/* On hover it drifts, the same move the home page cards make. The card clips
+   it, so it grows into its own frame rather than over the grid. */
+.card:hover .card-shot { transform: scale(1.06); }
 
 .card i { color: var(--accent); font-size: 19px; }
 
