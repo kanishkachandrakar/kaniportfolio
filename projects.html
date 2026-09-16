@@ -135,6 +135,15 @@
             <span class="card-tags">Next.js &middot; TypeScript &middot; Supabase</span>
           </span>
         </button>
+        <button class="card has-shot" data-modal="p14">
+          <img class="card-shot" loading="lazy" decoding="async"
+               src="images/card-standby.webp" alt="Standby">
+          <span class="card-body">
+            <i class="fa-solid fa-hourglass-half"></i>
+            <h3>Standby &mdash; Event Spot Release</h3>
+            <span class="card-tags">Next.js &middot; Prisma &middot; PostgreSQL</span>
+          </span>
+        </button>
         <button class="card has-shot" data-modal="p1">
           <img class="card-shot" loading="lazy" decoding="async"
                src="images/card-guess-what.webp" alt="GUESS WHAT? multiplayer doodle game">
@@ -254,6 +263,21 @@
     <p>Listings and needs are matched automatically and sorted by how far you would actually have to walk. Claiming an item takes a ten-minute lock, and the lock is enforced in the database rather than in the interface, so when four people claim the same fridge at the same moment exactly one of them gets it.</p>
     <p>Built on Next.js with the App Router and TypeScript, with Supabase for the database, auth and file storage, and deployed on Vercel. Stale listings and needs expire on their own, which is the difference between a marketplace and a noticeboard nobody has cleared since term started.</p>
     <p><a class="ask-more" href="https://github.com/kanishkachandrakar/passdown" target="_blank" rel="noopener noreferrer">Source on GitHub &rarr;</a></p>
+    </div>
+  </div>
+</div>
+<div class="modal" id="p14" role="dialog" aria-modal="true" aria-label="Standby &mdash; Event Spot Release">
+  <div class="modal-box">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <h2>Standby &mdash; Event Spot Release</h2>
+    <p class="page-sub" style="margin-bottom:0">Next.js &middot; TypeScript &middot; Prisma &middot; PostgreSQL</p>
+    <img loading="lazy" decoding="async" src="images/standby.webp" alt="Standby">
+  <div class="prose">
+    <p>Campus events read as full while seats sit empty, because the people holding those seats have no way to give them back that takes less effort than not turning up.</p>
+    <p>Standby makes releasing one a single tap. The spot becomes a claim link with a live countdown on it, the link travels through the group chat people already use, and the first verified student from that campus to open it gets the seat. Everyone else sees that it has gone, which is the part a waitlist never manages.</p>
+    <p>Next.js and TypeScript on the front, Prisma and PostgreSQL behind it, deployed on Vercel. Holds expire on a timer and every write is guarded, so a link that has been claimed cannot be claimed again by someone who opened it a second earlier. There is a demo mode that runs the whole flow without an account.</p>
+    <p>Built for the Stellic Pathfinders Challenge.</p>
+    <p><a class="ask-more" href="https://github.com/kanishkachandrakar/standby" target="_blank" rel="noopener noreferrer">Source on GitHub &rarr;</a></p>
     </div>
   </div>
 </div>
