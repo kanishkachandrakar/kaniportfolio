@@ -1878,6 +1878,64 @@ body.is-asking { overflow: hidden; }
 }
 
 /* ---------- Timeline / entries ----------------------------- */
+/* ---------- Roles ------------------------------------------ */
+/* The timeline is gone. A vertical rule with a dot beside every job says one
+   thing - that these happened in order - and it was saying it six times on a
+   page where the dates already do. What it cost was the left margin, which is
+   where the eye lands, and the only thing it had to put there was a dot.
+
+   The mark goes there instead. You can tell a page of work apart by its logos
+   before you have read a word of it, and the row a reader is looking for is
+   found by its colour rather than by scanning six job titles. */
+.roles {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.role {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 17px 18px;
+  border-radius: 16px;
+  border: 1px solid var(--line-soft);
+  background: var(--surface);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.role:hover {
+  background: var(--surface-hi);
+  border-color: var(--edge);
+}
+
+/* White under all of them, the same treatment the education labels use. The
+   marks are a navy shield, a purple lockup, a red disc on blue and three sets
+   of initials, and the only way six of those sit in a column without looking
+   like a jumble sale is a shared ground and a shared edge. */
+.role-mark {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  padding: 5px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: #FFFFFF;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.role-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 7px;
+}
+
+.role-body { min-width: 0; flex: 1; }
+
 .entry {
   position: relative;
   padding: 0 0 26px 26px;
@@ -1897,6 +1955,33 @@ body.is-asking { overflow: hidden; }
   background: var(--accent);
   box-shadow: 0 0 0 4px var(--accent-dim);
 }
+
+.role h3 {
+  margin: 0 0 4px;
+  font-size: 15.5px;
+  font-weight: 620;
+  letter-spacing: -0.012em;
+}
+
+.role .meta {
+  font-size: 12.8px;
+  color: var(--ink-faint);
+  margin-bottom: 10px;
+}
+
+.role ul {
+  margin: 11px 0 0;
+  padding-left: 17px;
+}
+
+.role li {
+  margin-bottom: 7px;
+  font-size: 14.2px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.role li:last-child { margin-bottom: 0; }
 
 .entry h3 {
   margin: 0 0 4px;
