@@ -2281,6 +2281,16 @@ body.is-asking { overflow: hidden; }
   color: var(--stack-hue, var(--accent));
 }
 
+/* The six hues were chosen to sit on a dark card and they are all pale, which
+   on a light one leaves the headings barely there. Mixed toward the ink for
+   the light theme: the same six colours, dark enough to read as type.
+
+   Only the headings. The hairline down the edge is a mark rather than text,
+   and it is the pale version that reads correctly as one. */
+:root[data-theme="light"] .stack h3 {
+  color: color-mix(in srgb, var(--stack-hue, var(--accent)) 58%, #211F1B);
+}
+
 /* The serif again, as on the record's arrow: the voice that is hers rather
    than the interface's. It is what separates this line from the list under
    it, which is a list of proper nouns and reads like one. */
