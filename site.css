@@ -2124,6 +2124,97 @@ body.is-asking { overflow: hidden; }
   color: var(--ink-faint);
 }
 
+/* ---------- Stacks ----------------------------------------- */
+/* Five rows of pills with an uppercase word over each was a list of things
+   she has heard of. Every portfolio has that section and they all look the
+   same, because a pill carries exactly one bit of information - the name -
+   and a wall of them carries nothing else however many you add.
+
+   A card per area instead, and each one opens with a line about what she
+   actually does with that area. That line is the whole point: it is the part
+   that could not have been copied off anybody else's site. */
+.stacks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.stack {
+  position: relative;
+  padding: 18px 20px 19px;
+  border-radius: 16px;
+  border: 1px solid var(--line-soft);
+  background: var(--surface);
+  overflow: hidden;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.stack:hover {
+  background: var(--surface-hi);
+  border-color: var(--edge);
+}
+
+/* A hairline of colour down the left edge, one hue per area. It is the only
+   thing distinguishing six otherwise identical cards at a glance, and it
+   costs a single pixel of width to do it. */
+.stack::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 14px;
+  bottom: 14px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--stack-hue, var(--accent));
+}
+
+.stack-ml      { --stack-hue: #9AA2E8; }
+.stack-lang    { --stack-hue: #E8B87C; }
+.stack-backend { --stack-hue: #7FCF9C; }
+.stack-front   { --stack-hue: #6BC2C9; }
+.stack-cloud   { --stack-hue: #E0A0C4; }
+.stack-data    { --stack-hue: #D8C77E; }
+
+.stack h3 {
+  margin: 0 0 6px;
+  font-size: 14.5px;
+  font-weight: 620;
+  letter-spacing: -0.008em;
+  color: var(--stack-hue, var(--accent));
+}
+
+/* The serif again, as on the record's arrow: the voice that is hers rather
+   than the interface's. It is what separates this line from the list under
+   it, which is a list of proper nouns and reads like one. */
+.stack-line {
+  margin: 0 0 13px;
+  font-family: "Newsreader", Georgia, "Times New Roman", serif;
+  font-size: 14.5px;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+/* Set as running text separated by dots rather than as pills. Twelve pills is
+   twelve boxes to draw and twelve edges to read; twelve words with a dot
+   between them is one line you take in at once. */
+.stack-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  line-height: 1.85;
+  color: var(--ink-faint);
+}
+
+.stack-list li { display: inline; }
+
+.stack-list li + li::before {
+  content: "·";
+  margin: 0 7px;
+  color: var(--line);
+}
+
 /* ---------- Skills ----------------------------------------- */
 .skill-group { margin-bottom: 22px; }
 
