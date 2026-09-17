@@ -836,11 +836,6 @@ body {
   white-space: nowrap;
 }
 
-.chip-accent {
-  border-color: color-mix(in srgb, var(--accent) 38%, transparent);
-  background: var(--accent-dim);
-  color: var(--chip-ink);
-}
 
 /* ---------- Home ------------------------------------------- */
 .home {
@@ -1955,78 +1950,6 @@ body.is-asking { overflow: hidden; }
 
 .role-body { min-width: 0; flex: 1; }
 
-.entry {
-  position: relative;
-  padding: 0 0 26px 26px;
-  border-left: 1px solid var(--line-soft);
-}
-
-.entry:last-child { padding-bottom: 0; border-color: transparent; }
-
-.entry::before {
-  content: "";
-  position: absolute;
-  left: -5px;
-  top: 6px;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 0 4px var(--accent-dim);
-}
-
-.role h3 {
-  margin: 0 0 4px;
-  font-size: 15.5px;
-  font-weight: 620;
-  letter-spacing: -0.012em;
-}
-
-.role .meta {
-  font-size: 12.8px;
-  color: var(--ink-faint);
-  margin-bottom: 10px;
-}
-
-.role ul {
-  margin: 11px 0 0;
-  padding-left: 17px;
-}
-
-.role li {
-  margin-bottom: 7px;
-  font-size: 14.2px;
-  line-height: 1.6;
-  color: var(--ink-soft);
-}
-
-.role li:last-child { margin-bottom: 0; }
-
-.entry h3 {
-  margin: 0 0 4px;
-  font-size: 16.5px;
-  font-weight: 620;
-  letter-spacing: -0.012em;
-}
-
-.entry .meta {
-  font-size: 13px;
-  color: var(--ink-faint);
-  margin-bottom: 11px;
-}
-
-.entry ul {
-  margin: 12px 0 0;
-  padding-left: 17px;
-}
-
-.entry li {
-  margin-bottom: 8px;
-  font-size: 14.5px;
-  line-height: 1.62;
-  color: var(--ink-soft);
-}
-
 /* ---------- Cards grid ------------------------------------- */
 /* Three across, which for twelve projects is four full rows and no remainder.
    auto-fill was giving five and five and two, and a row with three empty cells
@@ -2321,18 +2244,6 @@ body.is-asking { overflow: hidden; }
   content: "·";
   margin: 0 7px;
   color: var(--line);
-}
-
-/* ---------- Skills ----------------------------------------- */
-.skill-group { margin-bottom: 22px; }
-
-.skill-group h2 {
-  margin: 0 0 12px;
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--accent);
 }
 
 /* ---------- Contact ---------------------------------------- */
