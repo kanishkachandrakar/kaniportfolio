@@ -729,10 +729,18 @@ body {
    reader scanning for them finds them faster than they would read them. */
 .edu-title { margin-top: 30px; }
 
+/* Two equal halves of the card put the second degree in the middle of the
+   page with 180px of nothing between it and the first. They are two labels,
+   not two columns: sized to what they hold and set next to each other, both
+   sitting against the left edge where everything else on this page starts.
+
+   flex rather than grid, so the second one follows the first at a fixed
+   distance instead of waiting at a column boundary. It wraps on its own when
+   the pair no longer fits. */
 .edu {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px 26px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 46px;
 }
 
 .edu-item {
