@@ -616,6 +616,10 @@ body {
   max-width: 62ch;
 }
 
+/* A section title following a rule needs less room above it than one that
+   arrives cold, or the gap reads as two gaps stacked. */
+.divider + .section-title { margin-top: 0; }
+
 .section-title {
   margin: 0 0 14px;
   font-size: 20px;
