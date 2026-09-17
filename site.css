@@ -674,13 +674,13 @@ body {
 
 .split {
   display: grid;
-  /* Wider than the 228px it started at, where the photograph read as a
-     thumbnail filed beside the text rather than as the other half of the
-     introduction. Not the 300px it went to either: against the trimmed copy
-     the circle was taller than everything beside it, and a column of empty
-     page opened under the buttons to keep it company. */
-  grid-template-columns: minmax(0, 1fr) minmax(180px, 262px);
-  gap: clamp(26px, 3vw, 44px);
+  /* 300px now. It was 262, sized against a text column that was running the
+     full width of the card and setting lines of ninety characters - too long
+     to read comfortably and too long to leave the picture any presence. Giving
+     the photograph the width takes it from the text, which fixes both at once:
+     a bigger portrait and a measure that reads. */
+  grid-template-columns: minmax(0, 1fr) minmax(190px, 334px);
+  gap: clamp(22px, 2.4vw, 34px);
   /* Centred against the text, not pinned to the top of it. Top-aligned, the
      circle ended level with the first line and left a column of empty page
      beside the last two - the deeper the text got, the more lopsided it
@@ -702,8 +702,19 @@ body {
    The sideways nudge stays a transform, because that one really is meant to
    move the picture alone - the column keeps its width. */
 .split .portrait {
-  margin-top: -46px;
-  transform: translateX(-18px);
+  /* Less lift than before. At -46 it was sitting up level with the heading,
+     which read as deliberate while the text column was deep; against the
+     shorter copy it just looks high. -24 keeps it off the true centre without
+     leaving the row. */
+  margin-top: -24px;
+  /* Moved left by sitting at the start of a column wider than itself, not by
+     a transform. A transform moves the picture and leaves its box behind, so
+     translating it left slid a 300px circle straight over the last words of
+     every line - the text had no idea it had moved. This reserves the space
+     on the right instead, and the text column gives up exactly what the
+     photograph takes. */
+  width: min(100%, 300px);
+  justify-self: start;
 }
 
 /* The rule under the row can come in as well. 34px is the spacing between two
