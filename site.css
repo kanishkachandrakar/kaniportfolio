@@ -1931,10 +1931,15 @@ body.is-asking { overflow: hidden; }
   flex: none;
   display: grid;
   place-items: center;
-  width: 46px;
-  height: 46px;
-  padding: 5px;
-  border-radius: 12px;
+  /* 42px, because the title and the organisation line together measure 41.
+     At 46 the tile overhung that pair by five pixels and finished in the gap
+     above the tags, which is what made it look like it was floating rather
+     than sitting beside something. Matched to the block it belongs to, it
+     needs no offset to look aligned. */
+  width: 42px;
+  height: 42px;
+  padding: 4px;
+  border-radius: 11px;
   border: 1px solid var(--line);
   background: #FFFFFF;
   box-shadow: var(--shadow-sm);
@@ -1962,15 +1967,19 @@ body.is-asking { overflow: hidden; }
   line-height: 1.3;
 }
 
+/* The gaps inside a card were 3, 10 and 11: the tags sat between two almost
+   equal spaces and so belonged to neither the line above nor the list below.
+   Nine and fourteen now. The tags describe the role, so they stay with the
+   role; the bullets are a separate thought and get the wider gap. */
 .role .meta {
-  margin: 0 0 10px;
+  margin: 0 0 9px;
   font-size: 12.8px;
   line-height: 1.4;
   color: var(--ink-faint);
 }
 
 .role ul {
-  margin: 11px 0 0;
+  margin: 14px 0 0;
   padding-left: 17px;
 }
 
