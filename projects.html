@@ -42,11 +42,11 @@
       } catch (e) {}
     })();
   </script>
-  <link rel="preload" href="site.css?v=c8b453ec" as="style">
+  <link rel="preload" href="site.css?v=3e08e816" as="style">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="site.css?v=c8b453ec">
+  <link rel="stylesheet" href="site.css?v=3e08e816">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
@@ -280,7 +280,7 @@
     <p>Every August students buy things that other students are throwing out four hundred metres away. Passdown puts those two people in the same place: a marketplace scoped to one campus, where everyone in it is a verified student at that institution.</p>
     <p>Listings and needs are matched automatically and sorted by how far you would actually have to walk. Claiming an item takes a ten-minute lock, and the lock is enforced in the database rather than in the interface, so when four people claim the same fridge at the same moment exactly one of them gets it.</p>
     <p>Built on Next.js with the App Router and TypeScript, with Supabase for the database, auth and file storage, and deployed on Vercel. Stale listings and needs expire on their own, which is the difference between a marketplace and a noticeboard nobody has cleared since term started.</p>
-    <p><a class="ask-more" href="https://github.com/kanishkachandrakar/passdown" target="_blank" rel="noopener noreferrer">Source on GitHub &rarr;</a></p>
+    <p><a class="repo-link" href="https://github.com/kanishkachandrakar/passdown" target="_blank" rel="noopener noreferrer">Source on GitHub &rarr;</a></p>
     </div>
   </div>
 </div>
@@ -295,7 +295,7 @@
     <p>Standby makes releasing one a single tap. The spot becomes a claim link with a live countdown on it, the link travels through the group chat people already use, and the first verified student from that campus to open it gets the seat. Everyone else sees that it has gone, which is the part a waitlist never manages.</p>
     <p>Next.js and TypeScript on the front, Prisma and PostgreSQL behind it, deployed on Vercel. Holds expire on a timer and every write is guarded, so a link that has been claimed cannot be claimed again by someone who opened it a second earlier. There is a demo mode that runs the whole flow without an account.</p>
     <p>Built for the Stellic Pathfinders Challenge.</p>
-    <p><a class="ask-more" href="https://github.com/kanishkachandrakar/standby" target="_blank" rel="noopener noreferrer">Source on GitHub &rarr;</a></p>
+    <p><a class="repo-link" href="https://github.com/kanishkachandrakar/standby" target="_blank" rel="noopener noreferrer">Source on GitHub &rarr;</a></p>
     </div>
   </div>
 </div>
@@ -309,7 +309,7 @@
     <p>A convolutional network that reads an expression off a face and names it, running live on a webcam feed at whatever frame rate the machine can manage.</p>
     <p>Each frame is converted to greyscale and passed through a Haar cascade to find the faces in it. Every face found is cropped, resized to 48 by 48, normalised and given to the model, which returns one of seven labels: angry, disgust, fear, happy, neutral, sad or surprise. The label is drawn back onto the frame over the box it belongs to.</p>
     <p>The model is trained in a notebook and saved to disk, so the detection script loads it and starts rather than training on every run. TensorFlow and Keras for the network, OpenCV for the capture, the cascade and the drawing.</p>
-    <p><a class="ask-more" href="https://github.com/kanishkachandrakar/Face-emotion-detection" target="_blank" rel="noopener noreferrer">Source on GitHub &rarr;</a></p>
+    <p><a class="repo-link" href="https://github.com/kanishkachandrakar/Face-emotion-detection" target="_blank" rel="noopener noreferrer">Source on GitHub &rarr;</a></p>
     </div>
   </div>
 </div>
@@ -323,7 +323,7 @@
     <p>A classifier that reads a headline and says whether it belongs to the fake half of the dataset it was trained on. Paste an article into the box and it answers.</p>
     <p>Author and title are joined into one string, stripped to letters, lowercased, cleared of stopwords and stemmed with Porter, then turned into TF-IDF vectors and fitted with logistic regression. The plain approach on purpose: on this dataset the signal is largely in who filed the story and what they called it, and a linear model over TF-IDF finds that without needing anything heavier.</p>
     <p>Trained on a labelled Kaggle set, split with stratification so both classes are represented in the test half, and served as a Streamlit page.</p>
-    <p><a class="ask-more" href="https://github.com/kanishkachandrakar/Fake-News-Detection" target="_blank" rel="noopener noreferrer">Source on GitHub &rarr;</a></p>
+    <p><a class="repo-link" href="https://github.com/kanishkachandrakar/Fake-News-Detection" target="_blank" rel="noopener noreferrer">Source on GitHub &rarr;</a></p>
     </div>
   </div>
 </div>
@@ -361,6 +361,7 @@
     <p><strong>Kings and Pigs</strong> is a web-based game built with HTML, CSS and JavaScript. It uses the HTML5 Canvas API to render interactive graphics and smooth animations, and responsive design keeps it playable across screen sizes.</p>
     <p>The game features interactive elements and strategic decision-making, with JavaScript handling game logic, state progression and achievement tracking. Sound effects and background music add an auditory layer to the visuals.</p>
     <p>Deployed on GitHub Pages, it runs in any browser with no local installation.</p>
+    <p><a class="repo-link" href="https://github.com/kanishkachandrakar/kanishkaKingsAndPigs.github.io" target="_blank" rel="noopener noreferrer">Source on GitHub &rarr;</a></p>
     </div>
   </div>
 </div>
@@ -373,6 +374,7 @@
   <div class="prose">
     <p><strong>Stock Prediction</strong> forecasts stock prices using machine learning. Built with Python, it applies a range of algorithms to historical stock data to predict future price trends.</p>
     <p>The project covers data preprocessing, model training and evaluation, so users can prepare their own stock data, train different models and compare their performance. It also offers insight into the relative effectiveness of different prediction methods.</p>
+    <p><a class="repo-link" href="https://github.com/kanishkachandrakar/StockPrediction" target="_blank" rel="noopener noreferrer">Source on GitHub &rarr;</a></p>
     </div>
   </div>
 </div>
@@ -386,6 +388,7 @@
     <p>A retrieval-augmented chatbot that answers medical questions from a body of source documents rather than from whatever the model happens to remember.</p>
     <p>Reference PDFs are chunked, embedded with a HuggingFace sentence-transformers model and stored in a Pinecone index. A question retrieves the three closest passages, and those passages go to the model as the material it is allowed to answer from, through a LangChain retrieval chain.</p>
     <p>The model is a distilled reasoning model served on Groq at temperature zero, which is the setting you want when the answer is supposed to come from the documents and not from the model&rsquo;s imagination. Flask serves the chat interface.</p>
+    <p><a class="repo-link" href="https://github.com/kanishkachandrakar/End-to-end-Medical-Chatbot-Generative-AI" target="_blank" rel="noopener noreferrer">Source on GitHub &rarr;</a></p>
     </div>
   </div>
 </div>
@@ -399,6 +402,7 @@
     <p><strong>Spam Email Identifier</strong> detects and filters spam messages using machine learning.</p>
     <p>It runs a structured pipeline for data preprocessing, model training and evaluation, built on Scikit-learn and Pandas. Classification models including Naive Bayes and Support Vector Machines analyse message text and predict its category.</p>
     <p>The project is a practical example of text classification, covering feature extraction, model tuning and performance assessment.</p>
+    <p><a class="repo-link" href="https://github.com/kanishkachandrakar/sms-spam-detection" target="_blank" rel="noopener noreferrer">Source on GitHub &rarr;</a></p>
     </div>
   </div>
 </div>
