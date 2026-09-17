@@ -2124,6 +2124,44 @@ body.is-asking { overflow: hidden; }
   color: var(--ink-faint);
 }
 
+/* ---------- Strengths -------------------------------------- */
+/* "System Design. Problem Solving. Performance Optimization." Five accent
+   pills that every engineer on earth would also claim, which is what makes
+   them worth nothing: a claim nobody would contradict is not information.
+
+   Four claims with the evidence attached instead. Each one names the thing
+   and then the job or project where it happened, with the number that shows
+   it happened. A reader can disagree with these, which is the point - they
+   say something specific enough to be wrong. */
+.strengths {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+  margin-bottom: 30px;
+}
+
+.strength {
+  padding: 16px 18px 17px;
+  border-radius: 14px;
+  border: 1px solid var(--line-soft);
+  background: var(--accent-dim);
+}
+
+.strength h3 {
+  margin: 0 0 6px;
+  font-size: 14.5px;
+  font-weight: 620;
+  letter-spacing: -0.008em;
+  color: var(--chip-ink);
+}
+
+.strength p {
+  margin: 0;
+  font-size: 13.4px;
+  line-height: 1.62;
+  color: var(--ink-soft);
+}
+
 /* ---------- Stacks ----------------------------------------- */
 /* Five rows of pills with an uppercase word over each was a list of things
    she has heard of. Every portfolio has that section and they all look the
