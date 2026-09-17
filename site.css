@@ -2824,6 +2824,35 @@ body.is-asking { overflow: hidden; }
   }
 }
 
+/* The three grids on the experience page go to one column before the rest of
+   the layout does. Two columns of prose survive down to about here; below it
+   the stack lines break after three words and the course leaders have no room
+   left to lead across. */
+@media (max-width: 760px) {
+  .stacks,
+  .strengths,
+  .courses {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* In one column the pairing is vertical, so the leader has nothing to join
+     and the outcome sits under its course instead of across from it. */
+  .courses li {
+    display: block;
+    padding: 9px 0;
+  }
+
+  .courses li::after { content: none; }
+
+  .course-name { display: block; }
+
+  .course-out {
+    display: block;
+    margin-top: 1px;
+    text-align: left;
+  }
+}
+
 @media (max-width: 900px) {
   .stage { padding: 0; place-items: stretch; }
 
