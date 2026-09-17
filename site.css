@@ -2124,6 +2124,62 @@ body.is-asking { overflow: hidden; }
   color: var(--ink-faint);
 }
 
+/* ---------- Coursework ------------------------------------- */
+.course-intro {
+  margin: -6px 0 16px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+/* Two columns of pairs rather than one long ledger. Twelve rows down a page
+   this wide leaves most of each line empty and makes the eye travel further
+   than the content is worth. */
+.courses {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 34px;
+  margin: 0 0 30px;
+  padding: 0;
+  list-style: none;
+}
+
+/* A leader between the course and what it produced, the way a contents page
+   joins a chapter to its number. It is what makes this read as a pairing
+   rather than as two columns that happen to be adjacent - and it stretches,
+   so the pairing survives whatever length the two halves happen to be. */
+.courses li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: 13.4px;
+}
+
+.courses li::after {
+  content: "";
+  order: 1;
+  flex: 1 1 auto;
+  min-width: 18px;
+  height: 1px;
+  margin-bottom: 3px;
+  border-bottom: 1px dotted var(--line);
+}
+
+.course-name {
+  order: 0;
+  flex: none;
+  color: var(--ink);
+}
+
+.course-out {
+  order: 2;
+  flex: none;
+  text-align: right;
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
 /* ---------- Strengths -------------------------------------- */
 /* "System Design. Problem Solving. Performance Optimization." Five accent
    pills that every engineer on earth would also claim, which is what makes
