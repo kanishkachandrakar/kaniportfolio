@@ -1950,6 +1950,39 @@ body.is-asking { overflow: hidden; }
 
 .role-body { min-width: 0; flex: 1; }
 
+/* Without these the browser's defaults apply: an h3 with a full line of
+   margin above and below it, a ul with its own indent and margins, and li at
+   the document's base size. That is where the gaps came from - not a layout
+   that needed tuning, a layout with no rules at all. */
+.role h3 {
+  margin: 0 0 3px;
+  font-size: 15.5px;
+  font-weight: 620;
+  letter-spacing: -0.012em;
+  line-height: 1.3;
+}
+
+.role .meta {
+  margin: 0 0 10px;
+  font-size: 12.8px;
+  line-height: 1.4;
+  color: var(--ink-faint);
+}
+
+.role ul {
+  margin: 11px 0 0;
+  padding-left: 17px;
+}
+
+.role li {
+  margin-bottom: 7px;
+  font-size: 14.2px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.role li:last-child { margin-bottom: 0; }
+
 /* ---------- Cards grid ------------------------------------- */
 /* Three across, which for twelve projects is four full rows and no remainder.
    auto-fill was giving five and five and two, and a row with three empty cells
