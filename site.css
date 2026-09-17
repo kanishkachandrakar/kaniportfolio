@@ -1887,6 +1887,21 @@ body.is-asking { overflow: hidden; }
    The mark goes there instead. You can tell a page of work apart by its logos
    before you have read a word of it, and the row a reader is looking for is
    found by its colour rather than by scanning six job titles. */
+/* Three of these on the page, so they have to be quieter than the section
+   titles above them and louder than a job title inside a card. Uppercase and
+   letterspaced in the accent, which is the same treatment the skill groups
+   further down already use for exactly this job. */
+.role-group {
+  margin: 26px 0 11px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.role-group:first-of-type { margin-top: 0; }
+
 .roles {
   display: flex;
   flex-direction: column;
