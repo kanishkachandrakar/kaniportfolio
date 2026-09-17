@@ -814,6 +814,15 @@ body {
    heading with nothing in it. The text starts where the text should start. */
 .split .prose { align-self: start; }
 
+/* The column left the lines running to 82 characters, which is past the point
+   where the eye reliably finds the start of the next one - and justified text
+   makes that worse, because every line ends flush and there is no ragged edge
+   to navigate by. Capped at a measure that comes out near 70.
+
+   On the paragraphs only. The buttons underneath are their own width and have
+   no measure to protect. */
+.split .prose p { max-width: 582px; }
+
 .portrait {
   width: 100%;
   aspect-ratio: 1;
