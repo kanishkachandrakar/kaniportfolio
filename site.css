@@ -614,21 +614,6 @@ body {
   scrollbar-color: var(--edge) transparent;
 }
 
-/* One measure for everything on the page, centred in the pane.
-   The card is wider than this page's content wants to be, and stretching each
-   block to fill it pushed the text to one edge and the photograph to the
-   other - two things at opposite ends of a room rather than a pair. Held to a
-   common width they sit together, and the heading, the degrees and the two
-   columns below all start and end on the same two lines.
-
-   950 is the sum of the parts: the measure the paragraphs are capped at, the
-   gap, and the photograph at its largest. So the split fills it exactly rather
-   than being a block with room left inside it. */
-.content.is-centred > * {
-  max-width: min(950px, 100%);
-  margin-inline: auto;
-}
-
 .content::-webkit-scrollbar { width: 9px; }
 .content::-webkit-scrollbar-thumb {
   background: var(--edge);
@@ -726,7 +711,7 @@ body {
      photograph's other side. Naming the text's width and centring the picture
      in what remains splits that surplus instead of stacking it in one hole. */
   grid-template-columns: minmax(0, 582px) minmax(190px, 1fr);
-  gap: clamp(18px, 1.6vw, 22px);
+  gap: clamp(20px, 2vw, 28px);
   /* Centred against the text, not pinned to the top of it. Top-aligned, the
      circle ended level with the first line and left a column of empty page
      beside the last two - the deeper the text got, the more lopsided it
@@ -788,7 +773,7 @@ body {
 .edu {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px 26px;
+  gap: 14px 34px;
 }
 
 .edu-item {
@@ -881,13 +866,7 @@ body {
   aspect-ratio: 4 / 5;
   width: min(100%, 280px);
   border-radius: 24px;
-  /* Against the right edge of the measure, not centred in what is left of it.
-     Centred, the photograph drifted inward and its overhang came down within
-     9px of the end of "Pennsylvania State University" - close enough to read
-     as the words running under the picture. Held to the edge it lines up with
-     the heading above it and the second column below it, and the degrees get
-     their clearance back. */
-  justify-self: end;
+  justify-self: center;
 }
 
 .split .prose { align-self: start; }
