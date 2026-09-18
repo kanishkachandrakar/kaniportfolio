@@ -711,7 +711,7 @@ body {
      photograph's other side. Naming the text's width and centring the picture
      in what remains splits that surplus instead of stacking it in one hole. */
   grid-template-columns: minmax(0, 582px) minmax(190px, 1fr);
-  gap: clamp(22px, 2.4vw, 34px);
+  gap: clamp(20px, 2vw, 28px);
   /* Centred against the text, not pinned to the top of it. Top-aligned, the
      circle ended level with the first line and left a column of empty page
      beside the last two - the deeper the text got, the more lopsided it
@@ -773,7 +773,7 @@ body {
 .edu {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px 46px;
+  gap: 14px 34px;
 }
 
 .edu-item {
@@ -2835,15 +2835,22 @@ body.is-asking { overflow: hidden; }
    1280, and below that the row already reaches past the picture. Overhanging
    there would put a photograph on top of it. */
 @media (min-width: 1281px) {
-  /* -80 rather than -60: the row was still 20px taller than the text in it,
-     and this takes the last of that. The split now measures exactly the height
-     of its own text column, so the heading under it follows the buttons rather
-     than the bottom edge of a photograph.
+  /* Wider here and nowhere else, because this is the only place there is spare
+     width to take. Below this the card is bounded by the lamp rather than by
+     its own maximum, the columns are already close together, and a larger
+     picture would only make the row taller.
 
-     Buttons to heading is 16px now, from 32. The picture overhangs into the
-     space beside the degrees and finishes level with them, which is where it
-     should stop - past that it would be reaching into the rule below. */
-  .split .portrait { margin-bottom: -80px; }
+     320 by 400 is the most the page has room for: it grows 50px downward, and
+     there were 65 between the old bottom edge and the rule underneath.
+
+     The bottom margin grows by the same 50, so the row is the height it was
+     and nothing below it moves. Without that the picture would push the
+     education heading back down by exactly what the last four commits spent
+     getting rid of. */
+  .split .portrait {
+    width: min(100%, 320px);
+    margin-bottom: -130px;
+  }
 }
 
 @media (min-width: 1281px) {
