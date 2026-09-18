@@ -726,7 +726,11 @@ body {
    mark, then the degree, then where and when. The logos do the work a line of
    text would otherwise have to - you know both institutions on sight, and a
    reader scanning for them finds them faster than they would read them. */
-.edu-title { margin-top: 30px; }
+/* 30px was the gap between two sections of text. What is above this heading
+   is the bottom edge of a photograph, and a picture brings its own quiet with
+   it - the space beside it is already doing the work that a margin does
+   between two paragraphs. */
+.edu-title { margin-top: 12px; }
 
 /* Two equal halves of the card put the second degree in the middle of the
    page with 180px of nothing between it and the first. They are two labels,
