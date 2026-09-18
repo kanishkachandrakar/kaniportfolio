@@ -729,7 +729,7 @@ body {
    is the bottom edge of a photograph, and a picture brings its own quiet with
    it - the space beside it is already doing the work that a margin does
    between two paragraphs. */
-.edu-title { margin-top: 12px; }
+.edu-title { margin-top: 16px; }
 
 /* Two equal halves of the card put the second degree in the middle of the
    page with 180px of nothing between it and the first. They are two labels,
@@ -2803,7 +2803,15 @@ body.is-asking { overflow: hidden; }
    1280, and below that the row already reaches past the picture. Overhanging
    there would put a photograph on top of it. */
 @media (min-width: 1281px) {
-  .split .portrait { margin-bottom: -60px; }
+  /* -80 rather than -60: the row was still 20px taller than the text in it,
+     and this takes the last of that. The split now measures exactly the height
+     of its own text column, so the heading under it follows the buttons rather
+     than the bottom edge of a photograph.
+
+     Buttons to heading is 16px now, from 32. The picture overhangs into the
+     space beside the degrees and finishes level with them, which is where it
+     should stop - past that it would be reaching into the rule below. */
+  .split .portrait { margin-bottom: -80px; }
 }
 
 @media (min-width: 1281px) {
