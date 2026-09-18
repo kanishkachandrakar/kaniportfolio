@@ -674,12 +674,11 @@ body {
 
 .split {
   display: grid;
-  /* 300px now. It was 262, sized against a text column that was running the
-     full width of the card and setting lines of ninety characters - too long
-     to read comfortably and too long to leave the picture any presence. Giving
-     the photograph the width takes it from the text, which fixes both at once:
-     a bigger portrait and a measure that reads. */
-  grid-template-columns: minmax(0, 1fr) minmax(190px, 334px);
+  /* 348px. It has gone 228, 262, 300 and now this, each time against a longer
+     column of text; the difference here is that the measure is capped at 582px
+     so the text column has room it is not using. The photograph can take that
+     room without costing the paragraphs a single character. */
+  grid-template-columns: minmax(0, 1fr) minmax(190px, 382px);
   gap: clamp(22px, 2.4vw, 34px);
   /* Centred against the text, not pinned to the top of it. Top-aligned, the
      circle ended level with the first line and left a column of empty page
@@ -713,7 +712,7 @@ body {
      every line - the text had no idea it had moved. This reserves the space
      on the right instead, and the text column gives up exactly what the
      photograph takes. */
-  width: min(100%, 300px);
+  width: min(100%, 348px);
   justify-self: start;
 }
 
