@@ -811,6 +811,19 @@ body {
    once the text was cut back the photograph became the taller of the two and
    the prose was the thing floating in the middle, leaving a gap under the
    heading with nothing in it. The text starts where the text should start. */
+/* Square, on the about page only. The same class is on the home page, where
+   the portrait is pressed into a record and has to stay a circle - so this is
+   scoped rather than set on .portrait itself.
+
+   The ring survives the change without being touched: a spread shadow follows
+   whatever radius the element has, so the wide band around the photograph
+   becomes a rounded square along with it. The radius is larger than the
+   cards' 16px because it is drawn 12px out from the image, and a corner reads
+   tighter the further out you go. */
+.split .portrait {
+  border-radius: 26px;
+}
+
 .split .prose { align-self: start; }
 
 /* The column left the lines running to 82 characters, which is past the point
