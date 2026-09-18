@@ -678,7 +678,7 @@ body {
      column of text; the difference here is that the measure is capped at 582px
      so the text column has room it is not using. The photograph can take that
      room without costing the paragraphs a single character. */
-  grid-template-columns: minmax(0, 1fr) minmax(190px, 382px);
+  grid-template-columns: minmax(0, 1fr) minmax(190px, 314px);
   gap: clamp(22px, 2.4vw, 34px);
   /* Centred against the text, not pinned to the top of it. Top-aligned, the
      circle ended level with the first line and left a column of empty page
@@ -712,7 +712,6 @@ body {
      every line - the text had no idea it had moved. This reserves the space
      on the right instead, and the text column gives up exactly what the
      photograph takes. */
-  width: min(100%, 348px);
   justify-self: start;
 }
 
@@ -824,8 +823,18 @@ body {
    becomes a rounded square along with it. The radius is larger than the
    cards' 16px because it is drawn 12px out from the image, and a corner reads
    tighter the further out you go. */
+/* A standing rectangle rather than a square. The photograph is 1024 by 1375,
+   so a square frame was throwing away a quarter of it and cropping in on her
+   face; 4:5 keeps most of what was taken.
+
+   Narrower rather than taller, deliberately. Same height as the square it
+   replaces, to the pixel or two, because the row under it was tuned to that
+   height and a taller picture would hand back the space the last three
+   commits spent getting rid of. */
 .split .portrait {
-  border-radius: 26px;
+  aspect-ratio: 4 / 5;
+  width: min(100%, 280px);
+  border-radius: 24px;
 }
 
 .split .prose { align-self: start; }
