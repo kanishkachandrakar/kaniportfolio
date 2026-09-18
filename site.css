@@ -2780,6 +2780,23 @@ body.is-asking { overflow: hidden; }
    It also starts 20px lower than it did. At 1290px the rule was off, so the
    card centred on its own and the rail was left with half a pixel of the
    window to sit in. */
+/* The photograph is 348 tall against a text column of 246, so the row reserves
+   about 78px that nothing occupies - a band of empty page to the left of the
+   picture's lower half, with the education heading pushed below all of it.
+
+   Most of that is given back here: the portrait keeps its height but stops
+   claiming it from the row, so everything underneath moves up and the picture
+   overhangs into the space beside the degrees.
+
+   Only above 1280, and the number is measured rather than chosen. The degrees
+   are sized to their content and the portrait's left edge moves with the
+   window, so the two converge as it narrows: 38px of clearance at 1440, 46 at
+   1280, and below that the row already reaches past the picture. Overhanging
+   there would put a photograph on top of it. */
+@media (min-width: 1281px) {
+  .split .portrait { margin-bottom: -60px; }
+}
+
 @media (min-width: 1281px) {
   @container style(--rail: flex) {
     .frame {
