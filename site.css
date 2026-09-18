@@ -245,7 +245,12 @@ body {
 .lamp {
   position: fixed;
   top: 0;
-  right: clamp(22px, 7vw, 110px);
+  /* Measured against the card's edge, not the window's. The card is wider
+     now, so a 7vw offset put the cord and its bead down over the top-right
+     corner - across the resume button, which is the one thing on the page you
+     least want a swinging chain in front of. Tucked nearer the edge, it hangs
+     in the scene beside the card again. */
+  right: clamp(20px, 2.6vw, 44px);
   z-index: 30;
   width: 34px;
   height: 118px;
@@ -326,13 +331,34 @@ body {
      1020px its content happened to measure, whatever number it was given. */
   grid-template-columns: minmax(0, 1fr);
   place-items: center;
-  padding: clamp(16px, 6vh, 90px) clamp(16px, 5vw, 90px);
+  /* The outer margin comes in from 90px to 56. It was set when the card was
+     1120 wide and the rail needed a lane beside it; with the rail parked that
+     margin is just backdrop, and the card cannot grow into space the stage is
+     holding for nothing. */
+  /* The side margin has to clear the lamp, which hangs in the scene beside the
+     card: its own offset plus its 34px of width plus a gap. So it is written
+     as that sum rather than as a number - 2.6vw matches the cord's offset, and
+     the 48 is the cord's width and the gap between it and the card's edge.
+     Pick the two independently and they drift apart at one width or another,
+     which is exactly what happened. */
+  padding: clamp(16px, 4.5vh, 56px) clamp(16px, calc(2.6vw + 48px), 100px);
 }
 
 .frame {
   position: relative;
-  width: min(1120px, 100%);
-  height: min(648px, max(452px, 80dvh));
+  /* 1320 by 840, up from 1120 by 648. The old numbers were chosen when the
+     pages were short; they are not any more, and the card was spending most of
+     a large screen on backdrop while its own content scrolled inside a pane
+     570px tall.
+
+     Still a card rather than a full window: the margin around it is what makes
+     it read as an object sitting on the scene, and the scene is the site. It
+     just stops being mostly margin.
+
+     max-height keeps it inside the stage on a short window, and the 88dvh
+     means it gives way before the padding does. */
+  width: min(1260px, 100%);
+  height: min(840px, max(452px, 88dvh));
   max-height: 100%;
 }
 
@@ -2818,7 +2844,7 @@ body.is-asking { overflow: hidden; }
   @container style(--rail: flex) {
     .frame {
       margin-left: 124px;
-      width: min(1120px, calc(100% - 124px));
+      width: min(1260px, calc(100% - 124px));
     }
   }
 }
@@ -2841,7 +2867,7 @@ body.is-asking { overflow: hidden; }
   @container style(--rail: flex) {
     .frame {
       margin-left: 78px;
-      width: min(1120px, calc(100% - 78px));
+      width: min(1260px, calc(100% - 78px));
     }
   }
 }
@@ -2860,7 +2886,7 @@ body.is-asking { overflow: hidden; }
   @container style(--rail: flex) {
     .frame {
       margin-left: 52px;
-      width: min(1120px, calc(100% - 52px));
+      width: min(1260px, calc(100% - 52px));
     }
   }
 }
