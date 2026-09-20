@@ -2452,8 +2452,32 @@ body.is-asking { overflow: hidden; }
 }
 
 .thread-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   font-size: 11.5px;
   color: var(--ink-faint);
+}
+
+/* The same green dot as the "open to roles" badge in the header, breathing
+   slowly. It is the one thing in this panel that says somebody is at the
+   other end, which is the claim the whole thread is making. */
+.thread-status i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #6FCF97;
+  box-shadow: 0 0 0 3px rgba(111, 207, 151, 0.18);
+  animation: threadPulse 2.6s ease-in-out infinite;
+}
+
+@keyframes threadPulse {
+  0%, 100% { opacity: 1;    box-shadow: 0 0 0 3px rgba(111, 207, 151, 0.18); }
+  50%      { opacity: 0.72; box-shadow: 0 0 0 5px rgba(111, 207, 151, 0.07); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thread-status i { animation: none; }
 }
 
 /* The log grows downward and is scrolled to the bottom, the way a thread does.
