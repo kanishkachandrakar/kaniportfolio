@@ -625,11 +625,12 @@ body {
    and ends on the same two lines: the heading, the columns, the rule, all of
    it. The margins go to the outside where they read as margins.
 
-   960 is the sum of the parts on the widest of these pages - the measure the
-   text is capped at, the gap, and the picture at its largest - so the row
-   fills it exactly rather than being a block with room spare inside. */
+   1100 rather than the 960 it started at. 960 was the sum of the parts as they
+   were then, and it left 110px of empty pane on each side of every page -
+   which solved the hole in the middle by moving it to the edges. The rows
+   grow to meet the new width in the two commits after this one. */
 .content.is-centred > * {
-  max-width: min(960px, 100%);
+  max-width: min(1100px, 100%);
   margin-inline: auto;
 }
 
