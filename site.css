@@ -947,7 +947,11 @@ body {
   /* The portrait's column gives way as the window narrows. Fixed at its
      widest it held 368px whatever was left for the text, which pushed the
      heading and the fact lines into extra wraps around 1000px. */
-  grid-template-columns: minmax(0, 1fr) minmax(200px, clamp(258px, 27.5vw, 396px));
+  /* The record's column is the record's width now. It used to be wider than
+     the thing inside it, so the disc sat at the column's left and stopped 54px
+     short of the line the bento cards below end on - close enough to read as a
+     near-miss rather than as a choice. */
+  grid-template-columns: minmax(0, 1fr) minmax(200px, 342px);
   gap: clamp(18px, 2.2vw, 30px);
   /* top-aligned: centring it against the full height of the hero left the
      portrait sitting low and adrift from the text beside it */
