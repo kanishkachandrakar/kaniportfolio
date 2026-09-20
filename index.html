@@ -289,7 +289,11 @@
   document.addEventListener("DOMContentLoaded", function () {
     if (typeof Typed === "undefined") return;
     new Typed(".typed-role", {
-      strings: ["Software Engineer", "Fun-time Web Designer", "Vibe Coder"],
+      // What she is, then what she is researching, then the joke. "Vibe Coder"
+      // was the joke and the research was missing, which left the rotation
+      // claiming less than she does - two assistantships in as many months.
+      strings: ["Software Engineer", "AI Research Assistant",
+                "Fun-time Web Designer"],
       typeSpeed: 70,
       backSpeed: 45,
       backDelay: 1400,
