@@ -774,7 +774,8 @@
     { field: "fEmail",
       hint: "you@example.com",
       lines: function (a) {
-        return ["Good to meet you, " + a.fName + ".", "Where should I write back?"];
+        return ["Lovely to meet you, " + a.fName + ".",
+                "And where should I write back to?"];
       },
       // Checked here rather than by the browser, because there is no visible
       // input with type=email any more - and a conversation should answer a
@@ -786,7 +787,7 @@
       } },
     { field: "fMessage",
       hint: "Your message",
-      lines: ["Perfect. What would you like to say?"] }
+      lines: ["Thank you. And what would you like to say?"] }
   ];
 
   var step = -1;
