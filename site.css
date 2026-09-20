@@ -2480,7 +2480,17 @@ body.is-asking { overflow: hidden; }
   background-clip: content-box;
 }
 
+/* Each bubble arrives rather than appearing. It rises a few pixels and scales
+   up from just under full size, which is the motion of something being put
+   down - and it is short, because it happens on every line and anything you
+   notice twice on one screen is too long. */
+@keyframes bubbleIn {
+  from { opacity: 0; transform: translateY(6px) scale(0.96); }
+  to   { opacity: 1; transform: none; }
+}
+
 .bubble {
+  animation: bubbleIn 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
   position: relative;
   max-width: 78%;
   padding: 9px 14px 10px;
@@ -2541,6 +2551,7 @@ body.is-asking { overflow: hidden; }
    happening, so the bubble stays and the delay stands in for the motion. */
 @media (prefers-reduced-motion: reduce) {
   .bubble.is-typing i { animation: none; }
+  .bubble { animation: none; }
 }
 
 .thread-note {
