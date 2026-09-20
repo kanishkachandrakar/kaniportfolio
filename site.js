@@ -716,6 +716,21 @@
   if (!log || !form || !input || !send) return;
 
   var answers = {};
+  var sndSent = document.getElementById("sndSent");
+  var sndReply = document.getElementById("sndReply");
+
+  // Both chimes are short and quiet, and either may be refused - a browser
+  // will not play audio before the page has been interacted with, which is
+  // exactly the state the first reply arrives in. A refusal is not an error
+  // here, so the rejection is swallowed and the thread carries on in silence.
+  function chime(el) {
+    if (!el) return;
+    try {
+      el.currentTime = 0;
+      var p = el.play();
+      if (p && p.catch) p.catch(function () {});
+    } catch (e) {}
+  }
 
   // Lines are a function of what has been said already where it matters, so
   // she can use your name back at you rather than reading from a card.
@@ -782,6 +797,7 @@
       setTimeout(function () {
         dots.remove();
         bubble(line, "in");
+        chime(sndReply);
         next();
       }, beat(line));
     })();
@@ -810,6 +826,7 @@
     if (!text || step < 0) return;
 
     bubble(text, "out");
+    chime(sndSent);
     answers[SCRIPT[step].field] = text;
     document.getElementById(SCRIPT[step].field).value = text;
     input.value = "";
