@@ -2976,6 +2976,17 @@ body.is-asking { overflow: hidden; }
    and an absolutely positioned close scrolls away with the panel's content -
    so on exactly the entries that take the longest to read, the way out
    disappears and Escape or a click on the scrim is all that is left. */
+/* The write-up's measure. The panel is 760 wide and these paragraphs were
+   filling it edge to edge at about 85 characters a line, which is the same
+   number that was wrong on the about page and is no less wrong in a dialog
+   somebody opened specifically to read.
+
+   The picture and the title keep the full width - they are not text, and a
+   screenshot narrowed to a text measure is a smaller screenshot for nothing. */
+.modal-box .prose p {
+  max-width: 62ch;
+}
+
 .modal-close {
   position: sticky;
   top: 0;
