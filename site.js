@@ -9,12 +9,11 @@
   function setMenu(open) {
     if (!nav) return;
     nav.classList.toggle("is-open", open);
-    if (menuBtn) {
-      menuBtn.setAttribute("aria-expanded", String(open));
-      menuBtn.innerHTML = open
-        ? '<i class="fa-solid fa-xmark"></i>'
-        : '<i class="fa-solid fa-bars"></i>';
-    }
+    // aria-expanded only. Which icon shows is CSS's job now: rewriting
+    // innerHTML here threw away the icon element and built a new one on every
+    // toggle, which means a style recalculation, a layout and a fresh glyph
+    // lookup at exactly the moment the slide is trying to start.
+    if (menuBtn) menuBtn.setAttribute("aria-expanded", String(open));
   }
 
   if (menuBtn) {

@@ -3153,6 +3153,13 @@ body.is-asking { overflow: hidden; }
     transition: background 0.18s ease, border-color 0.18s ease;
   }
 
+  /* Both icons ship in the button and CSS picks one off aria-expanded, which
+     is the attribute that has to change anyway. Nothing is created or
+     destroyed on a toggle. */
+  .menu-btn .fa-xmark { display: none; }
+  .menu-btn[aria-expanded="true"] .fa-bars { display: none; }
+  .menu-btn[aria-expanded="true"] .fa-xmark { display: block; }
+
   .menu-btn:hover {
     background: var(--surface-hi);
     border-color: var(--edge);
