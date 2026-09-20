@@ -2517,6 +2517,26 @@ body.is-asking { overflow: hidden; }
 .bubble.out + .bubble.out { border-bottom-right-radius: 19px; }
 .bubble.in + .bubble.in:last-child { border-bottom-left-radius: 6px; }
 
+/* The three dots. Same animation the KaniGPT answers use, so the site has one
+   idea of what waiting looks like rather than two. */
+.bubble.is-typing {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 13px 15px;
+}
+
+.bubble.is-typing i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink-faint);
+  animation: askDot 1s ease-in-out infinite;
+}
+
+.bubble.is-typing i:nth-child(2) { animation-delay: 0.16s; }
+.bubble.is-typing i:nth-child(3) { animation-delay: 0.32s; }
+
 .thread-note {
   align-self: flex-end;
   padding-right: 4px;

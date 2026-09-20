@@ -753,15 +753,51 @@
     return n;
   }
 
+  // Three dots in a bubble while she is "typing". It is the whole reason the
+  // replies land one after another rather than all at once: a thread where
+  // every answer appears the instant you press send is a form with rounded
+  // corners, and the pause is what makes it read as somebody answering.
+  function typing() {
+    var t = document.createElement("div");
+    t.className = "bubble in is-typing";
+    t.innerHTML = "<i></i><i></i><i></i>";
+    t.setAttribute("aria-hidden", "true");
+    log.appendChild(t);
+    log.scrollTop = log.scrollHeight;
+    return t;
+  }
+
+  // Longer lines take longer to type, within reason. A fixed delay on a
+  // two-word line feels like a loading spinner.
+  function beat(text) {
+    return Math.min(1100, 320 + text.length * 16);
+  }
+
+  function say(lines, done) {
+    var i = 0;
+    (function next() {
+      if (i >= lines.length) { if (done) done(); return; }
+      var dots = typing();
+      var line = lines[i++];
+      setTimeout(function () {
+        dots.remove();
+        bubble(line, "in");
+        next();
+      }, beat(line));
+    })();
+  }
+
   function ask(i) {
     step = i;
     var s = SCRIPT[i];
     var lines = typeof s.lines === "function" ? s.lines(answers) : s.lines;
-    lines.forEach(function (l) { bubble(l, "in"); });
-    input.placeholder = s.hint;
-    input.disabled = false;
+    input.disabled = true;
     send.disabled = true;
-    input.focus();
+    say(lines, function () {
+      input.placeholder = s.hint;
+      input.disabled = false;
+      input.focus();
+    });
   }
 
   input.addEventListener("input", function () {
