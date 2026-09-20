@@ -2412,6 +2412,175 @@ body.is-asking { overflow: hidden; }
   color: var(--line);
 }
 
+/* ---------- Message thread --------------------------------- */
+/* The panel the conversation happens in. Not a phone: there is no bezel, no
+   notch and no status bar, because a drawn phone on a website is a costume
+   and the joke wears off before the second question. What is borrowed is the
+   part that carries meaning - a header saying who you are writing to, a log
+   that grows upward, and a composer pinned under it. */
+.thread {
+  display: flex;
+  flex-direction: column;
+  height: 430px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.thread-head {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line-soft);
+  background: var(--glass);
+}
+
+.thread-head img {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--avatar-bg);
+}
+
+.thread-head strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 620;
+  line-height: 1.2;
+}
+
+.thread-status {
+  font-size: 11.5px;
+  color: var(--ink-faint);
+}
+
+/* The log grows downward and is scrolled to the bottom, the way a thread does.
+   Reverse column order would do it without JS but reverses the tab order with
+   it, so the scrolling is handled in script instead. */
+.thread-log {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 14px 10px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--edge) transparent;
+}
+
+.thread-log::-webkit-scrollbar { width: 7px; }
+.thread-log::-webkit-scrollbar-thumb {
+  background: var(--edge);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.bubble {
+  position: relative;
+  max-width: 78%;
+  padding: 9px 14px 10px;
+  border-radius: 19px;
+  font-size: 14.2px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+/* Hers, arriving. The site's own surface rather than a grey borrowed from
+   somewhere else, so the thread belongs to this page and not to a screenshot
+   of another one. */
+.bubble.in {
+  align-self: flex-start;
+  background: var(--surface-hi);
+  border: 1px solid var(--line-soft);
+  color: var(--ink);
+  border-bottom-left-radius: 6px;
+}
+
+/* Yours, leaving. The accent, because it is the one colour on this site that
+   means "you did this" - it is on every button that does something. */
+.bubble.out {
+  align-self: flex-end;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 500;
+  border-bottom-right-radius: 6px;
+}
+
+/* Consecutive bubbles from the same side lose the tail, so a run reads as one
+   turn rather than as four separate messages. */
+.bubble.in + .bubble.in { border-bottom-left-radius: 19px; }
+.bubble.out + .bubble.out { border-bottom-right-radius: 19px; }
+.bubble.in + .bubble.in:last-child { border-bottom-left-radius: 6px; }
+
+.thread-note {
+  align-self: flex-end;
+  padding-right: 4px;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--ink-faint);
+}
+
+/* ---------- Composer --------------------------------------- */
+.composer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px 12px;
+  border-top: 1px solid var(--line-soft);
+}
+
+.composer-input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 15px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface-hi);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+}
+
+.composer-input::placeholder { color: var(--ink-faint); }
+
+.composer-input:focus {
+  outline: none;
+  border-color: var(--edge);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+
+.composer-send {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--on-accent);
+  cursor: pointer;
+  transition: transform 0.16s ease, opacity 0.16s ease;
+}
+
+.composer-send svg { width: 19px; height: 19px; fill: currentColor; }
+.composer-send:hover { transform: scale(1.07); }
+.composer-send:active { transform: scale(0.94); }
+
+/* Dimmed rather than removed while there is nothing to send: a button that
+   vanishes takes the layout with it. */
+.composer-send:disabled {
+  opacity: 0.4;
+  cursor: default;
+  transform: none;
+}
+
 /* ---------- Contact ---------------------------------------- */
 .contact-lines {
   display: flex;
