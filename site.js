@@ -770,7 +770,7 @@
   var SCRIPT = [
     { field: "fName",
       hint: "Your name",
-      lines: ["Hi! Thanks for stopping by.", "What should I call you?"] },
+      lines: ["Hi! Thanks for stopping by.", "May I ask your name?"] },
     { field: "fEmail",
       hint: "you@example.com",
       lines: function (a) {
