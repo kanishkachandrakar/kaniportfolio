@@ -742,6 +742,14 @@
       hint: "you@example.com",
       lines: function (a) {
         return ["Good to meet you, " + a.fName + ".", "Where should I write back?"];
+      },
+      // Checked here rather than by the browser, because there is no visible
+      // input with type=email any more - and a conversation should answer a
+      // bad address the way a person would, by asking again.
+      check: function (v) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)
+          ? null
+          : "That does not look like an email address. Try again?";
       } },
     { field: "fMessage",
       hint: "Your message",
@@ -825,12 +833,27 @@
     var text = input.value.trim();
     if (!text || step < 0) return;
 
+    var s = SCRIPT[step];
     bubble(text, "out");
     chime(sndSent);
-    answers[SCRIPT[step].field] = text;
-    document.getElementById(SCRIPT[step].field).value = text;
     input.value = "";
     send.disabled = true;
+
+    // A rejected answer is still a message you sent, so it stays in the
+    // thread and she replies to it. Clearing it would be the form telling you
+    // it never happened.
+    var problem = s.check ? s.check(text) : null;
+    if (problem) {
+      input.disabled = true;
+      say([problem], function () {
+        input.disabled = false;
+        input.focus();
+      });
+      return;
+    }
+
+    answers[s.field] = text;
+    document.getElementById(s.field).value = text;
 
     if (step + 1 < SCRIPT.length) {
       ask(step + 1);
