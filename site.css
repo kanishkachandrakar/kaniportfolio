@@ -2928,8 +2928,19 @@ body.is-asking { overflow: hidden; }
   animation: rise 0.26s ease both;
 }
 
+/* The tech line under the title. It was .page-sub with an inline margin
+   override, which is a page-level heading style borrowed for a caption and
+   carried a 62ch measure and a 15px size it had no use for. Its own rule,
+   sized and spaced for the job it actually does. */
+.modal-tags {
+  margin: 0;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  color: var(--ink-faint);
+}
+
 .modal-box h2 {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
   font-size: 24px;
   font-weight: 680;
   letter-spacing: -0.022em;
