@@ -787,9 +787,14 @@
 
   var step = -1;
 
+  var label = document.getElementById("composerLabel");
+
   function bubble(text, side) {
     var b = document.createElement("div");
     b.className = "bubble " + side;
+    // Who said it, for anyone who cannot see which side it is on. The visual
+    // cue here is alignment and colour, and neither reaches a screen reader.
+    b.setAttribute("aria-label", (side === "in" ? "Kanishka: " : "You: ") + text);
     b.textContent = text;
     log.appendChild(b);
     log.scrollTop = log.scrollHeight;
@@ -848,6 +853,13 @@
     send.disabled = true;
     say(lines, function () {
       input.placeholder = s.hint;
+      // The visible label for the composer is the question just asked, so the
+      // field announces what it wants rather than "Your reply" three times.
+      // A placeholder alone is not a label and disappears as soon as you type.
+      if (label) {
+        label.textContent = typeof s.lines === "function"
+          ? (s.lines(answers).slice(-1)[0]) : s.lines[s.lines.length - 1];
+      }
       input.disabled = false;
       input.focus();
     });
