@@ -715,6 +715,8 @@
   var send = document.getElementById("composerSend");
   if (!log || !form || !input || !send) return;
 
+  var ENDPOINT = "https://script.google.com/macros/s/AKfycbxptlQB673K5Zj1cZU8GX2b_nqHctjAFgTgfP1xeSrhKJz8q4wmpk1sY_s8Eh-CJand/exec";
+
   var answers = {};
   var sndSent = document.getElementById("sndSent");
   var sndReply = document.getElementById("sndReply");
@@ -857,11 +859,39 @@
 
     if (step + 1 < SCRIPT.length) {
       ask(step + 1);
-    } else {
-      input.disabled = true;
-      input.placeholder = "";
+      return;
     }
+
+    // Last answer in: close the composer and post the form that was underneath
+    // this the whole time.
+    step = -1;
+    input.disabled = true;
+    input.placeholder = "";
+    deliver();
   });
+
+  function deliver() {
+    var receipt = note("Sending\u2026");
+
+    // The same endpoint, the same FormData, the same no-cors post the old
+    // form made. no-cors means the response is opaque - there is no status to
+    // read - so a resolved promise means the request left, not that the sheet
+    // accepted it. The receipt says "Delivered" rather than "Received" for
+    // exactly that reason.
+    fetch(form.action || ENDPOINT, {
+      method: "POST",
+      mode: "no-cors",
+      body: new FormData(form)
+    }).then(function () {
+      receipt.textContent = "Delivered";
+      say(["Got it, " + answers.fName + ".",
+           "I will reply to " + answers.fEmail + ", usually the same day."]);
+    }).catch(function () {
+      receipt.remove();
+      say(["Something went wrong sending that.",
+           "Email me directly at kanishka.chandrakar02@gmail.com and it will reach me."]);
+    });
+  }
 
   ask(0);
 })();
