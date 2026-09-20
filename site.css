@@ -633,6 +633,14 @@ body {
   margin-inline: auto;
 }
 
+/* On a phone the pane is already narrower than the measure, so the cap does
+   nothing and the auto margins have nothing to distribute. Stated rather than
+   left implicit, because the next person to widen the card will want to know
+   which widths this rule is actually doing work at. */
+@media (max-width: 900px) {
+  .content.is-centred > * { max-width: 100%; }
+}
+
 .content::-webkit-scrollbar { width: 9px; }
 .content::-webkit-scrollbar-thumb {
   background: var(--edge);
