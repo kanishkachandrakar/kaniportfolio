@@ -852,6 +852,7 @@
     input.disabled = true;
     send.disabled = true;
     say(lines, function () {
+      busy = false;
       input.placeholder = s.hint;
       // The visible label for the composer is the question just asked, so the
       // field announces what it wants rather than "Your reply" three times.
@@ -869,10 +870,17 @@
     send.disabled = !input.value.trim();
   });
 
+  var busy = false;
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     var text = input.value.trim();
-    if (!text || step < 0) return;
+    // step is -1 once the last answer is in, and busy covers the window while
+    // she is typing. Without the second guard a fast return key can fire a
+    // submit between the answer landing and the field being disabled, which
+    // pushes the conversation a step out of sequence.
+    if (!text || step < 0 || busy) return;
+    busy = true;
 
     var s = SCRIPT[step];
     bubble(text, "out");
@@ -888,6 +896,7 @@
       input.disabled = true;
       say([problem], function () {
         input.disabled = false;
+        busy = false;
         input.focus();
       });
       return;
