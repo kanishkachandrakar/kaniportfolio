@@ -3179,9 +3179,21 @@ body.is-asking { overflow: hidden; }
        It opens on a desktop now, so it has to be right in both. */
     background: var(--panel-solid);
     border-right: 1px solid var(--line);
-    box-shadow: var(--shadow-lg);
+    /* Its own shadow rather than --shadow-lg, which is 110px of blur offset
+       44px downward. That is the shape for a card floating above a page; on a
+       panel pinned to the left edge almost all of it falls off the top and
+       bottom of the screen, and the browser blurs it anyway. 60px cast
+       sideways is the part that was ever visible, and a quarter of the work. */
+    box-shadow: 26px 0 60px rgba(0, 0, 0, 0.45);
     transform: translateX(-100%);
     transition: transform 0.28s ease;
+    /* This is the fix for the stutter. Without a layer of its own the drawer
+       is painted into the page, so every frame of the slide repaints a
+       full-height panel and its shadow - over a shell carrying an 18px
+       backdrop-filter, which then has to re-run across the whole viewport.
+       Promoted, the panel is rasterised once and the slide is the compositor
+       moving a finished texture. */
+    will-change: transform;
     z-index: 40;
   }
 
