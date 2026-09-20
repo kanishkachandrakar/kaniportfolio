@@ -2936,10 +2936,22 @@ body.is-asking { overflow: hidden; }
   padding-right: 44px;
 }
 
+/* Capped, and contained inside the cap rather than filling it.
+
+   The rule was width:100% and nothing else, which is fine for a wide
+   screenshot and ruinous for a square one: the medical chatbot's mark is
+   633px square, so at the panel's full width it rendered about 700px tall and
+   pushed every word of the write-up below the fold. You opened a project and
+   got a picture.
+
+   contain rather than cover, because these are screenshots and diagrams. A
+   cover crop of a window with a toolbar along the top removes the toolbar. */
 .modal-box img {
   display: block;
   width: 100%;
-  margin: 20px 0;
+  max-height: 300px;
+  object-fit: contain;
+  margin: 18px 0;
   border-radius: var(--radius-sm);
   border: 1px solid var(--line-soft);
 }
