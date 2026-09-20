@@ -625,12 +625,13 @@ body {
    and ends on the same two lines: the heading, the columns, the rule, all of
    it. The margins go to the outside where they read as margins.
 
-   1100 rather than the 960 it started at. 960 was the sum of the parts as they
-   were then, and it left 110px of empty pane on each side of every page -
-   which solved the hole in the middle by moving it to the edges. The rows
-   grow to meet the new width in the two commits after this one. */
+   1040. It went 960 to 1100 when the rows grew to fill it; the record has come
+   back down since, so the measure follows rather than leaving the difference
+   in the gap between the text and the picture. That gap is what this number
+   exists to control - it is the sum of the parts, and when a part shrinks the
+   sum does too. */
 .content.is-centred > * {
-  max-width: min(1100px, 100%);
+  max-width: min(1040px, 100%);
   margin-inline: auto;
 }
 
@@ -986,7 +987,7 @@ body {
      the thing inside it, so the disc sat at the column's left and stopped 54px
      short of the line the bento cards below end on - close enough to read as a
      near-miss rather than as a choice. */
-  grid-template-columns: minmax(0, 1fr) minmax(200px, 430px);
+  grid-template-columns: minmax(0, 1fr) minmax(200px, 380px);
   gap: clamp(18px, 2.2vw, 30px);
   /* top-aligned: centring it against the full height of the hero left the
      portrait sitting low and adrift from the text beside it */
@@ -1061,10 +1062,9 @@ body {
   /* Wider than before because it is set smaller: the same words at a smaller
      size in the same measure just make more lines, and seven of them is a
      paragraph. At 62ch it uses the column and settles into five. */
-  /* 64ch. 68 came out at 81 characters a line - measured, not estimated, and
-     past the point where the eye finds the next line reliably. The record took
-     the width back instead: it is 430 now against 342, which is the right
-     place for it anyway on a page whose whole conceit is a record player. */
+  /* 64ch, which measures about 76 characters. 68 came out at 81 - past the
+     point where the eye finds the start of the next line reliably, which is
+     the whole reason there is a cap. */
   max-width: 64ch;
   font-size: clamp(13.8px, 1.02vw, 15.5px);
   line-height: 1.75;
@@ -1107,7 +1107,7 @@ body {
    chosen distance, so it grew and shrank with the window. */
 .turntable {
   position: relative;
-  width: min(100%, 430px);
+  width: min(100%, 380px);
   justify-self: start;
   margin-top: 4px;
 }
