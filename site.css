@@ -634,6 +634,19 @@ body {
   margin-inline: auto;
 }
 
+/* A narrower one for the about page. Its row cannot fill 1100: the paragraphs
+   have a measure they must not exceed, and the photograph beside them has a
+   ceiling of its own - at much over 400px tall its bottom edge reaches the
+   rule under the education row. With both halves capped, a wider column only
+   puts the difference back in the gap between them, which is the thing this
+   whole sequence has been removing.
+
+   So that page is as wide as its content warrants and no wider. Both numbers
+   leave less margin than the 110 they replaced. */
+.content.is-centred.is-snug > * {
+  max-width: min(1000px, 100%);
+}
+
 /* On a phone the pane is already narrower than the measure, so the cap does
    nothing and the auto margins have nothing to distribute. Stated rather than
    left implicit, because the next person to widen the card will want to know
@@ -738,7 +751,7 @@ body {
      last word of a line and the edge of the photograph, with 34px on the
      photograph's other side. Naming the text's width and centring the picture
      in what remains splits that surplus instead of stacking it in one hole. */
-  grid-template-columns: minmax(0, 582px) minmax(190px, 1fr);
+  grid-template-columns: minmax(0, 630px) minmax(190px, 1fr);
   gap: clamp(20px, 2vw, 28px);
   /* Centred against the text, not pinned to the top of it. Top-aligned, the
      circle ended level with the first line and left a column of empty page
@@ -909,7 +922,7 @@ body {
 
    On the paragraphs only. The buttons underneath are their own width and have
    no measure to protect. */
-.split .prose p { max-width: 582px; }
+.split .prose p { max-width: 630px; }
 
 .portrait {
   width: 100%;
