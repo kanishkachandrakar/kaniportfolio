@@ -2944,7 +2944,6 @@ body.is-asking { overflow: hidden; }
   font-size: 24px;
   font-weight: 680;
   letter-spacing: -0.022em;
-  padding-right: 44px;
 }
 
 /* Capped, and contained inside the cap rather than filling it.
@@ -2973,10 +2972,15 @@ body.is-asking { overflow: hidden; }
   background: var(--glass);
 }
 
+/* Sticky, not absolute. Several of these write-ups are long enough to scroll,
+   and an absolutely positioned close scrolls away with the panel's content -
+   so on exactly the entries that take the longest to read, the way out
+   disappears and Escape or a click on the scrim is all that is left. */
 .modal-close {
-  position: absolute;
-  top: 18px;
-  right: 18px;
+  position: sticky;
+  top: 0;
+  float: right;
+  margin: -12px -8px 0 0;
   width: 34px;
   height: 34px;
   display: grid;
