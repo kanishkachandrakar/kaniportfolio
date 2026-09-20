@@ -1,2 +1,5 @@
 .DS_Store
 **/.DS_Store
+
+# the generator's master, not shipped
+audio/track.wav
