@@ -2724,10 +2724,34 @@ body.is-asking { overflow: hidden; }
   color: var(--ink-faint);
 }
 
+/* The label changes rather than something appearing next to it, so the card
+   does not resize at the moment you click it. */
 .reach-mail.is-copied .reach-mail-act {
   color: var(--accent);
   font-weight: 600;
 }
+
+.reach-mail.is-copied .reach-mail-act::after { content: " \2014 copied"; }
+
+.reach-chip[data-copy] { position: relative; }
+
+.reach-chip.is-copied::after {
+  content: "copied";
+  position: absolute;
+  top: 11px;
+  right: 12px;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* The column ends where its content ends. Stretching the email card to meet
+   the thread beside it was tried and it is worse: a 300px box with three
+   lines floating in the middle of it reads as a mistake, where a column that
+   simply finishes earlier reads as a column. Two columns of different lengths
+   is what two columns of different amounts of content look like. */
 
 /* Three across rather than three stacked. They are alternatives to each other,
    not steps, and side by side they read as a set - which also stops the
