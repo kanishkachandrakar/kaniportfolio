@@ -154,24 +154,43 @@
 
         <div>
           <h2 class="section-title">Send a message</h2>
-          <form class="form" id="contact-form" name="submit-to-google-sheet">
-            <div class="field">
-              <input type="text" name="Name" placeholder=" " required>
-              <label>Your name</label>
+
+          <!-- A thread rather than a form. The three fields the sheet wants are
+               still here as hidden inputs; the conversation fills them in and
+               the same submit posts the same FormData it always did. -->
+          <div class="thread" id="thread">
+            <div class="thread-head">
+              <img decoding="async" src="images/kani-memoji.webp" alt="">
+              <div>
+                <strong>Kanishka</strong>
+                <span class="thread-status">usually replies the same day</span>
+              </div>
             </div>
-            <div class="field">
-              <input type="email" name="Email" placeholder=" " required>
-              <label>Your email</label>
-            </div>
-            <div class="field">
-              <textarea name="Message" rows="6" placeholder=" "></textarea>
-              <label>Your message</label>
-            </div>
-            <div class="form-actions">
-              <button type="submit" class="btn btn-accent">Send message</button>
-            </div>
-            <span id="msg" class="form-msg" aria-live="polite"></span>
-          </form>
+
+            <div class="thread-log" id="threadLog" role="log" aria-live="polite"
+                 aria-label="Conversation"></div>
+
+            <form class="composer" id="contact-form" name="submit-to-google-sheet"
+                  autocomplete="off">
+              <input type="hidden" name="Name" id="fName">
+              <input type="hidden" name="Email" id="fEmail">
+              <input type="hidden" name="Message" id="fMessage">
+
+              <label class="sr-only" for="composerInput" id="composerLabel">Your reply</label>
+              <input class="composer-input" id="composerInput" type="text"
+                     aria-labelledby="composerLabel" enterkeyhint="send">
+              <button class="composer-send" id="composerSend" type="submit"
+                      aria-label="Send">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M6 12.5 19 6l-3.2 13-3.6-4.6z"/>
+                  <path d="M6 12.5 12.2 14.4 19 6z"/>
+                </svg>
+              </button>
+            </form>
+          </div>
+
+          <audio id="sndSent" src="audio/sent.wav" preload="auto"></audio>
+          <audio id="sndReply" src="audio/reply.wav" preload="auto"></audio>
         </div>
       </div>
 
