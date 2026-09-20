@@ -789,6 +789,19 @@
 
   var label = document.getElementById("composerLabel");
 
+  // Smooth, unless the reader has asked for less motion, in which case the jump
+  // is the correct behaviour rather than a lesser one.
+  var smooth = !window.matchMedia
+    || !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function toBottom() {
+    if (smooth && log.scrollTo) {
+      log.scrollTo({ top: log.scrollHeight, behavior: "smooth" });
+    } else {
+      log.scrollTop = log.scrollHeight;
+    }
+  }
+
   function bubble(text, side) {
     var b = document.createElement("div");
     b.className = "bubble " + side;
@@ -797,7 +810,7 @@
     b.setAttribute("aria-label", (side === "in" ? "Kanishka: " : "You: ") + text);
     b.textContent = text;
     log.appendChild(b);
-    log.scrollTop = log.scrollHeight;
+    toBottom();
     return b;
   }
 
@@ -806,7 +819,7 @@
     n.className = "thread-note";
     n.textContent = text;
     log.appendChild(n);
-    log.scrollTop = log.scrollHeight;
+    toBottom();
     return n;
   }
 
@@ -820,7 +833,7 @@
     t.innerHTML = "<i></i><i></i><i></i>";
     t.setAttribute("aria-hidden", "true");
     log.appendChild(t);
-    log.scrollTop = log.scrollHeight;
+    toBottom();
     return t;
   }
 
