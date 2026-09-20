@@ -635,19 +635,6 @@ body {
   margin-inline: auto;
 }
 
-/* A narrower one for the about page. Its row cannot fill 1100: the paragraphs
-   have a measure they must not exceed, and the photograph beside them has a
-   ceiling of its own - at much over 400px tall its bottom edge reaches the
-   rule under the education row. With both halves capped, a wider column only
-   puts the difference back in the gap between them, which is the thing this
-   whole sequence has been removing.
-
-   So that page is as wide as its content warrants and no wider. Both numbers
-   leave less margin than the 110 they replaced. */
-.content.is-centred.is-snug > * {
-  max-width: min(1000px, 100%);
-}
-
 /* On a phone the pane is already narrower than the measure, so the cap does
    nothing and the auto margins have nothing to distribute. Stated rather than
    left implicit, because the next person to widen the card will want to know
