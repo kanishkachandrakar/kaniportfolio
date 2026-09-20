@@ -2709,6 +2709,26 @@ body.is-asking { overflow: hidden; }
   text-transform: uppercase;
 }
 
+/* Confirmation in place of the value, not next to it. A toast somewhere else
+   on the page makes you look away from the thing you just clicked to find out
+   whether it worked. */
+.reach-row[data-copy] .reach-value::after {
+  content: "";
+  margin-left: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+.reach-row.is-copied .reach-value::after {
+  content: "copied";
+  opacity: 1;
+}
+
 /* The arrow only on the rows that leave the site, so the ones that stay -
    mail, phone, the download - are visibly a different kind of thing. */
 .reach-go {

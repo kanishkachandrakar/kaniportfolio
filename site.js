@@ -704,6 +704,33 @@
   });
 })();
 
+/* --- Contact: copy an address instead of opening a mail client --------
+   A mailto on a machine with no mail client set up opens nothing at all, and
+   a phone number on a desktop is not dialable. Both are things people copy.
+   So a modifier-free click copies, and the link still works for anyone who
+   wants it to - command or control click, middle click, or the context menu. */
+(function () {
+  var rows = document.querySelectorAll(".reach-row[data-copy]");
+  if (!rows.length || !navigator.clipboard) return;
+
+  rows.forEach(function (row) {
+    row.addEventListener("click", function (e) {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+      e.preventDefault();
+      navigator.clipboard.writeText(row.getAttribute("data-copy")).then(function () {
+        row.classList.add("is-copied");
+        // Long enough to read, short enough that it is gone before the reader
+        // wonders whether it is stuck.
+        setTimeout(function () { row.classList.remove("is-copied"); }, 1600);
+      }).catch(function () {
+        // Clipboard refused - permissions, or an insecure origin. Fall back to
+        // what the link was always going to do.
+        window.location.href = row.getAttribute("href");
+      });
+    });
+  });
+})();
+
 /* --- Contact: the message thread --------------------------------------
    The form asks three things, so the thread asks three things, one at a time.
    Each answer goes straight into the hidden input the endpoint reads, so the
