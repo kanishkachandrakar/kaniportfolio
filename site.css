@@ -885,7 +885,10 @@ body {
   aspect-ratio: 4 / 5;
   width: min(100%, 280px);
   border-radius: 24px;
-  justify-self: center;
+  /* Against the right edge of the measure. Centred in the space left over, it
+     floated between the text and the margin and lined up with nothing; here it
+     ends on the same line as the heading above and the second column below. */
+  justify-self: end;
 }
 
 .split .prose { align-self: start; }
