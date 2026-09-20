@@ -3533,6 +3533,14 @@ body.is-asking { overflow: hidden; }
   /* Shorter on a phone. 430px of thread under a full column of contact rows
      puts the composer below the fold on most handsets, and a chat you have to
      scroll to before you can type in it is a chat nobody types in. */
+  /* Shorter cap on a phone. 300px of picture in a panel that is itself only
+     about 520 tall leaves room for the title and roughly two lines, which
+     puts the write-up back below the fold - the exact thing the cap was
+     added to prevent, reintroduced by the screen getting smaller. */
+  .modal-box img { max-height: 190px; }
+
+  .modal-box { padding: 26px 20px 28px; }
+
   .thread { height: 340px; }
 
   /* Three across becomes three stacked below the point where a third of the
