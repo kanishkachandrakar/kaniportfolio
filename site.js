@@ -707,9 +707,14 @@
    A mailto on a machine with no mail client set up opens nothing at all, and
    a phone number on a desktop is not dialable. Both are things people copy.
    So a modifier-free click copies, and the link still works for anyone who
-   wants it to - command or control click, middle click, or the context menu. */
+   wants it to - command or control click, middle click, or the context menu.
+
+   Selected on the attribute alone rather than on a class. The class this used
+   to name was replaced when the section was rebuilt and the copying silently
+   stopped working, because a querySelectorAll that matches nothing is not an
+   error. data-copy is the thing that actually means "this is copyable". */
 (function () {
-  var rows = document.querySelectorAll(".reach-row[data-copy]");
+  var rows = document.querySelectorAll("[data-copy]");
   if (!rows.length || !navigator.clipboard) return;
 
   rows.forEach(function (row) {
