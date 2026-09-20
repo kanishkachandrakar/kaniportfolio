@@ -704,6 +704,92 @@
   });
 })();
 
+/* --- Contact: the message thread --------------------------------------
+   The form asks three things, so the thread asks three things, one at a time.
+   Each answer goes straight into the hidden input the endpoint reads, so the
+   conversation is the form rather than a layer over one. */
+(function () {
+  var log = document.getElementById("threadLog");
+  var form = document.getElementById("contact-form");
+  var input = document.getElementById("composerInput");
+  var send = document.getElementById("composerSend");
+  if (!log || !form || !input || !send) return;
+
+  var answers = {};
+
+  // Lines are a function of what has been said already where it matters, so
+  // she can use your name back at you rather than reading from a card.
+  var SCRIPT = [
+    { field: "fName",
+      hint: "Your name",
+      lines: ["Hi! Thanks for stopping by.", "What should I call you?"] },
+    { field: "fEmail",
+      hint: "you@example.com",
+      lines: function (a) {
+        return ["Good to meet you, " + a.fName + ".", "Where should I write back?"];
+      } },
+    { field: "fMessage",
+      hint: "Your message",
+      lines: ["Perfect. What would you like to say?"] }
+  ];
+
+  var step = -1;
+
+  function bubble(text, side) {
+    var b = document.createElement("div");
+    b.className = "bubble " + side;
+    b.textContent = text;
+    log.appendChild(b);
+    log.scrollTop = log.scrollHeight;
+    return b;
+  }
+
+  function note(text) {
+    var n = document.createElement("div");
+    n.className = "thread-note";
+    n.textContent = text;
+    log.appendChild(n);
+    log.scrollTop = log.scrollHeight;
+    return n;
+  }
+
+  function ask(i) {
+    step = i;
+    var s = SCRIPT[i];
+    var lines = typeof s.lines === "function" ? s.lines(answers) : s.lines;
+    lines.forEach(function (l) { bubble(l, "in"); });
+    input.placeholder = s.hint;
+    input.disabled = false;
+    send.disabled = true;
+    input.focus();
+  }
+
+  input.addEventListener("input", function () {
+    send.disabled = !input.value.trim();
+  });
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var text = input.value.trim();
+    if (!text || step < 0) return;
+
+    bubble(text, "out");
+    answers[SCRIPT[step].field] = text;
+    document.getElementById(SCRIPT[step].field).value = text;
+    input.value = "";
+    send.disabled = true;
+
+    if (step + 1 < SCRIPT.length) {
+      ask(step + 1);
+    } else {
+      input.disabled = true;
+      input.placeholder = "";
+    }
+  });
+
+  ask(0);
+})();
+
 /* --- Ask KaniGPT: the dialog ------------------------------------------
    The panel used to be a section at the foot of the page that the header
    label scrolled you to. It opens over the page now, from the same label.
