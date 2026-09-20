@@ -2811,125 +2811,6 @@ body.is-asking { overflow: hidden; }
 
 .reach-chip.is-copied .reach-chip-value { color: var(--accent); }
 
-.reach {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-/* A row per channel, each one a card rather than a line of text, so the whole
-   column is a set of targets rather than four links sharing an edge. */
-.reach-row {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  padding: 12px 14px;
-  border-radius: 14px;
-  border: 1px solid var(--line-soft);
-  background: var(--surface);
-  color: inherit;
-  text-decoration: none;
-  transition: background 0.18s ease, border-color 0.18s ease,
-              transform 0.18s ease;
-}
-
-.reach-row:hover {
-  background: var(--surface-hi);
-  border-color: var(--edge);
-  transform: translateX(3px);
-}
-
-/* The email is the one that actually works, so it is the one carrying the
-   accent. Everything else is a flat surface and reads as an alternative. */
-.reach-row.is-primary {
-  border-color: color-mix(in srgb, var(--accent) 34%, transparent);
-  background: var(--accent-dim);
-}
-
-.reach-mark {
-  flex: none;
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 11px;
-  border: 1px solid var(--line-soft);
-  background: var(--glass);
-  color: var(--accent);
-  font-size: 14px;
-}
-
-.reach-body {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-}
-
-/* Uppercase and small, the treatment the group headings on the experience
-   page use for the same job: saying what the thing under it is. */
-.reach-label {
-  font-size: 10.5px;
-  font-weight: 600;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-}
-
-.reach-value {
-  font-size: 14px;
-  line-height: 1.3;
-  overflow-wrap: anywhere;
-}
-
-.reach-hint {
-  flex: none;
-  margin-left: auto;
-  padding: 3px 9px 4px;
-  border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
-  color: var(--chip-ink);
-  font-size: 10.5px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-/* Confirmation in place of the value, not next to it. A toast somewhere else
-   on the page makes you look away from the thing you just clicked to find out
-   whether it worked. */
-.reach-row[data-copy] .reach-value::after {
-  content: "";
-  margin-left: 8px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--accent);
-  opacity: 0;
-  transition: opacity 0.18s ease;
-}
-
-.reach-row.is-copied .reach-value::after {
-  content: "copied";
-  opacity: 1;
-}
-
-/* The arrow only on the rows that leave the site, so the ones that stay -
-   mail, phone, the download - are visibly a different kind of thing. */
-.reach-go {
-  flex: none;
-  margin-left: auto;
-  font-size: 15px;
-  color: var(--ink-faint);
-  transition: transform 0.18s ease, color 0.18s ease;
-}
-
-.reach-row:hover .reach-go {
-  color: var(--accent);
-  transform: translate(2px, -2px);
-}
-
 /* ---------- Contact ---------------------------------------- */
 .contact-lines {
   display: flex;
@@ -3609,7 +3490,23 @@ body.is-asking { overflow: hidden; }
      scroll to before you can type in it is a chat nobody types in. */
   .thread { height: 340px; }
 
-  .reach-row { padding: 11px 12px; }
+  /* Three across becomes three stacked below the point where a third of the
+     column stops fitting a handle. "kanishka-chandrakar" in 90px is an
+     ellipsis after the first syllable, which identifies nothing. */
+  .reach-more { grid-template-columns: 1fr; }
+
+  .reach-chip {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 9px;
+  }
+
+  .reach-chip i { margin-bottom: 0; }
+
+  /* In a row the label has room to sit beside the value rather than over it,
+     and the value can have the rest of the line. */
+  .reach-chip-label { flex: none; }
+  .reach-chip-value { flex: 1; min-width: 0; text-align: right; }
 
   .grid-2 { grid-template-columns: 1fr; gap: 32px; }
 
