@@ -2531,11 +2531,17 @@ body.is-asking { overflow: hidden; }
   height: 6px;
   border-radius: 50%;
   background: var(--ink-faint);
-  animation: askDot 1s ease-in-out infinite;
+  animation: bubDot 1.4s ease-in-out infinite;
 }
 
 .bubble.is-typing i:nth-child(2) { animation-delay: 0.16s; }
 .bubble.is-typing i:nth-child(3) { animation-delay: 0.32s; }
+
+/* The dots are the wait. With them still there is no indication anything is
+   happening, so the bubble stays and the delay stands in for the motion. */
+@media (prefers-reduced-motion: reduce) {
+  .bubble.is-typing i { animation: none; }
+}
 
 .thread-note {
   align-self: flex-end;
