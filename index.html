@@ -125,7 +125,15 @@
     <main class="content is-centred">
       <section class="home">
         <div>
-          <p class="eyebrow"><span class="typed-role">Software Engineer</span></p>
+          <!-- The rotation is decoration: a screen reader landing here mid-type
+               would read whatever fragment is on screen, "Softwa" included.
+               The stable line is what gets announced; the animated span is
+               hidden from assistive tech and left for the eye. -->
+          <p class="eyebrow">
+            <span class="sr-only">Software engineer, AI research assistant,
+              and fun-time web designer</span>
+            <span class="typed-role" aria-hidden="true">Software Engineer</span>
+          </p>
           <h1>Hi, I&rsquo;m <span>Kanishka</span><br>Chandrakar</h1>
 
           <div class="statement">
