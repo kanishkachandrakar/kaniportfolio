@@ -3395,6 +3395,13 @@ body.is-asking { overflow: hidden; }
     margin: 0 auto;
   }
 
+  /* Shorter on a phone. 430px of thread under a full column of contact rows
+     puts the composer below the fold on most handsets, and a chat you have to
+     scroll to before you can type in it is a chat nobody types in. */
+  .thread { height: 340px; }
+
+  .reach-row { padding: 11px 12px; }
+
   .grid-2 { grid-template-columns: 1fr; gap: 32px; }
 
   .cards { grid-template-columns: 1fr; }
