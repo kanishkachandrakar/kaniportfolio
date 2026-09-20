@@ -916,9 +916,14 @@ body {
     var(--shadow-md);
 }
 
+/* The inline margins are auto, not zero. On a centred page the rule is held
+   to the same 960 as everything else, but a shorthand with 0 on the sides
+   overrides the auto that centres it - so it came out the right width, pinned
+   to the left, finishing 110px short of every other block on the page. It was
+   the one thing on the hero still ending in the wrong place. */
 .divider {
   height: 1px;
-  margin: 34px 0;
+  margin: 34px auto;
   background: var(--line-soft);
   border: 0;
 }
@@ -1059,7 +1064,7 @@ body {
    that edge and the page looked like it ended there - nothing told you the
    Explore cards were under it. Pulled in, the rule, the heading and the top
    of the first card clear the edge, and the cut-off card is the cue. */
-.home + .divider { margin: 22px 0; }
+.home + .divider { margin: 22px auto; }
 
 /* The portrait sits in a wrapper so a control can be placed against it. The
    grid properties move here with it - the image is no longer the grid item.
