@@ -2952,8 +2952,14 @@ body.is-asking { overflow: hidden; }
   max-height: 300px;
   object-fit: contain;
   margin: 18px 0;
+  padding: 10px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--line-soft);
+  /* A ground behind it, because contain letterboxes. Without one, a picture
+     narrower than the panel sits in a full-width frame with two empty bands
+     beside it and the border reads as a box that failed to fill. With one,
+     the same bands read as matting - which is what they are. */
+  background: var(--glass);
 }
 
 .modal-close {
